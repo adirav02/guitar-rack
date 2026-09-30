@@ -1,6 +1,6 @@
 # GuitarRack — Product and implementation plan
 
-Created: 2026-09-30. Working name: GuitarRack. Status: M0/M1 through M4 software implemented. Owner reports the M3 GUI opens on Fedora and Overdrive, EQ and Delay work with a real guitar, individually and together; this is user-reported desktop/listening evidence. M4 desktop acceptance, detailed live-edit acceptance, dry-recording/gain-staging appraisal, the 10-minute soak and unreported physical checks remain pending. Catalog remains Gain, Overdrive, EQ and Delay. M5 and later milestones remain untouched.
+Created: 2026-09-30. Working name: GuitarRack. Status: M0/M1 through M4 software implemented. Owner reports the M3 GUI opens on Fedora and Overdrive, EQ and Delay work with a real guitar, individually and together; this is user-reported desktop/listening evidence. The owner also reports that the M4 desktop preset workflow works well (user-reported acceptance). The new M4 Delete desktop checklist, unreported keyboard/live-transition details, detailed live-edit acceptance, dry-recording/gain-staging appraisal, the 10-minute soak and unreported physical checks remain pending. Catalog remains Gain, Overdrive, EQ and Delay. M5 and later milestones remain untouched.
 
 This is an implementation contract for Codex. Complete one milestone at a time. Treat unchecked items as unfinished. Update this document with evidence as implementation progresses.
 
@@ -76,7 +76,7 @@ Remember valid device preferences locally, but require explicit Start on subsequ
 ### Main window
 
 - Top bar: audio status, Start/Stop/Mute in standalone, input/output meters, trim/level, rack bypass, and settings.
-- Preset area: preset selection, Save, Save As, import/export, and an unsaved-changes indicator.
+- Preset area: preset selection, Save, Save As, Delete for saved user presets, import/export, and an unsaved-changes indicator.
 - Rack: ordered effect cards with a name, bypass button, controls with units, remove button, and reorder handle.
 - Catalog: searchable effect picker with category and short descriptions.
 - Status area: actionable device errors, clipping, and CPU/load estimates where available. Never label unavailable dropout or latency measurements as zero.
@@ -336,10 +336,12 @@ Exit: distinct usable sounds, predictable controls, bounded delay feedback, and 
 
 - [x] Version 1 JSON schema, validated factory fixtures, strict runtime validation, explicit migration entry point (v1 only; no legacy format), and atomic Linux persistence.
 - [x] Factory/user presets, import/export, Save/Save As, Save/Discard/Cancel workflow, Unicode names, dirty indication, and device/window settings separation (implemented; state logic tested).
-- [ ] Owner M4 desktop/dialog/keyboard and live preset-transition acceptance.
+- [x] Owner reports testing the M4 desktop preset workflow: it works well (user-reported acceptance; no inferred duration or detailed subchecks).
+- [ ] Unreported detailed keyboard/live preset-transition checks and new Delete desktop/guitar checklist.
+- [x] Focused M4 extension: confirmed managed user-preset deletion, staged dirty choices, unchanged working sound, new Save As identity, recall cleanup, failure retention and stale-operation protection (automated state/adapter checks).
 - [x] Worker-prepared transactional load, failure/cancellation/stale rollback, competing loads, exact identity/order/slot round trips and reset-condition DSP equivalence.
 
-Exit: automated save/reopen and import/export reproduce the same rack, order, parameters and reset-condition output (maximum tested sample difference <2e-6). Corrupted/failed/stale presets retain the previous accepted configuration. Native M4 dialogs/layout, restart/recall and transitions still need the owner checklist; software tests do not establish live listening quality.
+Exit: automated save/reopen and import/export reproduce the same rack, order, parameters and reset-condition output (maximum tested sample difference <2e-6). Corrupted/failed/stale presets retain the previous accepted configuration. The owner reports successful M4 desktop preset use. New Delete dialogs/keyboard and physical listening, plus unreported detailed transitions, still need the owner checklist; software tests do not establish live listening quality.
 
 ### M5 — Complete guitar sound catalog
 
@@ -492,6 +494,43 @@ M3 progress on 2026-09-30:
   packages, audio policies, commits, remotes or publication were added. Physical
   M4 acceptance, 10-minute soak, reconnect, actual latency and other unreported
   checks remain pending. Follow the README M4 checklist on the Fedora desktop.
+
+### 2026-09-30 — M4 saved user-preset deletion
+
+- Recorded the owner's M4 desktop preset workflow report: it works well. This is
+  user-reported acceptance only. No unreported soak, reconnect, measured latency,
+  detailed keyboard/transition or LeakSanitizer check is inferred.
+- Extended the existing uncommitted deletion/session/store changes; preserved
+  owner changes and added no effects or later milestones. Native Delete is
+  enabled only for a selected managed user preset after transactions settle.
+  Dirty Save/Discard/Cancel choices are staged before named confirmation; Cancel
+  has initial focus and Enter/Escape shortcuts. Either cancellation preserves
+  the state and saved bytes. Failures retain selection, catalog, rack and dirty
+  baseline, with a path/permission or validation error.
+- The store validates the canonical UUID, rejects factories and symlink/nonregular
+  targets, reads/validates the opened managed file, checks entry identity before
+  unlink, and updates matching recall first. Staged Save and recall/file changes
+  roll back on deletion failure where the filesystem allows it; rollback errors
+  are surfaced. No display name/import path selects a deletion target. Other
+  presets, exports, settings, factory files and assets are kept.
+- Success removes only the selected entry/file, supersedes old parser serials,
+  tombstones cached selections, and detaches the identity into an unsaved
+  Untitled rack. No graph request, DSP reset or control/device write occurs;
+  Save As creates a new saved identity. Matching recall becomes Clean immediately,
+  so restart/normal close cannot recall the deleted UUID. The working rack is
+  not autosaved when closing with Discard.
+- Debug/release standalone builds and regressions pass 5/5 each. Full
+  ASan/UBSan (leaks disabled) and TSan diagnostics pass 5/5 each; the separate
+  LeakSanitizer retry fails with the restricted-process/ptrace inspection error
+  and remains unverified. Deletion tests cover cancellation/dirty choices,
+  restart, Unicode/duplicate names, factory/asset/export protection, real
+  permission failures/rollback, stale parser/graph operations, stopped/running
+  device preservation and sample-exact ongoing Delay output (difference 0).
+  Release linked libraries resolve; whitespace checks pass. Commands, scope and
+  remaining checks are in docs/testing.md.
+  Delete desktop/dialog/keyboard/listening tests remain pending: this session
+  has no usable X display or /dev/snd. M5+, unreported soak, reconnect, measured
+  latency and LeakSanitizer acceptance remain incomplete.
 
 Maintain a concise log here as work finishes: date, milestone, files/behavior changed, checks run, results, and remaining hardware/host checks.
 

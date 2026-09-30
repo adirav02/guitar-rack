@@ -59,6 +59,48 @@ On a normal close, recall stores the selected saved/loaded configuration, so
 Discard never persists the discarded edits. Abrupt process termination does not
 update last selection/settings; already saved user files remain in the library.
 
+## Deleting a saved user preset
+
+Delete eligibility requires a settled transaction, a selected named custom UUID,
+and a validated managed-library entry. Factories, unnamed working racks and
+unsaved external imports are protected. The shared dirty dialog stages
+Save/Discard/Cancel for deletion; then a named confirmation defaults to Cancel
+(initial focus, Enter and Escape). Neither cancellation resolves dirty state or
+writes files. The captured UUID is rechecked at commit, so a newer selection or
+pending load invalidates confirmation.
+
+`PresetStore::erase` receives the UUID, never the display name/import path. It
+rejects factory UUIDs, invalid IDs, symlink directories/entries, nonregular files,
+invalid JSON and UUID mismatches. An opened store directory anchors `openat`,
+entry checks and `unlinkat`; validation reads the same opened file descriptor.
+The final entry device/inode must still match. Only that managed UUID file is
+unlinked; no asset cleanup, export cleanup or name search occurs. External
+processes racing path replacement are not a cross-process transaction lock.
+
+The control/message thread performs filesystem work; parser and audio threads
+never save/delete files. Save is serialized before deletion, inside the same
+failure-handling transaction. Matching `last-tone.json` is atomically replaced
+with Clean before unlink, then the store directory is fsynced. Other recall and
+device/window preferences are unchanged. On failure, the original file/recall
+are restored where possible; restoration failures are included in the error.
+No in-memory selection, catalog, rack or dirty baseline commits on failure.
+An unrecoverable filesystem fault can prevent rollback/durable persistence; the
+error identifies that limit instead of claiming success.
+
+Success removes the entry, clears its selection, and gives the current rack a
+fresh working UUID and `Untitled rack` label. It remains dirty until Save As. No
+DSP graph is built/reset and no parameter, routing, gain, bypass, Mute or
+transport value changes; delay history continues. Close with Discard recalls
+Clean, not the deleted tone or unsaved working edits. Save As saves the working
+rack with a new preset UUID and unchanged effect identities/slots/controls.
+
+Delete is rejected while parser, graph preparation or accepted fades are pending.
+After success, pre-delete serials/results are invalidated, the last acknowledged
+tone generation is recorded, and cached library selection of a deleted UUID is
+rejected. All mutation APIs have the existing single message/control producer;
+there is no background save that can recreate the file. Explicitly importing an
+exported copy after deletion is a new request and remains supported.
+
 ## Async transaction, stale loads and host boundary
 
 One parser thread owns a coalesced request and a coalesced result, each with a

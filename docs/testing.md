@@ -84,7 +84,10 @@ actual format, device latency, startup silence, detailed edit/bypass/Stop-Start
 acceptance or disconnect/reconnect. The owner now reports opening the M3 GUI on
 Fedora and testing Overdrive, EQ and Delay with a real guitar, individually and
 together in a rack. This is user-reported desktop/listening evidence; it does
-not complete the unreported soak/reconnect/latency checks or M4 acceptance.
+not complete the unreported soak/reconnect/latency checks. The owner subsequently
+reports testing the M4 desktop preset workflow and says it works well. This is
+user-reported M4 acceptance, without inferred detailed keyboard/transition,
+new Delete, soak, reconnect, measured-latency or LeakSanitizer results.
 
 The restricted agent session still has no `/dev/snd` or access to the owner's
 PipeWire service. Native GUI smoke testing is unavailable here (no usable desktop
@@ -435,3 +438,101 @@ save/switch/close/restart/import/export and listening checklist, dry-recording
 and detailed tone/aliasing/gain-staging appraisal, detailed live edits, 10-minute
 soak, actual backend/device format and latency, physical reconnect, measured
 round trip, LeakSanitizer, performance headroom, host/VST3 and Windows.
+
+
+## M4 extension — saved user-preset deletion (2026-09-30)
+
+Environment rechecked: Fedora 44, GCC 16.2.1 (20260819), CMake 4.3.0,
+Ninja 1.13.2, local JUCE 8.0.15 commit
+`91ad83ae34a81e0833b1a2b0866f54846370ae53`. Existing uncommitted changes,
+including AGENTS.md, were preserved. No packages, audio policies, commits or
+later milestones were changed.
+
+Actual final build/regression commands:
+
+```bash
+cmake --build --preset linux-debug
+ctest --preset linux-debug --output-on-failure
+cmake --build --preset linux-release
+ctest --preset linux-release --output-on-failure
+```
+
+Both complete standalone binaries and affected tests build; **5/5 pass in each
+configuration**. Release `ldd` has no missing libraries. `git diff --check` passes.
+
+New automated state checks use temporary managed stores, exported files and
+asset fixtures, without touching the owner's library:
+
+- Clean and dirty deletion; staged Save/Discard, dirty Cancel and confirmation
+  Cancel preserve selection, rack, baseline and saved/recall bytes as appropriate.
+- Hebrew/emoji/path-like names, duplicate display names, factory protection at
+  session/store boundaries, and disabled eligibility for unnamed/unsaved imports.
+- Fresh session/catalog reconstruction and recall after deletion, immediate
+  matching-recall cleanup before close, normal-close persistence, retained
+  unrelated recall/settings, and Save As from the detached working rack.
+- Real directory-permission failures in Save, recall replacement and unlink;
+  recall and pre-Save file rollback; missing/corrupt/UUID-mismatched managed files,
+  symlink entry/directory rejection and nonregular targets. Each failure keeps
+  the selection, catalog, rack and dirty state with an actionable error.
+- Exported copies, an IR-like `.wav` asset, unrelated files, another preset with
+  the same display name and protected factory UUID files are preserved.
+- Competing parser requests, cancelled late parser completions, blocked/cancelled
+  worker graphs, cached deleted selections and selection changes during
+  confirmation cannot recreate/reselect/delete the wrong entry. Sample-rate
+  restart does not republish the deleted association.
+- Against an uninterrupted reference, deleting a preset with active Delay history
+  produces **exactly identical subsequent samples (maximum difference 0)** with
+  nonzero echoes. No graph request/build, control write or DSP reset occurs.
+
+The actual standalone callback is exercised with the existing fake device:
+Delete while running, muted and unmuted keeps stream authorization, callback,
+open count, physical channel masks, actual configuration, mono-to-stereo output,
+parameters, gains and rack bypass. Stopped deletion never opens or authorizes
+monitoring. Callback heap audits pass; earlier signal/rack/state/adapter
+regressions remain enabled. This is synthetic evidence, not a physical test.
+
+Used the existing full diagnostic builds (ASan/UBSan enabled with
+`GUITARRACK_SANITIZERS=ON`; TSan with `-fsanitize=thread
+-fno-omit-frame-pointer` and matching link flag):
+
+```bash
+cmake --build build/adapter-sanitize --target guitarrack_tests \
+  guitarrack_rack_tests guitarrack_effect_tests guitarrack_adapter_tests \
+  guitarrack_state_tests -j 2
+ASAN_OPTIONS=detect_leaks=0 ctest --test-dir build/adapter-sanitize --output-on-failure
+cmake --build build/core-thread-sanitize --target guitarrack_tests \
+  guitarrack_rack_tests guitarrack_effect_tests guitarrack_adapter_tests \
+  guitarrack_state_tests -j 2
+ctest --test-dir build/core-thread-sanitize --output-on-failure
+```
+
+**ASan/UBSan 5/5 pass with leaks disabled; TSan 5/5 pass with no reported race in
+these exercised paths.** Neither result establishes GUI/driver races or performance.
+A separate actual attempt:
+
+```bash
+ASAN_OPTIONS=detect_leaks=1 ctest --test-dir build/adapter-sanitize \
+  -R presets_and_persistence --output-on-failure
+```
+
+fails at exit: `LeakSanitizer has encountered a fatal error`, with the ptrace
+inspection limitation hint. **LeakSanitizer remains unverified**, not complete.
+
+RT source review: Delete/dirty dialogs and `PresetSession::deleteSelected` run on
+the existing single control/message producer; all UUID, serialization, file,
+catalog and lifetime work stays there. No callback method or DSP implementation
+was changed. Parser results only read/validate; deletion supersedes their serials
+and records the acknowledged tone generation. Delete is rejected while a preset
+or graph transition is pending. Existing worker ownership and bounded audio
+handoff/retirement remain unchanged. Filesystem rollback after an unrecoverable
+fault is best effort and its failure is surfaced; external processes racing
+path replacement are not coordinated by a cross-process transaction lock.
+
+Current acceptance: the owner's earlier M4 desktop preset workflow report is
+recorded as user-reported acceptance and supersedes its earlier pending status.
+The **new Delete native dialog, Unicode rendering, initial Cancel focus/Enter,
+Escape, keyboard/layout and real-guitar checklist remain pending**. A fresh
+`XOpenDisplay` probe returned unavailable; `/dev/snd` is still unavailable, so no
+native smoke launch or hardware test is claimed. Unreported soak, reconnect,
+actual backend/device format/latency, measured round trip, listening/aliasing
+appraisal, performance headroom, host/VST3 and Windows checks remain pending.

@@ -91,7 +91,7 @@ if(GUITARRACK_BUILD_STANDALONE)
         target_compile_definitions(guitarrack_adapter_tests PRIVATE
             JUCE_WEB_BROWSER=0 JUCE_USE_CURL=0 JUCE_JACK=1 JUCE_ALSA=1
             JUCE_PLUGINHOST_LADSPA=0 JUCE_JACK_CLIENT_NAME="GuitarRack")
-        target_link_libraries(guitarrack_adapter_tests PRIVATE guitarrack_core
+        target_link_libraries(guitarrack_adapter_tests PRIVATE guitarrack_state
             juce::juce_audio_devices juce::juce_audio_processors_headless
             juce::juce_recommended_config_flags)
         add_test(NAME device_adapter_lifecycle COMMAND guitarrack_adapter_tests)

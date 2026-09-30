@@ -198,8 +198,7 @@ void MainComponent::persistLocal() {
     atomicWrite(userConfigDirectory()/"settings.json",serializePreferences(p));
     // Close after Discard recalls the saved tone, never the discarded edits.
     auto& presets=presetBar.presets;
-    auto tone=presets.selected().value_or(factoryPresets(session.processor.rack.registry()).front());
-    atomicWrite(userDataDirectory()/"last-tone.json",serializePreset(tone,session.processor.rack.registry()));
+    presets.persistRecall();
 }
 void MainComponent::requestClose(std::function<void()> close) {
     presetBar.guard([safe=juce::Component::SafePointer<MainComponent>(this),close=std::move(close)] {
@@ -256,7 +255,7 @@ void MainComponent::resized() {
     resetClips.setBounds(clipping.removeFromRight(130).withHeight(30)); clipLabel.setBounds(clipping);
     statusLabel.setBounds(area.removeFromTop(52));
     configLabel.setBounds(area.removeFromTop(76));
-    area.removeFromTop(4); presetBar.setBounds(area.removeFromTop(74));
+    area.removeFromTop(4); presetBar.setBounds(area.removeFromTop(96));
     area.removeFromTop(6); rackEditor.setBounds(area);
 }
 }

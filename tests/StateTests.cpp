@@ -103,12 +103,177 @@ void filesAndActions(const EffectRegistry& registry,const std::filesystem::path&
     check(wait([&]{session.poll();return !session.busy();})&&session.selected()->name=="Clean"&&c.inputDb()==-7,"control edit during asynchronous parsing supersedes old load");
     session.select(t); check(session.cancelLoad(),"queued async load cancelled"); for(int i=0;i<20;++i) { session.poll(); std::this_thread::sleep_for(std::chrono::milliseconds(1)); } check(session.selected()->name=="Clean","cancelled parser completion cannot change selection");
 }
+void deletionActions(const EffectRegistry& registry, const std::filesystem::path& root) {
+    auto data=root/"deletion"; RackEngine rack; MonitorControls controls; MonitorEngine engine(controls,&rack);
+    PresetSession session(rack,data/"presets");
+    check(!session.canDelete(),"unnamed initial rack cannot be deleted");
+    for(const auto& factory:factoryPresets(registry)) {
+        session.select(factory); check(wait([&]{session.poll();return !session.busy();}),"factory selection settles");
+        check(!session.canDelete()&&!session.deleteSelected(factory.id,DirtyAction::discard,true),"factory deletion protected in session");
+        session.store.save(factory,registry); const auto protectedFile=session.store.directory/(factory.id+".json");
+        const auto protectedBytes=readBounded(protectedFile);
+        rejects([&]{session.store.erase(factory.id,registry,session.recallFile);},"factory deletion protected in store");
+        check(readBounded(protectedFile)==protectedBytes,"even a factory UUID file inside the user store is protected");
+    }
+    auto imported=factoryPresets(registry).back(); imported.id=newInstanceId(); imported.name="Imported only";
+    atomicWrite(data/"import.json",serializePreset(imported,registry)); session.importFile(data/"import.json");
+    check(wait([&]{session.poll();return !session.busy();})&&!session.canDelete(),"external import alone is not a managed saved preset");
+    check(!session.deleteSelected(imported.id,DirtyAction::discard,true)&&std::filesystem::exists(data/"import.json"),"import path is never a deletion target");
+
+    for(auto action:{DirtyAction::save,DirtyAction::discard}) {
+        check(session.saveAs("צליל 🎸 ../exports/Lead"),"Unicode and path-like names save with UUID filenames");
+        const auto saved=*session.selected(); const auto file=session.store.directory/(saved.id+".json");
+        session.persistRecall(); const auto recall=readBounded(session.recallFile), bytes=readBounded(file);
+        const auto catalog=session.library;
+        rack.setParameter(saved.rack.order[0],0,18); rack.setBypassed(saved.rack.order[1],true);
+        controls.setInputDb(-4); controls.setOutputDb(-21); controls.setMuted(true); rack.bank.setRackBypassed(true);
+        const auto edited=session.current();
+        check(session.dirty()&&session.canDelete(),"saved user with edits is deletable after dirty workflow");
+        check(!session.deleteSelected(saved.id,DirtyAction::cancel,true),"dirty Cancel aborts deletion");
+        check(!session.deleteSelected(saved.id,action,false),"confirmation Cancel aborts both staged Save and Discard");
+        check(session.current()==edited&&session.selected()==saved&&session.dirty()&&session.library==catalog
+              &&readBounded(file)==bytes&&readBounded(session.recallFile)==recall,"both cancellation points preserve state and all persisted bytes");
+        check(!session.deleteSelected(newInstanceId(),action,true)&&session.current()==edited&&session.dirty(),"stale confirmation cannot delete different selection");
+        const auto exported=data/(action==DirtyAction::save?"export-save.json":"export-discard.json");
+        check(session.exportFile(exported),"export before deletion"); const auto exportBytes=readBounded(exported);
+        atomicWrite(data/"cabinet.wav","asset bytes"); atomicWrite(session.store.directory/"unrelated.txt","unrelated bytes");
+        atomicWrite(data/"settings.json",serializePreferences(Preferences{})); const auto preferences=readBounded(data/"settings.json");
+        auto duplicate=saved; duplicate.id=newInstanceId(); session.store.save(duplicate,registry);
+        const auto duplicateFile=session.store.directory/(duplicate.id+".json"); const auto duplicateBytes=readBounded(duplicateFile);
+        const auto generation=rack.snapshot().requestedGeneration;
+        check(session.deleteSelected(saved.id,action,true),"confirmed dirty user preset deleted");
+        auto working=session.current();
+        check(!session.selected()&&session.dirty()&&!session.canDelete()&&working.id!=saved.id&&working.name=="Untitled rack",
+              "deletion detaches saved identity and produces unsaved working rack");
+        check(working.rack==edited.rack&&working.controls==edited.controls&&controls.isMuted()
+              &&rack.snapshot().requestedGeneration==generation,"deletion preserves rack, gains, parameters, bypass, Mute and graph generation");
+        check(!std::filesystem::exists(file)&&session.library.size()+1==catalog.size(),"only selected catalog entry and managed file removed");
+        check(readBounded(exported)==exportBytes&&readBounded(data/"cabinet.wav")=="asset bytes"
+              &&readBounded(session.store.directory/"unrelated.txt")=="unrelated bytes","exports, IR-like assets and unrelated files survive deletion");
+        check(readBounded(data/"settings.json")==preferences&&readBounded(duplicateFile)==duplicateBytes,
+              "device preferences and another preset with the identical display name survive deletion");
+        check(parsePreset(readBounded(session.recallFile),registry).id!=saved.id,"recall updated immediately before close");
+        {
+            RackEngine fresh; PresetSession restarted(fresh,data/"presets"); restarted.importFile(session.recallFile);
+            check(wait([&]{restarted.poll();return !restarted.busy();})&&restarted.selected()->id!=saved.id&&!restarted.canDelete(),"fresh session/restart cannot recall deleted selection");
+            check(std::none_of(restarted.library.begin(),restarted.library.end(),[&](const auto& t){return t.id==saved.id;}),"fresh catalog excludes deleted UUID");
+        }
+        session.persistRecall(); check(parsePreset(readBounded(session.recallFile),registry).id!=saved.id,"normal close never writes deleted association back");
+        check(!session.save(),"working rack requires Save As");
+        check(session.saveAs("צליל חדש 🎸")&&!session.dirty()&&session.selected()->id!=saved.id
+              &&session.current().rack==edited.rack&&session.current().controls==edited.controls,"Save As saves unchanged working sound with new identity");
+        // Next iteration needs a dirty change even if the same values were used.
+        rack.setParameter(saved.rack.order[0],0,12); controls.setInputDb(0); controls.setOutputDb(-12); rack.bank.setRackBypassed(false);
+    }
+    auto id=session.selected()->id;
+    check(session.save()&&!session.dirty()&&session.deleteSelected(id,DirtyAction::discard,true),"clean preset deletion succeeds without dirty prompt");
+}
+void deletionFailures(const EffectRegistry& registry, const std::filesystem::path& root) {
+    const auto data=root/"delete-failures"; RackEngine rack; MonitorControls controls; MonitorEngine engine(controls,&rack);
+    PresetSession session(rack,data/"presets"); session.select(factoryPresets(registry)[1]);
+    check(wait([&]{session.poll();return !session.busy();})&&session.saveAs("Failure test"),"create deletion failure fixture");
+    const auto saved=*session.selected(); const auto catalog=session.library;
+    const auto file=session.store.directory/(saved.id+".json"); const auto original=readBounded(file);
+    controls.setInputDb(-7); const auto before=session.current(); session.persistRecall(); const auto recall=readBounded(session.recallFile);
+    auto retained=[&] {
+        check(session.selected()==saved&&session.library==catalog&&session.current()==before&&session.dirty()
+              &&!session.error.empty(),"delete failure retains selection, catalog, rack, dirty state and actionable error");
+    };
+    std::filesystem::remove(file);
+    check(!session.deleteSelected(saved.id,DirtyAction::save,true),"missing managed file is not recreated by dirty Save"); retained();
+    check(!std::filesystem::exists(file),"missing entry remains absent after failed deletion");
+    atomicWrite(file,original);
+    check(::chmod(session.store.directory.c_str(),0500)==0,"restrict user directory for real unlink failure");
+    check(!session.deleteSelected(saved.id,DirtyAction::discard,true),"directory permission failure reported"); retained();
+    check(readBounded(file)==original&&readBounded(session.recallFile)==recall,"unlink failure rolls recall back and keeps preset file");
+    check(!session.deleteSelected(saved.id,DirtyAction::save,true),"unwritable staged Save aborts deletion"); retained();
+    check(readBounded(file)==original&&readBounded(session.recallFile)==recall,"Save failure retains original file and recall");
+    check(::chmod(session.store.directory.c_str(),0700)==0,"restore fixture permissions");
+    // A blocked recall update fails before unlink and rolls staged Save back.
+    check(::chmod(data.c_str(),0500)==0,"restrict recall directory");
+    check(!session.deleteSelected(saved.id,DirtyAction::save,true),"recall filesystem failure aborts dirty Save deletion"); retained();
+    check(readBounded(file)==original&&readBounded(session.recallFile)==recall,"failed recall update restores pre-Save preset and recall");
+    check(::chmod(data.c_str(),0700)==0,"restore recall directory permissions");
+    atomicWrite(file,"{}"); check(!session.deleteSelected(saved.id,DirtyAction::discard,true),"corrupted managed file cannot be deleted"); retained();
+    auto wrong=saved; wrong.id=newInstanceId(); atomicWrite(file,serializePreset(wrong,registry));
+    check(!session.deleteSelected(saved.id,DirtyAction::save,true),"UUID mismatch cannot be overwritten by staged Save"); retained();
+    const auto exportPath=data/"exported.json"; atomicWrite(exportPath,original); std::filesystem::remove(file); std::filesystem::create_symlink(exportPath,file);
+    check(!session.deleteSelected(saved.id,DirtyAction::save,true),"symlink entry rejected before Save/delete"); retained();
+    check(std::filesystem::is_symlink(file)&&readBounded(exportPath)==original,"failed symlink deletion leaves exported copy and link intact");
+    std::filesystem::remove(file); std::filesystem::create_directory(file);
+    check(!session.deleteSelected(saved.id,DirtyAction::discard,true),"directory entry cannot be deleted"); retained();
+    check(std::filesystem::is_directory(file),"nonregular managed path preserved"); std::filesystem::remove(file); atomicWrite(file,original);
+    const auto storePath=session.store.directory; const auto alias=data/"preset-link"; std::filesystem::create_directory_symlink(storePath,alias); session.store.directory=alias;
+    check(!session.deleteSelected(saved.id,DirtyAction::discard,true),"symlink store directory cannot redirect deletion"); retained(); session.store.directory=storePath;
+    rejects([&]{session.store.erase("../exported",registry,session.recallFile);},"store rejects traversal IDs");
+    check(readBounded(exportPath)==original&&readBounded(file)==original,"all failed deletes preserve managed original and export");
+    // Deleting another selected preset must leave an unrelated recall untouched.
+    auto clean=factoryPresets(registry).front(); atomicWrite(session.recallFile,serializePreset(clean,registry)); const auto unrelated=readBounded(session.recallFile);
+    check(session.deleteSelected(saved.id,DirtyAction::discard,true)&&readBounded(session.recallFile)==unrelated,"unrelated recall is preserved");
+}
 struct Probe { std::atomic<bool> entered{false}, release{false}; bool failure=false; };
 class Slow final : public EffectProcessor {
 public: explicit Slow(Probe& p):probe(p) {} bool prepare(double,int) override { probe.entered=true; while(!probe.release) std::this_thread::sleep_for(std::chrono::milliseconds(1)); if(probe.failure) throw std::runtime_error("Injected failure"); return true; }
     void reset() noexcept override {} void activate(const EffectProcessor*) noexcept override {} void process(float*,float*,int) noexcept override {}
 private: Probe& probe;
 };
+void deletionCompetition(const std::filesystem::path& root) {
+    auto registry=EffectRegistry::builtIns(); Probe probe;
+    registry.add({"slow","slow","Test",1,{},[&](const ParameterBank&,SlotId){return std::make_unique<Slow>(probe);}});
+    RackEngine rack(registry); MonitorControls controls; MonitorEngine engine(controls,&rack); Audio audio;
+    PresetSession session(rack,root/"delete-races"/"presets"); session.select(factoryPresets(registry).back());
+    check(wait([&]{session.poll();return !session.busy();})&&session.saveAs("Async victim"),"create competing deletion fixture");
+    auto saved=*session.selected(); auto file=session.store.directory/(saved.id+".json");
+    session.importFile(file);
+    check(!session.canDelete()&&!session.deleteSelected(saved.id,DirtyAction::discard,true),"queued parser load prevents deletion");
+    check(session.cancelLoad()&&session.deleteSelected(saved.id,DirtyAction::discard,true),"cancel parser then delete saved selection");
+    for(int i=0;i<30;++i) { session.poll(); std::this_thread::sleep_for(std::chrono::milliseconds(1)); }
+    check(!session.selected()&&!std::filesystem::exists(file)&&session.dirty(),"late cancelled parser result cannot reselect or recreate deleted preset");
+    auto working=session.current(); session.select(saved);
+    check(!session.busy()&&!session.error.empty()&&!session.selected()&&session.current()==working,"cached pre-delete selection cannot revive deleted UUID");
+    check(session.saveAs("Next saved rack"),"save working rack before blocked graph race"); saved=*session.selected(); file=session.store.directory/(saved.id+".json");
+    engine.prepare(48000);
+    auto blocked=saved; auto id=newInstanceId(); blocked.rack.instances.push_back({id,15,"slow",1}); blocked.rack.order.push_back(id);
+    session.select(blocked);
+    check(wait([&]{session.poll();return probe.entered.load();}),"async preset graph blocked on off-audio worker");
+    check(!session.canDelete()&&!session.deleteSelected(saved.id,DirtyAction::discard,true)&&session.selected()==saved&&std::filesystem::exists(file),"in-flight graph deletion rejected without modifying selection/file");
+    check(session.cancelLoad(),"blocked graph cancelled before acceptance"); probe.release=true;
+    check(wait([&]{audio.block(engine);session.poll();return !session.busy();}),"cancelled graph settles before deletion");
+    check(session.deleteSelected(saved.id,DirtyAction::discard,true),"delete after graph cancellation");
+    for(int i=0;i<30;++i) { audio.block(engine); session.poll(); std::this_thread::sleep_for(std::chrono::milliseconds(1)); }
+    check(!session.selected()&&!std::filesystem::exists(file)&&session.current().rack==saved.rack,"stale worker graph cannot restore deleted association or change working rack");
+    engine.reset();
+    check(session.saveAs("Confirmation target"),"create stale confirmation fixture"); saved=*session.selected();
+    auto another=factoryPresets(registry)[0]; session.select(another);
+    check(wait([&]{session.poll();return !session.busy();}),"competing selection settles before confirmation");
+    check(!session.deleteSelected(saved.id,DirtyAction::save,true)&&session.selected()==another
+          &&std::filesystem::exists(session.store.directory/(saved.id+".json")),"selection changed while confirming leaves old preset untouched");
+    check(audio.heapFree,"deletion competition preserves callback heap audit");
+}
+void deletionSound(const EffectRegistry& registry, const std::filesystem::path& root) {
+    auto tone=factoryPresets(registry).back(); tone.id=newInstanceId(); tone.name="Long echoes";
+    RackEngine a,b; MonitorControls ca,cb; MonitorEngine ea(ca,&a),eb(cb,&b);
+    PresetSession session(a,root/"delete-sound"/"presets"); session.select(tone); b.loadTone(tone);
+    check(wait([&]{session.poll();return !session.busy()&&!b.snapshot().tonePending;})&&session.save(),"save delay sound fixture");
+    ea.prepare(48000); eb.prepare(48000); Audio aa,bb;
+    for(int i=0;i<40;++i) { aa.block(ea,i==0?.2f:0); bb.block(eb,i==0?.2f:0); }
+    const auto before=session.current(); const auto graphs=a.snapshot();
+    check(session.deleteSelected(tone.id,DirtyAction::discard,true),"delete while DSP has delay history");
+    float difference=0, peak=0;
+    for(int i=0;i<100;++i) {
+        aa.block(ea,0); bb.block(eb,0);
+        for(unsigned j=0;j<aa.l.size();++j) { difference=std::max(difference,std::abs(aa.l[j]-bb.l[j])); peak=std::max(peak,std::abs(aa.l[j])); }
+        session.poll();
+    }
+    check(peak>0&&difference==0,"deletion preserves sample-exact ongoing delay history versus uninterrupted reference");
+    check(session.current().rack==before.rack&&session.current().controls==before.controls
+          &&a.snapshot().requestedGeneration==graphs.requestedGeneration&&a.snapshot().built==graphs.built,
+          "deletion builds no DSP graph and writes no controls");
+    check(aa.heapFree&&bb.heapFree,"continuing audio after deletion remains heap-free");
+    ea.reset(); ea.prepare(44100);
+    check(wait([&]{aa.block(ea,0);session.poll();return !session.busy();})&&!session.selected()&&session.dirty(),
+          "sample-rate restart cannot republish deleted preset association");
+}
 void transactions() {
     auto registry=EffectRegistry::builtIns(); Probe p; registry.add({"slow","slow","Test",1,{},[&](const ParameterBank&,SlotId){return std::make_unique<Slow>(p);}});
     RackEngine rack(registry); MonitorControls c; c.setOutputDb(-12); MonitorEngine engine(c,&rack); Audio audio;
@@ -168,6 +333,6 @@ void equivalentDSP(const EffectRegistry& registry) {
 }
 int main() {
     auto registry=EffectRegistry::builtIns(); auto root=std::filesystem::temp_directory_path()/("guitarrack-state-"+newInstanceId()); std::filesystem::create_directory(root);
-    try { fixturesAndValidation(registry); filesAndActions(registry,root); transactions(); equivalentDSP(registry); } catch(const std::exception& e) { ++failures; std::cerr<<"Unexpected: "<<e.what()<<'\n'; }
+    try { fixturesAndValidation(registry); filesAndActions(registry,root); deletionActions(registry,root); deletionFailures(registry,root); deletionCompetition(root); deletionSound(registry,root); transactions(); equivalentDSP(registry); } catch(const std::exception& e) { ++failures; std::cerr<<"Unexpected: "<<e.what()<<'\n'; }
     std::filesystem::remove_all(root); if(failures) return 1; std::cout<<"PASS: strict presets, Unicode, files, dirty actions, rollback, stale/cancelled loads, DSP equivalence, RT audit\n";
 }

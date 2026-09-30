@@ -4,6 +4,7 @@
 #include <condition_variable>
 #include <optional>
 #include <thread>
+#include <set>
 
 namespace guitarrack {
 enum class DirtyAction { save, discard, cancel };
@@ -22,6 +23,10 @@ public:
     bool save();
     bool saveAs(std::string name);
     bool exportFile(const std::filesystem::path&);
+    bool canDelete() const;
+    bool deleteSelected(const std::string& expectedId, DirtyAction, bool confirmed);
+    void persistRecall() const;
+    const std::filesystem::path recallFile;
     bool resolveDirty(DirtyAction); // false preserves current state/action
     ToneState current() const;
     const std::optional<ToneState>& selected() const { return selection; }
@@ -33,7 +38,8 @@ public:
 private:
     RackEngine& rack;
     std::optional<ToneState> selection;
-    std::string baseline;
+    std::string baseline, workingId;
+    std::set<std::string> managedIds, deletedIds;
     struct Work { std::uint64_t serial; std::filesystem::path file; std::optional<ToneState> tone; };
     struct Result { std::uint64_t serial; std::optional<ToneState> tone; std::string error; };
     std::mutex mutex;

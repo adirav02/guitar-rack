@@ -1,5 +1,6 @@
 #include "standalone/AudioSession.h"
 #include "HeapAudit.h"
+#include "state/PresetSession.h"
 #include <array>
 #include <cmath>
 #include <iostream>
@@ -117,6 +118,29 @@ int main() {
     } while(!committed&&std::chrono::steady_clock::now()<toneDeadline);
     check(committed&&heapFree&&session->isRunning()&&device.opens==opensBeforePreset&&out1==out2,
           "actual standalone preset activation is heap-free and preserves stream/routing");
+    const auto deleteRoot=std::filesystem::temp_directory_path()/("guitarrack-adapter-delete-"+newInstanceId());
+    {
+        PresetSession presets(session->processor.rack,deleteRoot/"presets"); presets.poll();
+        for(bool muted:{false,true}) {
+            check(presets.saveAs("Live deletion 🎸"),"save live adapter deletion fixture");
+            session->processor.controls.setMuted(muted);
+            session->processor.rack.bank.setRackBypassed(muted);
+            session->processor.controls.setInputDb(-5); session->processor.controls.setOutputDb(-23);
+            const auto before=presets.current(); const auto selectedId=presets.selected()->id;
+            const auto inputMask=device.inputs, outputMask=device.outputs;
+            const auto callback=device.callback; const auto opens=device.opens; const auto config=session->configuration();
+            check(presets.deleteSelected(selectedId,DirtyAction::discard,true),"delete while standalone stream runs");
+            heapAudit::begin(); AudioSessionTestAccess::process(*session,in,1,out,2,1200); heapFree &= heapAudit::finish();
+            check(session->isRunning()&&device.isPlaying()&&device.opens==opens&&device.callback==callback
+                  &&device.inputs==inputMask&&device.outputs==outputMask&&session->configuration()==config,
+                  "deletion preserves explicit running state, physical routing and actual device configuration");
+            check(session->processor.controls.isMuted()==muted&&presets.current().rack==before.rack
+                  &&presets.current().controls==before.controls&&out1==out2&&heapFree,
+                  "deletion preserves Mute, rack bypass, gains, parameters and heap-free mono-to-stereo callback");
+            if(muted) check(out1.back()==0,"muted deletion stays silent");
+        }
+        session->processor.controls.setMuted(false);
+    }
     session->requestStop(); AudioSessionTestAccess::process(*session, in, 1, out, 2, 1200); session->poll();
     check(out1[1199] == 0 && !session->isBusy() && !device.opened, "Stop fades then closes stream");
     check(session->start(1, {0, 1}, 48000, 128).isEmpty(), "restart requires Start");
@@ -142,6 +166,16 @@ int main() {
         std::this_thread::sleep_for(std::chrono::milliseconds(1));
     check(session->processor.rack.snapshot().toneGeneration==stoppedGeneration&&!session->isBusy()&&!device.opened&&device.opens==stoppedOpens,
           "stopped preset load never opens or authorizes a monitoring stream");
+
+    {
+        PresetSession presets(session->processor.rack,deleteRoot/"presets"); presets.poll();
+        check(presets.saveAs("Stopped deletion"),"save stopped adapter deletion fixture");
+        const auto id=presets.selected()->id; const auto before=presets.current(); const auto opens=device.opens;
+        check(presets.deleteSelected(id,DirtyAction::discard,true)&&!session->isBusy()&&!device.opened&&device.opens==opens
+              &&presets.current().rack==before.rack&&presets.current().controls==before.controls,
+              "stopped deletion never opens or authorizes monitoring and preserves tone");
+    }
+    std::filesystem::remove_all(deleteRoot);
 
     MonitorProcessor processor;
     juce::AudioProcessor::BusesLayout mono, stereo, invalid;

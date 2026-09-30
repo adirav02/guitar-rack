@@ -20,6 +20,10 @@ class PresetStore {
 public:
     explicit PresetStore(std::filesystem::path root) : directory(std::move(root)) {}
     void save(const ToneState&, const EffectRegistry&) const;
+    // Removes only a validated UUID entry in this store. Updates matching local
+    // recall before unlink; failed operations restore recall/file where possible.
+    void erase(const std::string& id, const EffectRegistry&, const std::filesystem::path& recallFile,
+               const ToneState* saveFirst = nullptr) const;
     std::vector<ToneState> list(const EffectRegistry&, std::vector<std::string>& errors) const;
     std::filesystem::path directory;
 };

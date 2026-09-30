@@ -2,13 +2,15 @@
 
 Fedora Linux standalone guitar monitoring and a modular serial rack using C++20,
 CMake and JUCE 8.0.15. M4 adds versioned presets, validation, transactional recall,
-Save/Save As, import/export and local preferences. The catalog remains Gain,
+Save/Save As, confirmed deletion of saved user presets, import/export and local preferences. The catalog remains Gain,
 Overdrive, EQ and Delay. The owner reports opening the M3 GUI on Fedora and
 playing a real guitar: Overdrive, EQ and Delay work individually and together in
 one rack. This is user-reported desktop/listening evidence. Earlier M-Track Solo
 Input 2 monitoring at PipeWire 256/48000 and 512/48000 was acceptable; 256 is the
-preference. M4 desktop acceptance, the 10-minute soak, reconnect, measured latency
-and other unreported checks remain pending. Further effects, VST3 and Windows
+preference. The owner also reports that the M4 desktop preset workflow works well;
+this is user-reported acceptance. The new Delete dialogs, unreported keyboard/live
+transition details, the 10-minute soak, reconnect, measured latency and
+LeakSanitizer checks remain pending. Further effects, VST3 and Windows
 stay in their planned milestones in [PLAN.md](PLAN.md).
 
 The application provides a native resizable window, device/backend/channel
@@ -194,6 +196,38 @@ reconnect and measured latency remain pending.
    previous sound/selection/edits retained. **Cancel load** applies before graph
    acceptance; an already accepted fade finishes. Delay history is reset on
    replacement, so tails can shorten as with M3 structural edits.
+
+### Delete a saved user preset (M4 extension)
+
+1. Select a saved user preset and press **Delete**. Factory presets, unsaved
+   working racks and imports that have not been saved in the library cannot be
+   deleted. Wait for pending loads/edits to finish, or cancel the pending load.
+2. If edited, choose **Save**, **Discard**, or **Cancel** in the existing dirty
+   workflow. Then confirm **Delete** in the dialog showing the preset name.
+   **Cancel** has initial focus and both Enter/Escape cancel. Cancelling either
+   dialog preserves the selection, sound, edits and saved bytes; the Save/Discard
+   choice is staged until confirmation. Save then deletion is one transaction.
+3. After deletion, the same sound remains as **Untitled rack**, with an unsaved
+   `*`. Start/Stop, Mute, routing, all parameters/gains/bypass and ongoing delay
+   history stay unchanged. Use **Save As** to save it under a new preset identity.
+4. Check the deleted entry is absent after restart (restart still requires
+   **Start**). Deletion immediately clears matching local recall to Clean;
+   unsaved working racks are not automatically restored after closing with
+   Discard. Save As before closing to keep that working rack for future recall.
+5. Check Hebrew/emoji names, duplicate display names, both cancellation points
+   and dirty choices. Keep an exported copy and an unrelated asset: both must
+   remain. A permission/changed-file failure must show an error and retain the
+   selected entry, rack and dirty indication. Retry after fixing the reported
+   directory/file issue. Preset operations in progress disable Delete; a stale
+   confirmation cannot delete a different selection.
+
+Delete targets only the validated `<UUID>.json` entry in the managed user preset
+store. It never uses the name or Import path, and never deletes factory files,
+exports or IR assets. No filesystem work runs in the audio callback. Explicitly
+importing an exported copy later remains possible; old pending loads and cached
+library selections cannot revive a deleted entry. These checks pass in automated
+state/adapter fixtures; the new native dialogs and real-guitar deletion checklist
+still need desktop verification.
 
 Factory examples: **Clean** (empty dry rack), **Crunch** (conservative Overdrive
 and EQ), **Lead Delay** (Overdrive → EQ → Delay). They are examples for the current

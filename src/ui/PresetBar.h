@@ -12,12 +12,15 @@ public:
     PresetSession presets;
 private:
     juce::ComboBox choices;
-    juce::TextButton saveButton{"Save"}, saveAsButton{"Save As"}, importButton{"Import"}, exportButton{"Export"}, cancelButton{"Cancel load"};
+    juce::TextButton saveButton{"Save"}, saveAsButton{"Save As"}, deleteButton{"Delete"}, importButton{"Import"}, exportButton{"Export"}, cancelButton{"Cancel load"};
     juce::Label indicator, status;
     std::unique_ptr<juce::FileChooser> chooser;
     std::vector<ToneState> displayed;
     bool dialogOpen=false;
     void refreshChoices();
     void fileDialog(bool importing);
+    void chooseDirty(std::function<void(DirtyAction)>);
+    void deletePreset();
+    void confirmDelete(ToneState, DirtyAction);
 };
 }

@@ -4,6 +4,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <set>
+#include <optional>
 #include <stdexcept>
 #include <system_error>
 #include <fcntl.h>
@@ -151,24 +152,17 @@ std::string serializePreset(const ToneState& t,const EffectRegistry& r) {
     put(root,"order",order); put(root,"instances",instances); put(root,"assets",juce::Array<juce::var>{});
     return juce::JSON::toString(root).toStdString()+"\n";
 }
-std::string readBounded(const std::filesystem::path& path) {
-    // Nonblocking open prevents a selected FIFO from hanging the parser/close.
-    // Keep this descriptor through reading: type/size validation and bytes refer
-    // to the same file, even if its directory entry is replaced concurrently.
-    struct FileDescriptor {
-        int value;
-        ~FileDescriptor() { if (value >= 0) ::close(value); }
-    } descriptor{::open(path.c_str(), O_RDONLY | O_CLOEXEC | O_NONBLOCK)};
-    if (descriptor.value < 0) fail("Cannot read: " + path.string() + ": " + std::strerror(errno));
+namespace {
+std::string readDescriptor(int descriptor, const std::filesystem::path& path) {
     struct stat info{};
-    if (::fstat(descriptor.value, &info) != 0 || !S_ISREG(info.st_mode))
+    if (::fstat(descriptor, &info) != 0 || !S_ISREG(info.st_mode))
         fail("Preset/settings must be a regular file: " + path.string());
     if (info.st_size < 0 || static_cast<std::uintmax_t>(info.st_size) > maxPresetBytes)
         fail("File exceeds 128 KiB: " + path.string());
     std::string text(maxPresetBytes + 1, '\0');
     std::size_t used = 0;
     while (used < text.size()) {
-        const auto count = ::read(descriptor.value, text.data() + used, text.size() - used);
+        const auto count = ::read(descriptor, text.data() + used, text.size() - used);
         if (count < 0 && errno == EINTR) continue;
         if (count < 0) fail("Read failed: " + path.string() + ": " + std::strerror(errno));
         if (count == 0) break;
@@ -177,6 +171,18 @@ std::string readBounded(const std::filesystem::path& path) {
     if (used > maxPresetBytes) fail("File grew beyond 128 KiB: " + path.string());
     text.resize(used);
     return text;
+}
+struct Descriptor {
+    int value;
+    ~Descriptor() { if (value >= 0) ::close(value); }
+};
+}
+std::string readBounded(const std::filesystem::path& path) {
+    // Nonblocking open prevents a selected FIFO from hanging the parser/close.
+    // Type/size validation and bytes refer to this same descriptor.
+    Descriptor descriptor{::open(path.c_str(), O_RDONLY | O_CLOEXEC | O_NONBLOCK)};
+    if (descriptor.value < 0) fail("Cannot read: " + path.string() + ": " + std::strerror(errno));
+    return readDescriptor(descriptor.value, path);
 }
 void atomicWrite(const std::filesystem::path& path,const std::string& text) {
     if(text.size()>maxPresetBytes) fail("Write exceeds 128 KiB.");
@@ -196,6 +202,78 @@ void atomicWrite(const std::filesystem::path& path,const std::string& text) {
 std::filesystem::path userDataDirectory() { return xdg("XDG_DATA_HOME",".local/share"); }
 std::filesystem::path userConfigDirectory() { return xdg("XDG_CONFIG_HOME",".config"); }
 void PresetStore::save(const ToneState& t,const EffectRegistry& r) const { atomicWrite(directory/(t.id+".json"),serializePreset(t,r)); }
+void PresetStore::erase(const std::string& id, const EffectRegistry& registry,
+                        const std::filesystem::path& recallFile, const ToneState* saveFirst) const {
+    if (!validInstanceId(id)) fail("Invalid managed preset UUID.");
+    for (const auto& factory : factoryPresets(registry))
+        if (factory.id == id) fail("Factory presets cannot be deleted.");
+
+    Descriptor folder{::open(directory.c_str(), O_RDONLY | O_DIRECTORY | O_CLOEXEC | O_NOFOLLOW)};
+    if (folder.value < 0) fail("Cannot open user preset directory: " + directory.string()
+                               + ". Check directory permissions: " + std::strerror(errno));
+    const auto filename = id + ".json";
+    Descriptor file{::openat(folder.value, filename.c_str(), O_RDONLY | O_CLOEXEC | O_NONBLOCK | O_NOFOLLOW)};
+    struct stat original{};
+    if (file.value < 0 || ::fstat(file.value, &original) != 0 || !S_ISREG(original.st_mode))
+        fail("Cannot delete managed preset " + (directory / filename).string()
+             + ". It must be an accessible regular file, not a link or directory.");
+    const auto saved = readDescriptor(file.value, directory / filename);
+    if (parsePreset(saved, registry).id != id) fail("Managed file UUID changed; refresh presets before deleting.");
+
+    std::optional<std::string> oldRecall;
+    bool recallMatches = false;
+    const auto recallStatus = std::filesystem::symlink_status(recallFile);
+    if (std::filesystem::exists(recallStatus)) {
+        if (!std::filesystem::is_regular_file(recallStatus))
+            fail("Cannot update local recall: " + recallFile.string() + ". It must be a regular file.");
+        oldRecall = readBounded(recallFile);
+        recallMatches = parsePreset(*oldRecall, registry).id == id;
+    }
+    // All potentially allocating serialization finishes before the file is removed.
+    const auto cleanRecall = serializePreset(factoryPresets(registry).front(), registry);
+    std::optional<std::string> edited;
+    if (saveFirst) {
+        if (saveFirst->id != id) fail("Save choice does not match the selected preset.");
+        edited = serializePreset(*saveFirst, registry);
+    }
+    auto checkEntry = [&] {
+        struct stat current{};
+        if (::fstatat(folder.value, filename.c_str(), &current, AT_SYMLINK_NOFOLLOW) != 0
+            || !S_ISREG(current.st_mode) || current.st_dev != original.st_dev || current.st_ino != original.st_ino)
+            fail("Managed preset changed during deletion; refresh and try again.");
+    };
+    bool recallTouched = false, fileTouched = false;
+    try {
+        checkEntry();
+        if (edited) {
+            // Save is part of this transaction. Failed deletion restores the
+            // original file as well as preserving the session's dirty baseline.
+            fileTouched = true;
+            atomicWrite(directory / filename, *edited);
+            if (::fstatat(folder.value, filename.c_str(), &original, AT_SYMLINK_NOFOLLOW) != 0
+                || !S_ISREG(original.st_mode)) fail("Cannot verify saved user preset; refresh and try again.");
+        }
+        if (recallMatches) {
+            recallTouched = true;
+            atomicWrite(recallFile, cleanRecall);
+        }
+        checkEntry();
+        if (::unlinkat(folder.value, filename.c_str(), 0) != 0)
+            fail("Cannot delete " + (directory / filename).string()
+                 + ". Check user preset directory permissions: " + std::strerror(errno));
+        fileTouched = true;
+        if (::fsync(folder.value) != 0) fail("Preset directory sync failed; deletion durability is uncertain.");
+    } catch (const std::exception& e) {
+        std::string message = e.what();
+        // Rollback never targets an export or an asset: both destinations are
+        // store/local-recall paths. Keep the in-memory session unchanged on error.
+        try { if (fileTouched) atomicWrite(directory / filename, saved); }
+        catch (const std::exception& rollback) { message += " File rollback failed: " + std::string(rollback.what()); }
+        try { if (recallTouched) atomicWrite(recallFile, *oldRecall); }
+        catch (const std::exception& rollback) { message += " Recall rollback failed: " + std::string(rollback.what()); }
+        fail(message);
+    }
+}
 std::vector<ToneState> PresetStore::list(const EffectRegistry& r,std::vector<std::string>& errors) const {
     std::vector<ToneState> result; if(!std::filesystem::exists(directory)) return result;
     for(const auto& file:std::filesystem::directory_iterator(directory)) if(file.path().extension()==".json") {

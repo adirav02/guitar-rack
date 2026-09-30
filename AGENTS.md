@@ -12,7 +12,7 @@ Explicit owner instructions take precedence over this document. Inspect applicab
 
 ## Working style
 
-- Communicate with the owner in concise Hebrew unless asked otherwise. Use English in code, application labels, commit messages, and technical documentation.
+- Communicate with the owner in concise English unless asked otherwise. Use English in code, application labels, commit messages, and technical documentation.
 - Work one milestone at a time. Carry authorized work through implementation and relevant checks rather than stopping at a proposed plan.
 - Make routine reversible implementation decisions autonomously. Do not ask permission for every dependency integration, refactor, build, or bug fix.
 - Clarify materially missing facts or consequential product changes. Do not infer additional scope such as cloud services, third-party plugin hosting, or a mobile app.
