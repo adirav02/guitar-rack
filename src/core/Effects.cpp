@@ -9,6 +9,20 @@
 #include <unordered_set>
 
 namespace guitarrack {
+bool validUtf8(const std::string& s) noexcept {
+    for (std::size_t i = 0; i < s.size();) {
+        const unsigned c = static_cast<unsigned char>(s[i++]);
+        if (c < 128) { if (c == 0) return false; continue; }
+        unsigned n = 0, v = 0, minimum = 0;
+        if (c >= 0xc2 && c <= 0xdf) { n=1; v=c&31; minimum=128; }
+        else if (c >= 0xe0 && c <= 0xef) { n=2; v=c&15; minimum=2048; }
+        else if (c >= 0xf0 && c <= 0xf4) { n=3; v=c&7; minimum=65536; }
+        else return false;
+        while (n--) { if (i == s.size()) return false; unsigned b=static_cast<unsigned char>(s[i++]); if ((b&0xc0)!=0x80) return false; v=(v<<6)|(b&63); }
+        if (v < minimum || v > 0x10ffff || (v >= 0xd800 && v <= 0xdfff)) return false;
+    }
+    return true;
+}
 InstanceId newInstanceId() {
     std::random_device random;
     std::array<unsigned char, 16> bytes{};
@@ -43,10 +57,11 @@ ParameterBank::ParameterBank() {
 float ParameterBank::value(SlotId slot, unsigned index) const noexcept { return values[slot][index].load(); }
 bool ParameterBank::setValue(SlotId slot, unsigned index, float value) noexcept {
     if (slot >= rackSlots || index >= controlsPerSlot || !std::isfinite(value) || value < 0 || value > 1) return false;
-    values[slot][index].store(value); return true;
+    if (values[slot][index].exchange(value) != value) edits.fetch_add(1);
+    return true;
 }
 bool ParameterBank::bypassed(SlotId slot) const noexcept { return bypass[slot].load(); }
-void ParameterBank::setBypassed(SlotId slot, bool value) noexcept { if (slot < rackSlots) bypass[slot].store(value); }
+void ParameterBank::setBypassed(SlotId slot, bool value) noexcept { if (slot < rackSlots && bypass[slot].exchange(value) != value) edits.fetch_add(1); }
 std::string ParameterBank::parameterId(SlotId slot, unsigned index) {
     char id[40]; std::snprintf(id, sizeof(id), "slot_%02u_param_%02u", slot, index); return id;
 }

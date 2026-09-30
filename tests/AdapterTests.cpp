@@ -104,6 +104,19 @@ int main() {
         if (!committed) std::this_thread::sleep_for(std::chrono::milliseconds(1));
     } while (!committed && std::chrono::steady_clock::now() < effectDeadline);
     check(committed && heapFree && out1 == out2 && std::isfinite(out1.back()), "actual standalone M3 callback preserves stereo routing and heap-free transitions");
+    auto tone=session->processor.rack.captureTone(newInstanceId(),"Adapter preset");
+    tone.controls.outputDb=-18; tone.controls.inputDb=-3;
+    const auto opensBeforePreset=device.opens;
+    const auto presetGeneration=session->processor.rack.loadTone(tone);
+    committed=false;
+    const auto toneDeadline=std::chrono::steady_clock::now()+std::chrono::seconds(4);
+    do {
+        heapAudit::begin(); AudioSessionTestAccess::process(*session,in,1,out,2,1200); heapFree &= heapAudit::finish();
+        committed=session->processor.rack.snapshot().toneGeneration==presetGeneration;
+        if(!committed) std::this_thread::sleep_for(std::chrono::milliseconds(1));
+    } while(!committed&&std::chrono::steady_clock::now()<toneDeadline);
+    check(committed&&heapFree&&session->isRunning()&&device.opens==opensBeforePreset&&out1==out2,
+          "actual standalone preset activation is heap-free and preserves stream/routing");
     session->requestStop(); AudioSessionTestAccess::process(*session, in, 1, out, 2, 1200); session->poll();
     check(out1[1199] == 0 && !session->isBusy() && !device.opened, "Stop fades then closes stream");
     check(session->start(1, {0, 1}, 48000, 128).isEmpty(), "restart requires Start");
@@ -121,6 +134,14 @@ int main() {
     check(!session->isBusy() && !device.opened, "actual sample rate change safely stops monitoring");
     check(session->start(1, {0, 1}, 96000, 256).isEmpty(), "new rate and buffer accepted on explicit restart");
     device.block = 128; session->poll(); check(!session->isBusy(), "actual buffer change safely stops");
+
+    auto stoppedTone=session->processor.rack.captureTone(newInstanceId(),"Stopped preset"); stoppedTone.controls.outputDb=-20;
+    const auto stoppedOpens=device.opens; const auto stoppedGeneration=session->processor.rack.loadTone(stoppedTone);
+    const auto stoppedDeadline=std::chrono::steady_clock::now()+std::chrono::seconds(4);
+    while(session->processor.rack.snapshot().toneGeneration!=stoppedGeneration&&std::chrono::steady_clock::now()<stoppedDeadline)
+        std::this_thread::sleep_for(std::chrono::milliseconds(1));
+    check(session->processor.rack.snapshot().toneGeneration==stoppedGeneration&&!session->isBusy()&&!device.opened&&device.opens==stoppedOpens,
+          "stopped preset load never opens or authorizes a monitoring stream");
 
     MonitorProcessor processor;
     juce::AudioProcessor::BusesLayout mono, stereo, invalid;
@@ -149,6 +170,17 @@ int main() {
     } while (!committed && std::chrono::steady_clock::now() < processorDeadline);
     check(committed && heapFree && std::isfinite(buffer.getSample(0, 55)) && buffer.getSample(0, 55) == buffer.getSample(1, 55), "shared processBlock M3 activation and processing heap-free with mono-to-stereo bus");
     check(processor.getTailLengthSeconds() >= 116 && processor.getLatencySamples() == 0, "shared processor reports conservative stateful tail separately from zero processing latency");
+    auto hostTone=processor.rack.captureTone(newInstanceId(),"Shared tone state"); hostTone.controls.outputDb=-6;
+    const auto sharedGeneration=processor.rack.loadTone(hostTone); committed=false;
+    const auto sharedDeadline=std::chrono::steady_clock::now()+std::chrono::seconds(4);
+    do {
+        buffer.clear(); buffer.setSample(0,55,.3f);
+        heapAudit::begin(); processor.processBlock(buffer,midi); heapFree &= heapAudit::finish();
+        committed=processor.rack.snapshot().toneGeneration==sharedGeneration;
+        if(!committed) std::this_thread::sleep_for(std::chrono::milliseconds(1));
+    } while(!committed&&std::chrono::steady_clock::now()<sharedDeadline);
+    check(committed&&heapFree&&processor.controls.outputDb()==-6,
+          "shared JUCE processBlock activates full tone transactions without heap operations");
     if (failures) return 1;
     std::cout << "PASS: no-auto-start, channel validation, real callback routing, Stop, failure silence, explicit reconnect, rate/buffer changes, processor buses\n";
 }

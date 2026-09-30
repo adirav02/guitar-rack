@@ -1,6 +1,6 @@
 # GuitarRack — Product and implementation plan
 
-Created: 2026-09-30. Working name: GuitarRack. Status: M0/M1, M2 and M3 software implemented. Owner reports real-guitar monitoring and working M2 Gain controls; detailed rack edit acceptance, M3 listening, the 10-minute soak and other unreported physical checks remain pending. Catalog: Gain, Overdrive, EQ and Delay. M4 and later milestones remain untouched.
+Created: 2026-09-30. Working name: GuitarRack. Status: M0/M1 through M4 software implemented. Owner reports the M3 GUI opens on Fedora and Overdrive, EQ and Delay work with a real guitar, individually and together; this is user-reported desktop/listening evidence. M4 desktop acceptance, detailed live-edit acceptance, dry-recording/gain-staging appraisal, the 10-minute soak and unreported physical checks remain pending. Catalog remains Gain, Overdrive, EQ and Delay. M5 and later milestones remain untouched.
 
 This is an implementation contract for Codex. Complete one milestone at a time. Treat unchecked items as unfinished. Update this document with evidence as implementation progresses.
 
@@ -254,18 +254,18 @@ Factory presets should demonstrate clean, light crunch, lead with delay, and amb
 
 Define a versioned JSON schema before implementing import/export. A portable preset contains schema version, preset UUID, display name, global gain/bypass values, ordered instance IDs, instance records, slot mappings, effect versions, parameter values in documented units, and optional IR asset references.
 
-Illustrative shape only; M4 must create and validate the actual schema and fixtures:
+Version 1 shape; implemented schema and validated fixtures are in `assets/presets/`:
 
 ```json
 {
   "schema_version": 1,
-  "preset_id": "a-persistent-uuid",
+  "preset_id": "00000000-0000-4000-8000-000000000002",
   "name": "Light Crunch",
   "globals": {"input_db": 0.0, "output_db": -6.0, "rack_bypass": false},
-  "order": ["effect-instance-uuid"],
+  "order": ["10000000-0000-4000-8000-000000000001"],
   "instances": [
     {
-      "instance_id": "effect-instance-uuid",
+      "instance_id": "10000000-0000-4000-8000-000000000001",
       "slot_id": 0,
       "effect_type": "overdrive",
       "effect_version": 1,
@@ -277,7 +277,7 @@ Illustrative shape only; M4 must create and validate the actual schema and fixtu
 }
 ```
 
-Reject duplicate IDs/slots, missing references, out-of-range values, unknown required effects, unsupported future schema versions, oversized inputs, and non-finite values. Optional metadata can be tolerated. Do not silently drop a required effect and play a different sound.
+Reject duplicate IDs/slots, missing references, out-of-range values, unknown required effects, unsupported future schema versions, oversized inputs, and non-finite values. Version 1 uses closed objects with exact required fields; unknown fields are rejected to expose mistakes. Optional metadata can be added only through an explicit schema change. Do not silently drop a required effect and play a different sound.
 
 Preset loading is transactional: parse, validate, resolve assets, prepare the graph, then commit. A failure leaves the prior rack and selected preset intact. Cancellation and stale background loads cannot partially apply a preset. Preserve unsaved edit indication correctly.
 
@@ -321,23 +321,25 @@ Exit: at least 10 minutes of stable clean monitoring on the actual device; corre
 - [x] User-reported M2 real-guitar listening: Gain controls work well; application appeared correct during the owner's test.
 - [ ] Detailed owner acceptance of live edits, bypass continuity and rack Stop/Start (not separately reported).
 
-Exit: rack editing works during playback without callback locks/allocations or incorrect state; repeated edits do not leak graphs or alter unrelated instances. Automated processing, lifetime accounting and callback heap audits pass. The owner reports a real-guitar rack test with working Gain controls; detailed edit/bypass/Stop-Start acceptance remains pending. LeakSanitizer and ThreadSanitizer are not verified.
+Exit: rack editing works during playback without callback locks/allocations or incorrect state; repeated edits do not leak graphs or alter unrelated instances. Automated processing, lifetime accounting and callback heap audits pass. The owner reports a real-guitar rack test with working Gain controls; detailed edit/bypass/Stop-Start acceptance remains pending. LeakSanitizer remains unverified. M4 later records 5/5 scoped core/state/adapter TSan checks; the original M2 attempt was blocked.
 
 ### M3 — First useful effects
 
 - [x] Overdrive, EQ, and Delay with smooth controls and versioned descriptors; picker, numeric entry, resets and scrolling cards.
 - [x] Focused DSP, stateful graph/callback tests and documented prototype limitations.
-- [ ] Listening tests and gain staging on dry guitar recordings and live guitar.
+- [x] User-reported Fedora M3 desktop and real-guitar listening: Overdrive, EQ and Delay work, including together in a rack.
+- [ ] Dry guitar recording tests, detailed tone/aliasing appraisal and listening-based gain staging (not reported).
 
-Exit: distinct usable sounds, predictable controls, bounded delay feedback, and repeatable processing at common supported sample rates/block lengths. Software checks pass; subjective guitar tone, listening-based gain staging and full M3 acceptance remain pending. Algorithms, permanent mappings and tail policy are in `docs/effects.md`.
+Exit: distinct usable sounds, predictable controls, bounded delay feedback, and repeatable processing at common supported sample rates/block lengths. Software checks pass; the owner reports working individual/combined live effects and a working M3 desktop GUI. Detailed subjective tone/aliasing appraisal, dry-recording tests and listening-based gain staging remain pending. Algorithms, permanent mappings and tail policy are in `docs/effects.md`.
 
 ### M4 — Presets and state
 
-- [ ] Final JSON schema, fixtures, validation, migrations, and atomic persistence.
-- [ ] Factory/user presets, import/export, dirty-state workflow, and settings separation.
-- [ ] Transactional load, failure rollback, and slot/parameter-state round trips.
+- [x] Version 1 JSON schema, validated factory fixtures, strict runtime validation, explicit migration entry point (v1 only; no legacy format), and atomic Linux persistence.
+- [x] Factory/user presets, import/export, Save/Save As, Save/Discard/Cancel workflow, Unicode names, dirty indication, and device/window settings separation (implemented; state logic tested).
+- [ ] Owner M4 desktop/dialog/keyboard and live preset-transition acceptance.
+- [x] Worker-prepared transactional load, failure/cancellation/stale rollback, competing loads, exact identity/order/slot round trips and reset-condition DSP equivalence.
 
-Exit: save/reopen and import/export reproduce the same rack, order, parameters, and tone within numerical tolerance; corrupted presets never partially replace a running rack.
+Exit: automated save/reopen and import/export reproduce the same rack, order, parameters and reset-condition output (maximum tested sample difference <2e-6). Corrupted/failed/stale presets retain the previous accepted configuration. Native M4 dialogs/layout, restart/recall and transitions still need the owner checklist; software tests do not establish live listening quality.
 
 ### M5 — Complete guitar sound catalog
 
@@ -448,6 +450,48 @@ M3 progress on 2026-09-30:
 - Signal tests cover Overdrive dry/mix/level/symmetry/finite bounds, EQ measured boost/cut responses and rapid stable coefficient changes, Delay fractional impulse timing/decay/max feedback/time transitions/ring wrap/reset/sample-rate changes, zero/variable blocks and bounded activation. Rack/adapter checks cover all M3 independent identities/controls, real noncommuting Overdrive/EQ order, stateful bypass/removal, failed/stale builds retaining accepted audio/latest controls, 1,000 rapid concurrent mixed-catalog edits, reclamation and zero audited callback C++ heap operations. These checks are diagnostics and signal evidence, not subjective tone, physical driver timing or performance benchmarks.
 - No physical audio access: `/dev/snd` is unavailable. Native smoke launch could not produce a window in this restricted session: release exited 139, and XOpenDisplay returned null. No usable desktop or Xvfb is available; M3 UI visual/keyboard acceptance remains pending. Release linked-library and final whitespace results are in `docs/testing.md`.
 - Pending: individual/combined dry-recording and live M3 listening, aliasing/tone appraisal, listening-based gain staging, detailed M2 live-edit checks, 10-minute soak, real disconnect/reconnect, actual backend/device format and device latency, measured round trip, TSan and LeakSanitizer. Presets, additional effects, amp/cabinet, VST3 and Windows remain later milestones. No packages, global audio changes, commits, remotes or publication were made.
+
+### 2026-09-30 — M4 presets and persistent state
+
+- Owner update recorded as user-reported evidence: M3 GUI opened on Fedora;
+  Overdrive, EQ and Delay work with the real guitar, including together in a rack.
+  No duration, reconnect, actual format, measured latency, sanitizer or other
+  unreported physical result is inferred from that report.
+- Added shared configuration-only `ToneState`, version 1 JSON schema and Clean,
+  Crunch and Lead Delay fixtures; the embedded factories are checked against the
+  tracked files. Exact version dispatch rejects older/future versions; no legacy
+  format or IR/asset support is invented. Strict parsing rejects duplicate keys,
+  invalid UTF-8/surrogates, malformed/oversized JSON, non-finite/overflowed numbers,
+  wrong types/fields, invalid IDs/slots/order/effects/versions/physical values.
+- Native preset bar provides selection, Save, Save As, Import, Export, pending-load
+  cancellation and dirty indication. Switching/closing prompts Save/Discard/Cancel;
+  factory Save routes to Save As. New preset UUIDs preserve effect UUIDs and slots.
+  Imported custom presets can be saved under their existing identity.
+- User presets are UUID files under `$XDG_DATA_HOME/GuitarRack/presets` (fallback
+  `~/.local/share/GuitarRack/presets`); device/window preferences are versioned
+  separately under `$XDG_CONFIG_HOME/GuitarRack/settings.json`. Normal close stores
+  the selected saved/loaded tone in `last-tone.json`; Discard does not persist
+  unsaved edits. Files use same-directory temporary files, fsync and atomic rename,
+  followed by directory fsync; failures are surfaced and do not clear dirty state.
+- Preset parsing uses a separate coalescing worker. Complete replacements use the
+  existing graph worker/mailbox/four-graph ownership and 20 ms fades. Each graph
+  has a bounded private processing view of the sole editable bank, allowing old
+  slot meanings to remain intact during preset fades. Globals are converted off
+  audio and ramped through existing monitor smoothers. Controls install only at
+  activation; selected identity/clean baseline publish after acknowledgment.
+  Generation and control-revision checks reject stale results. Transport, Mute,
+  routing, meters and protection remain outside portable state.
+- Debug/release each pass 5/5. ASan/UBSan (leaks disabled) and newly available
+  core/state/adapter TSan each pass 5/5. LeakSanitizer still fails with a fatal
+  restricted-process/ptrace inspection error and remains unverified. Exact
+  commands, scope and limitations are recorded in `docs/testing.md`. The state suite checks files/Unicode/identities/slots/order,
+  dirty actions, failures, cancellation, competing loads, sample-rate rebuilds,
+  bounded reclamation, reset-condition DSP equivalence and callback heap audits.
+  Existing M2/M3 signal, stress, lifetime, routing and adapter tests are retained.
+- No new effects, cabinet/IRs, VST3 publication/host-state integration, Windows,
+  packages, audio policies, commits, remotes or publication were added. Physical
+  M4 acceptance, 10-minute soak, reconnect, actual latency and other unreported
+  checks remain pending. Follow the README M4 checklist on the Fedora desktop.
 
 Maintain a concise log here as work finishes: date, milestone, files/behavior changed, checks run, results, and remaining hardware/host checks.
 

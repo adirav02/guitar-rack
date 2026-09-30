@@ -1,5 +1,6 @@
 #pragma once
-#include "Effects.h"
+#include "ToneState.h"
+#include <optional>
 #include <condition_variable>
 #include <cstdint>
 #include <mutex>
@@ -7,12 +8,16 @@
 
 namespace guitarrack {
 class PreparedRack;
+class MonitorControls;
 struct RackSnapshot {
     RackDefinition requested, committed;
     std::uint64_t requestedGeneration = 0, committedGeneration = 0;
     std::string error;
+    std::optional<ToneState> committedTone;
+    bool tonePending = false;
+    std::uint64_t toneGeneration = 0;
     unsigned graphs = 0, peakGraphs = 0;
-    bool preparedWaiting = false;
+    bool preparedWaiting = false, transitioning = false;
     std::uint64_t built = 0, reclaimed = 0, stale = 0, coalesced = 0;
 };
 
@@ -31,6 +36,11 @@ public:
     bool move(const InstanceId&, int direction);
     bool submit(const RackDefinition&); // validated structural transaction, no parameter snapshot
     RackSnapshot snapshot() const;
+    std::uint64_t loadTone(const ToneState&); // full validated transaction; 0 means rejected
+    bool cancelTone(std::uint64_t); // cancellation before acceptance only
+    std::uint64_t globalRevision() const noexcept;
+    ToneState captureTone(std::string id, std::string name) const; // off audio, coherent
+    void attachControls(MonitorControls* controls) noexcept { globals = controls; }
     bool setParameter(const InstanceId&, unsigned bankIndex, float physicalValue);
     bool setBypassed(const InstanceId&, bool);
     const EffectRegistry& registry() const noexcept { return effects; }
@@ -47,6 +57,11 @@ private:
     void updateCommitted(); // worker, under mutex
     void stoppedMaintenance(); // worker, under mutex, no callback can be active
     EffectRegistry effects;
+    MonitorControls* globals = nullptr;
+    std::optional<ToneState> requestedTone;
+    std::optional<RackDefinition> buildingDefinition;
+    std::uint64_t toneBankRevision=0, toneGlobalRevision=0, toneRequestGeneration=0;
+    std::atomic<std::uint64_t> rejectedTone{0};
     mutable std::mutex mutex;
     std::condition_variable wake;
     std::thread worker;

@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "preset_id": "00000000-0000-4000-8000-000000000003",
+  "name": "Lead Delay",
+  "globals": {
+    "input_db": 0,
+    "output_db": -12,
+    "rack_bypass": false
+  },
+  "order": [
+    "10000000-0000-4000-8000-000000000001",
+    "10000000-0000-4000-8000-000000000002",
+    "10000000-0000-4000-8000-000000000003"
+  ],
+  "instances": [
+    {
+      "instance_id": "10000000-0000-4000-8000-000000000001",
+      "slot_id": 0,
+      "effect_type": "overdrive",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "drive_db": 12,
+        "tone_hz": 3000,
+        "level_db": -6,
+        "mix_percent": 50
+      }
+    },
+    {
+      "instance_id": "10000000-0000-4000-8000-000000000002",
+      "slot_id": 1,
+      "effect_type": "eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "low_db": 0,
+        "mid_db": 0,
+        "high_db": -2
+      }
+    },
+    {
+      "instance_id": "10000000-0000-4000-8000-000000000003",
+      "slot_id": 2,
+      "effect_type": "delay",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "time_ms": 350,
+        "feedback_percent": 25,
+        "mix_percent": 20
+      }
+    }
+  ],
+  "assets": []
+}

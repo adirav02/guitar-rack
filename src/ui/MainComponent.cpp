@@ -40,8 +40,8 @@ MainComponent::MainComponent() {
         combo->setTextWhenNothingSelected("Select...");
         addAndMakeVisible(combo);
     }
-    backendBox.onChange = [this] { backendChanged(); };
-    inputDevice.onChange = outputDevice.onChange = [this] { devicesChanged(); };
+    backendBox.onChange = [this] { remembered.reset(); backendChanged(); };
+    inputDevice.onChange = outputDevice.onChange = [this] { remembered.reset(); devicesChanged(); };
     for (auto* combo : {&inputChannel, &leftChannel, &rightChannel, &rateBox, &bufferBox})
         combo->onChange = [this] { setupError.clear(); updateEnabled(); };
 
@@ -53,7 +53,7 @@ MainComponent::MainComponent() {
         session.processor.controls.setMuted(muteButton.getToggleState());
         muteButton.setButtonText(muteButton.getToggleState() ? "Unmute" : "Mute");
     };
-    refreshButton.onClick = [this] { refreshDevices(); };
+    refreshButton.onClick = [this] { refreshDevices(); if (remembered) restorePreferences(); };
     resetClips.onClick = [this] { clipFlags = 0; };
     inputGain.setRange(-24, 24, 0.1); outputGain.setRange(-60, 6, 0.1);
     inputGain.setValue(0); outputGain.setValue(-12);
@@ -70,9 +70,9 @@ MainComponent::MainComponent() {
     rateBox.setTooltip("JACK uses the existing server rate; GuitarRack does not change global audio policy.");
     bufferBox.setTooltip("JACK uses the existing server buffer. ALSA exposes the device's supported choices.");
     outputGain.setTooltip("Defaults to -12 dB. Output protection clamps peaks at 0.98; clipping changes tone.");
-    addAndMakeVisible(rackEditor);
+    addAndMakeVisible(rackEditor); addAndMakeVisible(presetBar);
     refreshDevices();
-    setSize(920, 1000);
+    setSize(920, 1080); restorePreferences();
     startTimerHz(20);
 }
 MainComponent::~MainComponent() { stopTimer(); session.stopNow(); }
@@ -136,13 +136,20 @@ void MainComponent::updateEnabled() {
     const bool busy = session.isBusy();
     for (auto* combo : {&backendBox, &inputDevice, &outputDevice, &inputChannel, &leftChannel, &rightChannel, &rateBox, &bufferBox}) combo->setEnabled(!busy);
     refreshButton.setEnabled(!busy); stopButton.setEnabled(session.isRunning());
-    startButton.setEnabled(!busy && session.preview() && inputChannel.getSelectedItemIndex() >= 0
+    startButton.setEnabled(!busy && !presetBar.presets.busy() && session.preview() && inputChannel.getSelectedItemIndex() >= 0
         && leftChannel.getSelectedItemIndex() >= 0 && rightChannel.getSelectedItemIndex() >= 0
         && leftChannel.getSelectedItemIndex() != rightChannel.getSelectedItemIndex()
         && rateBox.getSelectedItemIndex() >= 0 && bufferBox.getSelectedItemIndex() >= 0);
 }
 void MainComponent::timerCallback() {
-    session.poll(); updateEnabled(); rackEditor.poll();
+    session.poll(); presetBar.poll(); updateEnabled();
+    if (!presetBar.presets.loading()) rackEditor.poll();
+    const bool loading = presetBar.presets.busy();
+    rackEditor.setEnabled(!loading); inputGain.setEnabled(!loading); outputGain.setEnabled(!loading);
+    if (!loading) {
+        inputGain.setValue(session.processor.controls.inputDb(), juce::dontSendNotification);
+        outputGain.setValue(session.processor.controls.outputDb(), juce::dontSendNotification);
+    }
     const auto meter = session.processor.engine.consumeMeters();
     clipFlags |= meter.flags;
     inputMeter.update(meter.inputPeak, (clipFlags & MonitorEngine::inputClipped) != 0);
@@ -155,6 +162,51 @@ void MainComponent::timerCallback() {
     clipLabel.setText(clips.isEmpty() ? "No clipping detected." : clips, juce::dontSendNotification);
     statusLabel.setText(setupError.isNotEmpty() ? setupError : session.status(), juce::dontSendNotification);
     configLabel.setText(session.configuration(), juce::dontSendNotification);
+}
+void MainComponent::restorePreferences() {
+    try {
+        if (!remembered) {
+            auto path=userConfigDirectory()/"settings.json";
+            if (!std::filesystem::exists(path)) return;
+            remembered=parsePreferences(readBounded(path));
+            setSize(remembered->width,remembered->height);
+        }
+        const auto& p=*remembered;
+        backendBox.setSelectedItemIndex(exactDeviceIndex(session.backendNames(),p.backend),juce::dontSendNotification);
+        backendChanged();
+        // Exact name match only; missing input/output is left unselected.
+        auto choose=[](juce::ComboBox& box,const std::string& name) { juce::StringArray names; for(int i=0;i<box.getNumItems();++i) names.add(box.getItemText(i)); int match=exactDeviceIndex(names,name); box.setSelectedItemIndex(match,juce::dontSendNotification); return match>=0; };
+        bool inputFound=choose(inputDevice,p.inputDevice), outputFound=choose(outputDevice,p.outputDevice);
+        devicesChanged();
+        inputChannel.setSelectedItemIndex(p.input,juce::dontSendNotification);
+        leftChannel.setSelectedItemIndex(p.left,juce::dontSendNotification); rightChannel.setSelectedItemIndex(p.right,juce::dontSendNotification);
+        rateBox.setSelectedItemIndex(rates.indexOf(p.rate),juce::dontSendNotification); bufferBox.setSelectedItemIndex(buffers.indexOf(p.buffer),juce::dontSendNotification);
+        if(!inputFound||!outputFound) setupError="Remembered device is unavailable. Reconnect or explicitly select devices; monitoring remains stopped.";
+        updateEnabled();
+    } catch(const std::exception& e) { setupError="Preferences were not restored: "+juce::String(e.what()); }
+}
+void MainComponent::persistLocal() {
+    Preferences p;
+    p.backend=backendBox.getText().toStdString(); p.inputDevice=inputDevice.getText().toStdString(); p.outputDevice=outputDevice.getText().toStdString();
+    p.input=inputChannel.getSelectedItemIndex(); p.left=leftChannel.getSelectedItemIndex(); p.right=rightChannel.getSelectedItemIndex();
+    auto ri=rateBox.getSelectedItemIndex(), bi=bufferBox.getSelectedItemIndex();
+    if(ri>=0) p.rate=rates[ri];
+    if(bi>=0) p.buffer=buffers[bi];
+    p.width=std::clamp(getWidth(),850,1600); p.height=std::clamp(getHeight(),1030,1400);
+    // Keep missing remembered device names so reconnect can restore them next launch.
+    if(remembered&&(p.inputDevice.empty()||p.outputDevice.empty())) { auto width=p.width,height=p.height; p=*remembered; p.width=width; p.height=height; }
+    atomicWrite(userConfigDirectory()/"settings.json",serializePreferences(p));
+    // Close after Discard recalls the saved tone, never the discarded edits.
+    auto& presets=presetBar.presets;
+    auto tone=presets.selected().value_or(factoryPresets(session.processor.rack.registry()).front());
+    atomicWrite(userDataDirectory()/"last-tone.json",serializePreset(tone,session.processor.rack.registry()));
+}
+void MainComponent::requestClose(std::function<void()> close) {
+    presetBar.guard([safe=juce::Component::SafePointer<MainComponent>(this),close=std::move(close)] {
+        if(!safe) return;
+        try { safe->persistLocal(); close(); }
+        catch(const std::exception& e) { safe->presetBar.presets.error="Could not save local state: "+std::string(e.what()); }
+    });
 }
 bool MainComponent::keyPressed(const juce::KeyPress& key) {
     if (key == juce::KeyPress::escapeKey) { session.requestStop(); return true; }
@@ -204,6 +256,7 @@ void MainComponent::resized() {
     resetClips.setBounds(clipping.removeFromRight(130).withHeight(30)); clipLabel.setBounds(clipping);
     statusLabel.setBounds(area.removeFromTop(52));
     configLabel.setBounds(area.removeFromTop(76));
-    area.removeFromTop(10); rackEditor.setBounds(area);
+    area.removeFromTop(4); presetBar.setBounds(area.removeFromTop(74));
+    area.removeFromTop(6); rackEditor.setBounds(area);
 }
 }

@@ -6,14 +6,18 @@ namespace guitarrack {
 bool MonitorControls::setInputDb(float db) noexcept {
     if (!std::isfinite(db) || db < -24 || db > 24) return false;
     inGain.store(std::pow(10.0f, db / 20), std::memory_order_relaxed);
-    inDb.store(db, std::memory_order_relaxed);
+    if (inDb.exchange(db, std::memory_order_relaxed) != db) edits.fetch_add(1);
     return true;
 }
 bool MonitorControls::setOutputDb(float db) noexcept {
     if (!std::isfinite(db) || db < -60 || db > 6) return false;
     outGain.store(std::pow(10.0f, db / 20), std::memory_order_relaxed);
-    outDb.store(db, std::memory_order_relaxed);
+    if (outDb.exchange(db, std::memory_order_relaxed) != db) edits.fetch_add(1);
     return true;
+}
+void MonitorControls::restorePreparedGains(float inputDb, float outputDb, float inputGain, float outputGain) noexcept {
+    inGain.store(inputGain); outGain.store(outputGain);
+    inDb.store(inputDb); outDb.store(outputDb); edits.fetch_add(1);
 }
 void MonitorEngine::Ramp::aim(float value, int duration) noexcept {
     if (value == target) return;
@@ -45,12 +49,12 @@ void MonitorEngine::reset() {
 void MonitorEngine::process(const float* inL, const float* inR, float* outL,
                            float* outR, int count, bool running) noexcept {
     if (count <= 0) return;
+    if (rack && prepared) rack->beginBlock();
     input.aim(controls.inputGain(), rampSamples);
     output.aim(controls.outputGain(), rampSamples);
     gate.aim(prepared && running && !controls.isMuted() ? 1.0f : 0.0f, rampSamples);
     float inPeak = 0, outPeak = 0;
     unsigned events = 0;
-    if (rack && prepared) rack->beginBlock();
     for (int offset = 0; offset < count;) {
         const int chunk = std::min(rackChunkSize, count - offset);
         for (int i = 0; i < chunk; ++i) {

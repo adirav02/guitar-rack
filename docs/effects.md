@@ -42,8 +42,9 @@ rate with **no oversampling**: harmonics above Nyquist alias into the audio band
 particularly at high Drive or with bright input. The post-clip Tone filter cannot
 remove alias components already folded into the passband. Direct distorted
 guitar may sound harsh; no amp model, cabinet simulation, commercial-model
-matching, polished tone, or listening validation is claimed. Oversampling and
-its latency/dry alignment remain M5 work. Very small filter state is flushed to
+matching or polished tone is claimed. The owner subsequently reports that
+Overdrive, EQ and Delay work with a real guitar, individually and together; detailed tone and
+aliasing appraisal remain pending. Oversampling and its latency/dry alignment remain M5 work. Very small filter state is flushed to
 zero to avoid denormals. Conservative filter-tail bound: 20 ms.
 
 ## EQ
@@ -63,7 +64,8 @@ Normalized stable second-order denominator coefficients lie in a convex stabilit
 region, so interpolation retains pole stability; this alone does not guarantee
 subjective quality of every rapid modulation. History remains independent per
 channel and instance. Automated sweeps of gain changes check bounded output and
-continuity; listening remains pending. Conservative filter-tail bound: 250 ms.
+continuity; the owner reports working live EQ, while detailed gain-staging
+and tone appraisal remain pending. Conservative filter-tail bound: 250 ms.
 
 Boosts can consume substantial headroom. EQ input/output history has an abnormal
 signal guard at ±1,000,000 and non-finite samples become silence. This guard does

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "preset_id": "00000000-0000-4000-8000-000000000001",
+  "name": "Clean",
+  "globals": {
+    "input_db": 0,
+    "output_db": -12,
+    "rack_bypass": false
+  },
+  "order": [],
+  "instances": [],
+  "assets": []
+}

@@ -2,6 +2,8 @@
 #include <juce_gui_basics/juce_gui_basics.h>
 #include "standalone/AudioSession.h"
 #include "RackEditor.h"
+#include "PresetBar.h"
+#include "state/Preferences.h"
 
 namespace guitarrack {
 class PeakMeter final : public juce::Component {
@@ -20,6 +22,8 @@ public:
     void paint(juce::Graphics&) override;
     void resized() override;
     bool keyPressed(const juce::KeyPress&) override;
+    void requestClose(std::function<void()>);
+    void persistLocal();
 private:
     void timerCallback() override;
     void refreshDevices();
@@ -27,8 +31,11 @@ private:
     void devicesChanged();
     void startAudio();
     void updateEnabled();
+    void restorePreferences();
+    std::optional<Preferences> remembered;
     void label(juce::Label&, const juce::String&);
     AudioSession session;
+    PresetBar presetBar{session.processor.rack};
     RackEditor rackEditor{session.processor.rack};
     juce::Label title, hint, backendLabel, inputDeviceLabel, outputDeviceLabel;
     juce::Label inputLabel, leftLabel, rightLabel, rateLabel, bufferLabel;

@@ -1,20 +1,22 @@
 # GuitarRack
 
 Fedora Linux standalone guitar monitoring and a modular serial rack using C++20,
-CMake and JUCE 8.0.15. M3 software adds Overdrive, EQ and Delay to the working
-Gain rack. The owner reports testing the M2 rack with a real guitar: Gain
-controls work well and the application appeared correct during that test.
-Earlier M-Track Solo Input 2 monitoring at PipeWire 256/48000 and 512/48000 was
-acceptable; 256 is the preference. This is user-reported listening evidence.
-M3 effect listening, the monitoring soak and physical failure/latency checks
-remain pending. Presets, further effects, VST3 and Windows stay in their planned
-milestones in [PLAN.md](PLAN.md).
+CMake and JUCE 8.0.15. M4 adds versioned presets, validation, transactional recall,
+Save/Save As, import/export and local preferences. The catalog remains Gain,
+Overdrive, EQ and Delay. The owner reports opening the M3 GUI on Fedora and
+playing a real guitar: Overdrive, EQ and Delay work individually and together in
+one rack. This is user-reported desktop/listening evidence. Earlier M-Track Solo
+Input 2 monitoring at PipeWire 256/48000 and 512/48000 was acceptable; 256 is the
+preference. M4 desktop acceptance, the 10-minute soak, reconnect, measured latency
+and other unreported checks remain pending. Further effects, VST3 and Windows
+stay in their planned milestones in [PLAN.md](PLAN.md).
 
 The application provides a native resizable window, device/backend/channel
 selection, supported sample rate/buffer choices, explicit Start/Stop/Mute,
 mono-to-stereo monitoring, trim/level, peak meters, latched clipping warnings and
-output protection. It does not start monitoring or select an input device on
-launch. Start opens the selected stream; Stop fades and closes it. Device or
+output protection. It restores valid local device choices but requires explicit Start on
+every launch. A missing remembered input stays unselected; another microphone is
+never substituted. Start opens the selected stream; Stop fades and closes it. Device or
 configuration failure stops monitoring and requires a new explicit Start.
 
 ## Build and run
@@ -102,7 +104,7 @@ time. Do not reset the patched checkout while a build is running.
 
 Device/channel/rate/buffer edits require Stop. A server format/route change during
 playback safely stops monitoring and requires Refresh/reselection/Start. Device
-preferences are not yet persisted. The owner reported acceptable basic monitoring
+preferences and window size are now persisted separately from tone presets. The owner reported acceptable basic monitoring
 at both tested launch settings; driver stability, round trip and Windows results
 are not inferred from software checks or that listening report.
 
@@ -128,8 +130,8 @@ controls, units, numeric entry, double-click default reset and a Reset button.
 The rack scrolls vertically to reach every card. It supports **16 instances**
 and 20 ms gain/bypass/structural transitions.
 Rack bypass retains input/output gain and protection. Gain adds no DSP latency.
-There is no preset save or cross-launch rack restore until M4. The 10-minute
-soak, real disconnect/reconnect, measured round trip and detailed edit/bypass/
+M4 saves custom racks and recalls the last selected saved/loaded tone after a
+normal close. Every launch remains stopped. The 10-minute soak, real disconnect/reconnect, measured round trip and detailed edit/bypass/
 Stop-Start acceptance remain pending; report only checks you actually performed.
 
 ## M3 guitar checklist
@@ -163,8 +165,54 @@ Use physical Input 2 / Instrument / USB monitoring, low interface volume, trim
 
 [DSP details and fixed mappings](docs/effects.md) explain the algorithms,
 reset/bypass/tail policy and prototype limitations. Automated signal tests do
-not establish subjective tone quality. Dry-guitar-recording and live M3
-listening, the 10-minute soak, real reconnect and measured latency are pending.
+not establish subjective tone quality. The owner reports successful individual/combined live M3 effects. Dry-guitar
+recording tests, detailed tone/aliasing appraisal, the 10-minute soak, real
+reconnect and measured latency remain pending.
+
+## Presets and restart checklist (M4)
+
+1. Build/launch the release below. Select your device/channels and press **Start**.
+   Add effects, set controls, reorder cards, and choose bypass/gain settings.
+2. Press **Save As**, name the rack (Hebrew/UTF-8 is supported), and Save. Confirm
+   its name is selected and the unsaved `*` disappears. Save As changes the preset
+   UUID while retaining the rack's instance UUIDs, order and slots.
+3. Change a control and choose another preset. Test **Cancel** (keep edits),
+   **Save** (persist then switch), and **Discard** (switch without saving).
+   Factory presets use Save As to protect the originals. Close with unsaved edits
+   to test the same three choices.
+4. Save your custom rack, close normally, and relaunch. Confirm the saved rack,
+   order, slots, gains and selected name return, device preferences are restored
+   if available, and monitoring stays stopped until **Start**. Disconnecting a
+   remembered device must leave selection incomplete and Start disabled.
+5. **Export** to a JSON file; switch to Clean, then **Import** that file. Compare
+   names, order/slots, individual controls, bypass and global gains. Import loads
+   the complete tone; Save stores an imported custom preset in the user library.
+   Export includes current edits but does not mark them saved in the library.
+6. Recall presets while playing at low headphone volume. Check transitions,
+   meters, routing, and unchanged **Mute**/**Start/Stop** state. Try an invalid
+   JSON import and an unwritable export location: expect a clear error and the
+   previous sound/selection/edits retained. **Cancel load** applies before graph
+   acceptance; an already accepted fade finishes. Delay history is reset on
+   replacement, so tails can shorten as with M3 structural edits.
+
+Factory examples: **Clean** (empty dry rack), **Crunch** (conservative Overdrive
+and EQ), **Lead Delay** (Overdrive → EQ → Delay). They are examples for the current
+prototype DSP, with output at -12 dB; they do not add amp/cabinet simulation.
+
+User presets: `$XDG_DATA_HOME/GuitarRack/presets/<UUID>.json`, falling back to
+`~/.local/share/GuitarRack/presets`. Local device/window settings:
+`$XDG_CONFIG_HOME/GuitarRack/settings.json`, falling back to
+`~/.config/GuitarRack/settings.json`. `last-tone.json` in the data directory stores
+normal-close recall of the selected saved/loaded tone; discarded edits are not
+autosaved. These directories are outside tracked factory files. Device choices,
+Start/Stop, Mute, and delay-buffer contents never appear in exported tone files.
+
+The [version 1 schema](assets/presets/schema-v1.json) fixes physical units and
+bounds from the registry. Only schema/effect version 1 and the existing four
+effects are supported; unknown fields, effects, assets and versions are rejected.
+Files are limited to 128 KiB. No legacy migration or cabinet/asset bundles exist.
+Loading restores exact slot mappings, which can change the meaning of future
+slot automation; host integration remains M6. See [state design](docs/presets.md).
 
 ## Independent and diagnostic checks
 

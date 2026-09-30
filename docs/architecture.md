@@ -235,3 +235,20 @@ the maximum active/fading bound to a lock-free double atomic; fade completion
 publishes the accepted graph's bound. The shared adapter reads that atomic for
 its tail query, without looking at editable state or acquiring a mutex. This is
 a conservative declaration, not host validation or measured decay/latency.
+
+## M4 extension: full tone transactions
+
+The M2/M3 sections above describe their original stage. M4 now implements portable
+presets and local preferences; host/VST3 integration remains deferred. The current
+transaction, snapshot, processing-view, cancellation and persistence contracts
+are detailed in [presets.md](presets.md).
+
+There is still one editable parameter authority. Prepared graphs now use fixed
+private processing views synchronized from that authority; during a full preset
+fade, the old graph's view is frozen to preserve its original slot meanings.
+The callback installs only prevalidated fixed-size controls and preconverted
+globals at acceptance. No JSON, I/O, construction, locks, waits or reclamation
+enters the callback. Message-thread editing/saving is withheld until commit
+acknowledgment. Parser serials, graph generations and control revisions prevent
+stale full loads from overwriting newer requests/controls. Global gains use the
+existing 20 ms monitor ramps. Start/Stop, Mute and physical routing are excluded.

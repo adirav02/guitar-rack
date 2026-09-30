@@ -109,8 +109,12 @@ void RackEditor::poll() {
         }
         layoutCards();
     }
-    for (auto& card : cards) card->poll();
-    bypass.setToggleState(rack.bank.rackBypassed(), juce::dontSendNotification);
+    // Full tone controls install at activation; keep the prior visible controls
+    // until the matching rack/selection commit acknowledgment is published.
+    if (!state.tonePending && !state.transitioning) {
+        for (auto& card : cards) card->poll();
+        bypass.setToggleState(rack.bank.rackBypassed(), juce::dontSendNotification);
+    }
     addEffect.setEnabled(displayed.instances.size() < rackSlots);
     const auto text = juce::String(displayed.instances.size()) + "/16 slots | "
         + (state.error.empty() ? (state.requestedGeneration == state.committedGeneration ? "Applied" : "Preparing / transitioning...") : juce::String(state.error));

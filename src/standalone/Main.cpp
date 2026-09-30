@@ -13,7 +13,7 @@ public:
         if (commandLine.contains("--smoke-test")) startTimer(1200);
     }
     void shutdown() override { stopTimer(); window.reset(); }
-    void systemRequestedQuit() override { quit(); }
+    void systemRequestedQuit() override { if (window) static_cast<MainComponent*>(window->getContentComponent())->requestClose([this] { quit(); }); else quit(); }
     void anotherInstanceStarted(const juce::String&) override { if (window) window->toFront(true); }
 private:
     void timerCallback() override { stopTimer(); quit(); }
@@ -22,7 +22,7 @@ private:
         Window() : DocumentWindow("GuitarRack", juce::Colour(0xff202b3a), allButtons) {
             setUsingNativeTitleBar(true);
             setContentOwned(new MainComponent(), true);
-            setResizable(true, false); setResizeLimits(850, 950, 1600, 1400);
+            setResizable(true, false); setResizeLimits(850, 1030, 1600, 1400);
             centreWithSize(getWidth(), getHeight()); setVisible(true);
         }
         void closeButtonPressed() override { juce::JUCEApplication::getInstance()->systemRequestedQuit(); }

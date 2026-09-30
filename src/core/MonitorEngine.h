@@ -21,21 +21,25 @@ public:
     bool setInputDb(float db) noexcept;
     bool setOutputDb(float db) noexcept;
     void setMuted(bool value) noexcept { muted.store(value, std::memory_order_relaxed); }
+    std::uint64_t revision() const noexcept { return edits.load(); }
     float inputDb() const noexcept { return inDb.load(std::memory_order_relaxed); }
     float outputDb() const noexcept { return outDb.load(std::memory_order_relaxed); }
     bool isMuted() const noexcept { return muted.load(std::memory_order_relaxed); }
     float inputGain() const noexcept { return inGain.load(std::memory_order_relaxed); }
     float outputGain() const noexcept { return outGain.load(std::memory_order_relaxed); }
 private:
+    friend class RackEngine;
+    void restorePreparedGains(float inputDb, float outputDb, float inputGain, float outputGain) noexcept;
     std::atomic<float> inDb{0}, outDb{-12};
     std::atomic<float> inGain{1}, outGain{0.2511886432f};
     std::atomic<bool> muted{false};
+    std::atomic<std::uint64_t> edits{0};
 };
 
 class MonitorEngine {
 public:
     enum : unsigned { inputClipped = 1, outputProtected = 2, nonFiniteInput = 4, nonFiniteDSP = 8 };
-    explicit MonitorEngine(MonitorControls& authority, RackEngine* serialRack = nullptr) noexcept : controls(authority), rack(serialRack) {}
+    explicit MonitorEngine(MonitorControls& authority, RackEngine* serialRack = nullptr) noexcept : controls(authority), rack(serialRack) { if (rack) rack->attachControls(&controls); }
     // Lifecycle only, serialized against processing. Starts at silence.
     bool prepare(double sampleRate);
     void reset();

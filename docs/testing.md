@@ -72,7 +72,7 @@ inspect processes in the restricted environment. Address/undefined checks were
 run with leak detection disabled; **leak detection remains unverified**.
 These are diagnostic results, not callback-load/latency benchmarks.
 
-## Owner report and pending physical acceptance
+## Current owner report and pending physical acceptance
 
 The owner confirms the native GUI opens on Fedora and live guitar monitoring
 works with the M-Audio M-Track Solo, physical Input 2. PipeWire launch settings
@@ -81,12 +81,16 @@ The owner subsequently reports testing the M2 rack with a real guitar: Gain
 controls work well, and the application appeared correct during that test. This
 is user-reported listening evidence. These statements do not verify duration,
 actual format, device latency, startup silence, detailed edit/bypass/Stop-Start
-acceptance or disconnect/reconnect. M3 UI and effect listening remain pending.
+acceptance or disconnect/reconnect. The owner now reports opening the M3 GUI on
+Fedora and testing Overdrive, EQ and Delay with a real guitar, individually and
+together in a rack. This is user-reported desktop/listening evidence; it does
+not complete the unreported soak/reconnect/latency checks or M4 acceptance.
 
 The restricted agent session still has no `/dev/snd` or access to the owner's
 PipeWire service. Native GUI smoke testing is unavailable here (no usable desktop
 surface or Xvfb); the earlier native launch report is owner evidence for M0/M1,
-not visual verification of the new rack UI. Use the README's launch and live-rack
+not agent visual verification of M4. The owner has separately reported the M3
+GUI opens and its effects work. Use the README's launch and live-rack
 checklist and record only checks actually performed.
 
 Record the physical result here when tested:
@@ -103,9 +107,10 @@ Record the physical result here when tested:
 | Real disconnect/reconnect and startup silence | Pending |
 
 No host, Windows, ASIO or measured real-time performance results are claimed.
-The acceptable-monitoring and working-Gain reports are the owner's listening
-evidence; they do not validate subjective M3 tone. M3 software evidence follows
-below; M4 and later milestones remain unimplemented.
+The monitoring, Gain and working M3 effects reports are the owner's listening
+evidence. Detailed tone/aliasing appraisal and dry-recording tests are not
+established. Historical M2/M3 software evidence follows; current M4 evidence is
+recorded in the final section.
 
 
 ## M2 implementation checks
@@ -187,7 +192,7 @@ were made. Physical M2 acceptance, the 10-minute monitoring soak, actual device
 format/latency, disconnect/reconnect and measured round trip remain pending.
 
 
-## M3 final verification
+## M3 verification at implementation time (superseded owner evidence below)
 
 Fedora 44, GCC 16.2.1, CMake 4.3.0, Ninja 1.13.2 and the pinned JUCE 8.0.15
 checkout were rechecked. Initial git status was clean; existing M2 sources were
@@ -298,3 +303,135 @@ listening-based gain staging, detailed M2 live edits/bypass/Stop-Start, 10-minut
 soak, actual backend/device format, physical disconnect/reconnect, device latency
 and measured round trip, LeakSanitizer, TSan, performance headroom, host/VST3 and
 Windows. See [README.md](../README.md) for the exact launch and M3 guitar checklist.
+
+
+## M4 final verification — 2026-09-30
+
+The owner reports: opened the M3 GUI on the Fedora desktop; Overdrive, EQ and
+Delay work with a real guitar, including together in a rack. This is
+**user-reported desktop and listening evidence**, not an agent hardware test.
+It does not establish the 10-minute soak, disconnect/reconnect, actual format,
+device latency, measured round trip, detailed click/tail/gain-staging appraisal,
+LeakSanitizer or any other unreported check.
+
+Rechecked Fedora 44, GCC 16.2.1, CMake 4.3.0, Ninja 1.13.2 and JUCE 8.0.15
+commit `91ad83ae34a81e0833b1a2b0866f54846370ae53`. Initial git status was clean.
+No owner changes were discarded; no packages, global audio policy, commits,
+remotes, publication, extra effects, VST3 or Windows were introduced.
+
+Final debug and release commands:
+
+```bash
+cmake --preset linux-debug
+cmake --build --preset linux-debug
+ctest --preset linux-debug --output-on-failure
+cmake --preset linux-release
+cmake --build --preset linux-release
+ctest --preset linux-release --output-on-failure
+```
+
+Both standalone binaries build and each suite passes **5/5**:
+`monitoring_and_routing`, `serial_rack_lifecycle`, `built_in_effect_signals`,
+`presets_and_persistence`, `device_adapter_lifecycle`.
+Release `ldd` finds no missing libraries; `git diff --check` passes.
+
+M4 evidence from `presets_and_persistence`:
+
+- Tracked Clean/Crunch/Lead Delay fixtures pass the actual registry-aware runtime
+  validator and match embedded factory configurations. Schema is Draft 2020-12;
+  a separate Python jsonschema check was unavailable (module absent), so no
+  independent schema-engine validation is claimed.
+- Save/reopen and import/export preserve Unicode/Hebrew/emoji names, preset and
+  instance UUIDs, effect versions, exact order and sparse slots, independent
+  parameters and bypass. Save As preserves effect identities while changing
+  only preset identity/name. Fresh session recall restores selection/rack/gains
+  while stopped. Settings round trips are separate from tone, and missing exact
+  device names return no selection rather than another microphone.
+- Parameter, effect bypass, global/rack bypass, add/remove and reorder edits
+  affect dirty state; restoring configuration clears it. Save/Discard/Cancel
+  action logic and failed-save dirty/selection retention are tested. Actual
+  native dialog clicks, close/restart UI and keyboard/layout remain owner checks.
+- Tests reject duplicate UUIDs/slots/order references/JSON keys (including escaped
+  duplicate keys), invalid UUIDs/slots/order, required unknown effects, mismatched
+  versions, missing/wrong/out-of-range controls, numeric strings, invalid names,
+  UTF-8/surrogates/nulls, NaN/Infinity/overflowed integers/exponents, malformed
+  syntax, excessive nesting, oversized files and unsupported assets/versions.
+- File replacement, reopen, bounded regular-file reads, nonblocking FIFO/directory
+  rejection, failed writes/replacement, preservation
+  of destinations and temporary-file cleanup are checked in unique temporary
+  directories. Malformed library files are reported and excluded. Invalid/missing
+  imports retain the previous edited tone and selection.
+- Blocked/failed preparation, pre-acceptance cancellation, competing parser
+  requests, stale builder results, control edits during parsing/at handoff,
+  exact-slot replacement with different UUIDs and pending-load sample-rate
+  rebuilds are exercised. Zero blocks do not activate partially. Live preset
+  globals ramp continuously on a settled signal; Mute and running state persist.
+- 300 competing full loads with a concurrent audio consumer converge to the last
+  request. Graph ownership stays <=4, obsolete graphs reclaim to one, and no
+  callback C++ heap operations occur. Existing 1,000-edit mixed-effect stress,
+  signal/lifetime/queue-saturation regressions remain intact.
+- Original versus serialized/restored combined Overdrive/EQ/two independent Delay
+  configurations render the same reset-condition sine/impulse input for 76,800
+  samples, with maximum tested sample difference <2e-6. This verifies
+  configuration equivalence, not preservation of running delay history.
+
+Adapter checks also activate full tone transactions through the actual standalone
+callback and shared JUCE processBlock with oversized 1,200-frame blocks. They
+verify heap-free transitions, stereo routing, unchanged stream-open count,
+continued monitoring, and stopped loads that never open/authorize a stream.
+These use a fake device, not the M-Track Solo.
+
+RT source review: JSON, validation, snapshots, files, name/UUID operations and
+factory construction remain off audio. Prepared graphs have fixed control views,
+20 ms transition scratch, preconverted global gains and worker-owned histories.
+Activation checks generation/revisions and copies bounded controls only. Callback
+loops remain bounded by chunks/16 slots; no locks, waits, logs, UI, I/O or graph
+creation/destruction enter callback paths. Retirement/reclamation remains off
+thread. Allocation auditing covers normal processing, preset activation,
+crossfades, cancellation/stale rejection and oversized adapter blocks. It does
+not certify external driver/server internals or worst-case callback timing.
+
+Full ASan/UBSan diagnostics (separate from performance):
+
+```bash
+cmake -S . -B build/adapter-sanitize -G Ninja \
+  -DCMAKE_BUILD_TYPE=Debug -DGUITARRACK_SANITIZERS=ON
+cmake --build build/adapter-sanitize --target guitarrack_tests \
+  guitarrack_rack_tests guitarrack_effect_tests guitarrack_adapter_tests \
+  guitarrack_state_tests -j 2
+ASAN_OPTIONS=detect_leaks=0 ctest --test-dir build/adapter-sanitize --output-on-failure
+```
+
+**5/5 pass**, with leak detection disabled. A separate attempt:
+`ASAN_OPTIONS=detect_leaks=1 ctest --test-dir build/adapter-sanitize
+-R presets_and_persistence --output-on-failure` fails at exit with
+`LeakSanitizer has encountered a fatal error` and the ptrace limitation hint.
+**LeakSanitizer remains unverified.** Graph accounting is not a leak scan.
+
+Unlike the earlier M2/M3 attempts, TSan is now available in this session; no
+package was installed by the agent. New actual automated evidence:
+
+```bash
+cmake -S . -B build/core-thread-sanitize -G Ninja \
+  -DCMAKE_BUILD_TYPE=Debug -DGUITARRACK_BUILD_STANDALONE=ON \
+  -DCMAKE_CXX_FLAGS='-fsanitize=thread -fno-omit-frame-pointer' \
+  -DCMAKE_EXE_LINKER_FLAGS=-fsanitize=thread
+cmake --build build/core-thread-sanitize --target guitarrack_tests \
+  guitarrack_rack_tests guitarrack_effect_tests guitarrack_adapter_tests \
+  guitarrack_state_tests -j 2
+ctest --test-dir build/core-thread-sanitize --output-on-failure
+```
+
+**5/5 pass** with no reported TSan race in these exercised core/state/adapter
+paths. This supersedes the earlier missing-library blocker for this test scope;
+it does not establish real driver races, GUI/dialog coverage, hardware timing or
+performance. No broad TSan/hardware acceptance checkbox is inferred from the
+owner listening report.
+
+No `/dev/snd` is exposed. A fresh `XOpenDisplay` probe returned null, so an M4
+native launch/visual/dialog check was not attempted or claimed. Owner M3 desktop
+success does not verify the newly added M4 UI. Still pending: M4 native
+save/switch/close/restart/import/export and listening checklist, dry-recording
+and detailed tone/aliasing/gain-staging appraisal, detailed live edits, 10-minute
+soak, actual backend/device format and latency, physical reconnect, measured
+round trip, LeakSanitizer, performance headroom, host/VST3 and Windows.
