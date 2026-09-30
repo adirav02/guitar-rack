@@ -25,16 +25,16 @@ struct Audio {
 void fixturesAndValidation(const EffectRegistry& registry) {
     auto factories=factoryPresets(registry);
     for(std::size_t i=0;i<factories.size();++i) {
-        auto disk=parsePreset(readBounded(std::filesystem::path(GUITARRACK_SOURCE_DIR)/"assets/presets"/(std::array<const char*,3>{"clean.json","crunch.json","lead-delay.json"}[i])),registry);
+        auto disk=parsePreset(readBounded(std::filesystem::path(GUITARRACK_SOURCE_DIR)/"assets/presets"/(std::array<const char*,5>{"clean.json","crunch.json","lead-delay.json","driven-synthetic-cabinet.json","small-room.json"}[i])),registry);
         check(serializePreset(disk,registry)==serializePreset(parsePreset(serializePreset(factories[i],registry),registry),registry),"tracked factory fixtures match embedded factory configurations");
     }
-    auto tone=factories.back(); tone.name="צליל גיטרה – Lead 🎸";
+    auto tone=factories[2]; tone.name="צליל גיטרה – Lead 🎸";
     auto second=tone.rack.instances.back(); second.id=newInstanceId(); second.slot=14; tone.rack.instances.push_back(second); tone.rack.order.insert(tone.rack.order.begin(),second.id); tone.controls.values[14]=tone.controls.values[2]; tone.controls.values[14][0]=.73f; tone.controls.bypass[14]=true;
     auto text=serializePreset(tone,registry); auto restored=parsePreset(text,registry);
     check(restored.id==tone.id&&restored.name==tone.name&&restored.rack==tone.rack,"Unicode names, independent IDs, exact order and slots round trip");
     check(restored.controls.bypass[14]&&std::abs(restored.controls.values[14][0]-.73f)<1e-6f&&restored.controls.values[2][0]!=restored.controls.values[14][0],"independent parameters and bypass round trip");
     auto invalid=[&](auto edit,const char* label) { auto v=copy(tone,registry); edit(v); rejects([&]{parsePreset(json(v),registry);},label); };
-    invalid([](auto& v){replace(v,"schema_version",2);},"future version rejected");
+    invalid([](auto& v){replace(v,"schema_version",3);},"future version rejected");
     invalid([](auto& v){replace(v,"schema_version",0);},"no fabricated legacy migration");
     invalid([](auto& v){replace(v,"preset_id","../../escape");},"invalid preset UUID rejected");
     invalid([](auto& v){replace(v,"name","");},"empty name rejected");
@@ -57,7 +57,7 @@ void fixturesAndValidation(const EffectRegistry& registry) {
     auto v=copy(tone,registry); auto encoded=json(v); auto at=encoded.find("12.0"); if(at!=std::string::npos) encoded.replace(at,4,"1e999"); else { at=encoded.find("12"); encoded.replace(at,2,"1e999"); } rejects([&]{parsePreset(encoded,registry);},"nonfinite exponent rejected");
 }
 void filesAndActions(const EffectRegistry& registry,const std::filesystem::path& root) {
-    PresetStore store(root/"presets"); auto t=factoryPresets(registry).back(); t.id=newInstanceId(); t.name="הגיטרה שלי"; store.save(t,registry); auto reopened=parsePreset(readBounded(store.directory/(t.id+".json")),registry);
+    PresetStore store(root/"presets"); auto t=factoryPresets(registry)[2]; t.id=newInstanceId(); t.name="הגיטרה שלי"; store.save(t,registry); auto reopened=parsePreset(readBounded(store.directory/(t.id+".json")),registry);
     check(reopened.rack==t.rack&&reopened.name==t.name,"save and reopen user preset");
     auto old=readBounded(store.directory/(t.id+".json")); t.name="Updated"; store.save(t,registry); check(readBounded(store.directory/(t.id+".json"))!=old,"atomic replacement saves new contents");
     atomicWrite(root/"export.json",serializePreset(t,registry)); check(parsePreset(readBounded(root/"export.json"),registry).rack==t.rack,"import/export round trip");
@@ -115,7 +115,7 @@ void deletionActions(const EffectRegistry& registry, const std::filesystem::path
         rejects([&]{session.store.erase(factory.id,registry,session.recallFile);},"factory deletion protected in store");
         check(readBounded(protectedFile)==protectedBytes,"even a factory UUID file inside the user store is protected");
     }
-    auto imported=factoryPresets(registry).back(); imported.id=newInstanceId(); imported.name="Imported only";
+    auto imported=factoryPresets(registry)[2]; imported.id=newInstanceId(); imported.name="Imported only";
     atomicWrite(data/"import.json",serializePreset(imported,registry)); session.importFile(data/"import.json");
     check(wait([&]{session.poll();return !session.busy();})&&!session.canDelete(),"external import alone is not a managed saved preset");
     check(!session.deleteSelected(imported.id,DirtyAction::discard,true)&&std::filesystem::exists(data/"import.json"),"import path is never a deletion target");
@@ -221,7 +221,7 @@ void deletionCompetition(const std::filesystem::path& root) {
     auto registry=EffectRegistry::builtIns(); Probe probe;
     registry.add({"slow","slow","Test",1,{},[&](const ParameterBank&,SlotId){return std::make_unique<Slow>(probe);}});
     RackEngine rack(registry); MonitorControls controls; MonitorEngine engine(controls,&rack); Audio audio;
-    PresetSession session(rack,root/"delete-races"/"presets"); session.select(factoryPresets(registry).back());
+    PresetSession session(rack,root/"delete-races"/"presets"); session.select(factoryPresets(registry)[2]);
     check(wait([&]{session.poll();return !session.busy();})&&session.saveAs("Async victim"),"create competing deletion fixture");
     auto saved=*session.selected(); auto file=session.store.directory/(saved.id+".json");
     session.importFile(file);
@@ -251,7 +251,7 @@ void deletionCompetition(const std::filesystem::path& root) {
     check(audio.heapFree,"deletion competition preserves callback heap audit");
 }
 void deletionSound(const EffectRegistry& registry, const std::filesystem::path& root) {
-    auto tone=factoryPresets(registry).back(); tone.id=newInstanceId(); tone.name="Long echoes";
+    auto tone=factoryPresets(registry)[2]; tone.id=newInstanceId(); tone.name="Long echoes";
     RackEngine a,b; MonitorControls ca,cb; MonitorEngine ea(ca,&a),eb(cb,&b);
     PresetSession session(a,root/"delete-sound"/"presets"); session.select(tone); b.loadTone(tone);
     check(wait([&]{session.poll();return !session.busy()&&!b.snapshot().tonePending;})&&session.save(),"save delay sound fixture");

@@ -1,0 +1,441 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "preset_id",
+    "name",
+    "globals",
+    "order",
+    "instances",
+    "assets"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 2
+    },
+    "preset_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "not": {
+        "const": "00000000-0000-0000-0000-000000000000"
+      }
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "description": "Runtime also bounds UTF-8 bytes to 256 and rejects nulls."
+    },
+    "globals": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "input_db",
+        "output_db",
+        "rack_bypass"
+      ],
+      "properties": {
+        "input_db": {
+          "type": "number",
+          "minimum": -24,
+          "maximum": 24
+        },
+        "output_db": {
+          "type": "number",
+          "minimum": -60,
+          "maximum": 6
+        },
+        "rack_bypass": {
+          "type": "boolean"
+        }
+      }
+    },
+    "order": {
+      "type": "array",
+      "maxItems": 16,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+        "not": {
+          "const": "00000000-0000-0000-0000-000000000000"
+        }
+      }
+    },
+    "instances": {
+      "type": "array",
+      "maxItems": 16,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "instance_id",
+          "slot_id",
+          "effect_type",
+          "effect_version",
+          "bypassed",
+          "parameters",
+          "ir_asset"
+        ],
+        "properties": {
+          "instance_id": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+            "not": {
+              "const": "00000000-0000-0000-0000-000000000000"
+            }
+          },
+          "slot_id": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 15
+          },
+          "effect_type": {
+            "enum": [
+              "gain",
+              "overdrive",
+              "eq",
+              "delay",
+              "distortion",
+              "reverb",
+              "cabinet"
+            ]
+          },
+          "effect_version": {
+            "const": 1
+          },
+          "bypassed": {
+            "type": "boolean"
+          },
+          "parameters": {
+            "type": "object"
+          },
+          "ir_asset": {
+            "type": "string"
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "effect_type": {
+                  "const": "gain"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "parameters": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "level_db"
+                  ],
+                  "properties": {
+                    "level_db": {
+                      "type": "number",
+                      "minimum": -60,
+                      "maximum": 24,
+                      "description": "Physical value in dB; linear normalization. Fixed bank index 0."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "effect_type": {
+                  "const": "overdrive"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "parameters": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "drive_db",
+                    "tone_hz",
+                    "level_db",
+                    "mix_percent"
+                  ],
+                  "properties": {
+                    "drive_db": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 36,
+                      "description": "Physical value in dB; linear normalization. Fixed bank index 0."
+                    },
+                    "tone_hz": {
+                      "type": "number",
+                      "minimum": 200,
+                      "maximum": 8000,
+                      "description": "Physical value in Hz; linear normalization. Fixed bank index 1."
+                    },
+                    "level_db": {
+                      "type": "number",
+                      "minimum": -24,
+                      "maximum": 6,
+                      "description": "Physical value in dB; linear normalization. Fixed bank index 2."
+                    },
+                    "mix_percent": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 100,
+                      "description": "Physical value in %; linear normalization. Fixed bank index 3."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "effect_type": {
+                  "const": "eq"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "parameters": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "low_db",
+                    "mid_db",
+                    "high_db"
+                  ],
+                  "properties": {
+                    "low_db": {
+                      "type": "number",
+                      "minimum": -12,
+                      "maximum": 12,
+                      "description": "Physical value in dB; linear normalization. Fixed bank index 0."
+                    },
+                    "mid_db": {
+                      "type": "number",
+                      "minimum": -12,
+                      "maximum": 12,
+                      "description": "Physical value in dB; linear normalization. Fixed bank index 1."
+                    },
+                    "high_db": {
+                      "type": "number",
+                      "minimum": -12,
+                      "maximum": 12,
+                      "description": "Physical value in dB; linear normalization. Fixed bank index 2."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "effect_type": {
+                  "const": "delay"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "parameters": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "time_ms",
+                    "feedback_percent",
+                    "mix_percent"
+                  ],
+                  "properties": {
+                    "time_ms": {
+                      "type": "number",
+                      "minimum": 1,
+                      "maximum": 2000,
+                      "description": "Physical value in ms; linear normalization. Fixed bank index 0."
+                    },
+                    "feedback_percent": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 85,
+                      "description": "Physical value in %; linear normalization. Fixed bank index 1."
+                    },
+                    "mix_percent": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 100,
+                      "description": "Physical value in %; linear normalization. Fixed bank index 2."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "effect_type": {
+                  "const": "distortion"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "parameters": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "drive_db",
+                    "tone_hz",
+                    "level_db",
+                    "mix_percent"
+                  ],
+                  "properties": {
+                    "drive_db": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 48
+                    },
+                    "tone_hz": {
+                      "type": "number",
+                      "minimum": 400,
+                      "maximum": 8000
+                    },
+                    "level_db": {
+                      "type": "number",
+                      "minimum": -30,
+                      "maximum": 6
+                    },
+                    "mix_percent": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 100
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "effect_type": {
+                  "const": "reverb"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "parameters": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "size_percent",
+                    "damping_percent",
+                    "mix_percent"
+                  ],
+                  "properties": {
+                    "size_percent": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 100
+                    },
+                    "damping_percent": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 100
+                    },
+                    "mix_percent": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 100
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "effect_type": {
+                  "const": "cabinet"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "ir_asset": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "parameters": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "level_db"
+                  ],
+                  "properties": {
+                    "level_db": {
+                      "type": "number",
+                      "minimum": -24,
+                      "maximum": 6
+                    }
+                  }
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "ir_asset": {
+                  "const": ""
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "assets": {
+      "type": "array",
+      "maxItems": 16,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "asset_id",
+          "relative_path",
+          "sha256",
+          "format"
+        ],
+        "properties": {
+          "asset_id": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "relative_path": {
+            "type": "string",
+            "pattern": "^ir/[0-9a-f]{64}\\.wav$"
+          },
+          "format": {
+            "const": "wav"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:guitarrack:preset:2",
+  "title": "GuitarRack portable tone v2",
+  "description": "Runtime additionally enforces unique instance UUIDs/slots, order bijection, strict JSON/UTF-8, finite numbers, 128 KiB and resource limits."
+}

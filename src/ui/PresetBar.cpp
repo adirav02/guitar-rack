@@ -95,7 +95,7 @@ void PresetBar::saveAs(std::function<void()> after) {
 void PresetBar::fileDialog(bool importing) {
     if(dialogOpen||presets.busy()) return;
     dialogOpen=true;
-    chooser=std::make_unique<juce::FileChooser>(importing?"Import portable preset":"Export portable preset",juce::File{},"*.json");
+    chooser=std::make_unique<juce::FileChooser>(importing?"Import portable preset":"Export portable preset",importing?juce::File{}:juce::File::getSpecialLocation(juce::File::userDocumentsDirectory).getChildFile("My-rack.grbundle"),"*.json;*.grbundle");
     int flags=importing?(juce::FileBrowserComponent::openMode|juce::FileBrowserComponent::canSelectFiles):(juce::FileBrowserComponent::saveMode|juce::FileBrowserComponent::canSelectFiles|juce::FileBrowserComponent::warnAboutOverwriting);
     chooser->launchAsync(flags,[safe=juce::Component::SafePointer<PresetBar>(this),importing](const juce::FileChooser& dialog) {
         if(!safe) return;

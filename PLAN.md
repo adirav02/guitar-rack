@@ -1,6 +1,6 @@
 # GuitarRack — Product and implementation plan
 
-Created: 2026-09-30. Working name: GuitarRack. Status: M0/M1 through M4 software implemented. Owner reports the M3 GUI opens on Fedora and Overdrive, EQ and Delay work with a real guitar, individually and together; this is user-reported desktop/listening evidence. The owner also reports that the M4 desktop preset workflow works well (user-reported acceptance). The new M4 Delete desktop checklist, unreported keyboard/live-transition details, detailed live-edit acceptance, dry-recording/gain-staging appraisal, the 10-minute soak and unreported physical checks remain pending. Catalog remains Gain, Overdrive, EQ and Delay. M5 and later milestones remain untouched.
+Created: 2026-09-30. Working name: GuitarRack. Status: M0/M1 through M4 software implemented. Owner reports the M3 GUI opens on Fedora and Overdrive, EQ and Delay work with a real guitar, individually and together; this is user-reported desktop/listening evidence. The owner also reports that the M4 desktop preset workflow works well (user-reported acceptance). The new M4 Delete desktop checklist, unreported keyboard/live-transition details, detailed live-edit acceptance, dry-recording/gain-staging appraisal, the 10-minute soak and unreported physical checks remain pending. The focused first M5 software subset is implemented before VST3: Distortion, Reverb and Cabinet/IR, including assets/bundles, latency alignment and verification. New subjective/live-hardware acceptance remains pending. Remaining M5 effects, VST3 and Windows stay pending.
 
 This is an implementation contract for Codex. Complete one milestone at a time. Treat unchecked items as unfinished. Update this document with evidence as implementation progresses.
 
@@ -53,7 +53,7 @@ The interface supports 16-bit audio at up to 48 kHz. Process audio internally as
 
 ### Complete v1
 
-Extend the MVP with Noise Gate, Compressor, Reverb, Chorus, a basic amp stage, and cabinet IR loading. Validate the Linux VST3 version in a real host. Produce and physically test Windows standalone and VST3 builds. Ship installation documentation and clear dependency/asset license notices.
+Extend the MVP first with Distortion, Reverb and cabinet IR loading; then Noise Gate, Compressor, Chorus and a basic amp stage. Validate the Linux VST3 version in a real host. Produce and physically test Windows standalone and VST3 builds. Ship installation documentation and clear dependency/asset license notices.
 
 ### Later backlog
 
@@ -234,6 +234,7 @@ Report total DSP latency to the host when applicable, summing serial stages. Lat
 | MVP | Overdrive | Drive, Tone, Level, Mix | Start with documented soft clipping; tune by listening |
 | MVP | EQ | Low, Mid, High | Stable filters; document frequency choices |
 | MVP | Delay | Time, Feedback, Mix | Bound feedback below unstable values; interpolate reads |
+| M5 first part | Distortion | Drive, Tone, Level, Mix | Distinct stronger clipping; fixed oversampling/alignment |
 | v1 | Noise Gate | Threshold, Attack, Release, Hysteresis | Avoid chatter and abrupt note truncation |
 | v1 | Compressor | Threshold, Ratio, Attack, Release, Makeup | Predictable envelope and gain reduction |
 | v1 | Reverb | Size, Damping, Mix | Start with a bounded JUCE-based implementation |
@@ -345,10 +346,12 @@ Exit: automated save/reopen and import/export reproduce the same rack, order, pa
 
 ### M5 — Complete guitar sound catalog
 
-- [ ] Gate, Compressor, Reverb, Chorus, Basic Amp, and Cabinet IR.
-- [ ] IR validation, bounded async load, asset portability, and provenance.
-- [ ] Evaluate drive oversampling and implement alignment/latency handling if adopted.
-- [ ] Tune factory presets and test representative dense racks.
+- [x] First authorized M5 software part: Distortion, Reverb and Cabinet/IR; integrated DSP/UI/presets/assets, meaningful signal/lifecycle tests and build/diagnostic evidence. Native GUI/listening acceptance remains pending.
+- [ ] Remaining catalog: Gate, Compressor, Chorus, Basic Amp, other modulation and pitch effects. No VST3/Windows work in this subset.
+- [x] IR validation, bounded async load, managed/checksummed assets, portable bundle import/export, and synthetic CC0 provenance.
+- [x] Evaluate Distortion oversampling; fixed 4× FIR, 8-sample internal dry alignment, compensated stage/rack bypass and fixed 128-sample graph transitions. Existing Overdrive remains native-rate.
+- [x] Add conservative software factory examples and measure representative five/16-effect racks and two-graph transitions (unpaced Release DSP benchmark).
+- [ ] Owner guitar/tone/aliasing/gain-staging appraisal, new GUI/IR dialog acceptance and listening-based factory tuning. **M5 as a whole is not complete.**
 
 Exit: clean, crunch, lead, and ambient presets are usable; IR errors are recoverable; measured performance is documented. Do not imply hardware listening tests were automated.
 
@@ -531,6 +534,62 @@ M3 progress on 2026-09-30:
   Delete desktop/dialog/keyboard/listening tests remain pending: this session
   has no usable X display or /dev/snd. M5+, unreported soak, reconnect, measured
   latency and LeakSanitizer acceptance remain incomplete.
+
+### 2026-09-30–2026-10-01 — First M5 catalog subset before VST3
+
+- Read root/parent instructions, current plan/readme/architecture/effects/preset/
+  testing docs and inspected actual M4 code. Initial git status was clean.
+  Preserved the implemented preset-deletion workflow and its acceptance status.
+  Owner confirms live Gain/Overdrive/EQ/Delay and M4 presets; no new physical
+  acceptance is inferred. Distortion/Reverb DSP/tests were isolated in separate
+  detached worktrees, then integrated and reviewed centrally. No commits,
+  packages, remotes, publishing or global audio changes were made.
+- Added original Distortion v1 (stronger hard clipping/bass voicing, fixed 4× FIR
+  oversampling, 8-sample dry alignment), independent stereo algorithmic Reverb
+  v1, and direct-head/partitioned-FFT Cabinet v1. Registry/cards/picker use the
+  existing fixed bank and smooth controls; Cabinet adds async Load IR and status.
+  UUID/immutable slot/type/version/order, routing, gain/meter/protection,
+  Start/Stop/Mute, bypass and preset deletion remain integrated in shared DSP.
+- Every prepared graph and rack dry path now reserves 128 samples (2.67 ms at
+  48 kHz), with stage bypass compensation. Replacements process 128 warm-up
+  samples before the 20 ms crossfade. This deliberately adds a small fixed delay
+  to earlier empty/M4 racks, avoiding live-edit/preset latency changes. The UI
+  and shared processor report it truthfully; device estimates and round trip
+  remain distinct. Temporal tails may shorten on structural edits/IR replacement.
+- Standard mono PCM16/24/32/float32 WAVs are validated, bounded to 1 MiB,
+  8–192 kHz/500 ms/96000 source samples, resampled/prepared off audio, without
+  peak/energy normalization. Per-IR destination limit 384000, graph aggregate
+  768000 samples, single graph worker and existing four-owned/two-processing
+  limits bound resources. Silent/nonfinite/malformed/unsupported/over-budget
+  assets fail transactionally. Cabinet does not simulate nonlinear amplification.
+- Retained valid M4 v1 presets; introduced v2 checksum/relative asset references
+  only where needed. Local managed assets are separate from presets/recall.
+  Portable .grbundle includes exact required WAV bytes, strict paths/checksums
+  and bounded uncompressed records; import after the original WAV/source store
+  disappears is tested. IR edits retain selection/baseline and become dirty;
+  failure/cancellation/stale preparation retains prior sound/controls/dirty state.
+  Deletion preserves shared IRs; asset cleanup is outside scope.
+- Added embedded/tracked original synthetic starter (CC0, explicitly not measured)
+  and Driven Synthetic Cabinet / Small Room conservative factory examples.
+  No new library dependency. Algorithms, permanent ranges/mappings, state/asset
+  format, licensing, callback ownership and limitations are documented.
+- Final Debug and Release standalone builds pass **9/9** CTest suites each.
+  ASan/UBSan with leaks disabled and TSan each pass **9/9**, with no reported
+  diagnostics in exercised paths. Callback new/delete audits pass including
+  first use, graph activation/transitions/retirement and oversized adapter calls.
+  Source audit finds no C allocation, locks, I/O, lazy DSP resources or destruction
+  in the new callback paths. LeakSanitizer remains unverified. Release ldd resolves
+  all libraries and git diff --check passes. Exact evidence is in docs/testing.md.
+- Release unpaced 48 kHz/256-frame benchmark on i7-9700F: five-effect synthetic
+  starter mean 225 µs; same chain with 500 ms IR mean 392 µs; 16 effects/four 500 ms
+  IRs mean 1554 µs, p99~2018 µs, two-graph transition max~3498 µs against 5333 µs
+  nominal block period. These are synthetic burst wall times, separate from
+  sanitizers, not a driver/physical deadline or round-trip measurement.
+- Pending: new native GUI/file/dialog/keyboard and live guitar listening,
+  detailed tone/aliasing appraisal, factory tuning, physical latency/reconnect,
+  soak, LeakSanitizer, real-host/VST3 and Windows. No /dev/snd or usable X display
+  is exposed. Gate, Compressor, Chorus, Basic Amp, other modulation/pitch effects,
+  VST3 and Windows remain unimplemented; **all of M5 is not marked complete**.
 
 Maintain a concise log here as work finishes: date, milestone, files/behavior changed, checks run, results, and remaining hardware/host checks.
 

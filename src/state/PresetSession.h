@@ -1,5 +1,6 @@
 #pragma once
 #include "Presets.h"
+#include "Assets.h"
 #include "core/RackEngine.h"
 #include <condition_variable>
 #include <optional>
@@ -15,6 +16,7 @@ public:
     ~PresetSession();
     void select(const ToneState&);
     void importFile(std::filesystem::path);
+    void loadIR(const InstanceId&,std::filesystem::path);
     bool cancelLoad();
     void poll();
     bool busy() const;
@@ -35,13 +37,14 @@ public:
     std::string error;
     bool selectedIsFactory() const;
     PresetStore store;
+    AssetStore assets;
 private:
     RackEngine& rack;
     std::optional<ToneState> selection;
     std::string baseline, workingId;
     std::set<std::string> managedIds, deletedIds;
-    struct Work { std::uint64_t serial; std::filesystem::path file; std::optional<ToneState> tone; };
-    struct Result { std::uint64_t serial; std::optional<ToneState> tone; std::string error; };
+    struct Work { std::uint64_t serial; std::filesystem::path file; std::optional<ToneState> tone; InstanceId cabinet; };
+    struct Result { std::uint64_t serial; std::optional<ToneState> tone; std::string error; bool assetEdit=false; };
     std::mutex mutex;
     std::condition_variable wake;
     std::thread parser;
@@ -50,6 +53,8 @@ private:
     std::optional<Result> result;
     std::uint64_t serial=0, waitingSerial=0, graphGeneration=0, seenTone=0;
     std::uint64_t bankRevision=0, globalRevision=0;
+    std::set<std::uint64_t> irTransactions;
+    std::uint64_t structureRevision=0;
     void request(Work);
     void parserLoop();
 };

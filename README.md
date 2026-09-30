@@ -2,16 +2,16 @@
 
 Fedora Linux standalone guitar monitoring and a modular serial rack using C++20,
 CMake and JUCE 8.0.15. M4 adds versioned presets, validation, transactional recall,
-Save/Save As, confirmed deletion of saved user presets, import/export and local preferences. The catalog remains Gain,
-Overdrive, EQ and Delay. The owner reports opening the M3 GUI on Fedora and
+Save/Save As, confirmed deletion of saved user presets, import/export and local preferences. The catalog now includes Gain,
+Overdrive, EQ, Delay, Distortion, Reverb and Cabinet/IR (focused first part of M5). The owner reports opening the M3 GUI on Fedora and
 playing a real guitar: Overdrive, EQ and Delay work individually and together in
 one rack. This is user-reported desktop/listening evidence. Earlier M-Track Solo
 Input 2 monitoring at PipeWire 256/48000 and 512/48000 was acceptable; 256 is the
 preference. The owner also reports that the M4 desktop preset workflow works well;
 this is user-reported acceptance. The new Delete dialogs, unreported keyboard/live
 transition details, the 10-minute soak, reconnect, measured latency and
-LeakSanitizer checks remain pending. Further effects, VST3 and Windows
-stay in their planned milestones in [PLAN.md](PLAN.md).
+LeakSanitizer checks remain pending. Gate, Compressor, Chorus, Basic Amp, other modulation/pitch effects, VST3 and Windows
+stay pending in their planned milestones in [PLAN.md](PLAN.md).
 
 The application provides a native resizable window, device/backend/channel
 selection, supported sample rate/buffer choices, explicit Start/Stop/Mute,
@@ -127,11 +127,13 @@ are not inferred from software checks or that listening report.
 5. Check Stop/Start with the rack present, both output channels and meter/clipping
    warnings. Record the actual backend/rate/buffer and any clicks/dropouts.
 
-The picker contains **Gain, Overdrive, EQ and Delay**. Every card has labeled
+The picker contains **Gain, Overdrive, EQ, Delay, Distortion, Reverb and Cabinet/IR**. Every card has labeled
 controls, units, numeric entry, double-click default reset and a Reset button.
 The rack scrolls vertically to reach every card. It supports **16 instances**
 and 20 ms gain/bypass/structural transitions.
-Rack bypass retains input/output gain and protection. Gain adds no DSP latency.
+Rack bypass retains input/output gain and protection. The complete rack reserves
+128 samples of DSP latency for aligned oversampling/bypass/transitions: 2.67 ms
+at 48 kHz, including empty and bypassed racks. Gain itself adds no stage latency.
 M4 saves custom racks and recalls the last selected saved/loaded tone after a
 normal close. Every launch remains stopped. The 10-minute soak, real disconnect/reconnect, measured round trip and detailed edit/bypass/
 Stop-Start acceptance remain pending; report only checks you actually performed.
@@ -171,6 +173,48 @@ not establish subjective tone quality. The owner reports successful individual/c
 recording tests, detailed tone/aliasing appraisal, the 10-minute soak, real
 reconnect and measured latency remain pending.
 
+## M5 guitar checklist: Distortion, Cabinet and Reverb
+
+Use physical Input 2, **Instrument** and **USB** monitoring, low headphone volume,
+trim 0 dB and output -12 dB. Confirm actual rate/buffer after Start. All new cards
+support independent instances, numeric entry, double-click and Reset. Software
+checks do not establish subjective tone or physical hardware stability.
+
+1. **Distortion alone:** start at Drive 12 dB, Tone 2800 Hz, Level -12 dB, Mix 50%.
+   Compare with Overdrive at matched loudness; increase Drive to 24 dB and Mix to
+   100%, then try Tone 1500–5000 Hz. Expect stronger clipping/tighter bass. Compare
+   Mix 0% with Bypass; both retain latency. Listen for clicks, harshness and
+   unexpected level jumps. Residual aliasing remains despite fixed 4× oversampling.
+2. **Cabinet alone:** add Cabinet/IR and compare the labeled synthetic starter
+   with Bypass. **Load IR...** selects your own mono WAV, 8–192 kHz, ≤500 ms and
+   ≤1 MiB. Match volume with Level; IRs are not peak-normalized. While sustaining,
+   replace the IR and try a missing/stereo/invalid WAV: expect a clear error and
+   the previous sound/preset/dirty state retained. Save As and Export a `.grbundle`;
+   import it after moving the original WAV away. The managed copy/bundle preserves
+   it. Cabinet convolution does not supply nonlinear amp behavior.
+3. **Reverb alone:** Size 35%, Damping 55%, Mix 15%; pluck once and hear decay in
+   both ears. Try Size 20–65%, Damping 30–75%, Mix 10–25%. Compare two independent
+   instances. Bypass hides the tail, Mute silences while processing continues,
+   Stop/Start clears it. Structural edits/IR changes can shorten tails; seamless
+   spillover is not promised.
+4. **Chain:** use **Distortion → Cabinet → EQ → Delay → Reverb**, or select
+   **Driven Synthetic Cabinet**. Start with Distortion 12 dB/2800 Hz/-12 dB/50%;
+   Cabinet synthetic or your IR/0 dB; EQ 0/0/-2 dB; Delay 350 ms/25%/15%; Reverb
+   35%/55%/10%. Reduce output if protection lights. Compare Cabinet before/after
+   Distortion; order should change the sound while UUID/slot/controls stay fixed.
+5. While holding notes, test individual/rack bypass, Mute, add/remove/reorder,
+   rapid edits, IR cancellation, and preset Save/Discard/Cancel. Check both ears,
+   meters and slot labels. Export/import and saved-preset deletion must keep IRs.
+   Record clicks/dropouts, level jumps, tail dips and harshness. Run a 10-minute
+   soak at preferred 256 frames; report actual backend/rate/buffer. Measured round
+   trip, reconnect, detailed tone appraisal and native Delete/dialog checks remain
+   pending until performed on your desktop.
+
+DSP algorithms, fixed mappings, latency and tail limits are in
+[effects.md](docs/effects.md); actual checks and synthetic processing-cost results
+are in [testing.md](docs/testing.md). This is only the first M5 subset; the
+remaining catalog, VST3 and Windows are pending.
+
 ## Presets and restart checklist (M4)
 
 1. Build/launch the release below. Select your device/channels and press **Start**.
@@ -186,7 +230,9 @@ reconnect and measured latency remain pending.
    order, slots, gains and selected name return, device preferences are restored
    if available, and monitoring stays stopped until **Start**. Disconnecting a
    remembered device must leave selection incomplete and Start disabled.
-5. **Export** to a JSON file; switch to Clean, then **Import** that file. Compare
+5. **Export** to `.json` for an asset-free rack or `.grbundle` (the new default);
+   IR-bearing racks export bundle bytes including their required WAVs. Switch
+   to Clean, then **Import** that file. Compare
    names, order/slots, individual controls, bypass and global gains. Import loads
    the complete tone; Save stores an imported custom preset in the user library.
    Export includes current edits but does not mark them saved in the library.
@@ -229,9 +275,10 @@ library selections cannot revive a deleted entry. These checks pass in automated
 state/adapter fixtures; the new native dialogs and real-guitar deletion checklist
 still need desktop verification.
 
-Factory examples: **Clean** (empty dry rack), **Crunch** (conservative Overdrive
-and EQ), **Lead Delay** (Overdrive → EQ → Delay). They are examples for the current
-prototype DSP, with output at -12 dB; they do not add amp/cabinet simulation.
+Factory examples: **Clean**, **Crunch**, **Lead Delay**, **Driven Synthetic
+Cabinet** (Distortion → Cabinet → EQ → Delay → Reverb) and **Small Room** (EQ →
+Reverb). Output defaults to -12 dB. The Cabinet example uses an explicitly
+synthetic CC0 filter, not a measured cabinet or nonlinear amp simulation.
 
 User presets: `$XDG_DATA_HOME/GuitarRack/presets/<UUID>.json`, falling back to
 `~/.local/share/GuitarRack/presets`. Local device/window settings:
@@ -241,10 +288,12 @@ normal-close recall of the selected saved/loaded tone; discarded edits are not
 autosaved. These directories are outside tracked factory files. Device choices,
 Start/Stop, Mute, and delay-buffer contents never appear in exported tone files.
 
-The [version 1 schema](assets/presets/schema-v1.json) fixes physical units and
-bounds from the registry. Only schema/effect version 1 and the existing four
-effects are supported; unknown fields, effects, assets and versions are rejected.
-Files are limited to 128 KiB. No legacy migration or cabinet/asset bundles exist.
+The [version 1 schema](assets/presets/schema-v1.json) retains existing M4 presets;
+[version 2](assets/presets/schema-v2.json) adds Cabinet checksum references.
+All seven effect types are version 1. Unknown fields/effects, unsupported
+versions, unsafe/missing assets and invalid values fail transactionally. JSON
+is limited to 128 KiB; portable IR bundles to 17 MiB. See
+[asset/bundle format](docs/assets.md) and [synthetic asset rights](assets/ir/README.md).
 Loading restores exact slot mappings, which can change the meaning of future
 slot automation; host integration remains M6. See [state design](docs/presets.md).
 

@@ -207,7 +207,7 @@ void saturationAndStress() {
     });
     for (int i = 0; i < 1000; ++i) {
         auto d = rack.snapshot().requested;
-        if (i % 5 == 0 && d.instances.size() < 10) rack.add(std::array<const char*, 3>{"overdrive", "eq", "delay"}[static_cast<unsigned>(i/5)%3]);
+        if (i % 5 == 0 && d.instances.size() < 10) rack.add(std::array<const char*, 6>{"overdrive", "eq", "delay", "distortion", "reverb", "cabinet"}[static_cast<unsigned>(i/5)%6]);
         else if (i % 5 == 1 && d.instances.size() > 2) rack.remove(d.order.back());
         else if (d.order.size() > 1) rack.move(d.order[0], 1);
         rack.setParameter(first, 0, static_cast<float>(i % 13 - 6));
@@ -227,7 +227,7 @@ void saturationAndStress() {
 }
 void independentCatalogInstances() {
     RackEngine rack; Audio audio; rack.prepare(48000);
-    for (const auto* type : {"overdrive", "eq", "delay"}) {
+    for (const auto* type : {"overdrive", "eq", "delay", "distortion", "reverb", "cabinet"}) {
         check(rack.add(type) && rack.add(type), "independent pairs of every M3 effect accepted");
         const auto d = rack.snapshot().requested;
         const auto a = d.order[d.order.size()-2], b = d.order.back();

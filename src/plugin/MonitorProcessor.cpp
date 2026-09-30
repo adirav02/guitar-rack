@@ -4,7 +4,7 @@ namespace guitarrack {
 MonitorProcessor::MonitorProcessor()
     : AudioProcessor(BusesProperties()
         .withInput("Input", juce::AudioChannelSet::stereo(), true)
-        .withOutput("Output", juce::AudioChannelSet::stereo(), true)) {}
+        .withOutput("Output", juce::AudioChannelSet::stereo(), true)) { setLatencySamples(rack.latencySamples()); }
 bool MonitorProcessor::isBusesLayoutSupported(const BusesLayout& layout) const {
     if (layout.inputBuses.size() != 1 || layout.outputBuses.size() != 1) return false;
     const auto in = layout.getMainInputChannelSet();

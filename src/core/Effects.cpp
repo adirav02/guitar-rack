@@ -3,6 +3,10 @@
 #include "dsp/Overdrive.h"
 #include "dsp/EQ.h"
 #include "dsp/Delay.h"
+#include "dsp/Cabinet.h"
+#include "dsp/Distortion.h"
+#include "dsp/Reverb.h"
+#include "Impulse.h"
 #include <cmath>
 #include <cstdio>
 #include <random>
@@ -95,7 +99,8 @@ const EffectDescriptor* EffectRegistry::find(const std::string& type, unsigned v
     for (const auto& entry : entries) if (entry.typeId == type && entry.version == version) return &entry;
     return nullptr;
 }
-EffectRegistry EffectRegistry::builtIns() { EffectRegistry result; result.add(gainDescriptor()); result.add(overdriveDescriptor()); result.add(eqDescriptor()); result.add(delayDescriptor()); return result; }
+EffectRegistry EffectRegistry::builtIns() { EffectRegistry result; result.add(gainDescriptor()); result.add(overdriveDescriptor()); result.add(eqDescriptor()); result.add(delayDescriptor()); result.add(distortionDescriptor()); result.add(reverbDescriptor()); result.add(cabinetDescriptor()); return result; }
+bool sameIdentity(const RackInstance& a,const RackInstance& b) noexcept { return a.id==b.id&&a.slot==b.slot&&a.effectType==b.effectType&&a.effectVersion==b.effectVersion; }
 const RackInstance* RackDefinition::find(const InstanceId& id) const noexcept {
     for (const auto& instance : instances) if (instance.id == id) return &instance;
     return nullptr;
@@ -108,6 +113,7 @@ std::string validateRack(const RackDefinition& d, const EffectRegistry& registry
         if (i.slot >= rackSlots || (slots & (1u << i.slot))) return "Invalid or duplicate slot ID.";
         slots |= 1u << i.slot;
         if (!registry.find(i.effectType, i.effectVersion)) return "Unknown effect or unsupported effect version.";
+        if(i.effectType=="cabinet" ? !validAssetId(i.irAsset) : !i.irAsset.empty()) return "Cabinet needs a valid IR checksum identity; other effects cannot reference an IR.";
     }
     for (const auto& id : d.order) if (!ids.contains(id) || !order.insert(id).second) return "Invalid or duplicate order reference.";
     return {};

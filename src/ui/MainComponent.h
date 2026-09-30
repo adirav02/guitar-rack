@@ -36,7 +36,7 @@ private:
     void label(juce::Label&, const juce::String&);
     AudioSession session;
     PresetBar presetBar{session.processor.rack};
-    RackEditor rackEditor{session.processor.rack};
+    RackEditor rackEditor{session.processor.rack,presetBar.presets};
     juce::Label title, hint, backendLabel, inputDeviceLabel, outputDeviceLabel;
     juce::Label inputLabel, leftLabel, rightLabel, rateLabel, bufferLabel;
     juce::Label inputGainLabel, outputGainLabel, inputMeterLabel, outputMeterLabel;

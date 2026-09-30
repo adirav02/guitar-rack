@@ -1,4 +1,4 @@
-# M4 portable state and Linux persistence
+# Portable state and Linux persistence
 
 `ToneState` is a configuration-only model independent of JUCE, physical devices
 and DSP history. It separates the rack definition (UUIDs, immutable slots,
@@ -20,9 +20,9 @@ Runtime additionally checks relationships that JSON Schema cannot express:
 unique UUIDs/slots, exact order bijection, supported required effects/versions,
 immutable known identities and registry parameter keys/ranges. Objects are
 closed. Every effect parameter is required; missing controls are not filled with
-new defaults. `assets` must be empty in M4. Unknown effects are not dropped.
-The migration entry point dispatches version 1 only. Both older and future
-schema versions are errors until a real migration is implemented.
+new defaults. `assets` is empty in schema v1; M5 schema v2 adds strict cabinet references. Unknown effects are not dropped.
+The migration entry point accepts v1 unchanged and v2 with IR manifests.
+Version 0 and future versions are errors; no fabricated legacy migration occurs.
 
 Preflight rejects duplicate keys (including escaped equivalents), malformed
 syntax/trailing content, invalid UTF-8 and Unicode surrogates, nulls, excessive
@@ -141,3 +141,42 @@ snapshot acquisition through this boundary and define gestures/automation timing
 M4 does not implement the currently empty AudioProcessor host-state overrides or
 publish host parameters. A full preset restores exact slots and may change what
 slot automation means. Registry mappings and IDs remain unchanged.
+
+
+## M5 IR assets and portable bundles
+
+Schema v1 remains readable/writable for valid M4 presets; it now also describes
+asset-free Distortion/Reverb. Schema v2 adds required `ir_asset` on each instance
+(empty except Cabinet) and exact IR manifest records. The manifest uses SHA-256
+as identity/checksum and only `ir/<sha256>.wav` as a relative reference. UUID,
+slot, effect version, processing order and all physical parameter mappings remain
+unchanged. Convolution buffers/history and original personal paths are absent.
+See [assets.md](assets.md) for byte format, limits, validation and provenance.
+
+Managed presets and `last-tone.json` stay JSON in the same locations. Managed IR
+bytes live separately in the sibling `ir` directory, with checksum filenames.
+The binary embeds the synthetic starter, so factories and their bundles require
+no source-tree path. Non-synthetic assets must exist and match checksums: missing
+or invalid IRs fail load, including while stopped. They are never bypassed or
+replaced automatically. The parser resolves all required assets before the graph
+worker prepares them; no selected sound/baseline commits before acknowledgment.
+
+Native Cabinet **Load IR...** validates/copies the WAV on the parser, then requests
+an existing full-tone transaction with the same preset/instance/slot identities.
+Successful IR editing preserves the selected preset and its clean baseline and
+sets dirty according to the new configuration. Failed, cancelled and stale
+parsing/preparation keep the prior cabinet, controls, selection and dirty state.
+Structure generations join existing bank/global revisions to reject a load
+whose snapshot was overtaken by reorder/removal. Save/Save As also validate assets.
+Stop/sample-rate restart resamples and prepares the same asset off audio.
+
+Export defaults to `.grbundle`; IR-bearing racks always export bundle bytes,
+even if a different filename extension is chosen. Asset-free `.json` exports
+remain supported. Import recognizes bundle magic or strict preset JSON, so M4
+exports continue working. Bundles carry preset JSON and the exact required WAV
+bytes; they can import after the original external and source managed IRs are
+unavailable. A JSON-only IR preset requires matching assets already in the local
+store and fails with an actionable missing-asset error otherwise. Portable bundle
+validation completes before any managed asset writes; no arbitrary path is
+extracted. Failed disk writes can leave unreferenced validated assets, but never
+partially switch the tone. Preset deletion keeps all shared IR files, as before.

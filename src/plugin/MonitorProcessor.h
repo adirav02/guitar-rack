@@ -8,7 +8,7 @@ class MonitorProcessor final : public juce::AudioProcessor {
 public:
     MonitorProcessor();
     const juce::String getName() const override { return "GuitarRack"; }
-    void prepareToPlay(double rate, int) override { engine.prepare(rate); }
+    void prepareToPlay(double rate, int) override { engine.prepare(rate); setLatencySamples(rack.latencySamples()); }
     void releaseResources() override { engine.reset(); }
     void processBlock(juce::AudioBuffer<float>&, juce::MidiBuffer&) override;
     bool isBusesLayoutSupported(const BusesLayout&) const override;

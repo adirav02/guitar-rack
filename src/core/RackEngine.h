@@ -1,5 +1,7 @@
 #pragma once
 #include "ToneState.h"
+#include "Impulse.h"
+#include "StereoDelay.h"
 #include <optional>
 #include <condition_variable>
 #include <cstdint>
@@ -43,8 +45,11 @@ public:
     void attachControls(MonitorControls* controls) noexcept { globals = controls; }
     bool setParameter(const InstanceId&, unsigned bankIndex, float physicalValue);
     bool setBypassed(const InstanceId&, bool);
+    // Single control producer, before issuing asset-bearing transactions.
+    void setAssetResolver(std::function<ImpulseResponse(const std::string&)>);
     const EffectRegistry& registry() const noexcept { return effects; }
     double tailSeconds() const noexcept { return reportedTail.load(std::memory_order_relaxed); }
+    int latencySamples() const noexcept { return rackLatencySamples; }
     ParameterBank bank;
     // Callback entry once per device block, followed by <=512-sample chunks.
     void beginBlock() noexcept;
@@ -57,6 +62,7 @@ private:
     void updateCommitted(); // worker, under mutex
     void stoppedMaintenance(); // worker, under mutex, no callback can be active
     EffectRegistry effects;
+    std::function<ImpulseResponse(const std::string&)> assetResolver;
     MonitorControls* globals = nullptr;
     std::optional<ToneState> requestedTone;
     std::optional<RackDefinition> buildingDefinition;
@@ -84,6 +90,7 @@ private:
     float rackMix = 1, rackTarget = 1, rackStep = 0;
     int rackRemaining = 0;
     std::array<float, rackChunkSize> dryL{}, dryR{}, oldL{}, oldR{};
+    StereoDelay dryDelay;
 };
 static_assert(std::atomic<std::uint64_t>::is_always_lock_free);
 static_assert(std::atomic<double>::is_always_lock_free);

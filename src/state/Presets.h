@@ -5,7 +5,7 @@
 
 namespace guitarrack {
 inline constexpr std::size_t maxPresetBytes = 128 * 1024;
-// All APIs below are off audio. No legacy schema exists; version 1 is the only migration input.
+// All APIs below are off audio. Version 1 remains supported unchanged; version 2 adds IR references.
 juce::var parseJson(const std::string&); // strict syntax, UTF-8, duplicate keys, resource limits
 ToneState migratePreset(const juce::var&, const EffectRegistry&);
 ToneState parsePreset(const std::string&, const EffectRegistry&);

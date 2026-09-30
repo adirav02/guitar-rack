@@ -1,4 +1,4 @@
-# M0–M3 architecture
+# GuitarRack architecture
 
 ## Current processing and ownership
 
@@ -101,7 +101,7 @@ re-prepares at the actual rate before callbacks resume; see M2 ownership below.
 Peak snapshots and diagnostic bits use lock-free atomics polled at 20 Hz. Peak
 publication has fixed work; a racing poll may defer a peak to the next poll.
 The UI holds clipping indicators until cleared. Configuration distinguishes
-requested/actual format, device-reported I/O estimate, zero added DSP latency,
+requested/actual format, device-reported I/O estimate, current added DSP latency (128 samples from M5),
 and **unmeasured** round trip. Unsupported backend xrun reporting is displayed
 as unavailable. No CPU/round-trip/dropout benchmark is inferred from tests.
 
@@ -252,3 +252,79 @@ enters the callback. Message-thread editing/saving is withheld until commit
 acknowledgment. Parser serials, graph generations and control revisions prevent
 stale full loads from overwriting newer requests/controls. Global gains use the
 existing 20 ms monitor ramps. Start/Stop, Mute and physical routing are excluded.
+
+
+## M5 latency and cabinet assets
+
+The existing control/parser/graph-worker/audio ownership remains. Distortion and
+Reverb were implemented in separate detached worktrees and their three-file
+changes integrated by the main agent. Shared interfaces, registry, fixed bank,
+asset/preset/GUI/latency integration and regression verification stayed in the
+main worktree. No graph-routing framework or extra product was introduced.
+
+`RackInstance::irAsset` holds a cabinet's checksum configuration, not immutable
+identity. UUID, slot, type and version remain immutable; replacing an IR keeps
+those four fields. Rack validation rejects missing/invalid cabinet IDs and IR
+references on other types. The main control producer installs an asset resolver;
+the graph worker copies it under the control mutex before preparation. It captures
+an AssetStore by value, without GUI/session lifetime dependencies. The resolver
+reads/checks/decodes only off audio. Source-rate decoded IRs remain processor-owned
+so repeated preparation retains the selected asset. Construction, resampling,
+FFT tables/kernel transforms, allocations, reset/clearing and all reclamation
+stay on the worker. A parser may validate files concurrently with one graph build;
+there is exactly one parser preparation and one graph preparation, no per-IR
+workers or unbounded background convolution queue.
+
+Before any convolution kernel construction, the worker resolves the graph's IRs
+sequentially and bounds the sum of destination samples to 768000. Sources are
+≤96000 mono samples each; destination ≤384000. FFT kernels plus two histories
+use about 48 bytes/destination tap, ≤36.9 MB per graph, plus source storage up to
+6.15 MB, fixed processing arrays and a single resampling temporary ≤1.54 MB.
+Four graph ownership limits still apply; cabinet resources are approximately
+under 180 MB across four maximally budgeted graphs, excluding other effects,
+parser/bundle storage, GUI and allocator overhead. At high rates the budget can
+reject combinations otherwise valid at 48 kHz. Errors retain the previous graph;
+there is no silent shortening, normalizing or asset substitution.
+
+A cabinet uses direct FIR head + radix-2 FFT tail (256-frame internal quantum).
+Twiddles and bit-reversal tables are calculated during prepare. Processing only
+uses fixed arrays/pre-sized vectors, arithmetic and `std::complex`; no FFT/DSP
+library, first-use singleton, loader, background task, refcount release, file
+read or mutex is reachable from the callback. The head is causal at sample 0;
+tail partitions are computed before their next block is needed, so buffering
+latency is zero independent of device chunks. Reference convolution tests span
+partition boundaries and arbitrary callback partitions. CPU work is bounded by
+validated partition counts; boundaries do more work and are included in the
+unpaced release benchmark. Cost/headroom on the physical interface is pending.
+
+Distortion adds 8 samples; other catalog effects add zero buffering delay.
+Every prepared graph is padded to **128 total samples** (16×8), with fixed
+per-node dry delay for individual bypass and a separate 128-sample rack dry ring.
+This is an intentional small latency increase for prior empty/M4 racks that
+avoids changing latency on structural/preset edits. It is reported as samples
+and milliseconds in standalone; `MonitorProcessor` declares it outside audio.
+No VST3 or host acceptance is inferred from that adapter declaration. Future
+larger-latency processors require a deliberate budget/compatibility change.
+
+At activation, the replacement starts processing fresh padding and temporal
+storage while the old graph remains audible for 128 warm-up samples. Then the
+existing 20 ms crossfade runs, using aligned graph outputs. This avoids copying
+old transformed padding history into a differently transformed graph. Matching
+Distortion state and per-node dry rings are fixed small copies; Cabinet/Reverb
+copy only small control smoothers and ramp ingress into fresh history. Delay,
+Reverb and Cabinet tails can shorten, including IR replacement and full recall.
+Failed/cancelled/stale loads do not touch active histories. Stop/drained rate
+restart clears all compensation and DSP histories off audio.
+
+IR selection uses the preset parser's coalesced work/result slots, bank/global
+revision checks plus a new structure-generation check. The parser validates and
+installs content-addressed assets, then the main producer submits a full tone
+transaction to the existing worker. A bounded set of in-flight IR-edit transaction
+IDs distinguishes editing an asset from selecting a clean preset: acknowledgment
+keeps the prior selected preset/baseline and marks the changed cabinet dirty.
+Pre-acceptance cancellation and newer structure/control requests reject the
+older result; accepted transitions finish as before. New tone values install
+only at the callback boundary. The GUI never convolves or owns DSP histories.
+Managed assets left by unsuccessful/stale imports are harmless unreferenced files;
+cleanup is explicitly outside scope. Asset/bundle format/security and licenses
+are documented in assets.md and assets/ir/README.md.

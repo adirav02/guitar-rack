@@ -109,13 +109,13 @@ void AudioSession::poll() {
     }
 }
 juce::String AudioSession::configuration() const {
-    if (!started || !device) return "Device closed. DSP latency: 0 samples. Round-trip latency: not measured.";
+    if (!started || !device) return "Device closed. DSP latency: 128 samples (fixed rack alignment). Round-trip latency: not measured.";
     const auto latency = device->getInputLatencyInSamples() + device->getOutputLatencyInSamples();
     const auto xruns = device->getXRunCount();
     return "Requested: " + juce::String(requestedRate, 0) + " Hz / " + juce::String(requestedBlock)
         + " frames. Actual: " + juce::String(actualRate, 0) + " Hz / " + juce::String(actualBlock)
         + " frames.\nDevice-reported I/O estimate: " + juce::String(1000.0 * latency / actualRate, 2)
-        + " ms. DSP: 0 samples. Round trip: not measured.\nBackend xruns: "
+        + " ms. DSP: " + juce::String(processor.rack.latencySamples()) + " samples / " + juce::String(1000.0*processor.rack.latencySamples()/actualRate,2) + " ms. Round trip: not measured.\nBackend xruns: "
         + (xruns < 0 ? juce::String("unavailable") : juce::String(xruns));
 }
 void AudioSession::audioDeviceAboutToStart(juce::AudioIODevice* current) {

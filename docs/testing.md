@@ -104,7 +104,7 @@ Record the physical result here when tested:
 | Requested / actual sample rate | Launch settings: 48000; actual rate not supplied |
 | Requested / actual callback buffer | Launch settings: 256 and 512 acceptable; prefer 256. Actual callback buffer not supplied |
 | Driver/device-reported input + output latency | Pending; estimate only |
-| Added DSP latency | 0 samples for monitoring + M3 effects; Delay echo time is intentional musical delay |
+| Added DSP latency | M5 now reserves 128 samples for every rack (2.67 ms at 48 kHz); earlier M3 was zero. Delay/IR response time is separate. Physical round trip remains pending |
 | Measured round trip / method | Pending; do not infer from buffer size |
 | 10-minute monitoring, noise, clipping, xruns/dropouts | Pending |
 | Real disconnect/reconnect and startup silence | Pending |
@@ -536,3 +536,166 @@ Escape, keyboard/layout and real-guitar checklist remain pending**. A fresh
 native smoke launch or hardware test is claimed. Unreported soak, reconnect,
 actual backend/device format/latency, measured round trip, listening/aliasing
 appraisal, performance headroom, host/VST3 and Windows checks remain pending.
+
+
+## M5 first catalog subset — final integrated verification
+
+Started 2026-09-30; final verification completed 2026-10-01.
+
+Fedora 44 x86-64, GCC 16.2.1, CMake 4.3.0, Ninja 1.13.2 and the same exact pinned
+JUCE 8.0.15 commit were verified. Initial main worktree status was clean. The
+Distortion and Reverb agents worked in separate detached worktrees under /tmp;
+only their scoped DSP/test files were copied into main integration. The original
+Git common directory is read-only in this environment, so detached worktrees
+were created from a local bare clone. No owner files, commits, remotes, packages,
+global audio policies or external publication were changed.
+
+Final complete standalone/regression commands:
+
+```bash
+cmake --preset linux-debug
+cmake --build --preset linux-debug
+ctest --preset linux-debug --output-on-failure
+cmake --preset linux-release
+cmake --build --preset linux-release
+ctest --preset linux-release --output-on-failure
+```
+
+**Debug 9/9 and Release 9/9 pass**. Release ldd has no missing linked libraries;
+git diff --check passes; final build logs contain no compiler warnings/errors.
+The nine suites retain the five M4 regressions and add `distortion_signals`,
+`reverb_signals`, `cabinet_signals`, `ir_assets_and_bundles`.
+
+New signal/lifecycle/state evidence:
+
+- Distortion stronger clipping/harmonic distinction from tanh, Drive/Level/Mix,
+  parameter continuity, finite/abnormal signals, reset, independent stereo/
+  instances, zero/variable/oversized partitions and fixed 8-sample dry latency.
+  Fixed 4× FIR coherent 9 kHz / 48 kHz test: native hard-clip alias/fundamental -11.2151 dB,
+  oversampled -29.4823 dB, reduction 18.2672 dB. Residual aliasing and short-FIR
+  bandwidth/voicing phase remain. This is a specific automated spectral comparison,
+  not subjective guitar tone or a general alias-free result.
+- Reverb impulse timing/decay, Size/damping response, independent stereo/no
+  crossfeed, mono widening, exact zero Mix, reset/rate extremes 8–768 kHz, independent
+  instances, fresh replacement history, smooth rapid controls, abnormal samples
+  and a 51-second bounded render. No soak/driver result is inferred from that render.
+- Cabinet random stereo convolution versus a direct known reference (maximum
+  observed error 1.70e-8) across direct/
+  FFT partition boundaries, impulse/tap timing, separate channels, level ratio,
+  reset, first-use heap audits, variable/one/zero/oversized partitions, actual-rate
+  resampling/timing/interior gain at 8/44.1/48/96/192/768 kHz, repeated preparation
+  retaining its selected IR, maximum source and aggregate graph resource bounds.
+- Every rack graph, including empty/rack bypass and 16 Distortions, has truthful
+  fixed 128-sample latency; Distortion Mix 0 and individual bypass align. New graphs
+  warm for 128 samples before 20 ms fade, fixing a padding-history discontinuity
+  found by the existing continuity regressions. Noncommuting Distortion/Cabinet
+  order produces different measured signals. All new types have independent
+  instances and immutable UUID/slot/control preservation during reorder/removal.
+  Existing 1000-edit concurrent stress now uses the six non-Gain catalog effects;
+  four-graph accounting, retirement, stale/failure rollback and slot reuse remain.
+- WAV tests cover PCM16/24/32 and float32, stereo/unsupported/empty/silent/nonfinite/
+  out-of-full-scale/truncated/bad-format/rate/duration/file/gain limits. SHA-256
+  empty/abc standard vectors pass; system sha256sum independently matches the
+  tracked synthetic asset, whose bytes match embedded generation.
+- Existing tracked M4 factories remain valid and output/configuration round trips
+  pass. New factory fixtures match embedded definitions. Schema v2 carries exact
+  instance/slot/version/order/parameters/asset identities without history/paths.
+  `jsonschema` is unavailable in this environment, so no independent schema-engine
+  validation is claimed; actual runtime strict validation/fixtures are exercised.
+- A bundle imports into a distinct empty managed store after the original external
+  WAV and source store disappear, preserving exact bytes and unnormalized samples.
+  Traversal/absolute paths, checksum corruption, truncation, trailing/link records,
+  size/count limits, manifest errors, source/managed directory/entry symlinks,
+  corruption, FIFO and missing assets fail. Entire format validates before writes.
+- Live IR replacement preserves selected preset/baseline and marks edits dirty.
+  Invalid/missing file, pre-acceptance cancellation, control/reorder supersession,
+  a blocked cancelled graph build and injected convolution preparation failure
+  keep the previous cabinet/rack/controls/selection/dirty state. Managed Save As,
+  bundle export/import, muted/8193-frame processing, actual-rate restart and
+  reclamation are exercised. Deleting a saved IR preset retains shared real WAV
+  bytes and the current sound; the existing M4 deletion/adapter tests still pass.
+
+Full diagnostic builds, separate from performance:
+
+```bash
+cmake -S . -B build/adapter-sanitize -G Ninja \
+  -DCMAKE_BUILD_TYPE=Debug -DGUITARRACK_SANITIZERS=ON
+cmake --build build/adapter-sanitize --target guitarrack_tests \
+  guitarrack_rack_tests guitarrack_effect_tests guitarrack_distortion_tests \
+  guitarrack_reverb_tests guitarrack_cabinet_tests guitarrack_asset_tests \
+  guitarrack_state_tests guitarrack_adapter_tests -j 2
+ASAN_OPTIONS=detect_leaks=0 ctest --test-dir build/adapter-sanitize --output-on-failure
+
+cmake -S . -B build/core-thread-sanitize -G Ninja \
+  -DCMAKE_BUILD_TYPE=Debug -DGUITARRACK_BUILD_STANDALONE=ON \
+  -DCMAKE_CXX_FLAGS='-fsanitize=thread -fno-omit-frame-pointer' \
+  -DCMAKE_EXE_LINKER_FLAGS=-fsanitize=thread
+cmake --build build/core-thread-sanitize --target guitarrack_tests \
+  guitarrack_rack_tests guitarrack_effect_tests guitarrack_distortion_tests \
+  guitarrack_reverb_tests guitarrack_cabinet_tests guitarrack_asset_tests \
+  guitarrack_state_tests guitarrack_adapter_tests -j 2
+ctest --test-dir build/core-thread-sanitize --output-on-failure
+```
+
+**ASan/UBSan 9/9 with leak detection disabled; TSan 9/9 with no reported races**
+in exercised signal/core/state/adapter paths. Diagnostic standalone GUI binaries
+are not part of those test targets. LeakSanitizer remains unverified after the
+previous restricted-process/ptrace fatal inspection failure; no new leak scan is
+claimed. Lifetime accounting is not a leak scan.
+
+Callback audit: new effects use fixed/pre-sized storage and scalar/complex
+arithmetic. Distortion FIRs and Cabinet FFT tables are computed off audio;
+Reverb rings and convolution kernels/histories allocate/clear off audio. Matching
+activation copies only bounded small state; Cabinet/Reverb do not copy large
+histories. Source inspection finds no C allocation, file/UI/serialization,
+mutex/wait/logging, construction, destruction, library FFT initialization or
+background preparation reachable from their process/activate paths. C++ heap
+new/delete audits (including aligned forms) pass first use, activation, structural
+and preset/IR crossfades, stale rejection, bypass/Mute, retirement, and oversized
+shared monitoring/adapter calls. External driver/server allocation/scheduling is
+not certified. Resources and boundary burst cost are documented in assets.md.
+
+### Release synthetic processing-cost measurement
+
+Run after sanitizer/test/build activity stopped:
+
+```bash
+./build/linux-release/guitarrack_catalog_benchmark
+```
+
+Intel Core i7-9700F @ nominal 3.00 GHz, eight logical CPUs, Fedora 44; GCC Release
+`-O3 -DNDEBUG`. Rate 48000 Hz, chunks 256, nominal block period 5333.33 µs. One unpaced
+process with normal scheduling; no affinity/real-time priority change. Each rack
+warms 200 blocks and renders 1600 measured blocks (8.533 seconds of signal), with
+small 220 Hz sine input generation included in timed wall-clock calls. Includes
+rack processing/control reads/bypass/padding; excludes device/backend, GUI,
+monitor trim/output/protection and measured round trip. Timing is per whole
+callback chunk, so FFT-boundary work is included. The 500 ms test IR is an original
+synthetic damped mathematical response. Dense rack is four repeats of
+Distortion/Cabinet/Delay/Reverb, all at conservative descriptor defaults.
+
+| Rack | Mean µs | p99 µs | Max µs | Mean / block period |
+|---|---:|---:|---:|---:|
+| Empty aligned rack | 4.15 | 4.46 | 9.06 | 0.078% |
+| Distortion → synthetic Cabinet → EQ → Delay → Reverb | 225.07 | 232.14 | 336.98 | 4.22% |
+| Same chain, 500 ms IR | 391.68 | 425.55 | 664.00 | 7.34% |
+| 16 effects / four 500 ms IRs | 1553.68 | 2018.40 | 2430.80 | 29.13% |
+
+Five-block two-graph transition probes: means 439.26/803.13/3300.55 µs and maxima
+442.29/905.50/3497.94 µs for the three nonempty racks, respectively. These are
+specific unpaced wall times under this session's scheduling, not worst-case
+real-time guarantees, a device CPU meter, listening acceptance or measured
+round-trip latency. Longer/more cabinets, higher rates or system load can cost
+more; the 16-slot capacity is not a guaranteed comfortable rack on all hardware.
+
+### Physical/native acceptance remains pending
+
+Fresh XOpenDisplay probe returns unavailable, no Xvfb executable is available,
+and /dev/snd is absent. No M5 native smoke launch, real stream, hardware listening,
+IR file chooser/keyboard/dialog rendering or device latency check is claimed.
+Owner's earlier M0–M4 reports are preserved. Pending: new-effect tone/aliasing/
+gain-staging appraisal and factory tuning, native Delete/IR/bundle dialogs,
+10-minute soak, physical reconnect, requested/actual configuration, device
+latency and measured round trip, LeakSanitizer, real-host/VST3 and Windows.
+Gate, Compressor, Chorus, Basic Amp, other modulation/pitch effects and later
+products are untouched. M5 as a whole remains incomplete.

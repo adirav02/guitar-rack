@@ -1,4 +1,5 @@
 #include "Presets.h"
+#include "core/Impulse.h"
 #include <cmath>
 #include <charconv>
 #include <cstring>
@@ -111,17 +112,29 @@ juce::var parseJson(const std::string& text) {
 ToneState migratePreset(const juce::var& root, const EffectRegistry& registry) {
     // Dispatch point for future explicit migrations. No invented legacy format.
     keys(root,{"schema_version","preset_id","name","globals","order","instances","assets"});
-    if(integer(root["schema_version"],0,100000)!=1) fail("Unsupported preset schema version; only version 1 is supported.");
-    ToneState t; t.id=str(root["preset_id"]); t.name=str(root["name"]);
+    auto version=integer(root["schema_version"],0,100000);
+    if(version!=1&&version!=2) fail("Unsupported preset schema version; expected 1 or 2.");
+    ToneState t; t.schemaVersion=version; t.id=str(root["preset_id"]); t.name=str(root["name"]);
     if(!validUtf8(t.name)) fail("Invalid UTF-8 preset name.");
     auto g=root["globals"]; keys(g,{"input_db","output_db","rack_bypass"});
     t.controls.inputDb=static_cast<float>(number(g["input_db"],-24,24)); t.controls.outputDb=static_cast<float>(number(g["output_db"],-60,6)); t.controls.rackBypass=boolean(g["rack_bypass"]);
-    if(!array(root["assets"]).isEmpty()) fail("Assets/IRs are not supported in M4.");
+    std::set<std::string> assets,usedAssets;
+    if(array(root["assets"]).size()>16) fail("Too many IR assets.");
+    if(version==1&&!array(root["assets"]).isEmpty()) fail("IR assets require schema version 2.");
+    for(const auto& asset:array(root["assets"])) {
+        keys(asset,{"asset_id","relative_path","sha256","format"});
+        auto id=str(asset["asset_id"]);
+        if(!validAssetId(id)||str(asset["sha256"])!=id||str(asset["relative_path"])!="ir/"+id+".wav"||str(asset["format"])!="wav"||!assets.insert(id).second)
+            fail("Invalid, unsafe or duplicate IR asset manifest.");
+    }
     auto& instances=array(root["instances"]); auto& order=array(root["order"]);
     if(instances.size()>16||order.size()>16) fail("Preset exceeds 16 slots.");
     for(const auto& v:instances) {
-        keys(v,{"instance_id","slot_id","effect_type","effect_version","bypassed","parameters"});
+        if(version==1) keys(v,{"instance_id","slot_id","effect_type","effect_version","bypassed","parameters"});
+        else keys(v,{"instance_id","slot_id","effect_type","effect_version","bypassed","parameters","ir_asset"});
         RackInstance i{str(v["instance_id"]),integer(v["slot_id"],0,15),str(v["effect_type"]),integer(v["effect_version"],1,100000)};
+        if(version==2) i.irAsset=str(v["ir_asset"]);
+        if(!i.irAsset.empty()) { if(!assets.contains(i.irAsset)) fail("Missing required IR manifest reference."); usedAssets.insert(i.irAsset); }
         auto* d=registry.find(i.effectType,i.effectVersion); if(!d) fail("Unknown required effect or incompatible effect version.");
         auto params=v["parameters"]; auto* o=params.getDynamicObject();
         if(!o||o->getProperties().size()!=static_cast<int>(d->parameters.size())) fail("Missing/unknown effect parameter.");
@@ -133,6 +146,7 @@ ToneState migratePreset(const juce::var& root, const EffectRegistry& registry) {
         t.controls.bypass[i.slot]=boolean(v["bypassed"]); t.rack.instances.push_back(i);
     }
     for(const auto& id:order) t.rack.order.push_back(str(id));
+    if(assets!=usedAssets) fail("Preset has unreferenced IR assets.");
     if(auto e=validateTone(t,registry); !e.empty()) fail(e);
     return t;
 }
@@ -140,16 +154,22 @@ ToneState parsePreset(const std::string& s,const EffectRegistry& r) { return mig
 std::string serializePreset(const ToneState& t,const EffectRegistry& r) {
     if(auto e=validateTone(t,r); !e.empty()) fail(e);
     if(!validUtf8(t.name)) fail("Invalid UTF-8 preset name.");
-    auto root=object(), g=object(); put(root,"schema_version",1); put(root,"preset_id",juce::String::fromUTF8(t.id.c_str())); put(root,"name",juce::String::fromUTF8(t.name.c_str()));
+    auto root=object(), g=object(); put(root,"schema_version",static_cast<int>(t.schemaVersion)); put(root,"preset_id",juce::String::fromUTF8(t.id.c_str())); put(root,"name",juce::String::fromUTF8(t.name.c_str()));
     put(g,"input_db",t.controls.inputDb); put(g,"output_db",t.controls.outputDb); put(g,"rack_bypass",t.controls.rackBypass); put(root,"globals",g);
-    juce::Array<juce::var> order, instances;
+    juce::Array<juce::var> order, instances, assets; std::set<std::string> seenAssets;
     for(const auto& id:t.rack.order) order.add(juce::String(id));
     for(const auto& i:t.rack.instances) {
         auto v=object(), p=object(); put(v,"instance_id",juce::String(i.id)); put(v,"slot_id",static_cast<int>(i.slot)); put(v,"effect_type",juce::String(i.effectType)); put(v,"effect_version",static_cast<int>(i.effectVersion)); put(v,"bypassed",t.controls.bypass[i.slot]);
         for(const auto& d:r.find(i.effectType,i.effectVersion)->parameters) put(p,d.key.c_str(),d.denormalize(t.controls.values[i.slot][d.bankIndex]));
-        put(v,"parameters",p); instances.add(v);
+        put(v,"parameters",p);
+        if(t.schemaVersion==2) put(v,"ir_asset",juce::String(i.irAsset));
+        if(!i.irAsset.empty()&&seenAssets.insert(i.irAsset).second) {
+            auto asset=object(); put(asset,"asset_id",juce::String(i.irAsset)); put(asset,"sha256",juce::String(i.irAsset));
+            put(asset,"relative_path",juce::String("ir/"+i.irAsset+".wav")); put(asset,"format","wav"); assets.add(asset);
+        }
+        instances.add(v);
     }
-    put(root,"order",order); put(root,"instances",instances); put(root,"assets",juce::Array<juce::var>{});
+    put(root,"order",order); put(root,"instances",instances); put(root,"assets",assets);
     return juce::JSON::toString(root).toStdString()+"\n";
 }
 namespace {
@@ -295,6 +315,23 @@ std::vector<ToneState> factoryPresets(const EffectRegistry& r) {
             if(index==2) t.controls.values[2][2]=r.find("delay",1)->parameters[2].normalize(20.f);
         }
         result.push_back(t);
+    }
+    for(unsigned example=0;example<2;++example) {
+        ToneState t; t.id="00000000-0000-4000-8000-00000000000"+std::to_string(example+4);
+        t.name=example==0?"Driven Synthetic Cabinet":"Small Room";
+        auto add=[&](const std::string& type) {
+            auto slot=static_cast<unsigned>(t.rack.instances.size());
+            auto id=std::to_string(example+2)+"0000000-0000-4000-8000-00000000000"+std::to_string(slot+1);
+            t.rack.instances.push_back({id,slot,type,1,type=="cabinet"?syntheticIRId():""}); t.rack.order.push_back(id);
+            for(const auto& p:r.find(type,1)->parameters) t.controls.values[slot][p.bankIndex]=p.normalize(p.defaultValue);
+        };
+        if(example==0) {
+            t.schemaVersion=2; add("distortion"); add("cabinet"); add("eq"); add("delay"); add("reverb");
+            t.controls.values[2][2]=r.find("eq",1)->parameters[2].normalize(-2);
+            t.controls.values[3][2]=r.find("delay",1)->parameters[2].normalize(15);
+            t.controls.values[4][2]=r.find("reverb",1)->parameters[2].normalize(10);
+        } else { add("eq"); add("reverb"); }
+        result.push_back(std::move(t));
     }
     return result;
 }

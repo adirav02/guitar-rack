@@ -17,8 +17,9 @@ The JUCE sources declare AGPLv3/commercial licensing. Read the pinned checkout's
 `LICENSE.md`, module notices and [JUCE terms](https://juce.com/legal/juce-8-licence/)
 before distributing a product. Upstream font/rendering library notices remain
 in the pinned JUCE checkout. No project distribution license has been selected
-by this implementation. No factory presets, IRs, downloaded audio, or other
-third-party creative assets are distributed by GuitarRack.
+by this implementation. Factory presets are project-owned configuration examples. M5 distributes an
+original synthetic CC0 filter, documented in [asset provenance](../assets/ir/README.md).
+No downloaded/measured third-party cabinet or recording is included.
 
 Required Fedora packages for this configuration:
 
@@ -45,3 +46,14 @@ M3 adds no library or creative assets. The EQ equations are attributed to the
 formulae. No source listing, recording, cabinet IR or factory preset is copied.
 Overdrive/Delay are project-owned mathematical DSP implementations. Existing
 JUCE licensing/provenance remains unchanged.
+
+
+M5 adds no dependency or system package. Distortion's fixed FIR oversampling,
+stereo Reverb and radix-2 partitioned Cabinet convolution are original C++ code.
+The pinned JUCE stereo reverb was inspected and found to sum both inputs into
+one wet excitation; independent channel networks meet the required stereo
+contract without modifying JUCE. The original synthetic filter's CC0 dedication
+applies to that WAV only. User IRs retain their own asset rights. No overall
+project license, distribution, remote, global audio policy or VST3 integration
+was introduced. The official JUCE 8.0.15 repository requirements were rechecked:
+CMake ≥3.22 and C++ ≥17; this project retains C++20 and the exact pin.

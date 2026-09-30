@@ -191,7 +191,7 @@ int main() {
     buffer.clear(); buffer.setSample(0, 55, 0.3f);
     heapAudit::begin(); processor.processBlock(buffer, midi);
     check(heapAudit::finish(), "shared JUCE processBlock performs no heap operations");
-    check(buffer.getSample(0, 55) == 0.3f && buffer.getSample(1, 55) == 0.3f, "JUCE processor shares neutral mono processing and impulse timing");
+    check(buffer.getSample(0, 55 + rackLatencySamples) == 0.3f && buffer.getSample(1, 55 + rackLatencySamples) == 0.3f, "JUCE processor shares neutral mono processing and impulse timing");
     check(processor.getTailLengthSeconds() == 0, "empty shared processor reports no tail");
     for (const auto* type : {"overdrive", "eq", "delay"}) check(processor.rack.add(type), "M3 effect added to shared processor");
     committed = false; heapFree = true;
@@ -203,7 +203,7 @@ int main() {
         if (!committed) std::this_thread::sleep_for(std::chrono::milliseconds(1));
     } while (!committed && std::chrono::steady_clock::now() < processorDeadline);
     check(committed && heapFree && std::isfinite(buffer.getSample(0, 55)) && buffer.getSample(0, 55) == buffer.getSample(1, 55), "shared processBlock M3 activation and processing heap-free with mono-to-stereo bus");
-    check(processor.getTailLengthSeconds() >= 116 && processor.getLatencySamples() == 0, "shared processor reports conservative stateful tail separately from zero processing latency");
+    check(processor.getTailLengthSeconds() >= 116 && processor.getLatencySamples() == rackLatencySamples, "shared processor reports conservative stateful tail separately from fixed compensated processing latency");
     auto hostTone=processor.rack.captureTone(newInstanceId(),"Shared tone state"); hostTone.controls.outputDb=-6;
     const auto sharedGeneration=processor.rack.loadTone(hostTone); committed=false;
     const auto sharedDeadline=std::chrono::steady_clock::now()+std::chrono::seconds(4);

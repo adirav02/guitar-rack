@@ -1,6 +1,7 @@
 #include "RackEngine.h"
 #include "MonitorEngine.h"
 #include "LinearRamp.h"
+#include "dsp/Cabinet.h"
 #include <algorithm>
 #include <chrono>
 #include <cmath>
@@ -22,6 +23,7 @@ public:
         RackInstance identity;
         std::unique_ptr<EffectProcessor> processor;
         LinearRamp wet;
+        StereoDelay dryDelay;
     };
     PreparedRack(ParameterBank& authority, RackDefinition d, std::uint64_t g)
         : authority(authority), definition(std::move(d)), generation(g) {
@@ -29,25 +31,42 @@ public:
         authority.reserve(mask);
     }
     ~PreparedRack() { authority.unreserve(mask); }
-    void build(const EffectRegistry& registry, double rate) {
+    void build(const EffectRegistry& registry, double rate, const std::function<ImpulseResponse(const std::string&)>& resolver) {
+        unsigned latency=0;
+        std::size_t irSamples=0;
         if (tone) {
             inputGain=std::pow(10.0f,tone->controls.inputDb/20);
             outputGain=std::pow(10.0f,tone->controls.outputDb/20);
         }
         rampSamples = static_cast<int>(std::ceil(rate * 0.020));
-        nodes.reserve(definition.order.size());
-        for (const auto& id : definition.order) {
-            const auto& i = *definition.find(id);
-            auto processor = registry.find(i.effectType, i.effectVersion)->factory(bank, i.slot);
-            if (!processor || !processor->prepare(rate, rackChunkSize)) throw std::runtime_error("Effect preparation failed.");
-            // M3 permits bounded temporal tails, but all dry/transition paths still
-            // require zero latency. History may fade out on structural replacement.
-            const double tail = processor->tailSeconds();
-            if (processor->latencySamples() != 0 || !std::isfinite(tail) || tail < 0 || tail > 120)
-                throw std::runtime_error("Rack requires zero latency and a finite tail of at most 120 seconds.");
-            tailBound += tail;
-            nodes.push_back({i, std::move(processor), {}});
+        // Preflight all IR sample budgets before any convolution resources grow.
+        std::vector<ImpulseResponse> impulses(definition.order.size());
+        for(std::size_t index=0;index<definition.order.size();++index) {
+            const auto& i=*definition.find(definition.order[index]);
+            if(i.effectType!="cabinet") continue;
+            auto& ir=impulses[index]; ir=resolver(i.irAsset);
+            if(!std::isfinite(ir.sampleRate)||ir.sampleRate<8000||ir.sampleRate>192000||ir.samples.size()>maxIRSourceSamples)
+                throw std::runtime_error("Invalid resolved IR resource size/rate.");
+            irSamples+=static_cast<std::size_t>(std::ceil(ir.samples.size()*rate/ir.sampleRate));
+            if(irSamples>maxGraphIRSamples) throw std::runtime_error("Rack exceeds 768000 resampled IR samples; use shorter IRs or fewer Cabinet instances at this sample rate.");
         }
+        nodes.reserve(definition.order.size());
+        for (std::size_t index=0;index<definition.order.size();++index) {
+            const auto& i = *definition.find(definition.order[index]);
+            auto processor = registry.find(i.effectType, i.effectVersion)->factory(bank, i.slot);
+            if(auto* cabinet=dynamic_cast<CabinetProcessor*>(processor.get())) cabinet->setImpulse(std::move(impulses[index]));
+            if (!processor || !processor->prepare(rate, rackChunkSize)) throw std::runtime_error("Effect preparation failed.");
+            // M5 admits bounded latency; stage bypass and graph padding align dry paths.
+            // Temporal histories can shorten on structural replacement.
+            const double tail = processor->tailSeconds();
+            if (processor->latencySamples() < 0 || processor->latencySamples() > 8 || !std::isfinite(tail) || tail < 0 || tail > 120)
+                throw std::runtime_error("Effect exceeds supported 0–8 sample latency or 120 second tail bound.");
+            tailBound += tail;
+            StereoDelay dry; dry.length=static_cast<unsigned>(processor->latencySamples());
+            latency+=dry.length;
+            nodes.push_back({i, std::move(processor), {}, dry});
+        }
+        padding.length=rackLatencySamples-latency;
     }
     void sync() noexcept {
         for (const auto& i : definition.instances) {
@@ -62,13 +81,14 @@ public:
             if (previous) for (const auto& old : previous->nodes)
                 if (old.identity == node.identity) { match = &old; break; }
             node.processor->activate(match ? match->processor.get() : nullptr);
-            if (match) node.wet = match->wet;
+            if (match) { node.wet = match->wet; node.dryDelay=match->dryDelay; }
             else node.wet.reset(bank.bypassed(node.identity.slot) ? 0.0f : 1.0f);
         }
     }
     void reset() noexcept {
         sync();
-        for (auto& n : nodes) { n.processor->reset(); n.wet.reset(bank.bypassed(n.identity.slot) ? 0.0f : 1.0f); }
+        for (auto& n : nodes) { n.processor->reset(); n.dryDelay.reset(); n.wet.reset(bank.bypassed(n.identity.slot) ? 0.0f : 1.0f); }
+        padding.reset();
     }
     void process(float* l, float* r, int count) noexcept {
         for (auto& node : nodes) {
@@ -76,11 +96,13 @@ public:
             node.processor->process(l, r, count);
             node.wet.aim(bank.bypassed(node.identity.slot) ? 0.0f : 1.0f, rampSamples);
             for (int i = 0; i < count; ++i) {
+                node.dryDelay.tick(dryL[i],dryR[i]);
                 const float mix = node.wet.next();
                 l[i] = blend(dryL[i], l[i], mix);
                 r[i] = blend(dryR[i], r[i], mix);
             }
         }
+        for(int i=0;i<count;++i) padding.tick(l[i],r[i]);
     }
     ParameterBank& authority;
     ParameterBank bank;
@@ -92,12 +114,16 @@ public:
     const std::uint64_t generation;
     double tailBound = 0; // Sum of serial stage bounds, built only by worker.
 private:
+    StereoDelay padding;
     unsigned mask = 0;
     int rampSamples = 960;
     std::vector<Node> nodes;
     std::array<float, rackChunkSize> dryL{}, dryR{};
 };
-RackEngine::RackEngine(EffectRegistry registry) : effects(std::move(registry)) { worker = std::thread([this] { workerLoop(); }); }
+RackEngine::RackEngine(EffectRegistry registry) : effects(std::move(registry)) {
+    dryDelay.length=rackLatencySamples;
+    assetResolver=[](const std::string& id) { if(id!=syntheticIRId()) throw std::runtime_error("IR asset is unavailable; import its portable bundle or load the original WAV."); return decodeIR(syntheticIRBytes()); };
+    worker = std::thread([this] { workerLoop(); }); }
 RackEngine::~RackEngine() {
     stop();
     { std::lock_guard lock(mutex); quitting = true; }
@@ -115,13 +141,13 @@ std::uint64_t RackEngine::loadTone(const ToneState& tone) {
     if (auto error = validateTone(tone, effects); !error.empty()) { state.error = error; return 0; }
     // The same persistent UUID cannot acquire a different slot/type/version.
     for (const auto& i : tone.rack.instances) {
-        auto same=[&](const RackDefinition& d) { const auto* old=d.find(i.id); return !old || *old==i; };
+        auto same=[&](const RackDefinition& d) { const auto* old=d.find(i.id); return !old || sameIdentity(*old,i); };
         if (!same(state.requested) || !same(state.committed)
             || (requestedTone && !same(requestedTone->rack)) || (buildingDefinition && !same(*buildingDefinition))) {
             state.error="Preset changes an immutable instance identity."; return 0;
         }
         for (const auto& graph : owned) if (graph) {
-            if (const auto* old = graph->definition.find(i.id); old && *old != i) {
+            if (const auto* old = graph->definition.find(i.id); old && !sameIdentity(*old,i)) {
                 state.error = "Preset changes an immutable instance identity."; return 0;
             }
         }
@@ -155,6 +181,7 @@ ToneState RackEngine::captureTone(std::string id, std::string name) const {
     std::lock_guard lock(mutex);
     if (state.tonePending || activated.load()!=acknowledged.load()) throw std::runtime_error("Cannot capture tone during preset activation.");
     ToneState tone; tone.id = std::move(id); tone.name = std::move(name); tone.rack = state.requested;
+    for(const auto& i:tone.rack.instances) if(!i.irAsset.empty()) tone.schemaVersion=2;
     // Control producer calls this only after tone acknowledgment. No audio writer
     // touches the bank during normal edits; full loads are explicitly pending.
     for (unsigned s = 0; s < rackSlots; ++s) {
@@ -172,7 +199,7 @@ bool RackEngine::submitLocked(const RackDefinition& d) {
     for (const auto& i : d.instances) {
         const auto check = [&](const RackDefinition& old) {
             const auto* match = old.find(i.id);
-            return !match || *match == i;
+            return !match || sameIdentity(*match,i);
         };
         if (!check(state.requested) || !check(state.committed)) { state.error = "Instance identity cannot be changed."; return false; }
         const auto* old = state.requested.find(i.id);
@@ -181,7 +208,7 @@ bool RackEngine::submitLocked(const RackDefinition& d) {
             bool same = false;
             for (const auto& graph : owned) if (graph) {
                 if (!check(graph->definition)) { state.error = "Instance identity cannot be changed."; return false; }
-                if (const auto* found = graph->definition.find(i.id)) same |= *found == i;
+                if (const auto* found = graph->definition.find(i.id)) same |= sameIdentity(*found,i);
             }
             if (bank.references(i.slot) != 0 && !same) { state.error = "Slot is still in use by a retiring graph; retry shortly."; return false; }
         }
@@ -203,7 +230,7 @@ bool RackEngine::add(const std::string& type) {
     for (; slot < rackSlots; ++slot) if (!(used & (1u << slot)) && bank.references(slot) == 0) break;
     if (slot == rackSlots) { state.error = "All 16 slots are occupied or retiring; retry after the transition."; return false; }
     RackDefinition next = state.requested;
-    const auto id = newInstanceId(); next.instances.push_back({id, slot, type, descriptor->version}); next.order.push_back(id);
+    const auto id = newInstanceId(); next.instances.push_back({id, slot, type, descriptor->version, type=="cabinet"?syntheticIRId():""}); next.order.push_back(id);
     for (unsigned p = 0; p < controlsPerSlot; ++p) bank.setValue(slot, p, 0);
     for (const auto& p : descriptor->parameters) bank.setValue(slot, p.bankIndex, p.normalize(p.defaultValue));
     bank.setBypassed(slot, false);
@@ -234,6 +261,7 @@ bool RackEngine::setParameter(const InstanceId& id, unsigned index, float physic
     }
     return false;
 }
+void RackEngine::setAssetResolver(std::function<ImpulseResponse(const std::string&)> resolver) { std::lock_guard lock(mutex); assetResolver=std::move(resolver); }
 bool RackEngine::setBypassed(const InstanceId& id, bool bypass) {
     std::lock_guard lock(mutex); if (requestedTone) return false; const auto* i = state.requested.find(id); if (!i) return false;
     bank.setBypassed(i->slot, bypass); return true;
@@ -277,7 +305,7 @@ void RackEngine::activatePending() noexcept {
         bank.setRackBypassed(c.rackBypass);
         if (globals) globals->restorePreparedGains(c.inputDb,c.outputDb,next->inputGain,next->outputGain);
     }
-    next->activate(active); fading = active; active = next; fadePosition = 0;
+    next->activate(active); fading = active; active = next; fadePosition = -static_cast<int>(rackLatencySamples);
     reportedTail.store(std::max(active->tailBound, fading ? fading->tailBound : 0), std::memory_order_relaxed);
     activated.store(active->generation, std::memory_order_release);
     if (!fading) acknowledged.store(active->generation, std::memory_order_release);
@@ -292,6 +320,7 @@ void RackEngine::process(float* l, float* r, int count) noexcept {
     std::copy_n(l, count, dryL.data()); std::copy_n(r, count, dryR.data());
     if (fading) { std::copy_n(l, count, oldL.data()); std::copy_n(r, count, oldR.data()); if (!fading->frozen) fading->sync(); fading->process(oldL.data(), oldR.data(), count); }
     if (active) { active->sync(); active->process(l, r, count); }
+    for(int i=0;i<count;++i) dryDelay.tick(dryL[i],dryR[i]);
     const float target = bank.rackBypassed() ? 0.0f : 1.0f;
     if (target != rackTarget) { rackTarget = target; rackRemaining = fadeLength; rackStep = (target - rackMix) / fadeLength; }
     for (int i = 0; i < count; ++i) {
@@ -320,6 +349,7 @@ void RackEngine::stoppedMaintenance() {
     if (resetRequested) {
         if (fading) { retire(fading); fading = nullptr; }
         if (active) { active->reset(); acknowledged.store(active->generation); }
+        dryDelay.reset();
         rackMix = rackTarget = bank.rackBypassed() ? 0.0f : 1.0f; rackRemaining = 0;
         resetRequested = false; wake.notify_all();
     }
@@ -346,7 +376,7 @@ void RackEngine::workerLoop() {
         }
         readIndex.store(r, std::memory_order_release);
         if (attempted != state.requestedGeneration && pending.load() == nullptr && state.graphs < owned.size()) {
-            const auto generation = state.requestedGeneration; const auto definition = requestedTone ? requestedTone->rack : state.requested; const auto tone = requestedTone; const auto buildRate = rate;
+            const auto generation = state.requestedGeneration; const auto definition = requestedTone ? requestedTone->rack : state.requested; const auto tone = requestedTone; const auto buildRate = rate; const auto resolver=assetResolver;
             attempted = generation;
             // Reservation happens under the control mutex, before the slow factory
             // runs, so a removed slot cannot be reused while it is being built.
@@ -356,7 +386,7 @@ void RackEngine::workerLoop() {
             buildingDefinition=definition;
             lock.unlock();
             std::string failure;
-            try { graph->build(effects, buildRate); } catch (const std::exception& e) { failure = e.what(); } catch (...) { failure = "Effect preparation threw an unknown exception."; }
+            try { graph->build(effects, buildRate, resolver); } catch (const std::exception& e) { failure = e.what(); } catch (...) { failure = "Effect preparation threw an unknown exception."; }
             lock.lock(); buildingDefinition.reset();
             if (generation != state.requestedGeneration || !failure.empty()) {
                 graph.reset(); --state.graphs; ++state.reclaimed;

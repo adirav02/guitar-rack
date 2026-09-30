@@ -11,7 +11,7 @@
 namespace guitarrack {
 inline constexpr std::size_t rackSlots = 16, controlsPerSlot = 16;
 inline constexpr int rackChunkSize = 512;
-using InstanceId = std::string; // Canonical UUID, persisted unchanged by future M4 state.
+using InstanceId = std::string; // Canonical UUID, persisted unchanged in tone state.
 using SlotId = unsigned;
 InstanceId newInstanceId();
 bool validUtf8(const std::string&) noexcept;
@@ -80,12 +80,17 @@ private:
     std::vector<EffectDescriptor> entries;
 };
 struct RackInstance {
+    RackInstance() = default;
+    RackInstance(InstanceId uuid, SlotId bankSlot, std::string type, unsigned version=1, std::string asset={})
+        : id(std::move(uuid)), slot(bankSlot), effectType(std::move(type)), effectVersion(version), irAsset(std::move(asset)) {}
     InstanceId id;
     SlotId slot = 0;
     std::string effectType;
     unsigned effectVersion = 1;
+    std::string irAsset; // Cabinet-only SHA-256 identity, never a personal path.
     bool operator==(const RackInstance&) const = default;
 };
+bool sameIdentity(const RackInstance&, const RackInstance&) noexcept;
 struct RackDefinition {
     std::vector<RackInstance> instances;
     std::vector<InstanceId> order;

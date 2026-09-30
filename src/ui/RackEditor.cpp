@@ -3,8 +3,8 @@
 namespace guitarrack {
 class RackEditor::Card final : public juce::Component {
 public:
-    Card(RackEngine& owner, const RackInstance& instance, int position, int count)
-        : rack(owner), identity(instance) {
+    Card(RackEngine& owner, PresetSession& session, const RackInstance& instance, int position, int count)
+        : rack(owner), presets(session), identity(instance) {
         const auto* descriptor = rack.registry().find(identity.effectType, identity.effectVersion);
         title.setText(juce::String(position + 1) + ". " + descriptor->displayName + " | Slot " + juce::String(identity.slot), juce::dontSendNotification);
         title.setTooltip("Persistent instance: " + identity.id + "\nMoving changes order only; its slot and controls stay fixed.");
@@ -43,9 +43,24 @@ public:
             };
             addAndMakeVisible(slider); controls.push_back(std::move(control));
         }
+        if(identity.effectType=="cabinet") {
+            addAndMakeVisible(loadIR); addAndMakeVisible(assetStatus);
+            loadIR.setTooltip("Load a user mono PCM16/24/32 or float32 WAV, 8000–192000 Hz, at most 500 ms / 1 MiB. Previous sound stays active until validated and prepared.");
+            loadIR.onClick=[this] {
+                chooser=std::make_unique<juce::FileChooser>("Load mono cabinet IR (up to 500 ms)",juce::File{},"*.wav");
+                chooser->launchAsync(juce::FileBrowserComponent::openMode|juce::FileBrowserComponent::canSelectFiles,
+                    [safe=juce::Component::SafePointer<Card>(this)](const juce::FileChooser& dialog){
+                        if(!safe) return;
+                        auto file=dialog.getResult();
+                        if(file!=juce::File{}) safe->presets.loadIR(safe->identity.id,file.getFullPathName().toStdString());
+                    });
+            };
+            assetStatus.setText(identity.irAsset==syntheticIRId()?"Ready: synthetic filter (not measured)":"Ready: user IR "+identity.irAsset.substr(0,12),juce::dontSendNotification);
+            assetStatus.setTooltip("SHA-256: "+identity.irAsset+"\nNo peak/energy normalization. Cabinet convolution is linear and does not simulate a nonlinear amplifier.");
+        }
         poll();
     }
-    int preferredHeight() const { return 50 + static_cast<int>(controls.size()) * 34; }
+    int preferredHeight() const { return 50 + static_cast<int>(controls.size()) * 34 + (identity.effectType=="cabinet"?34:0); }
     void poll() {
         bypass.setToggleState(rack.bank.bypassed(identity.slot), juce::dontSendNotification);
         for (auto& control : controls) {
@@ -67,6 +82,7 @@ public:
             auto row = area.removeFromTop(34);
             control->label.setBounds(row.removeFromLeft(80)); control->slider.setBounds(row);
         }
+        if(identity.effectType=="cabinet") {auto row=area.removeFromTop(34); loadIR.setBounds(row.removeFromLeft(110)); assetStatus.setBounds(row);}
     }
     void paint(juce::Graphics& g) override {
         g.setColour(juce::Colour(0xff17212d)); g.fillRoundedRectangle(getLocalBounds().toFloat(), 6);
@@ -74,12 +90,16 @@ public:
 private:
     struct Control { ParameterDescriptor parameter; juce::Label label; juce::Slider slider; };
     RackEngine& rack;
+    PresetSession& presets;
     RackInstance identity;
+    juce::TextButton loadIR{"Load IR..."};
+    juce::Label assetStatus;
+    std::unique_ptr<juce::FileChooser> chooser;
     juce::Label title;
     juce::TextButton up{"Up"}, down{"Down"}, remove{"Remove"}, bypass{"Bypass"}, reset{"Reset"};
     std::vector<std::unique_ptr<Control>> controls;
 };
-RackEditor::RackEditor(RackEngine& owner) : rack(owner) {
+RackEditor::RackEditor(RackEngine& owner,PresetSession& session) : rack(owner),presets(session) {
     for (auto* button : {&addEffect, &bypass}) addAndMakeVisible(button);
     addAndMakeVisible(picker); addAndMakeVisible(status); addAndMakeVisible(viewport);
     viewport.setViewedComponent(&content, false);
@@ -87,7 +107,7 @@ RackEditor::RackEditor(RackEngine& owner) : rack(owner) {
     int id = 1;
     for (const auto& effect : rack.registry().descriptors()) picker.addItem(effect.displayName, id++);
     picker.setSelectedId(1);
-    picker.setTooltip("Choose Gain, Overdrive, EQ or Delay. Each addition has independent controls and a stable slot.");
+    picker.setTooltip("Choose an implemented effect from the catalog. Each addition has independent controls and a stable slot.");
     addEffect.setTooltip("Add the selected effect with conservative defaults. Maximum 16 stable slots.");
     addEffect.onClick = [this] {
         const auto index = picker.getSelectedItemIndex();
@@ -104,7 +124,7 @@ void RackEditor::poll() {
     if (state.requested != displayed) {
         cards.clear(); displayed = state.requested;
         for (std::size_t i = 0; i < displayed.order.size(); ++i) {
-            auto card = std::make_unique<Card>(rack, *displayed.find(displayed.order[i]), static_cast<int>(i), static_cast<int>(displayed.order.size()));
+            auto card = std::make_unique<Card>(rack, presets, *displayed.find(displayed.order[i]), static_cast<int>(i), static_cast<int>(displayed.order.size()));
             content.addAndMakeVisible(*card); cards.push_back(std::move(card));
         }
         layoutCards();

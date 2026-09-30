@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "preset_id": "00000000-0000-4000-8000-000000000005",
+  "name": "Small Room",
+  "globals": {
+    "input_db": 0,
+    "output_db": -12,
+    "rack_bypass": false
+  },
+  "order": [
+    "30000000-0000-4000-8000-000000000001",
+    "30000000-0000-4000-8000-000000000002"
+  ],
+  "instances": [
+    {
+      "instance_id": "30000000-0000-4000-8000-000000000001",
+      "slot_id": 0,
+      "effect_type": "eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "low_db": 0,
+        "mid_db": 0,
+        "high_db": 0
+      }
+    },
+    {
+      "instance_id": "30000000-0000-4000-8000-000000000002",
+      "slot_id": 1,
+      "effect_type": "reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "size_percent": 35,
+        "damping_percent": 55,
+        "mix_percent": 15
+      }
+    }
+  ],
+  "assets": []
+}
