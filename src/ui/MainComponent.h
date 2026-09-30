@@ -1,6 +1,7 @@
 #pragma once
 #include <juce_gui_basics/juce_gui_basics.h>
 #include "standalone/AudioSession.h"
+#include "RackEditor.h"
 
 namespace guitarrack {
 class PeakMeter final : public juce::Component {
@@ -28,6 +29,7 @@ private:
     void updateEnabled();
     void label(juce::Label&, const juce::String&);
     AudioSession session;
+    RackEditor rackEditor{session.processor.rack};
     juce::Label title, hint, backendLabel, inputDeviceLabel, outputDeviceLabel;
     juce::Label inputLabel, leftLabel, rightLabel, rateLabel, bufferLabel;
     juce::Label inputGainLabel, outputGainLabel, inputMeterLabel, outputMeterLabel;

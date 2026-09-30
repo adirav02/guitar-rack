@@ -3,6 +3,8 @@
 #include <array>
 #include <cmath>
 #include <iostream>
+#include <chrono>
+#include <thread>
 
 namespace guitarrack {
 // Deterministic device substitute: opens no real backend and starts no threads.
@@ -76,6 +78,22 @@ int main() {
     const float expected = 0.2f * std::pow(10.f, -12.f / 20);
     check(std::abs(out1[1199] - expected) < 0.00001f && out1 == out2, "actual standalone callback routes packed mono to both selected outputs");
     check(session->configuration().contains("Round trip: not measured") && session->configuration().contains("unavailable"), "unknown measurements labeled honestly");
+    check(session->processor.rack.add() && session->processor.rack.add(), "live standalone rack edits accepted");
+    const auto rackDefinition = session->processor.rack.snapshot().requested;
+    session->processor.rack.setParameter(rackDefinition.order[0], 0, -6);
+    session->processor.rack.setParameter(rackDefinition.order[1], 0, 3);
+    bool committed = false, heapFree = true;
+    const auto deadline = std::chrono::steady_clock::now() + std::chrono::seconds(4);
+    do {
+        heapAudit::begin(); AudioSessionTestAccess::process(*session, in, 1, out, 2, 1200);
+        heapFree &= heapAudit::finish();
+        const auto s = session->processor.rack.snapshot(); committed = s.requestedGeneration == s.committedGeneration;
+        if (!committed) std::this_thread::sleep_for(std::chrono::milliseconds(1));
+    } while (!committed && std::chrono::steady_clock::now() < deadline);
+    AudioSessionTestAccess::process(*session, in, 1, out, 2, 1200);
+    check(committed && heapFree, "actual device callback swaps live racks without heap operations");
+    check(std::abs(out1.back() - expected * std::pow(10.f, -3.f / 20)) < 0.00001f && out1 == out2,
+          "multiple Gain instances preserve selected mono routing and output level");
     session->requestStop(); AudioSessionTestAccess::process(*session, in, 1, out, 2, 1200); session->poll();
     check(out1[1199] == 0 && !session->isBusy() && !device.opened, "Stop fades then closes stream");
     check(session->start(1, {0, 1}, 48000, 128).isEmpty(), "restart requires Start");

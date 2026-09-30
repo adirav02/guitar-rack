@@ -3,8 +3,7 @@
 #include "core/MonitorEngine.h"
 
 namespace guitarrack {
-// Shared JUCE adapter. M1 exposes no published host parameters or preset format.
-// The future VST3 target will reuse this DSP; its fixed bank is reserved in docs.
+// Shared JUCE adapter. M2 uses the fixed bank internally; host publication is M6.
 class MonitorProcessor final : public juce::AudioProcessor {
 public:
     MonitorProcessor();
@@ -28,6 +27,7 @@ public:
     void setStateInformation(const void*, int) override {}
 
     MonitorControls controls;
-    MonitorEngine engine{controls};
+    RackEngine rack;
+    MonitorEngine engine{controls, &rack};
 };
 }

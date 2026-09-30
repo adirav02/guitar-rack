@@ -1,6 +1,8 @@
 #pragma once
 #include <atomic>
 #include <cstdint>
+#include <array>
+#include "RackEngine.h"
 
 namespace guitarrack {
 static_assert(std::atomic<float>::is_always_lock_free);
@@ -32,12 +34,12 @@ private:
 
 class MonitorEngine {
 public:
-    enum : unsigned { inputClipped = 1, outputProtected = 2, nonFiniteInput = 4 };
-    explicit MonitorEngine(MonitorControls& authority) noexcept : controls(authority) {}
+    enum : unsigned { inputClipped = 1, outputProtected = 2, nonFiniteInput = 4, nonFiniteDSP = 8 };
+    explicit MonitorEngine(MonitorControls& authority, RackEngine* serialRack = nullptr) noexcept : controls(authority), rack(serialRack) {}
     // Lifecycle only, serialized against processing. Starts at silence.
-    bool prepare(double sampleRate) noexcept;
-    void reset() noexcept;
-    // No scratch buffers: streaming per-sample processing accepts arbitrary sizes.
+    bool prepare(double sampleRate);
+    void reset();
+    // Preallocated chunks accept arbitrary device block sizes.
     // Inputs may alias corresponding outputs; read both before either write.
     void process(const float* inL, const float* inR, float* outL, float* outR,
                  int samples, bool running = true) noexcept;
@@ -51,6 +53,8 @@ private:
         float next() noexcept;
     } input, output, gate;
     MonitorControls& controls;
+    RackEngine* rack = nullptr;
+    std::array<float, rackChunkSize> scratchL{}, scratchR{};
     int rampSamples = 960;
     bool prepared = false;
     std::atomic<float> inputPeak{0}, outputPeak{0};

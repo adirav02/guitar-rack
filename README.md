@@ -1,8 +1,11 @@
 # GuitarRack
 
-Fedora Linux standalone guitar monitoring foundation using C++20, CMake and
-JUCE 8.0.15. M0/M1 software is implemented; real-guitar verification is pending.
-Effects, presets and VST3 are later milestones in [PLAN.md](PLAN.md).
+Fedora Linux standalone guitar monitoring and a modular serial rack using C++20,
+CMake and JUCE 8.0.15. M2 software is implemented with Gain instances and live
+rack editing. The owner verified the native window and basic M-Track Solo
+Input 2 monitoring at PipeWire 256/48000 and 512/48000; 256 is the preference.
+Live-rack listening and the monitoring soak remain pending. Additional effects,
+presets and VST3 are later milestones in [PLAN.md](PLAN.md).
 
 The application provides a native resizable window, device/backend/channel
 selection, supported sample rate/buffer choices, explicit Start/Stop/Mute,
@@ -34,6 +37,18 @@ cmake --build --preset linux-release
 ctest --preset linux-release --output-on-failure
 ./build/linux-release/GuitarRack_artefacts/Release/GuitarRack
 ```
+
+Preferred PipeWire launch (from the project directory):
+
+```bash
+PIPEWIRE_LATENCY=256/48000 pw-jack ./build/linux-release/GuitarRack_artefacts/Release/GuitarRack
+```
+
+Choose JACK, the interface, mono physical Input 2 and outputs 1/2, then Start.
+This is a client latency request; confirm the application's **actual** rate/buffer.
+GuitarRack does not change global audio settings. The GUI prefers 256 when that
+buffer is supported. The reported 512/48000 launch also sounded acceptable;
+256 is the current preference.
 
 Normally CMake fetches the exact pinned JUCE commit. To fetch it manually or use
 the local checkout already provided by the owner:
@@ -74,7 +89,7 @@ time. Do not reset the patched checkout while a build is running.
 6. Check Mute/Unmute, gain changes, and Stop/Start for clicks. Mute keeps the input
    meter active; Stop closes the stream. Escape requests Stop. Tab reaches the
    controls; sliders support numeric entry and double-click reset.
-7. Play for **at least 10 minutes**. Try 128 frames only if exposed and stable.
+7. Play for **at least 10 minutes** at the preferred 256 frames.
    Record backend, requested/actual sample rate and buffer, xruns if available,
    clipping, noise and any audible dropouts. Device-reported I/O latency is an
    estimate; measured round trip remains separate and requires a loopback test.
@@ -84,8 +99,32 @@ time. Do not reset the patched checkout while a build is running.
 
 Device/channel/rate/buffer edits require Stop. A server format/route change during
 playback safely stops monitoring and requires Refresh/reselection/Start. Device
-preferences are not persisted in M1. No hardware listening, driver stability,
-round-trip or Windows results are inferred from the software tests.
+preferences are not yet persisted. The owner reported acceptable basic monitoring
+at both tested launch settings; driver stability, round trip and Windows results
+are not inferred from software checks or that listening report.
+
+## Live Gain rack checklist
+
+1. Start with interface volume low, input trim 0 dB and output -12 dB. Add two
+   **Gain** instances; each starts at neutral **0 dB**. Adjust one to -6 dB and
+   the other to +3 dB. Both have numeric entry and double-click reset.
+2. While holding a note, change levels and toggle each **Bypass**. Toggle
+   **Bypass rack**, then **Mute** separately. Listen for clicks or interruptions;
+   bypass must keep guitar monitoring active, while Mute silences output.
+3. Move either card Up/Down. Its slot label, own level and bypass must stay with
+   it. Gain chains commute: their steady tone should stay the same after reorder.
+   Automated noncommuting test processors verify actual processing order.
+4. Add/remove/reorder repeatedly while playing. Watch “Preparing / transitioning”
+   become “Applied”. Confirm removing one Gain leaves the other unchanged.
+   A removed slot may briefly remain reserved until its graph is reclaimed.
+5. Check Stop/Start with the rack present, both output channels and meter/clipping
+   warnings. Record the actual backend/rate/buffer and any clicks/dropouts.
+
+The rack supports **16 instances** and 20 ms gain/bypass/structural transitions.
+Rack bypass retains input/output gain and protection. Gain adds no DSP latency.
+There is no preset save or cross-launch rack restore until M4. The 10-minute
+soak, real disconnect/reconnect, measured round trip and new rack listening
+checks remain pending; report only checks you actually performed.
 
 ## Independent and diagnostic checks
 

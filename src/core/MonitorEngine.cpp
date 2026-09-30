@@ -28,13 +28,15 @@ float MonitorEngine::Ramp::next() noexcept {
     }
     return current;
 }
-bool MonitorEngine::prepare(double rate) noexcept {
+bool MonitorEngine::prepare(double rate) {
     prepared = std::isfinite(rate) && rate >= 8000 && rate <= 768000;
     rampSamples = prepared ? static_cast<int>(std::ceil(rate * 0.020)) : 960;
     reset();
+    if (prepared && rack) prepared = rack->prepare(rate);
     return prepared;
 }
-void MonitorEngine::reset() noexcept {
+void MonitorEngine::reset() {
+    if (rack) rack->stop();
     input = {controls.inputGain(), controls.inputGain(), 0, 0};
     output = {controls.outputGain(), controls.outputGain(), 0, 0};
     gate = {};
@@ -48,29 +50,37 @@ void MonitorEngine::process(const float* inL, const float* inR, float* outL,
     gate.aim(prepared && running && !controls.isMuted() ? 1.0f : 0.0f, rampSamples);
     float inPeak = 0, outPeak = 0;
     unsigned events = 0;
-    for (int i = 0; i < count; ++i) {
-        float l = inL ? inL[i] : 0, r = inR ? inR[i] : 0;
-        if (!std::isfinite(l)) { l = 0; events |= nonFiniteInput; }
-        if (!std::isfinite(r)) { r = 0; events |= nonFiniteInput; }
-        const float rawPeak = std::max(std::abs(l), std::abs(r));
-        if (rawPeak >= 1) events |= inputClipped;
-        const float trim = input.next();
-        // Protect against overflow even for extreme but finite input samples.
-        l = std::clamp(l, -64.0f, 64.0f) * trim;
-        r = std::clamp(r, -64.0f, 64.0f) * trim;
-        inPeak = std::max(inPeak, std::max(std::abs(l), std::abs(r)));
-        if (inPeak >= 1) events |= inputClipped;
-        const float level = output.next();
-        l *= level; r *= level;
-        if (std::max(std::abs(l), std::abs(r)) > 0.98f) events |= outputProtected;
-        // Zero-latency hard peak ceiling. Linear below threshold; audible when hit.
-        l = std::clamp(l, -0.98f, 0.98f);
-        r = std::clamp(r, -0.98f, 0.98f);
-        const float fade = gate.next();
-        l *= fade; r *= fade;
-        if (outL) outL[i] = l;
-        if (outR) outR[i] = r;
-        outPeak = std::max(outPeak, std::max(std::abs(l), std::abs(r)));
+    if (rack && prepared) rack->beginBlock();
+    for (int offset = 0; offset < count;) {
+        const int chunk = std::min(rackChunkSize, count - offset);
+        for (int i = 0; i < chunk; ++i) {
+            float l = inL ? inL[offset + i] : 0, r = inR ? inR[offset + i] : 0;
+            if (!std::isfinite(l)) { l = 0; events |= nonFiniteInput; }
+            if (!std::isfinite(r)) { r = 0; events |= nonFiniteInput; }
+            if (std::max(std::abs(l), std::abs(r)) >= 1) events |= inputClipped;
+            const float trim = input.next();
+            l = std::clamp(l, -64.0f, 64.0f) * trim;
+            r = std::clamp(r, -64.0f, 64.0f) * trim;
+            inPeak = std::max(inPeak, std::max(std::abs(l), std::abs(r)));
+            if (inPeak >= 1) events |= inputClipped;
+            scratchL[i] = l; scratchR[i] = r;
+        }
+        if (rack && prepared) rack->process(scratchL.data(), scratchR.data(), chunk);
+        for (int i = 0; i < chunk; ++i) {
+            float l = scratchL[i], r = scratchR[i];
+            if (!std::isfinite(l)) { l = 0; events |= nonFiniteDSP; }
+            if (!std::isfinite(r)) { r = 0; events |= nonFiniteDSP; }
+            const float level = output.next();
+            l *= level; r *= level;
+            if (std::max(std::abs(l), std::abs(r)) > 0.98f) events |= outputProtected;
+            l = std::clamp(l, -0.98f, 0.98f); r = std::clamp(r, -0.98f, 0.98f);
+            const float fade = gate.next();
+            l *= fade; r *= fade;
+            if (outL) outL[offset + i] = l;
+            if (outR) outR[offset + i] = r;
+            outPeak = std::max(outPeak, std::max(std::abs(l), std::abs(r)));
+        }
+        offset += chunk;
     }
     // Exchange/restore is bounded; a GUI poll racing publication can delay a peak
     // by one poll but cannot cause an unbounded CAS loop in audio.

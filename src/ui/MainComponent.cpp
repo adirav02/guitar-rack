@@ -25,7 +25,7 @@ void MainComponent::label(juce::Label& item, const juce::String& text) {
 }
 MainComponent::MainComponent() {
     setWantsKeyboardFocus(true);
-    label(title, "GuitarRack | Clean monitoring");
+    label(title, "GuitarRack | Serial rack");
     title.setFont(juce::FontOptions(24));
     label(hint, "M-Track Solo: guitar in physical Input 2, Instrument mode, Direct/USB switch on USB.\nUse wired headphones or monitors on your interface. Start with low headphone volume.");
     label(backendLabel, "Audio backend");
@@ -70,8 +70,9 @@ MainComponent::MainComponent() {
     rateBox.setTooltip("JACK uses the existing server rate; GuitarRack does not change global audio policy.");
     bufferBox.setTooltip("JACK uses the existing server buffer. ALSA exposes the device's supported choices.");
     outputGain.setTooltip("Defaults to -12 dB. Output protection clamps peaks at 0.98; clipping changes tone.");
+    addAndMakeVisible(rackEditor);
     refreshDevices();
-    setSize(920, 750);
+    setSize(920, 1000);
     startTimerHz(20);
 }
 MainComponent::~MainComponent() { stopTimer(); session.stopNow(); }
@@ -117,8 +118,7 @@ void MainComponent::devicesChanged() {
         for (int i = 0; i < rates.size(); ++i) rateBox.addItem(juce::String(rates[i], 0) + " Hz", i + 1);
         for (int i = 0; i < buffers.size(); ++i) bufferBox.addItem(juce::String(buffers[i]) + " frames", i + 1);
         rateBox.setSelectedItemIndex(rates.contains(48000) ? rates.indexOf(48000) : (rates.isEmpty() ? -1 : 0), juce::dontSendNotification);
-        int buffer = buffers.indexOf(128);
-        if (buffer < 0) buffer = buffers.indexOf(256);
+        int buffer = buffers.indexOf(256);
         if (buffer < 0) buffer = buffers.indexOf(device->getDefaultBufferSize());
         if (buffer < 0 && !buffers.isEmpty()) buffer = 0;
         bufferBox.setSelectedItemIndex(buffer, juce::dontSendNotification);
@@ -142,7 +142,7 @@ void MainComponent::updateEnabled() {
         && rateBox.getSelectedItemIndex() >= 0 && bufferBox.getSelectedItemIndex() >= 0);
 }
 void MainComponent::timerCallback() {
-    session.poll(); updateEnabled();
+    session.poll(); updateEnabled(); rackEditor.poll();
     const auto meter = session.processor.engine.consumeMeters();
     clipFlags |= meter.flags;
     inputMeter.update(meter.inputPeak, (clipFlags & MonitorEngine::inputClipped) != 0);
@@ -151,6 +151,7 @@ void MainComponent::timerCallback() {
     if (clipFlags & MonitorEngine::inputClipped) clips += "Input clipping: reduce interface gain or trim. ";
     if (clipFlags & MonitorEngine::outputProtected) clips += "Peak protection active: lower trim/output. ";
     if (clipFlags & MonitorEngine::nonFiniteInput) clips += "Invalid input samples silenced. ";
+    if (clipFlags & MonitorEngine::nonFiniteDSP) clips += "Invalid DSP samples silenced. ";
     clipLabel.setText(clips.isEmpty() ? "No clipping detected." : clips, juce::dontSendNotification);
     statusLabel.setText(setupError.isNotEmpty() ? setupError : session.status(), juce::dontSendNotification);
     configLabel.setText(session.configuration(), juce::dontSendNotification);
@@ -202,6 +203,7 @@ void MainComponent::resized() {
     auto clipping = area.removeFromTop(44);
     resetClips.setBounds(clipping.removeFromRight(130).withHeight(30)); clipLabel.setBounds(clipping);
     statusLabel.setBounds(area.removeFromTop(52));
-    configLabel.setBounds(area);
+    configLabel.setBounds(area.removeFromTop(76));
+    area.removeFromTop(10); rackEditor.setBounds(area);
 }
 }

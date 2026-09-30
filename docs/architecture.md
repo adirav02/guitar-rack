@@ -1,4 +1,4 @@
-# M0/M1 architecture
+# M0–M2 architecture
 
 ## Current processing and ownership
 
@@ -14,7 +14,7 @@ Creating a closed preview device can probe hardware capabilities.
 Physical-device routing lives in `AudioSession`; the engine accepts stereo
 pointers, including the same mono source pointer for both sides. The eventual
 plugin never needs a physical device. Mono-to-stereo and stereo-to-stereo bus
-layouts are validated; M1 does not build a plugin, publish host parameters, or
+layouts are validated; M2 does not build a plugin, publish host parameters, or
 implement host/preset state.
 
 The message thread owns GUI widgets, discovery objects, device lifetime, error
@@ -29,13 +29,13 @@ finite bounded values and calculate dB-to-linear conversion outside audio.
 Callback reads use lock-free atomics once per block. DSP applies sample-by-sample
 linear ramps over 20 ms at the actual sample rate. Start begins at zero, Mute
 retains input metering, and Stop fades before closing the device. Errors silence
-immediately. This milestone has no effects/bypass controls: mute is not a rack
-bypass or effect bypass.
+immediately. Rack bypass retains trim, output gain and protection; effect bypass
+retains all other effects; Mute ramps the final output to silence.
 
-Processing streams samples without scratch storage or temporal effects. Zero
-blocks do nothing; variable and oversized blocks need no resizing or chunking.
-Each sample reads both inputs before writing outputs, so in-place stereo and
-mono-to-stereo operation work. Invalid input samples become zero; extreme finite
+Processing uses fixed 512-sample stereo scratch chunks. Zero blocks do nothing;
+variable and oversized blocks are chunked without resizing. Each chunk reads
+both inputs before writing outputs, so in-place stereo and mono-to-stereo
+operation work. Effects follow input trim and precede output gain/protection. Invalid input samples become zero; extreme finite
 samples are bounded before multiplication. The zero-latency output protection is
 a **hard ceiling at ±0.98**, linear below the ceiling. Hitting it changes tone;
 the UI latches a warning. It is not a transparent limiter or headphone safety
@@ -95,11 +95,8 @@ and a new Start. Reconnection never switches to a microphone or another output
 automatically. The GUI Stop ramp has a 250 ms timeout if callbacks disappear.
 
 Every restart prepares from the actual device sample rate and resets the Start
-ramp. There are no async graph-building requests in M1, so no stale structural
-results can arrive. A late backend restart cannot reinstate authorization.
-Off-thread graph building, bounded queue saturation handling, generation IDs,
-crossfades and retired graph reclamation remain M2 work; live rack edits are not
-implemented or accepted as complete.
+ramp. A late backend restart cannot reinstate authorization. The rack worker
+re-prepares at the actual rate before callbacks resume; see M2 ownership below.
 
 Peak snapshots and diagnostic bits use lock-free atomics polled at 20 Hz. Peak
 publication has fixed work; a racing poll may defer a peak to the next poll.
@@ -108,10 +105,10 @@ requested/actual format, device-reported I/O estimate, zero added DSP latency,
 and **unmeasured** round trip. Unsupported backend xrun reporting is displayed
 as unavailable. No CPU/round-trip/dropout benchmark is inferred from tests.
 
-## Reserved rack/state contract for later milestones
+## Fixed rack/state contract
 
-M0 defines this contract in documentation; no unused registry or graph framework
-is created yet:
+M2 implements the registry, UUID/slot identities, separate order, and internal
+fixed bank. Host parameter publication and preset serialization are deferred:
 
 - Effect type IDs will be stable English identifiers such as `gain`,
   `overdrive`, `eq`, `delay`, versioned in the registry.
@@ -123,11 +120,88 @@ is created yet:
 - Persistent tone state contains identity/order/effect versions/control mapping
   and assets; standalone device settings stay outside portable tone/host state.
 - The editable definition is control-owned; a prepared graph is audio-owned.
-  Current parameters have one authority, eventually integrated with the fixed
-  host bank. Structural snapshots cannot overwrite newer automation.
+  Current parameters have one authority in the fixed bank. Structural snapshots
+  contain no control values and cannot overwrite newer automation.
 - Effect replacement and full preset load can change the meaning of existing
   slot automation; M2/M6 must document that behavior before publishing plugins.
 
-No parameter IDs have been published in M1. Preset/state serialization,
-remembered device preferences, effects, live rack editing, and VST3 targets are
-intentionally deferred to their planned milestones.
+No host parameter IDs have been published. Preset/state serialization, remembered
+device preferences, additional effects and VST3 remain in their planned milestones.
+
+
+## M2 live serial rack: ownership and bounded transfer
+
+`RackDefinition` holds instance UUIDs, immutable slot/type/version identities and
+an independent ordered UUID list. Parameter/bypass values belong exclusively to
+`ParameterBank` (16 slots × 16 normalized atomic controls, per-slot bypass and
+rack bypass). The UI/control producer changes the requested definition under a
+control-only mutex. The registry is immutable after engine construction. No
+callback accesses the mutable definition, mutex, GUI or worker condition variable.
+
+One worker copies the latest requested definition, reserves its slots under the
+control mutex, then constructs/prepares processors outside that mutex. There is
+one coalesced requested definition, one atomic prepared-pointer mailbox and a
+four-entry retirement ring. A newer request replaces the queued definition;
+when the mailbox is occupied, the worker waits/polls outside audio rather than
+building additional graphs. Total graph ownership, including a build in progress,
+is capped at four. At most two graphs ever process concurrently. There is no
+shared_ptr/refcount destruction in processing.
+
+At the start of a nonempty device/host block, audio takes at most one pointer,
+checks its generation against the latest request, and either activates it or
+retires it as stale. Activation inherits matching Gain/bypass smoother state and
+reads current controls from the bank. It performs bounded comparisons (at most
+16 × 16 identities) and no construction. An accepted fade completes even if
+newer requests arrive; another transition cannot start until the next block
+following completion. The generation check is the acceptance linearization
+point. The old/new outputs crossfade linearly for 20 ms at the actual sample
+rate, using preallocated stereo buffers; unchanged Gain ramps retain their
+progress. The model becomes **committed only after the crossfade acknowledgment**.
+The UI shows the requested rack as pending, polls committed acknowledgment, and
+restores the retained definition on preparation failure.
+
+The callback is the sole retirement producer while live; the worker is the sole
+consumer. Release/acquire indices publish raw pointers after their final audio
+use. Every retired pointer is distinct and still worker-owned. Since only four
+graphs can exist, at most four entries can await reclamation; the ring cannot
+saturate independently of graph capacity. Audio never retries, waits, allocates,
+locks, deletes, or notifies a condition variable. The worker removes graph
+ownership and destroys DSP only after retirement publication. At shutdown the
+adapter first drains callbacks; the worker then destroys all remaining graphs.
+
+An atomic activation-reader counter brackets the bounded block-boundary swap.
+Failure rollback waits **on the worker only** for an already-entered activation
+to finish, then retains its accepted destination if a fade is in flight. Entries
+after the failed request was published cannot accept older pending results.
+New control requests cancel stale failures as well as stale successes. Failed
+validation never changes requested/committed structure. Factory exceptions,
+null factories, false prepare results and unsupported latency/tails discard the
+replacement and keep the accepted sound. Parameter updates are never restored
+from graph snapshots. UI sliders use validated physical units; future host writes
+use the same normalized bank without calling structural/UI setters.
+
+Slots remain reserved by all building, pending, active, fading and retired graphs.
+A removed slot cannot be reinitialized for a new UUID until all those references
+are reclaimed. Fast remove/add can therefore return a temporary “slot retiring”
+error. Once reusable, the slot's generic controls describe the new effect: old
+host automation retains its **slot**, not a removed UUID. A future full preset
+load may similarly change automation meanings and must preserve its exact slot
+mapping. M4 will serialize identities and bank values; M6 will publish the bank
+once and implement host gestures. M2 does not claim cross-launch persistence.
+
+Preparation, Stop and destruction require the adapter to detach/drain callbacks.
+While stopped, the worker owns DSP access, activates edits without an audible
+fade, resets temporal/smoothing state, and acknowledges commits. `prepare` waits
+outside the processing callback for a fresh graph at the actual sample rate,
+then transfers DSP ownership back to audio. Device configuration changes still
+stop monitoring and require explicit Start; they never race a live re-prepare.
+
+Gain v1 uses Control 00, normalized as `(dB + 60) / 84`, physical range -60 to
++24 dB, default 0 dB, a 20 ms linear amplitude ramp, and zero latency/tail. Other
+controls are unused no-ops. Individual and rack bypass crossfade to dry over
+20 ms while processors keep running. M2 rejects processors with nonzero latency
+or tails until later milestones implement the required path compensation and
+tail policy. No seamless temporal tails across structural replacement are
+promised. All public chunk processing callers provide 1–512 samples; the shared
+engine bounds chunks from arbitrary device blocks and sanitizes nonfinite DSP
+output before protection, exposing an atomic diagnostic flag.

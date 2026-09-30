@@ -1,6 +1,6 @@
 # GuitarRack — Product and implementation plan
 
-Created: 2026-09-30. Working name: GuitarRack. Status: M0 foundation and M1 software implemented and built; native-window launch verification and physical guitar acceptance remain pending. No effects or later milestones are implemented.
+Created: 2026-09-30. Working name: GuitarRack. Status: M0/M1 and M2 software implemented. Owner verified the native window and basic physical Input 2 monitoring; M2 live-rack listening, the 10-minute soak and other unreported physical checks remain pending. Only Gain is implemented; M3 and later milestones are untouched.
 
 This is an implementation contract for Codex. Complete one milestone at a time. Treat unchecked items as unfinished. Update this document with evidence as implementation progresses.
 
@@ -31,7 +31,7 @@ Use English for application labels and technical documentation. Support user-sel
 | Intended guitar input | Physical Input 2, Line/Instrument switch set to Instrument |
 | Listening | Wired headphones or powered monitors connected to the interface |
 | Software monitoring | Interface Direct/USB switch set to USB |
-| Initial audio format | 48 kHz; evaluate 128 and 256 frame buffers |
+| Current audio preference | PipeWire launch 256/48000; owner also tried 512/48000 and found both acceptable. Actual device format/latency not yet reported |
 | Later platform | Windows with the official M-Track Solo/Duo ASIO driver |
 
 Do not hardcode the ALSA card index, USB bus number, or a single display name. These can change. Device enumeration confirms detection, not tested recording, playback, latency, or sound quality. Implementation checks found Fedora 44 KDE, GCC 16.2.1, CMake 4.3.0 and Ninja 1.13.2; physical audio access is unavailable in the restricted agent session.
@@ -293,13 +293,13 @@ Host state includes the complete rack, current parameter bank, order, mappings, 
 
 - [x] Check existing repository, AGENTS files, Fedora release, installed toolchain, and git state.
 - [x] Pin JUCE; define license/dependency provenance and C++20/CMake build targets.
-- [x] Implement Linux debug/release presets and a runnable standalone skeleton (both binaries built; native desktop launch verification pending).
+- [x] Implement Linux debug/release presets and a runnable standalone skeleton (both binaries built; owner confirms native GUI opens on Fedora).
 - [x] Define rack IDs, slot capacity, parameter-bank strategy, and state responsibilities (docs/architecture.md; no published host parameters yet).
 - [x] Add focused test targets and README with actual build/run commands.
 
 Exit: a clean checkout builds, opens a window, and does not auto-start input monitoring. Record tested tools and commands.
 
-Software foundation checks pass using the owner's local pinned JUCE checkout. Full M0 exit acceptance remains pending native window launch on the owner's desktop. The default online FetchContent download could not be exercised in this session; the exact upstream source patch and local dependency route were checked.
+Software foundation checks pass using the owner's local pinned JUCE checkout. The owner confirms native window launch. No-auto-start is verified synthetically; physical startup-silence and full UI/keyboard acceptance were not separately reported. The default online FetchContent download could not be exercised in this session; the exact upstream source patch and local dependency route were checked.
 
 ### M1 — Physical audio path
 
@@ -307,18 +307,20 @@ Software foundation checks pass using the owner's local pinned JUCE checkout. Fu
 - [x] Selected mono input to stereo output, trim/level, meters, protection, 20 ms parameter ramps (synthetic Input 2 tests pass).
 - [x] Device failure/disconnect handling and explicit reconnect implemented; simulated lifecycle tests pass, physical disconnect test pending.
 - [x] Routing tests with synthetic channel signals, actual adapter callback checks, processor bus checks and callback allocation audit.
-- [ ] Owner test with M-Track Solo, wired headphones, and real guitar.
+- [x] Owner reports real-guitar monitoring works with M-Track Solo physical Input 2; PipeWire launches at 256/48000 and 512/48000 sound acceptable. Current preference: 256.
+- [ ] Full owner acceptance: 10-minute stable monitoring, detailed routing/gain/mute/startup checks, clipping/dropout report, and physical disconnect/reconnect.
 
-Exit: at least 10 minutes of stable clean monitoring on the actual device; correct channel in both ears; no unexplained clipping; record configuration and reported/measured latency separately. Mark hardware verification pending until performed.
+Exit: at least 10 minutes of stable clean monitoring on the actual device; correct channel in both ears; no unexplained clipping; record configuration and reported/measured latency separately. Basic monitoring is owner-verified; the complete exit checks remain pending until performed.
 
 ### M2 — Rack infrastructure
 
-- [ ] Registry and immutable instance/slot identity with separate processing order.
-- [ ] Gain effect; multiple instances; add/remove/reorder/bypass UI.
-- [ ] Off-thread graph preparation, bounded handoff/reclamation, and safe crossfades.
-- [ ] Lifecycle tests for rapid edits, stale requests, queue saturation, and failure rollback.
+- [x] Registry and immutable instance/slot identity with separate processing order.
+- [x] Gain effect; multiple instances; add/remove/reorder/bypass UI.
+- [x] Off-thread graph preparation, bounded handoff/reclamation, and safe crossfades.
+- [x] Lifecycle tests for rapid edits, stale requests, queue saturation, and failure rollback.
+- [ ] Owner live-guitar acceptance of M2 edits, bypass/level continuity and rack Stop/Start.
 
-Exit: rack editing works during playback without callback locks/allocations or incorrect state; repeated edits do not leak graphs or alter unrelated instances.
+Exit: rack editing works during playback without callback locks/allocations or incorrect state; repeated edits do not leak graphs or alter unrelated instances. Automated processing, lifetime accounting and callback heap audits pass; physical M2 listening remains pending. LeakSanitizer and ThreadSanitizer are not verified.
 
 ### M3 — First useful effects
 
@@ -423,6 +425,17 @@ Progress on 2026-09-30:
 - Fresh upstream-source patching, idempotent reapplication and modified-source rejection were checked in a temporary fixture. Release `ldd` reports no missing linked libraries.
 - Native desktop window launch verification is pending. This session has no exposed `/dev/snd` and cannot connect to the owner's PipeWire service. M-Track Solo/guitar listening, real disconnect/reconnect, 10-minute monitoring, actual backend/format and measured round trip remain pending. See README.md and docs/testing.md for commands/checklist.
 - Implementation decisions: device/channel/format edits require Stop; unexpected backend configuration changes stop safely and require a fresh explicit Start. Device preferences are deferred to M4's standalone settings work. Rack edits, effects, preset/state serialization, VST3/host automation and Windows remain untouched.
+
+M2 progress on 2026-09-30:
+
+- Recorded the owner's native-window and physical Input 2 monitoring reports. Both PipeWire launch settings (256/48000, 512/48000) sounded acceptable; 256 is now the GUI preference and documented launch. Actual configuration, soak duration, measured latency, disconnect/reconnect and other unreported checks remain pending.
+- Preserved/integrated the existing uncommitted `Effects`, `LinearRamp` and Gain sources. Implemented a registry, validated UUID/slot identities, independent order list, prepared serial graph and one fixed atomic parameter authority (16 × 16 controls, per-slot bypass, rack bypass). Gain v1 Control 00 maps linearly from normalized values to -60…+24 dB, neutral 0 dB, with 20 ms amplitude smoothing.
+- Implemented Add Gain, Remove, Up/Down, per-instance bypass and rack bypass in a native scrolling editor. Existing device selection, explicit Start/Stop/Mute, mono-to-stereo routing, trim/output controls, meters and ±0.98 protection remain in the shared processing path. Added nonfinite DSP-output silence/diagnostics and fixed 512-sample scratch chunking.
+- One worker prepares and destroys graphs; a single-pointer mailbox, four-entry retirement ring and strict four-graph ownership bound support at most two processing graphs with 20 ms structural crossfades. Requests coalesce off audio. Activation rejects stale generations and reads current controls; failure rollback retains the accepted destination, including an in-progress fade. Slot reuse waits for graph reclamation. Committed UI state follows audio acknowledgment. Ownership, saturation proof, restart and automation semantics are documented in `docs/architecture.md`.
+- Debug/release application and all affected tests build. `ctest --preset linux-debug --output-on-failure` and release equivalent pass 3/3. The new rack suite checks independent amplitudes, monotonic level ramps, stable identities/controls on reorder/removal, noncommuting multiply/offset order, bypass/removal continuity, 1,000 rapid concurrent edits, coalesced handoff saturation, stale blocked builds, preparation exceptions, failure during a fade, slot reservation, bounded ownership and complete off-audio processor destruction. Core and actual standalone callback/processBlock allocation/deallocation audits pass with live racks. See `docs/testing.md` for diagnostic results and commands.
+- ASan/UBSan diagnostics pass 2/2 core and 3/3 full core/adapter checks with `ASAN_OPTIONS=detect_leaks=0`. LeakSanitizer remains unverified. ThreadSanitizer configuration failed because `/usr/lib64/libtsan.so.2.0.0` is missing; no TSan test ran. Fedora command: `sudo dnf install libtsan` (not executed). Release `ldd` has no missing libraries; whitespace checks pass.
+- Scope decision: M2 supports zero-latency, zero-tail processors only (Gain); the builder rejects others until later milestones provide dry/transition latency compensation and tail policy. No new effects, preset serialization, host parameter publication, VST3, Windows, packages, commits or global audio changes were added.
+- Pending: owner M2 listening checklist, full M1 soak/physical failure tests, actual format/device latency report and measured round trip. The new rack GUI has not been visually verified on the owner's desktop. Sanitizer checks are diagnostics, not deadline/dropout or performance measurements.
 
 Maintain a concise log here as work finishes: date, milestone, files/behavior changed, checks run, results, and remaining hardware/host checks.
 

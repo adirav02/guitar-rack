@@ -13,7 +13,7 @@
 - The root initially contained AGENTS.md and PLAN.md only. The owner initialized
   Git during the task. No commits/pushes or global audio changes were performed.
 
-## Automated results
+## M0/M1 automated results (before M2)
 
 ```bash
 cmake --preset linux-debug
@@ -72,35 +72,113 @@ inspect processes in the restricted environment. Address/undefined checks were
 run with leak detection disabled; **leak detection remains unverified**.
 These are diagnostic results, not callback-load/latency benchmarks.
 
-## Pending native desktop and physical acceptance
+## Owner report and pending physical acceptance
 
-The GUI binary is built, but a native-window launch has not yet been verified on
-the owner's desktop. Run:
+The owner confirms the native GUI opens on Fedora and live guitar monitoring
+works with the M-Audio M-Track Solo, physical Input 2. PipeWire launch settings
+256/48000 and 512/48000 both sounded acceptable; 256 is the current preference.
+Those statements do not verify actual format, device latency, 10-minute stability,
+startup silence, detailed mute/gain checks or disconnect/reconnect. The M2 editor
+layout and live rack listening remain pending on the owner's desktop.
 
-```bash
-./build/linux-release/GuitarRack_artefacts/Release/GuitarRack --smoke-test
-./build/linux-release/GuitarRack_artefacts/Release/GuitarRack
-```
-
-Verify the window opens/closes, labels/controls fit, keyboard/numeric controls
-work, and startup remains stopped. A restricted session has no `/dev/snd` and
-cannot access the owner's PipeWire socket, so no real input was recorded or
-monitored. The README contains the M-Track Solo guitar checklist. M1 hardware
-acceptance requires at least 10 minutes of stable monitoring, correct Input 2
-in both ears, gain/mute/stop listening checks and actual disconnect/reconnect.
+The restricted agent session still has no `/dev/snd` or access to the owner's
+PipeWire service. Native GUI smoke testing is unavailable here (no usable desktop
+surface or Xvfb); the earlier native launch report is owner evidence for M0/M1,
+not visual verification of the new rack UI. Use the README's launch and live-rack
+checklist and record only checks actually performed.
 
 Record the physical result here when tested:
 
 | Field | Result |
 |---|---|
-| Device / backend | Pending |
-| Requested / actual sample rate | Pending |
-| Requested / actual callback buffer | Pending |
+| Device / backend | Owner reports M-Track Solo physical Input 2, PipeWire launch; actual backend/device display not supplied |
+| Requested / actual sample rate | Launch settings: 48000; actual rate not supplied |
+| Requested / actual callback buffer | Launch settings: 256 and 512 acceptable; prefer 256. Actual callback buffer not supplied |
 | Driver/device-reported input + output latency | Pending; estimate only |
-| Added DSP latency | 0 samples for the M1 monitoring engine |
+| Added DSP latency | 0 samples for monitoring + Gain rack |
 | Measured round trip / method | Pending; do not infer from buffer size |
 | 10-minute monitoring, noise, clipping, xruns/dropouts | Pending |
 | Real disconnect/reconnect and startup silence | Pending |
 
-No host, Windows, ASIO, real-time performance or subjective guitar-tone results
-are claimed. Later milestones are not implemented.
+No host, Windows, ASIO or measured real-time performance results are claimed.
+The basic acceptable-monitoring report is the owner's listening evidence. M3
+and later milestones are not implemented.
+
+
+## M2 implementation checks
+
+Toolchain and pinned JUCE are unchanged from the environment above. Built the
+complete standalone and affected test targets with:
+
+```bash
+cmake --preset linux-debug
+cmake --build --preset linux-debug
+ctest --preset linux-debug --output-on-failure
+cmake --preset linux-release
+cmake --build --preset linux-release
+ctest --preset linux-release --output-on-failure
+```
+
+After the final source change, debug and release each pass **3/3** tests:
+monitoring/routing, serial rack lifecycle, and device adapter lifecycle. Full
+core/adapter ASan/UBSan diagnostics pass **3/3** with leak detection disabled.
+Release `ldd` reports no missing linked libraries; `git diff --check` passes.
+
+`serial_rack_lifecycle` adds physical/state checks for independent Gain amplitudes
+and neutral behavior, monotonic 20 ms level ramps, per-instance/rack bypass
+continuity, structural-remove continuity, UUID/slot/control preservation,
+noncommuting multiply/offset processors (0.45 vs 0.70 for opposite orders), stale
+blocked preparation, slot reservation during construction, preparation exceptions,
+rollback during an accepted fade, saturated single-pointer handoff coalescing,
+1,000 concurrent control/structural edits, bounded graph accounting/reclamation,
+fixed 16-slot capacity, sample-rate re-prepare, 1/127/512-sample chunks and zero/
+8193-sample device blocks. Test-only processors are never registered in the app.
+
+Processor constructor/destructor counters match after shutdown, no destructor
+runs inside the audited audio calls, and quiescent ownership converges to one
+graph (`built == reclaimed + graphs`, peak <=4). This is lifetime accounting,
+not a LeakSanitizer result. C++ heap auditing covers all rack audio operations,
+activation, rejection, crossfade and retirement, plus actual standalone callback
+and JUCE processBlock integration. All are heap-free in the tests. Callback
+source review finds bounded sample/slot loops, atomic/raw-pointer transfers and
+preallocated buffers; no locks, waits, condition-variable notifications, files,
+logging, serialization, construction or DSP destruction. Underlying driver/server
+scheduling remains outside these software checks.
+
+Finite protection and exact bypass endpoints are tested even with a deliberately
+invalid-output test processor. The production catalog contains Gain only, with
+zero latency/tail. Preparation rejects nonzero latency/tails until compensation
+is implemented in the relevant later milestone. Presets/host automation are not
+published or claimed tested.
+
+Diagnostic commands (separate from performance tests):
+
+```bash
+cmake --preset core-sanitize
+cmake --build --preset core-sanitize
+ASAN_OPTIONS=detect_leaks=0 ctest --preset core-sanitize --output-on-failure
+cmake --build build/adapter-sanitize \
+  --target guitarrack_tests guitarrack_rack_tests guitarrack_adapter_tests -j 2
+ASAN_OPTIONS=detect_leaks=0 ctest --test-dir build/adapter-sanitize --output-on-failure
+```
+
+The adapter diagnostic build was configured with the same Debug/ASan/UBSan
+command documented in the M0/M1 record above. LeakSanitizer remains disabled due
+to the restricted environment; no leak scan or performance measurement is claimed.
+A separate ThreadSanitizer configure attempt failed at compiler linking because
+`/usr/lib64/libtsan.so.2.0.0` is missing. No ThreadSanitizer test ran. The exact
+Fedora install command is `sudo dnf install libtsan`; installation was not
+performed or requested from the owner during this task. After installation:
+
+```bash
+cmake -S . -B build/core-thread-sanitize -G Ninja \
+  -DCMAKE_BUILD_TYPE=Debug -DGUITARRACK_BUILD_STANDALONE=OFF \
+  -DCMAKE_CXX_FLAGS='-fsanitize=thread -fno-omit-frame-pointer' \
+  -DCMAKE_EXE_LINKER_FLAGS=-fsanitize=thread
+cmake --build build/core-thread-sanitize --target guitarrack_rack_tests -j 2
+ctest --test-dir build/core-thread-sanitize -R serial_rack_lifecycle --output-on-failure
+```
+
+No package, global audio policy, repository commit, remote or publication changes
+were made. Physical M2 acceptance, the 10-minute monitoring soak, actual device
+format/latency, disconnect/reconnect and measured round trip remain pending.

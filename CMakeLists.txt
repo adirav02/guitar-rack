@@ -7,7 +7,10 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 option(GUITARRACK_BUILD_STANDALONE "Build the JUCE standalone application" ON)
 option(GUITARRACK_SANITIZERS "Enable ASan/UBSan diagnostic checks" OFF)
 
-add_library(guitarrack_core STATIC src/core/MonitorEngine.cpp)
+find_package(Threads REQUIRED)
+add_library(guitarrack_core STATIC src/core/MonitorEngine.cpp src/core/Effects.cpp
+    src/core/RackEngine.cpp src/dsp/Gain.cpp)
+target_link_libraries(guitarrack_core PUBLIC Threads::Threads)
 target_include_directories(guitarrack_core PUBLIC src)
 target_compile_options(guitarrack_core PRIVATE -Wall -Wextra -Wpedantic)
 if(GUITARRACK_SANITIZERS AND CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
@@ -17,11 +20,15 @@ endif()
 
 include(CTest)
 if(BUILD_TESTING)
-    find_package(Threads REQUIRED)
     add_executable(guitarrack_tests tests/MonitorTests.cpp tests/HeapAudit.cpp)
     target_link_libraries(guitarrack_tests PRIVATE guitarrack_core Threads::Threads)
     target_compile_options(guitarrack_tests PRIVATE -Wall -Wextra -Wpedantic)
     add_test(NAME monitoring_and_routing COMMAND guitarrack_tests)
+    add_executable(guitarrack_rack_tests tests/RackTests.cpp tests/HeapAudit.cpp)
+    target_link_libraries(guitarrack_rack_tests PRIVATE guitarrack_core)
+    target_compile_options(guitarrack_rack_tests PRIVATE -Wall -Wextra -Wpedantic)
+    add_test(NAME serial_rack_lifecycle COMMAND guitarrack_rack_tests)
+    set_tests_properties(serial_rack_lifecycle PROPERTIES TIMEOUT 30)
 endif()
 
 if(GUITARRACK_BUILD_STANDALONE)
@@ -56,7 +63,7 @@ if(GUITARRACK_BUILD_STANDALONE)
         src/standalone/Main.cpp
         src/standalone/AudioSession.cpp
         src/plugin/MonitorProcessor.cpp
-        src/ui/MainComponent.cpp)
+        src/ui/MainComponent.cpp src/ui/RackEditor.cpp)
     target_compile_definitions(GuitarRack PRIVATE
         JUCE_WEB_BROWSER=0 JUCE_USE_CURL=0 JUCE_JACK=1
         JUCE_ALSA=1 JUCE_PLUGINHOST_LADSPA=0

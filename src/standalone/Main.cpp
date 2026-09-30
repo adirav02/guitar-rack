@@ -22,7 +22,7 @@ private:
         Window() : DocumentWindow("GuitarRack", juce::Colour(0xff202b3a), allButtons) {
             setUsingNativeTitleBar(true);
             setContentOwned(new MainComponent(), true);
-            setResizable(true, false); setResizeLimits(850, 750, 1600, 1200);
+            setResizable(true, false); setResizeLimits(850, 950, 1600, 1400);
             centreWithSize(getWidth(), getHeight()); setVisible(true);
         }
         void closeButtonPressed() override { juce::JUCEApplication::getInstance()->systemRequestedQuit(); }
