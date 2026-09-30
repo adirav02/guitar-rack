@@ -1,0 +1,6 @@
+/build/
+/captures/
+/CMakeUserPresets.json
+*.wav
+*.core
+__pycache__/
