@@ -35,10 +35,12 @@ public:
             const auto& i = *definition.find(id);
             auto processor = registry.find(i.effectType, i.effectVersion)->factory(bank, i.slot);
             if (!processor || !processor->prepare(rate, rackChunkSize)) throw std::runtime_error("Effect preparation failed.");
-            // M2 has zero-latency/zero-tail effects. Reject incompatible processors
-            // until transition/dry latency compensation is implemented.
-            if (processor->latencySamples() != 0 || processor->tailSeconds() != 0)
-                throw std::runtime_error("M2 requires zero-latency, zero-tail processors.");
+            // M3 permits bounded temporal tails, but all dry/transition paths still
+            // require zero latency. History may fade out on structural replacement.
+            const double tail = processor->tailSeconds();
+            if (processor->latencySamples() != 0 || !std::isfinite(tail) || tail < 0 || tail > 120)
+                throw std::runtime_error("Rack requires zero latency and a finite tail of at most 120 seconds.");
+            tailBound += tail;
             nodes.push_back({i, std::move(processor), {}});
         }
     }
@@ -70,6 +72,7 @@ public:
     ParameterBank& bank;
     const RackDefinition definition;
     const std::uint64_t generation;
+    double tailBound = 0; // Sum of serial stage bounds, built only by worker.
 private:
     unsigned mask = 0;
     int rampSamples = 960;
@@ -182,6 +185,7 @@ void RackEngine::activatePending() noexcept {
     if (!next) return;
     if (next->generation != requested.load()) { retire(next); return; }
     next->activate(active); fading = active; active = next; fadePosition = 0;
+    reportedTail.store(std::max(active->tailBound, fading ? fading->tailBound : 0), std::memory_order_relaxed);
     activated.store(active->generation, std::memory_order_release);
     if (!fading) acknowledged.store(active->generation, std::memory_order_release);
 }
@@ -205,7 +209,7 @@ void RackEngine::process(float* l, float* r, int count) noexcept {
         if (rackRemaining > 0) { rackMix += rackStep; if (--rackRemaining == 0) rackMix = rackTarget; }
         l[i] = blend(dryL[i], l[i], rackMix); r[i] = blend(dryR[i], r[i], rackMix);
     }
-    if (fading && fadePosition >= fadeLength) { retire(fading); fading = nullptr; acknowledged.store(active->generation, std::memory_order_release); }
+    if (fading && fadePosition >= fadeLength) { retire(fading); fading = nullptr; reportedTail.store(active->tailBound, std::memory_order_relaxed); acknowledged.store(active->generation, std::memory_order_release); }
 }
 void RackEngine::updateCommitted() {
     const auto ack = acknowledged.load(std::memory_order_acquire);
@@ -223,6 +227,7 @@ void RackEngine::stoppedMaintenance() {
     }
     activatePending();
     if (fading) { retire(fading); fading = nullptr; }
+    reportedTail.store(active ? active->tailBound : 0, std::memory_order_relaxed);
     if (active) acknowledged.store(active->generation);
 }
 void RackEngine::workerLoop() {

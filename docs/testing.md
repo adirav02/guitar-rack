@@ -77,9 +77,11 @@ These are diagnostic results, not callback-load/latency benchmarks.
 The owner confirms the native GUI opens on Fedora and live guitar monitoring
 works with the M-Audio M-Track Solo, physical Input 2. PipeWire launch settings
 256/48000 and 512/48000 both sounded acceptable; 256 is the current preference.
-Those statements do not verify actual format, device latency, 10-minute stability,
-startup silence, detailed mute/gain checks or disconnect/reconnect. The M2 editor
-layout and live rack listening remain pending on the owner's desktop.
+The owner subsequently reports testing the M2 rack with a real guitar: Gain
+controls work well, and the application appeared correct during that test. This
+is user-reported listening evidence. These statements do not verify duration,
+actual format, device latency, startup silence, detailed edit/bypass/Stop-Start
+acceptance or disconnect/reconnect. M3 UI and effect listening remain pending.
 
 The restricted agent session still has no `/dev/snd` or access to the owner's
 PipeWire service. Native GUI smoke testing is unavailable here (no usable desktop
@@ -95,14 +97,15 @@ Record the physical result here when tested:
 | Requested / actual sample rate | Launch settings: 48000; actual rate not supplied |
 | Requested / actual callback buffer | Launch settings: 256 and 512 acceptable; prefer 256. Actual callback buffer not supplied |
 | Driver/device-reported input + output latency | Pending; estimate only |
-| Added DSP latency | 0 samples for monitoring + Gain rack |
+| Added DSP latency | 0 samples for monitoring + M3 effects; Delay echo time is intentional musical delay |
 | Measured round trip / method | Pending; do not infer from buffer size |
 | 10-minute monitoring, noise, clipping, xruns/dropouts | Pending |
 | Real disconnect/reconnect and startup silence | Pending |
 
 No host, Windows, ASIO or measured real-time performance results are claimed.
-The basic acceptable-monitoring report is the owner's listening evidence. M3
-and later milestones are not implemented.
+The acceptable-monitoring and working-Gain reports are the owner's listening
+evidence; they do not validate subjective M3 tone. M3 software evidence follows
+below; M4 and later milestones remain unimplemented.
 
 
 ## M2 implementation checks
@@ -182,3 +185,116 @@ ctest --test-dir build/core-thread-sanitize -R serial_rack_lifecycle --output-on
 No package, global audio policy, repository commit, remote or publication changes
 were made. Physical M2 acceptance, the 10-minute monitoring soak, actual device
 format/latency, disconnect/reconnect and measured round trip remain pending.
+
+
+## M3 final verification
+
+Fedora 44, GCC 16.2.1, CMake 4.3.0, Ninja 1.13.2 and the pinned JUCE 8.0.15
+checkout were rechecked. Initial git status was clean; existing M2 sources were
+preserved. No sub-agents, system packages, global audio policies, commits,
+remotes, publication or later milestone features were introduced.
+
+Final standalone/configuration checks:
+
+```bash
+cmake --preset linux-debug
+cmake --preset linux-release
+cmake --build --preset linux-debug
+ctest --preset linux-debug --output-on-failure
+cmake --build --preset linux-release
+ctest --preset linux-release --output-on-failure
+```
+
+Both standalone binaries build; debug **4/4** and release **4/4** tests pass:
+`monitoring_and_routing`, `serial_rack_lifecycle`, `built_in_effect_signals`,
+`device_adapter_lifecycle`. Release `ldd` has no missing linked libraries;
+`git diff --check` passes. The dedicated signal suite is built by CMake and can
+be run alone with `ctest --preset linux-debug -R built_in_effect_signals`.
+
+Signal evidence:
+
+- Overdrive zero Mix returns exact dry; minimum Drive / Level 0 dB is approximately
+  unity for small signals before Tone. Saturation follows the wet Level, a -6 dB
+  level change gives the measured amplitude ratio, 50% Mix matches dry/wet
+  blending, extreme finite wet input stays finite/bounded and symmetric, and
+  simultaneous parameter ramps stay continuous on a settled constant signal.
+- EQ neutral returns exact dry. Sine-energy measurements at 8/44.1/48/96/192 kHz
+  verify shelf midpoints and peak centers at -12/+6/+12 dB settings (midpoint
+  half-gain and peak full-gain, tolerance 0.025 dB). Bass/treble asymptotes and
+  opposite-band transparency are checked; the high shelf caps at 3.6 kHz at
+  8 kHz. Rapid alternating extreme gain changes remain finite/bounded with
+  tested low-frequency sample continuity at all those rates.
+- Delay impulses verify first-echo time, fractional centroid (including 463.05
+  samples for 10.5 ms at 44.1 kHz), separate stereo histories, and 0.5/0.25 repeat decay with
+  50% Feedback. Maximum 85% Feedback converges under constant input, zero Mix
+  returns dry, reset silences histories, and rapid 1/2000 ms requests crossfade
+  without abrupt steps on the test sine. Maximum delay storage/ring wrap,
+  reprepare to 48 kHz and new impulse timing are checked. One-sample vs 512-sample
+  block partitions match, zero blocks do nothing, and activation is heap-free.
+- Each M3 type has independent UUIDs/slots/controls across two instances and
+  move/removal. Real Overdrive→EQ and EQ→Overdrive produce different measured
+  energy; identity and controls stay fixed. Stateful live racks verify continuous
+  bypass and structural reorder on a settled signal, fading the leading edge
+  written to replacement history, continued hidden Delay processing, shortened tails
+  on removal, Stop/rate restart history clearing, failed preparation retaining
+  actual active Delay output, and stale completion retaining newer controls.
+- The concurrent 1,000-edit stress test now adds mixed Overdrive/EQ/Delay graphs.
+  Existing saturation, stale-generation, failure-during-fade, rollback, slot
+  reservation and retirement accounting regressions remain covered. At quiescence
+  one graph remains, peak ownership <=4, and built = reclaimed + owned.
+- The actual standalone callback and shared JUCE `processBlock` activate/process
+  all M3 effects with variable/oversized chunks and mono-to-stereo routing.
+  Shared tail queries report conservative temporal bounds separately from zero
+  processing latency. These adapter tests use a fake device, not physical audio.
+
+Allocation/lifetime evidence: thread-local C++ new/delete auditing (including
+aligned forms) reports **zero callback allocations and deallocations** in signal
+processing, activation, live crossfades, rejection, bypass, oversized chunks,
+retirement, actual standalone callback and shared processBlock. Source review
+confirms Delay vector allocation/clearing only in off-audio prepare/reset and
+ring destruction only after off-audio reclamation. Activation copies fixed-size
+controls only. EQ/Overdrive histories and coefficients are fixed-size. All
+processing loops are bounded by chunks, channels and the 16-slot capacity; no
+processing locks, waits, serialization, logging, files, GUI or construction were
+introduced. This does not audit external driver/server scheduling, C allocation
+in external libraries, or certify worst-case callback deadlines.
+
+Final full ASan/UBSan diagnostics:
+
+```bash
+cmake -S . -B build/adapter-sanitize -G Ninja \
+  -DCMAKE_BUILD_TYPE=Debug -DGUITARRACK_SANITIZERS=ON
+cmake --build build/adapter-sanitize \
+  --target guitarrack_tests guitarrack_rack_tests guitarrack_effect_tests guitarrack_adapter_tests -j 2
+ASAN_OPTIONS=detect_leaks=0 ctest --test-dir build/adapter-sanitize --output-on-failure
+```
+
+**4/4 pass** after the final core/adapter changes. Core-only diagnostics also
+passed 3/3 earlier in this milestone. Leak detection remains disabled/unverified
+in this restricted session; lifetime accounting is not a LeakSanitizer result.
+Sanitizer timing and signal-test runtime are not audio performance benchmarks.
+
+Retried the existing ThreadSanitizer configure command from the M2 section.
+Compiler linking fails because `/usr/lib64/libtsan.so.2.0.0` is missing. **No TSan
+executable/test ran.** Exact Fedora package command (not executed):
+`sudo dnf install libtsan`. Once installed, build all core tests with the earlier
+TSan configuration and run `ctest --test-dir build/core-thread-sanitize
+--output-on-failure`. TSan remains pending.
+
+Native UI attempt: `timeout 8 ./build/linux-release/GuitarRack_artefacts/Release/GuitarRack
+--smoke-test` (absolute binary path used from `/tmp`) exited **139** before any
+window was verified. An independent `XOpenDisplay` probe returned null; there is
+no Xvfb executable or accessible `/dev/snd`. A GDB attempt was also blocked by
+`ptrace: Operation not permitted`, so no stack/root cause was established. This
+is a failed smoke check in the restricted session, not successful UI evidence;
+visual layout, scrolling/numeric entry/keyboard and M3 launch on the owner's
+desktop remain pending. Existing owner native-window evidence applies to the
+previous build. No physical stream was tested or claimed.
+
+Owner evidence retained verbatim in scope: real-guitar M2 rack test, Gain controls
+work well, app appeared correct during their test. Pending checks remain:
+individual/combined M3 live and dry-recording listening, tone/aliasing appraisal,
+listening-based gain staging, detailed M2 live edits/bypass/Stop-Start, 10-minute
+soak, actual backend/device format, physical disconnect/reconnect, device latency
+and measured round trip, LeakSanitizer, TSan, performance headroom, host/VST3 and
+Windows. See [README.md](../README.md) for the exact launch and M3 guitar checklist.

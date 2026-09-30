@@ -94,6 +94,16 @@ int main() {
     check(committed && heapFree, "actual device callback swaps live racks without heap operations");
     check(std::abs(out1.back() - expected * std::pow(10.f, -3.f / 20)) < 0.00001f && out1 == out2,
           "multiple Gain instances preserve selected mono routing and output level");
+    for (const auto* type : {"overdrive", "eq", "delay"}) check(session->processor.rack.add(type), "M3 effect added to device adapter");
+    committed = false;
+    const auto effectDeadline = std::chrono::steady_clock::now() + std::chrono::seconds(4);
+    do {
+        heapAudit::begin(); AudioSessionTestAccess::process(*session, in, 1, out, 2, 1200);
+        heapFree &= heapAudit::finish();
+        const auto state = session->processor.rack.snapshot(); committed = state.requestedGeneration == state.committedGeneration;
+        if (!committed) std::this_thread::sleep_for(std::chrono::milliseconds(1));
+    } while (!committed && std::chrono::steady_clock::now() < effectDeadline);
+    check(committed && heapFree && out1 == out2 && std::isfinite(out1.back()), "actual standalone M3 callback preserves stereo routing and heap-free transitions");
     session->requestStop(); AudioSessionTestAccess::process(*session, in, 1, out, 2, 1200); session->poll();
     check(out1[1199] == 0 && !session->isBusy() && !device.opened, "Stop fades then closes stream");
     check(session->start(1, {0, 1}, 48000, 128).isEmpty(), "restart requires Start");
@@ -127,6 +137,18 @@ int main() {
     heapAudit::begin(); processor.processBlock(buffer, midi);
     check(heapAudit::finish(), "shared JUCE processBlock performs no heap operations");
     check(buffer.getSample(0, 55) == 0.3f && buffer.getSample(1, 55) == 0.3f, "JUCE processor shares neutral mono processing and impulse timing");
+    check(processor.getTailLengthSeconds() == 0, "empty shared processor reports no tail");
+    for (const auto* type : {"overdrive", "eq", "delay"}) check(processor.rack.add(type), "M3 effect added to shared processor");
+    committed = false; heapFree = true;
+    const auto processorDeadline = std::chrono::steady_clock::now() + std::chrono::seconds(4);
+    do {
+        buffer.clear(); buffer.setSample(0, 55, 0.3f);
+        heapAudit::begin(); processor.processBlock(buffer, midi); heapFree &= heapAudit::finish();
+        const auto state = processor.rack.snapshot(); committed = state.requestedGeneration == state.committedGeneration;
+        if (!committed) std::this_thread::sleep_for(std::chrono::milliseconds(1));
+    } while (!committed && std::chrono::steady_clock::now() < processorDeadline);
+    check(committed && heapFree && std::isfinite(buffer.getSample(0, 55)) && buffer.getSample(0, 55) == buffer.getSample(1, 55), "shared processBlock M3 activation and processing heap-free with mono-to-stereo bus");
+    check(processor.getTailLengthSeconds() >= 116 && processor.getLatencySamples() == 0, "shared processor reports conservative stateful tail separately from zero processing latency");
     if (failures) return 1;
     std::cout << "PASS: no-auto-start, channel validation, real callback routing, Stop, failure silence, explicit reconnect, rate/buffer changes, processor buses\n";
 }

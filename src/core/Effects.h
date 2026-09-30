@@ -19,7 +19,7 @@ struct ParameterDescriptor {
     std::string key, label, units;
     unsigned bankIndex = 0;
     float minimum = 0, maximum = 1, defaultValue = 0;
-    float smoothingMs = 20; // v1 linear amplitude ramp for Gain; versioned contract
+    float smoothingMs = 20; // versioned effect-specific smoothing contract
     float normalize(float value) const noexcept;
     float denormalize(float normalized) const noexcept;
 };
@@ -51,6 +51,7 @@ class EffectProcessor {
 public:
     virtual ~EffectProcessor() = default; // Only the builder/reclaimer destroys processors.
     virtual bool prepare(double sampleRate, int maximumChunk) = 0;
+    // Off audio, after callbacks drain; may clear preallocated temporal storage.
     virtual void reset() noexcept = 0;
     // RT hook: resolve current controls, optionally inherit matching-instance state.
     virtual void activate(const EffectProcessor* previous) noexcept = 0;

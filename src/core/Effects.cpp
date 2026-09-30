@@ -1,5 +1,8 @@
 #include "Effects.h"
 #include "dsp/Gain.h"
+#include "dsp/Overdrive.h"
+#include "dsp/EQ.h"
+#include "dsp/Delay.h"
 #include <cmath>
 #include <cstdio>
 #include <random>
@@ -77,7 +80,7 @@ const EffectDescriptor* EffectRegistry::find(const std::string& type, unsigned v
     for (const auto& entry : entries) if (entry.typeId == type && entry.version == version) return &entry;
     return nullptr;
 }
-EffectRegistry EffectRegistry::builtIns() { EffectRegistry result; result.add(gainDescriptor()); return result; }
+EffectRegistry EffectRegistry::builtIns() { EffectRegistry result; result.add(gainDescriptor()); result.add(overdriveDescriptor()); result.add(eqDescriptor()); result.add(delayDescriptor()); return result; }
 const RackInstance* RackDefinition::find(const InstanceId& id) const noexcept {
     for (const auto& instance : instances) if (instance.id == id) return &instance;
     return nullptr;

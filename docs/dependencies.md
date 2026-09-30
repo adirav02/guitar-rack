@@ -37,3 +37,11 @@ sudo dnf install libasan libubsan
 
 Dependencies are installed by the owner. GuitarRack changes no system audio
 server, scheduling policy, desktop routing or driver installation.
+
+
+M3 adds no library or creative assets. The EQ equations are attributed to the
+[RBJ/W3C Audio EQ Cookbook](https://www.w3.org/TR/audio-eq-cookbook/);
+`src/dsp/EQ.cpp` is an original implementation of the published mathematical
+formulae. No source listing, recording, cabinet IR or factory preset is copied.
+Overdrive/Delay are project-owned mathematical DSP implementations. Existing
+JUCE licensing/provenance remains unchanged.

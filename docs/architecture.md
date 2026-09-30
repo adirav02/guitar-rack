@@ -1,4 +1,4 @@
-# M0–M2 architecture
+# M0–M3 architecture
 
 ## Current processing and ownership
 
@@ -126,7 +126,7 @@ fixed bank. Host parameter publication and preset serialization are deferred:
   slot automation; M2/M6 must document that behavior before publishing plugins.
 
 No host parameter IDs have been published. Preset/state serialization, remembered
-device preferences, additional effects and VST3 remain in their planned milestones.
+device preferences, additional catalog expansion and VST3 remain in their planned milestones. M3 mappings are in [effects.md](effects.md).
 
 
 ## M2 live serial rack: ownership and bounded transfer
@@ -149,7 +149,7 @@ shared_ptr/refcount destruction in processing.
 
 At the start of a nonempty device/host block, audio takes at most one pointer,
 checks its generation against the latest request, and either activates it or
-retires it as stale. Activation inherits matching Gain/bypass smoother state and
+retires it as stale. Activation inherits matching small DSP/bypass smoother state and
 reads current controls from the bank. It performs bounded comparisons (at most
 16 × 16 identities) and no construction. An accepted fade completes even if
 newer requests arrive; another transition cannot start until the next block
@@ -175,7 +175,7 @@ to finish, then retains its accepted destination if a fade is in flight. Entries
 after the failed request was published cannot accept older pending results.
 New control requests cancel stale failures as well as stale successes. Failed
 validation never changes requested/committed structure. Factory exceptions,
-null factories, false prepare results and unsupported latency/tails discard the
+null factories, false prepare results, positive latency and invalid/unbounded tails discard the
 replacement and keep the accepted sound. Parameter updates are never restored
 from graph snapshots. UI sliders use validated physical units; future host writes
 use the same normalized bank without calling structural/UI setters.
@@ -199,9 +199,39 @@ stop monitoring and require explicit Start; they never race a live re-prepare.
 Gain v1 uses Control 00, normalized as `(dB + 60) / 84`, physical range -60 to
 +24 dB, default 0 dB, a 20 ms linear amplitude ramp, and zero latency/tail. Other
 controls are unused no-ops. Individual and rack bypass crossfade to dry over
-20 ms while processors keep running. M2 rejects processors with nonzero latency
-or tails until later milestones implement the required path compensation and
-tail policy. No seamless temporal tails across structural replacement are
-promised. All public chunk processing callers provide 1–512 samples; the shared
+20 ms while processors keep running. M3 extends the earlier M2 zero-tail
+restriction to finite nonnegative tails <=120 seconds per stage; nonzero processing
+latency remains rejected until dry/transition compensation is implemented. No
+seamless temporal tails across structural replacement are promised. All public chunk processing callers provide 1–512 samples; the shared
 engine bounds chunks from arbitrary device blocks and sanitizes nonfinite DSP
 output before protection, exposing an atomic diagnostic flag.
+
+
+## M3 temporal ownership and transitions
+
+The M2 producer/consumer, stale-generation, saturation, rollback, reservation and
+reclamation contract above remains intact. Each new effect is prepared by the
+worker; the callback only reads the existing atomic bank and updates DSP-owned
+small controls/state. Overdrive/EQ copy fixed-size history and smoother state
+only for matching identities at the same sample rate. Delay copies only small
+control/read-head state at activation, leaving its freshly prepared ring empty.
+It never clears, copies, reallocates or destroys ring storage in the callback.
+A fixed 20 ms ingress ramp softens the leading edge written to each fresh ring.
+Structural crossfades can truncate previous echoes and produce a dip in wet-only
+chains, including when another card is edited; continuous temporal history is
+explicitly outside this M3 implementation. Failed/stale builds leave active
+history intact. Off-audio Stop/reprepare clears all temporal storage after
+callbacks drain; fresh preparation uses the actual sample rate.
+
+Delay time changes use two read heads and a 100 ms fade. A running fade completes
+before consuming the newest time target, coalescing rapid changes with fixed
+work. Feedback and Mix remain independent 20 ms ramps. Individual/rack bypass
+and Mute hide wet output while processors continue advancing. The Card Reset
+button changes controls only. Detailed algorithms, tail bounds, units/mappings,
+resource bounds and listening limitations are in [effects.md](effects.md).
+
+Prepared graph tails sum serial stage bounds. Block-boundary activation publishes
+the maximum active/fading bound to a lock-free double atomic; fade completion
+publishes the accepted graph's bound. The shared adapter reads that atomic for
+its tail query, without looking at editable state or acquiring a mutex. This is
+a conservative declaration, not host validation or measured decay/latency.

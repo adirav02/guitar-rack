@@ -3,7 +3,7 @@
 #include "core/MonitorEngine.h"
 
 namespace guitarrack {
-// Shared JUCE adapter. M2 uses the fixed bank internally; host publication is M6.
+// Shared JUCE adapter. M3 uses the fixed bank internally; host publication is M6.
 class MonitorProcessor final : public juce::AudioProcessor {
 public:
     MonitorProcessor();
@@ -12,7 +12,7 @@ public:
     void releaseResources() override { engine.reset(); }
     void processBlock(juce::AudioBuffer<float>&, juce::MidiBuffer&) override;
     bool isBusesLayoutSupported(const BusesLayout&) const override;
-    double getTailLengthSeconds() const override { return 0; }
+    double getTailLengthSeconds() const override { return rack.tailSeconds(); }
     bool acceptsMidi() const override { return false; }
     bool producesMidi() const override { return false; }
     bool isMidiEffect() const override { return false; }

@@ -207,7 +207,7 @@ void saturationAndStress() {
     });
     for (int i = 0; i < 1000; ++i) {
         auto d = rack.snapshot().requested;
-        if (i % 5 == 0 && d.instances.size() < 10) rack.add();
+        if (i % 5 == 0 && d.instances.size() < 10) rack.add(std::array<const char*, 3>{"overdrive", "eq", "delay"}[static_cast<unsigned>(i/5)%3]);
         else if (i % 5 == 1 && d.instances.size() > 2) rack.remove(d.order.back());
         else if (d.order.size() > 1) rack.move(d.order[0], 1);
         rack.setParameter(first, 0, static_cast<float>(i % 13 - 6));
@@ -225,6 +225,107 @@ void saturationAndStress() {
     check(waitFor([&] { auto s = rack.snapshot(); return s.committedGeneration == s.requestedGeneration; }), "stopped editing commits off-thread");
     check(!rack.add() && rack.snapshot().committed.instances.size() == 16, "17th instance rejected without replacing graph");
 }
+void independentCatalogInstances() {
+    RackEngine rack; Audio audio; rack.prepare(48000);
+    for (const auto* type : {"overdrive", "eq", "delay"}) {
+        check(rack.add(type) && rack.add(type), "independent pairs of every M3 effect accepted");
+        const auto d = rack.snapshot().requested;
+        const auto a = d.order[d.order.size()-2], b = d.order.back();
+        const auto slotA = d.find(a)->slot, slotB = d.find(b)->slot;
+        const auto* descriptor = rack.registry().find(type, 1);
+        const auto& control = descriptor->parameters.front();
+        check(rack.setParameter(a, control.bankIndex, control.maximum), "first instance changes independently");
+        check(slotA != slotB && a != b && rack.bank.value(slotA, control.bankIndex) == 1
+              && near(rack.bank.value(slotB, control.bankIndex), control.normalize(control.defaultValue)), "second instance retains own default and identity");
+        check(audio.commit(rack), "independent M3 pair commits");
+        rack.move(b, -1); check(audio.commit(rack), "independent M3 pair reorders");
+        check(*rack.snapshot().committed.find(a) == *d.find(a) && *rack.snapshot().committed.find(b) == *d.find(b), "M3 reorder preserves UUID/type/slot mappings");
+        rack.remove(a); check(audio.commit(rack), "independent M3 instance removed");
+        check(rack.snapshot().committed.find(b) && near(rack.bank.value(slotB, control.bankIndex), control.normalize(control.defaultValue)), "M3 removal leaves surviving controls intact");
+    }
+    check(audio.noHeap, "independent catalog instance transitions heap-free");
+}
+
+void statefulLifecycle() {
+    Probe failure, slow; auto registry = EffectRegistry::builtIns();
+    registerProbe(registry, failure, "fail", 1, 0, true);
+    registerProbe(registry, slow, "slow", 1, 0);
+    RackEngine rack(std::move(registry)); Audio audio; rack.prepare(48000);
+    for (const auto* type : {"overdrive", "eq", "delay", "delay"}) check(rack.add(type), "stateful registry addition");
+    auto d = rack.snapshot().requested;
+    const auto od = d.order[0], eq = d.order[1], delay = d.order[2], other = d.order[3];
+    rack.setParameter(od, 3, 0); rack.setParameter(delay, 0, 10); rack.setParameter(delay, 1, 50);
+    rack.setParameter(delay, 2, 50); rack.setParameter(other, 0, 25); rack.setParameter(other, 2, 0);
+    check(audio.commit(rack), "stateful graph commits");
+    for (int i = 0; i < 30; ++i) audio.block(rack);
+    check(near(audio.l.back(), 0.15f), "Delay feedback and mix produce expected steady level in live rack");
+    const auto slot = d.find(delay)->slot, otherSlot = d.find(other)->slot;
+    check(near(rack.bank.value(otherSlot, 0), 24.f/1999.f) && near(rack.bank.value(slot, 0), 9.f/1999.f), "multiple Delay instances retain independent times and slots");
+    float previous = audio.l.back(); bool continuous = true;
+    rack.setBypassed(delay, true);
+    for (int b = 0; b < 4; ++b) { audio.block(rack); for (float v : audio.l) { continuous &= std::abs(v-previous) < 0.0003f; previous = v; } }
+    check(continuous && near(previous, 0.1f), "stateful individual bypass crossfades continuously to dry");
+    rack.setBypassed(delay, false);
+    for (int b = 0; b < 4; ++b) audio.block(rack);
+    check(near(audio.l.back(), 0.15f), "hidden Delay keeps processing while bypassed");
+    previous = audio.l.back(); continuous = true;
+    rack.move(eq, -1);
+    check(waitFor([&] {
+        audio.block(rack);
+        for (float v : audio.l) { continuous &= std::abs(v-previous) < 0.001f; previous = v; }
+        const auto st = rack.snapshot(); return st.committedGeneration == st.requestedGeneration;
+    }), "stateful structural reorder commits while signal is held");
+    for (int b = 0; b < 30; ++b) {
+        audio.block(rack);
+        for (float v : audio.l) { continuous &= std::abs(v-previous) < 0.001f; previous = v; }
+    }
+    check(continuous && near(previous, 0.15f), "empty replacement Delay history fades in without hard leading echo edges");
+    // A rejected build must retain actual Delay history, not reset the active graph.
+    const auto good = rack.snapshot().committed;
+    auto failed = good; auto failId = newInstanceId(); failed.instances.push_back({failId, 4, "fail", 1}); failed.order.push_back(failId);
+    rack.submit(failed);
+    check(waitFor([&] { audio.block(rack); return !rack.snapshot().error.empty(); }), "stateful failure surfaced");
+    check(rack.snapshot().committed == good && near(audio.l.back(), 0.15f), "failure rollback preserves stateful active audio");
+    slow.blocked = true;
+    auto blocked = good; auto slowId = newInstanceId(); blocked.instances.push_back({slowId, 4, "slow", 1}); blocked.order.push_back(slowId);
+    rack.submit(blocked); check(waitFor([&] { return slow.entered.load(); }), "stateful stale build blocked off audio");
+    auto newest = good; std::swap(newest.order[2], newest.order[3]);
+    rack.submit(newest); rack.setParameter(delay, 1, 25); slow.release = true;
+    check(audio.commit(rack), "stateful latest request commits after stale result");
+    for (int b = 0; b < 30; ++b) audio.block(rack);
+    check(near(audio.l.back(), 0.1f * (0.5f + 0.5f/0.75f)) && near(rack.bank.value(slot, 1), 25.f/85.f), "stale Delay graph does not overwrite current parameters");
+    check(rack.snapshot().committed.instances == good.instances && rack.snapshot().stale > 0, "stateful reorder preserves identities and rejects stale build");
+    // Capture a nonzero tail, then remove the Delay while silence enters the rack.
+    previous = audio.l.back(); continuous = true; rack.remove(delay);
+    check(waitFor([&] {
+        audio.block(rack, 127, 0);
+        for (int i = 0; i < 127; ++i) { continuous &= std::isfinite(audio.l[i]) && std::abs(audio.l[i]) < 0.2f; }
+        auto state = rack.snapshot(); return state.requestedGeneration == state.committedGeneration;
+    }), "stateful removal commits during tail");
+    check(continuous && audio.l[126] == 0 && rack.snapshot().committed.find(other), "removed tail fades away and independent Delay survives");
+    check(rack.prepare(96000), "stateful rack reprepare at new sample rate");
+    audio.block(rack, 512, 0); check(audio.l.back() == 0, "Stop/sample-rate restart clears temporal history");
+    check(audio.noHeap, "stateful live activation, bypass, stale rejection and removal do not allocate/deallocate");
+
+    // The real production processors must change sound when their order changes.
+    rack.setParameter(od, 0, 36); rack.setParameter(od, 2, -6); rack.setParameter(od, 3, 100);
+    rack.setParameter(eq, 1, 12);
+    auto energy = [&] {
+        double result = 0;
+        for (int b = 0; b < 40; ++b) {
+            for (int i = 0; i < 512; ++i) audio.l[i] = audio.r[i] = 0.1f*std::sin(static_cast<float>((b*512+i)*2*3.141592653589793*1000/96000));
+            heapAudit::begin(); rack.beginBlock(); rack.process(audio.l.data(), audio.r.data(), 512); audio.noHeap &= heapAudit::finish();
+            if (b > 20) for (float v : audio.l) result += v*v;
+        }
+        return result;
+    };
+    rack.move(od, -1); check(audio.commit(rack), "Overdrive first for order signal test");
+    const double before = energy(); rack.move(eq, -1); check(audio.commit(rack), "real Overdrive/EQ order change commits");
+    const double after = energy();
+    check(before > after*4 && audio.noHeap, "production Overdrive then EQ differs from EQ then Overdrive");
+    check(waitFor([&] { auto st = rack.snapshot(); return st.graphs == 1 && st.built == st.reclaimed+1; }), "stateful rings are reclaimed off audio within four-graph bound");
+}
+
 void engineIntegration() {
     RackEngine rack; MonitorControls controls; controls.setOutputDb(0); MonitorEngine engine(controls, &rack);
     check(engine.prepare(48000), "shared engine prepares rack"); rack.add();
@@ -254,7 +355,7 @@ void engineIntegration() {
 }
 }
 int main() {
-    identityAndGain(); orderRollbackAndStale(); saturationAndStress(); engineIntegration();
+    identityAndGain(); orderRollbackAndStale(); saturationAndStress(); independentCatalogInstances(); statefulLifecycle(); engineIntegration();
     if (failures) { std::cerr << failures << " failed checks\n"; return 1; }
     std::cout << "PASS: independent Gains, identities, noncommuting order, smooth bypass, stale/failed requests, saturation, rapid edits, reclamation, RT audit, engine protection\n";
 }

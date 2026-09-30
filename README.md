@@ -1,11 +1,14 @@
 # GuitarRack
 
 Fedora Linux standalone guitar monitoring and a modular serial rack using C++20,
-CMake and JUCE 8.0.15. M2 software is implemented with Gain instances and live
-rack editing. The owner verified the native window and basic M-Track Solo
-Input 2 monitoring at PipeWire 256/48000 and 512/48000; 256 is the preference.
-Live-rack listening and the monitoring soak remain pending. Additional effects,
-presets and VST3 are later milestones in [PLAN.md](PLAN.md).
+CMake and JUCE 8.0.15. M3 software adds Overdrive, EQ and Delay to the working
+Gain rack. The owner reports testing the M2 rack with a real guitar: Gain
+controls work well and the application appeared correct during that test.
+Earlier M-Track Solo Input 2 monitoring at PipeWire 256/48000 and 512/48000 was
+acceptable; 256 is the preference. This is user-reported listening evidence.
+M3 effect listening, the monitoring soak and physical failure/latency checks
+remain pending. Presets, further effects, VST3 and Windows stay in their planned
+milestones in [PLAN.md](PLAN.md).
 
 The application provides a native resizable window, device/backend/channel
 selection, supported sample rate/buffer choices, explicit Start/Stop/Mute,
@@ -106,7 +109,7 @@ are not inferred from software checks or that listening report.
 ## Live Gain rack checklist
 
 1. Start with interface volume low, input trim 0 dB and output -12 dB. Add two
-   **Gain** instances; each starts at neutral **0 dB**. Adjust one to -6 dB and
+   **Gain** instances using the picker and **Add Effect**; each starts at neutral **0 dB**. Adjust one to -6 dB and
    the other to +3 dB. Both have numeric entry and double-click reset.
 2. While holding a note, change levels and toggle each **Bypass**. Toggle
    **Bypass rack**, then **Mute** separately. Listen for clicks or interruptions;
@@ -120,11 +123,48 @@ are not inferred from software checks or that listening report.
 5. Check Stop/Start with the rack present, both output channels and meter/clipping
    warnings. Record the actual backend/rate/buffer and any clicks/dropouts.
 
-The rack supports **16 instances** and 20 ms gain/bypass/structural transitions.
+The picker contains **Gain, Overdrive, EQ and Delay**. Every card has labeled
+controls, units, numeric entry, double-click default reset and a Reset button.
+The rack scrolls vertically to reach every card. It supports **16 instances**
+and 20 ms gain/bypass/structural transitions.
 Rack bypass retains input/output gain and protection. Gain adds no DSP latency.
 There is no preset save or cross-launch rack restore until M4. The 10-minute
-soak, real disconnect/reconnect, measured round trip and new rack listening
-checks remain pending; report only checks you actually performed.
+soak, real disconnect/reconnect, measured round trip and detailed edit/bypass/
+Stop-Start acceptance remain pending; report only checks you actually performed.
+
+## M3 guitar checklist
+
+Use physical Input 2 / Instrument / USB monitoring, low interface volume, trim
+0 dB and output -12 dB. Confirm the actual device format after **Start**.
+
+1. **Overdrive alone:** select Overdrive, Add Effect. Try Drive 6→18 dB, Tone
+   1500→5000 Hz, Level -6 dB and Mix 25→100%. Compare Mix 0% and Bypass with dry.
+   Match loudness using Level; listen for harshness and clicks. Reset restores
+   conservative controls. This is a native-rate soft clipper with aliasing,
+   without amp/cabinet simulation.
+2. **EQ alone:** remove/bypass Overdrive. Add EQ; 0/0/0 dB should sound neutral.
+   Try Low +3 dB, Mid -3/+3 dB, High -3 dB separately, then Reset. Listen for
+   predictable bass/mid/treble changes and smooth adjustment.
+3. **Delay alone:** add Delay with other effects bypassed. Try Time 350 ms,
+   Feedback 25%, Mix 25%; pluck once and hear decaying repeats. Change Time to
+   150/600 ms while sustaining. Bypass hides echoes while state keeps running;
+   unbypass can reveal echoes. Stop/Start clears history. Avoid high feedback
+   until levels are comfortable.
+4. **Combined:** order **Overdrive → EQ → Delay** using Up/Down. Start at Drive
+   12 dB, Tone 3000 Hz, Level -6 dB, Mix 50%; EQ Low 0, Mid +2, High -3 dB;
+   Delay 350 ms, Feedback 25%, Mix 20%. Reduce output if protection lights.
+   Compare EQ before/after Overdrive: tone should change while each card keeps
+   its own UUID/slot and settings.
+5. Add another instance, scroll to it, set a different value, then remove it;
+   the first instance must retain its controls. Try card/rack bypass and Mute,
+   rapid edits, numeric entry and double-click/Reset. Structural edits fade out
+   old delay history and can shorten tails or cause wet-only dips. Record any
+   clicks, interruptions, unexpected level jumps or harshness.
+
+[DSP details and fixed mappings](docs/effects.md) explain the algorithms,
+reset/bypass/tail policy and prototype limitations. Automated signal tests do
+not establish subjective tone quality. Dry-guitar-recording and live M3
+listening, the 10-minute soak, real reconnect and measured latency are pending.
 
 ## Independent and diagnostic checks
 

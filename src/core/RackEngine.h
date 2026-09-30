@@ -34,6 +34,7 @@ public:
     bool setParameter(const InstanceId&, unsigned bankIndex, float physicalValue);
     bool setBypassed(const InstanceId&, bool);
     const EffectRegistry& registry() const noexcept { return effects; }
+    double tailSeconds() const noexcept { return reportedTail.load(std::memory_order_relaxed); }
     ParameterBank bank;
     // Callback entry once per device block, followed by <=512-sample chunks.
     void beginBlock() noexcept;
@@ -55,6 +56,7 @@ private:
     std::uint64_t attempted = 0;
     std::atomic<std::uint64_t> requested{0}, acknowledged{0}, activated{0};
     std::atomic<PreparedRack*> pending{nullptr};
+    std::atomic<double> reportedTail{0}; // Conservative accepted/fading graph bound.
     std::atomic<unsigned> activationReaders{0}; // rollback waits off audio for activation acknowledgment
     // Sole audio producer / sole worker consumer. Four graphs total means the
     // four-entry retirement queue cannot overflow, even if worker stalls.
@@ -69,5 +71,6 @@ private:
     std::array<float, rackChunkSize> dryL{}, dryR{}, oldL{}, oldR{};
 };
 static_assert(std::atomic<std::uint64_t>::is_always_lock_free);
+static_assert(std::atomic<double>::is_always_lock_free);
 static_assert(std::atomic<PreparedRack*>::is_always_lock_free);
 }

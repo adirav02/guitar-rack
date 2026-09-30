@@ -12,7 +12,8 @@ public:
 private:
     class Card;
     RackEngine& rack;
-    juce::TextButton addGain{"Add Gain"}, bypass{"Bypass rack"};
+    juce::ComboBox picker;
+    juce::TextButton addEffect{"Add Effect"}, bypass{"Bypass rack"};
     juce::Label status;
     juce::Viewport viewport;
     juce::Component content;

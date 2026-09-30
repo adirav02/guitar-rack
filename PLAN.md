@@ -1,6 +1,6 @@
 # GuitarRack — Product and implementation plan
 
-Created: 2026-09-30. Working name: GuitarRack. Status: M0/M1 and M2 software implemented. Owner verified the native window and basic physical Input 2 monitoring; M2 live-rack listening, the 10-minute soak and other unreported physical checks remain pending. Only Gain is implemented; M3 and later milestones are untouched.
+Created: 2026-09-30. Working name: GuitarRack. Status: M0/M1, M2 and M3 software implemented. Owner reports real-guitar monitoring and working M2 Gain controls; detailed rack edit acceptance, M3 listening, the 10-minute soak and other unreported physical checks remain pending. Catalog: Gain, Overdrive, EQ and Delay. M4 and later milestones remain untouched.
 
 This is an implementation contract for Codex. Complete one milestone at a time. Treat unchecked items as unfinished. Update this document with evidence as implementation progresses.
 
@@ -270,7 +270,7 @@ Illustrative shape only; M4 must create and validate the actual schema and fixtu
       "effect_type": "overdrive",
       "effect_version": 1,
       "bypassed": false,
-      "parameters": {"drive": 0.25, "tone": 0.5, "level_db": -3.0, "mix": 1.0}
+      "parameters": {"drive_db": 12.0, "tone_hz": 3000.0, "level_db": -6.0, "mix_percent": 50.0}
     }
   ],
   "assets": []
@@ -318,17 +318,18 @@ Exit: at least 10 minutes of stable clean monitoring on the actual device; corre
 - [x] Gain effect; multiple instances; add/remove/reorder/bypass UI.
 - [x] Off-thread graph preparation, bounded handoff/reclamation, and safe crossfades.
 - [x] Lifecycle tests for rapid edits, stale requests, queue saturation, and failure rollback.
-- [ ] Owner live-guitar acceptance of M2 edits, bypass/level continuity and rack Stop/Start.
+- [x] User-reported M2 real-guitar listening: Gain controls work well; application appeared correct during the owner's test.
+- [ ] Detailed owner acceptance of live edits, bypass continuity and rack Stop/Start (not separately reported).
 
-Exit: rack editing works during playback without callback locks/allocations or incorrect state; repeated edits do not leak graphs or alter unrelated instances. Automated processing, lifetime accounting and callback heap audits pass; physical M2 listening remains pending. LeakSanitizer and ThreadSanitizer are not verified.
+Exit: rack editing works during playback without callback locks/allocations or incorrect state; repeated edits do not leak graphs or alter unrelated instances. Automated processing, lifetime accounting and callback heap audits pass. The owner reports a real-guitar rack test with working Gain controls; detailed edit/bypass/Stop-Start acceptance remains pending. LeakSanitizer and ThreadSanitizer are not verified.
 
 ### M3 — First useful effects
 
-- [ ] Overdrive, EQ, and Delay with smooth controls and descriptors.
-- [ ] Focused DSP tests and documented prototype limitations.
+- [x] Overdrive, EQ, and Delay with smooth controls and versioned descriptors; picker, numeric entry, resets and scrolling cards.
+- [x] Focused DSP, stateful graph/callback tests and documented prototype limitations.
 - [ ] Listening tests and gain staging on dry guitar recordings and live guitar.
 
-Exit: distinct usable sounds, predictable controls, bounded delay feedback, and repeatable processing at common supported sample rates/block lengths.
+Exit: distinct usable sounds, predictable controls, bounded delay feedback, and repeatable processing at common supported sample rates/block lengths. Software checks pass; subjective guitar tone, listening-based gain staging and full M3 acceptance remain pending. Algorithms, permanent mappings and tail policy are in `docs/effects.md`.
 
 ### M4 — Presets and state
 
@@ -436,6 +437,17 @@ M2 progress on 2026-09-30:
 - ASan/UBSan diagnostics pass 2/2 core and 3/3 full core/adapter checks with `ASAN_OPTIONS=detect_leaks=0`. LeakSanitizer remains unverified. ThreadSanitizer configuration failed because `/usr/lib64/libtsan.so.2.0.0` is missing; no TSan test ran. Fedora command: `sudo dnf install libtsan` (not executed). Release `ldd` has no missing libraries; whitespace checks pass.
 - Scope decision: M2 supports zero-latency, zero-tail processors only (Gain); the builder rejects others until later milestones provide dry/transition latency compensation and tail policy. No new effects, preset serialization, host parameter publication, VST3, Windows, packages, commits or global audio changes were added.
 - Pending: owner M2 listening checklist, full M1 soak/physical failure tests, actual format/device latency report and measured round trip. The new rack GUI has not been visually verified on the owner's desktop. Sanitizer checks are diagnostics, not deadline/dropout or performance measurements.
+
+M3 progress on 2026-09-30:
+
+- Recorded the owner's exact scope of evidence: they tested the M2 rack with a real guitar, Gain controls work well, and the application appeared correct during their test. This is user-reported listening evidence, without a supplied duration or detailed edit checklist. No unreported soak, reconnect, measured latency, sanitizer, M3 tone or physical acceptance check was completed by that report.
+- Added registry-backed Overdrive v1 (native-rate tanh soft clip, one-pole Tone, wet Level, Mix), EQ v1 (150 Hz low shelf / 1 kHz peak / 4 kHz high shelf), and Delay v1 (1…2000 ms interpolated stereo rings, Feedback <=85%, Mix). Controls use conservative defaults, immutable bank mappings and 20 ms smoothing; Delay Time crossfades two bounded read heads for 100 ms, coalescing rapid changes. Gain's published-internal mapping remains unchanged.
+- Replaced Add Gain with the Gain/Overdrive/EQ/Delay picker and Add Effect. Cards render all descriptor controls with labels/units/numeric entry, double-click reset and control Reset; variable-height cards remain accessible in the existing vertical viewport. No DSP was added to the UI. Device routing, meters, output protection and Start/Stop/Mute use the unchanged shared audio path.
+- Preserved UUID/slot/order separation, sole parameter authority, four-graph ownership, mailbox, retirement acknowledgment and off-audio destruction. Builder now allows finite tails <=120 seconds per zero-latency effect (required for M3 Delay); positive processing latency remains rejected until compensation exists. The shared adapter reports summed conservative tails through a lock-free atomic, including the fading graph. Delay ring allocation/clearing/destruction stays off audio. Structural edits start replacement Delays with empty rings, ramp input written into fresh history over 20 ms to soften leading echo edges, and fade old history for 20 ms; long tails can shorten or wet-only output can dip. Stop/restart clears histories; bypass/Mute keep processing while hiding wet output. This bounded M3 tail policy extends M2's earlier zero-tail restriction without changing ownership.
+- Debug/release standalone builds and CTest pass 4/4 each. Full core/adapter ASan/UBSan diagnostics pass 4/4 with `ASAN_OPTIONS=detect_leaks=0`; LeakSanitizer remains unverified. TSan was retried: configure/link failed because `/usr/lib64/libtsan.so.2.0.0` is missing. Exact Fedora command: `sudo dnf install libtsan` (not executed). Commands/evidence are recorded in `docs/testing.md`.
+- Signal tests cover Overdrive dry/mix/level/symmetry/finite bounds, EQ measured boost/cut responses and rapid stable coefficient changes, Delay fractional impulse timing/decay/max feedback/time transitions/ring wrap/reset/sample-rate changes, zero/variable blocks and bounded activation. Rack/adapter checks cover all M3 independent identities/controls, real noncommuting Overdrive/EQ order, stateful bypass/removal, failed/stale builds retaining accepted audio/latest controls, 1,000 rapid concurrent mixed-catalog edits, reclamation and zero audited callback C++ heap operations. These checks are diagnostics and signal evidence, not subjective tone, physical driver timing or performance benchmarks.
+- No physical audio access: `/dev/snd` is unavailable. Native smoke launch could not produce a window in this restricted session: release exited 139, and XOpenDisplay returned null. No usable desktop or Xvfb is available; M3 UI visual/keyboard acceptance remains pending. Release linked-library and final whitespace results are in `docs/testing.md`.
+- Pending: individual/combined dry-recording and live M3 listening, aliasing/tone appraisal, listening-based gain staging, detailed M2 live-edit checks, 10-minute soak, real disconnect/reconnect, actual backend/device format and device latency, measured round trip, TSan and LeakSanitizer. Presets, additional effects, amp/cabinet, VST3 and Windows remain later milestones. No packages, global audio changes, commits, remotes or publication were made.
 
 Maintain a concise log here as work finishes: date, milestone, files/behavior changed, checks run, results, and remaining hardware/host checks.
 
