@@ -1,0 +1,121 @@
+{
+  "schema_version": 2,
+  "preset_id": "81fd365f-1f03-59c2-8403-556bcdc288de",
+  "name": "Green Day / Outlaws - Singing Lead",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -11.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "751aa3af-362f-5bd2-ba36-47d77b3880bc",
+    "c4579da3-14cb-55d5-8c1d-f642495dfb31",
+    "03d8a91c-ded1-5fca-903c-9fce25222c4c",
+    "a6950ad8-f0f3-5f01-a82f-3008ff16773c",
+    "12169a68-784e-55d8-93e7-5298f396de65"
+  ],
+  "instances": [
+    {
+      "instance_id": "751aa3af-362f-5bd2-ba36-47d77b3880bc",
+      "slot_id": 0,
+      "effect_type": "amp_brit_hotrod",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 20.0,
+        "bass_db": -2.0,
+        "mid_db": 3.0,
+        "treble_db": 0.0,
+        "master_percent": 36.0,
+        "presence_percent": 33.0,
+        "output_db": -9.0,
+        "sag_percent": 22.0,
+        "low_cut_hz": 100.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "c4579da3-14cb-55d5-8c1d-f642495dfb31",
+      "slot_id": 1,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+    },
+    {
+      "instance_id": "03d8a91c-ded1-5fca-903c-9fce25222c4c",
+      "slot_id": 2,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 240.0,
+        "band1_db": -1.5,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 1300.0,
+        "band2_db": 2.0,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 3900.0,
+        "band3_db": -1.5,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 95.0,
+        "low_pass_hz": 6500.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "a6950ad8-f0f3-5f01-a82f-3008ff16773c",
+      "slot_id": 3,
+      "effect_type": "echo",
+      "effect_version": 2,
+      "bypassed": false,
+      "parameters": {
+        "time_ms": 280.0,
+        "bpm": 120.0,
+        "subdivision": 0.0,
+        "clock": 0.0,
+        "mode": 1.0,
+        "feedback_percent": 20.0,
+        "color_hz": 3500.0,
+        "wow_percent": 0.0,
+        "stereo": 0.0,
+        "heads": 0.0,
+        "mix_percent": 8.0,
+        "output_db": 0.0,
+        "wet_low_cut_hz": 220.0,
+        "wow_rate_hz": 0.699999988079071,
+        "wow_width_percent": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "12169a68-784e-55d8-93e7-5298f396de65",
+      "slot_id": 4,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 1.0,
+        "decay_seconds": 1.350000023841858,
+        "pre_delay_ms": 18.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 8.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "sha256": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "relative_path": "ir/e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac.wav",
+      "format": "wav"
+    }
+  ]
+}

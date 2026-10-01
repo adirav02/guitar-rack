@@ -49,7 +49,7 @@ architecture was authorized or performed.
 - [ ] D: New physical routing/round trip/soak and artist-character/listening
   acceptance. Only unchanged Subterranean Pulse is explicitly owner approved.
 
-Current inventory: 42 types, 44 exact descriptors, 93 complete sounds, 196 pedal
+Current inventory: 42 types, 44 exact descriptors, 135 complete sounds, 256 pedal
 voices. Optional chainsaw, reverse/granular delay and stutter remain deferred.
 VST3/Windows/cloud/mobile/plugin hosting/general routing remain outside this
 request. Checkboxes refer to software behavior with recorded evidence, not the
@@ -103,6 +103,29 @@ bundles, verified through the application's importer. Native release build was
 attempted here but is blocked by missing X11/audio/font development headers;
 the owner must rebuild the executable on the configured Fedora desktop.
 See [handoff verification](docs/testing.md#application-chain-handoff-2026-10-01).
+
+### Green Day / Soundgarden / Nirvana / SOAD expansion — 2026-10-01
+
+Work continues on `feat/radiohead-muse-song-tones`. The remote branch matched
+`8800341a6b78b0aa7063cb0a8811b59bf7b77016`; checkpoint
+`15870b779998c5d056fec53212b2669e332dacd8` preserves its exact tree before edits.
+The available workspace contained no Git checkout or additional uncommitted state;
+this task reconstructed the remote snapshot without claiming access to other
+computer worktrees. The owner authorizes additive changes and branch commits.
+
+- [x] Research all 14 requested recordings, artist/engineer accounts, physical
+  tunings and era/role distinctions; label transcription-only and unresolved facts.
+- [x] Add 42 independent racks and 60 reusable voices with stable explicit UUIDs;
+  no new DSP or pitch processing. Preserve all earlier 93 sounds / 196 voices,
+  catalog records, portable files and legacy fixture identities.
+- [x] Regenerate embedded library/catalog and 42 portable presets; verify loading,
+  round trips, callback behavior, additive edit retention and synthetic headroom.
+- [ ] Actual reference listening, pickup calibration, native display/audio and
+  target-hardware CPU/round-trip acceptance; Toxicity Dual Amp especially.
+
+See [research](docs/alternative-tone-research.md),
+[recipes and use](docs/alternative-templates.md) and
+[verification](docs/testing.md#alternative-template-expansion-2026-10-01).
 
 ### GitHub review handoff — 2026-10-01
 

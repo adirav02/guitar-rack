@@ -1,0 +1,95 @@
+{
+  "schema_version": 2,
+  "preset_id": "ad0b5571-ac46-50e0-99bc-da6bb724ac6c",
+  "name": "Soundgarden / Slaves and Bulldozers - Thayil Role Bite",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -12.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "e5e0e512-504b-5520-ab5b-61e3dab8d549",
+    "104ffb8e-9e38-532e-8260-3c0d0f06ab26",
+    "5614d868-e153-5eba-a453-e8d92f818616",
+    "1fab0892-e536-5aa9-aff8-ab3439fb59e5"
+  ],
+  "instances": [
+    {
+      "instance_id": "e5e0e512-504b-5520-ab5b-61e3dab8d549",
+      "slot_id": 0,
+      "effect_type": "amp_brit_hotrod",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 19.0,
+        "bass_db": -1.0,
+        "mid_db": 3.0,
+        "treble_db": -1.0,
+        "master_percent": 36.0,
+        "presence_percent": 28.0,
+        "output_db": -9.0,
+        "sag_percent": 20.0,
+        "low_cut_hz": 65.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "104ffb8e-9e38-532e-8260-3c0d0f06ab26",
+      "slot_id": 1,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+    },
+    {
+      "instance_id": "5614d868-e153-5eba-a453-e8d92f818616",
+      "slot_id": 2,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 220.0,
+        "band1_db": -1.0,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 1600.0,
+        "band2_db": 2.0,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 3600.0,
+        "band3_db": -2.0,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 65.0,
+        "low_pass_hz": 6000.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "1fab0892-e536-5aa9-aff8-ab3439fb59e5",
+      "slot_id": 3,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.550000011920929,
+        "pre_delay_ms": 12.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 5.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "sha256": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "relative_path": "ir/e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac.wav",
+      "format": "wav"
+    }
+  ]
+}

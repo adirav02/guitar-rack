@@ -1,0 +1,110 @@
+{
+  "schema_version": 2,
+  "preset_id": "3c473b18-ef9a-566b-84dc-e8d3a2da3dae",
+  "name": "Nirvana / Lithium - Dark Sustain Fuzz",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -13.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "77ebd893-388d-56f1-998e-3d0f6d295f4a",
+    "0fd2642d-0fa3-5f86-82ba-53dc668971e9",
+    "4e6ef038-e933-55c9-ac50-01e35f01e4f4",
+    "fac61a06-e7ec-5f84-8dd2-e2b60e0ca392",
+    "bddb18c5-66fb-5e27-b49d-bd2924a49058"
+  ],
+  "instances": [
+    {
+      "instance_id": "77ebd893-388d-56f1-998e-3d0f6d295f4a",
+      "slot_id": 0,
+      "effect_type": "sustain_fuzz",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "drive_db": 24.0,
+        "compression_percent": 48.0,
+        "tone_hz": 2800.0,
+        "output_db": -13.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "0fd2642d-0fa3-5f86-82ba-53dc668971e9",
+      "slot_id": 1,
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 4.0,
+        "bass_db": 0.0,
+        "mid_db": 1.0,
+        "treble_db": -1.0,
+        "master_percent": 28.0,
+        "presence_percent": 40.0,
+        "output_db": -6.0,
+        "sag_percent": 20.0,
+        "bright_percent": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "4e6ef038-e933-55c9-ac50-01e35f01e4f4",
+      "slot_id": 2,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+    },
+    {
+      "instance_id": "fac61a06-e7ec-5f84-8dd2-e2b60e0ca392",
+      "slot_id": 3,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 150.0,
+        "band1_db": 1.0,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 850.0,
+        "band2_db": -0.5,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 2900.0,
+        "band3_db": -1.0,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 50.0,
+        "low_pass_hz": 5000.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "bddb18c5-66fb-5e27-b49d-bd2924a49058",
+      "slot_id": 4,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.550000011920929,
+        "pre_delay_ms": 12.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 5.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b",
+      "sha256": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b",
+      "relative_path": "ir/0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b.wav",
+      "format": "wav"
+    }
+  ]
+}

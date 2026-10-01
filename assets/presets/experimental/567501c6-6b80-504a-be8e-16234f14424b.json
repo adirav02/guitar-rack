@@ -1,0 +1,94 @@
+{
+  "schema_version": 2,
+  "preset_id": "567501c6-6b80-504a-be8e-16234f14424b",
+  "name": "Green Day / Revolution Radio - Punch Rhythm",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -10.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "e92b8e15-692e-5804-b65f-fe14e5772aa8",
+    "0d8c33cf-a605-5901-b2e8-9ce5b72a7a30",
+    "aca385d1-ca6d-5b38-996d-9283f5915684",
+    "a4daecd2-2aae-5732-9744-ee91ed68e8d5"
+  ],
+  "instances": [
+    {
+      "instance_id": "e92b8e15-692e-5804-b65f-fe14e5772aa8",
+      "slot_id": 0,
+      "effect_type": "amp_brit_crunch",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 21.0,
+        "bass_db": -2.0,
+        "mid_db": 2.0,
+        "treble_db": 1.0,
+        "master_percent": 38.0,
+        "presence_percent": 42.0,
+        "output_db": -9.0,
+        "sag_percent": 18.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "0d8c33cf-a605-5901-b2e8-9ce5b72a7a30",
+      "slot_id": 1,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+    },
+    {
+      "instance_id": "aca385d1-ca6d-5b38-996d-9283f5915684",
+      "slot_id": 2,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 240.0,
+        "band1_db": -1.5,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 1500.0,
+        "band2_db": 1.5,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 3900.0,
+        "band3_db": -1.0,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 85.0,
+        "low_pass_hz": 6700.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "a4daecd2-2aae-5732-9744-ee91ed68e8d5",
+      "slot_id": 3,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.550000011920929,
+        "pre_delay_ms": 12.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 5.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "sha256": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "relative_path": "ir/e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac.wav",
+      "format": "wav"
+    }
+  ]
+}

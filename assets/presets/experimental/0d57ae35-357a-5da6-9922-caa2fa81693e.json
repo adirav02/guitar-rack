@@ -1,0 +1,138 @@
+{
+  "schema_version": 2,
+  "preset_id": "0d57ae35-357a-5da6-9922-caa2fa81693e",
+  "name": "Green Day / Outlaws - Bowed Layer Adaptation",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": 6.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "8fab89e2-8b44-587e-b1fe-70e3cd756d3b",
+    "ad6961f3-094c-53c4-8bde-b8d87e0be7c1",
+    "40ec0567-465f-5e28-aff8-f28ad4a41db6",
+    "f3046856-a298-5525-a05a-34230dc36761",
+    "3978e70d-1e2f-5570-a609-553b90d44dd4",
+    "c0d70254-3131-5b95-8044-a1fd2b2028da"
+  ],
+  "instances": [
+    {
+      "instance_id": "8fab89e2-8b44-587e-b1fe-70e3cd756d3b",
+      "slot_id": 0,
+      "effect_type": "compressor",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "threshold_db": -25.0,
+        "ratio": 2.0,
+        "attack_ms": 24.0,
+        "release_ms": 170.0,
+        "makeup_db": 2.0,
+        "mix_percent": 60.000003814697266
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "ad6961f3-094c-53c4-8bde-b8d87e0be7c1",
+      "slot_id": 1,
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 0.0,
+        "bass_db": -1.0,
+        "mid_db": 0.0,
+        "treble_db": 1.0,
+        "master_percent": 18.0,
+        "presence_percent": 40.0,
+        "output_db": -3.0,
+        "sag_percent": 20.0,
+        "bright_percent": 10.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "40ec0567-465f-5e28-aff8-f28ad4a41db6",
+      "slot_id": 2,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+    },
+    {
+      "instance_id": "f3046856-a298-5525-a05a-34230dc36761",
+      "slot_id": 3,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 250.0,
+        "band1_db": -1.5,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 1800.0,
+        "band2_db": 1.0,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 4200.0,
+        "band3_db": -1.0,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 85.0,
+        "low_pass_hz": 7800.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "3978e70d-1e2f-5570-a609-553b90d44dd4",
+      "slot_id": 4,
+      "effect_type": "echo",
+      "effect_version": 2,
+      "bypassed": false,
+      "parameters": {
+        "time_ms": 410.0,
+        "bpm": 120.0,
+        "subdivision": 0.0,
+        "clock": 0.0,
+        "mode": 1.0,
+        "feedback_percent": 20.0,
+        "color_hz": 3500.0,
+        "wow_percent": 0.0,
+        "stereo": 0.0,
+        "heads": 0.0,
+        "mix_percent": 17.0,
+        "output_db": 0.0,
+        "wet_low_cut_hz": 220.0,
+        "wow_rate_hz": 0.699999988079071,
+        "wow_width_percent": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "c0d70254-3131-5b95-8044-a1fd2b2028da",
+      "slot_id": 5,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 2.0,
+        "decay_seconds": 3.200000286102295,
+        "pre_delay_ms": 28.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 22.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "sha256": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "relative_path": "ir/43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d.wav",
+      "format": "wav"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "preset_id": "6f0f2104-6ca4-5f48-9c02-b8408504febe",
+  "name": "Nirvana / The Man Who Sold the World MTV Unplugged - Acoustic Source",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -1.5,
+    "rack_bypass": false
+  },
+  "order": [
+    "0cd2c82d-f089-5f96-9525-581975867ea0",
+    "580e76c4-8516-51ec-99e3-a040cf5fc048"
+  ],
+  "instances": [
+    {
+      "instance_id": "0cd2c82d-f089-5f96-9525-581975867ea0",
+      "slot_id": 0,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 230.0,
+        "band1_db": -2.0,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 1300.0,
+        "band2_db": 0.0,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 4200.0,
+        "band3_db": -1.0,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 65.0,
+        "low_pass_hz": 11500.0,
+        "output_db": 0.0
+      }
+    },
+    {
+      "instance_id": "580e76c4-8516-51ec-99e3-a040cf5fc048",
+      "slot_id": 1,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.899999976158142,
+        "pre_delay_ms": 12.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 8.0,
+        "output_db": 0.0
+      }
+    }
+  ],
+  "assets": []
+}

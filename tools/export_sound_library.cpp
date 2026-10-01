@@ -19,17 +19,20 @@ int exportSongPack(const std::filesystem::path& directory, const EffectRegistry&
     std::filesystem::create_directories(directory);
     AssetStore assets(directory/"ir");
     std::ostringstream instructions;
-    instructions << "# Radiohead and Muse song chains\n\n"
+    instructions << "# Factory song chains\n\n"
         "These complete rack presets include their original synthetic cabinet assets.\n"
         "Use the application built from feat/radiohead-muse-song-tones or later;\n"
         "older builds may lack required effects/versions.\n\n"
         "The updated app already includes these as factory presets: open Choose\n"
         "Preset, set Source/Artist/Category to All, search Song templates or Muse\n"
-        "expansion, select a chain and press Load.\n\n"
+        "expansion or Alternative research, select a chain and press Load.\n\n"
         "To use a file: unzip this pack, press Import in GuitarRack, choose one\n"
         ".grbundle file and resolve any unsaved edits. Use Save As to keep your\n"
         "adjusted chain. The ZIP itself is not an application preset.\n\n"
-        "All chains fit Legacy 128. Album-tone listening remains pending.\n\n";
+        "All chains fit Legacy 128. Tune the instrument physically; no automatic\n"
+        "pitch shifting is inserted. Acoustic Source sounds need an acoustic\n"
+        "input; Electric Adaptation sounds are labeled approximations.\n"
+        "Album-tone listening and hardware CPU acceptance remain pending.\n\n";
     unsigned count=0;
     for(const auto& tone:factoryPresets(registry)) {
         const auto* metadata=soundMetadata(tone.id);

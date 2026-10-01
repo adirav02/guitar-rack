@@ -1,0 +1,125 @@
+{
+  "schema_version": 2,
+  "preset_id": "da4e4f71-4835-527a-8d18-a5d252d8a14a",
+  "name": "Nirvana / Smells Like Teen Spirit - Melodic Lead",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -2.5,
+    "rack_bypass": false
+  },
+  "order": [
+    "70a48cb6-b593-5ee5-86c6-311da095453b",
+    "0d51b6a5-10b3-537c-b486-d272935b6db2",
+    "ed3482ff-cac6-5c0e-b8b9-d7d0edf0ed7f",
+    "5a0304bf-e790-594b-b36a-bec356ea014f",
+    "003ea606-7596-5956-ba86-4d00d7bafdef",
+    "317a5242-2624-52be-a7d9-036e6380027e"
+  ],
+  "instances": [
+    {
+      "instance_id": "70a48cb6-b593-5ee5-86c6-311da095453b",
+      "slot_id": 0,
+      "effect_type": "hard_distortion",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "drive_db": 30.0,
+        "low_cut_hz": 80.0,
+        "filter_hz": 3700.000244140625,
+        "output_db": -10.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "0d51b6a5-10b3-537c-b486-d272935b6db2",
+      "slot_id": 1,
+      "effect_type": "chorus",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "rate_hz": 0.800000011920929,
+        "depth_percent": 70.0,
+        "width_percent": 0.0,
+        "mix_percent": 42.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "ed3482ff-cac6-5c0e-b8b9-d7d0edf0ed7f",
+      "slot_id": 2,
+      "effect_type": "amp_mark",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 5.0,
+        "bass_db": -3.0,
+        "mid_db": 2.0,
+        "treble_db": 1.0,
+        "master_percent": 27.000001907348633,
+        "presence_percent": 30.000001907348633,
+        "output_db": -8.0,
+        "sag_percent": 16.0,
+        "lead_gain_db": 5.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "5a0304bf-e790-594b-b36a-bec356ea014f",
+      "slot_id": 3,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+    },
+    {
+      "instance_id": "003ea606-7596-5956-ba86-4d00d7bafdef",
+      "slot_id": 4,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 240.0,
+        "band1_db": -1.5,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 1300.0,
+        "band2_db": 2.0,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 3900.0,
+        "band3_db": -1.5,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 95.0,
+        "low_pass_hz": 6500.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "317a5242-2624-52be-a7d9-036e6380027e",
+      "slot_id": 5,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 1.0,
+        "decay_seconds": 1.350000023841858,
+        "pre_delay_ms": 18.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 8.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "sha256": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "relative_path": "ir/e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac.wav",
+      "format": "wav"
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "schema_version": 2,
+  "preset_id": "2d958f6c-b96c-5322-9970-4d1345a0faa4",
+  "name": "Soundgarden / Slaves and Bulldozers - Raw Lead",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -13.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "40e5e8d1-4400-53cb-a369-28b36821bd20",
+    "53265ad6-08bc-5e4a-9b94-c38d557bcf96",
+    "996d5f9b-1b2e-58ef-b2c4-371f276a3e2f",
+    "f7c9df7b-613b-53f1-8f21-91b6197b772f"
+  ],
+  "instances": [
+    {
+      "instance_id": "40e5e8d1-4400-53cb-a369-28b36821bd20",
+      "slot_id": 0,
+      "effect_type": "amp_brit_hotrod",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 23.0,
+        "bass_db": -1.0,
+        "mid_db": 3.0,
+        "treble_db": -1.0,
+        "master_percent": 40.0,
+        "presence_percent": 27.000001907348633,
+        "output_db": -9.0,
+        "sag_percent": 26.0,
+        "low_cut_hz": 70.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "53265ad6-08bc-5e4a-9b94-c38d557bcf96",
+      "slot_id": 1,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+    },
+    {
+      "instance_id": "996d5f9b-1b2e-58ef-b2c4-371f276a3e2f",
+      "slot_id": 2,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 220.0,
+        "band1_db": -1.0,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 1600.0,
+        "band2_db": 2.0,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 3600.0,
+        "band3_db": -2.0,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 65.0,
+        "low_pass_hz": 6000.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "f7c9df7b-613b-53f1-8f21-91b6197b772f",
+      "slot_id": 3,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 1.0,
+        "decay_seconds": 1.350000023841858,
+        "pre_delay_ms": 18.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 8.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "sha256": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "relative_path": "ir/e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac.wav",
+      "format": "wav"
+    }
+  ]
+}

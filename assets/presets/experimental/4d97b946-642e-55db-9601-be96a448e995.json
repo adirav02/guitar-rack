@@ -1,0 +1,95 @@
+{
+  "schema_version": 2,
+  "preset_id": "4d97b946-642e-55db-9601-be96a448e995",
+  "name": "Green Day / Wake Me Up When September Ends - Heavy Rhythm",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -11.5,
+    "rack_bypass": false
+  },
+  "order": [
+    "0f654ee3-ade6-5830-9cb7-09e2e35f305a",
+    "462532cf-161a-598b-8ac3-b840a368ed54",
+    "67100ebe-9afe-5778-99a0-f57da38355f7",
+    "8cf02c48-8680-5d87-8d9c-5ac7ef9a9b37"
+  ],
+  "instances": [
+    {
+      "instance_id": "0f654ee3-ade6-5830-9cb7-09e2e35f305a",
+      "slot_id": 0,
+      "effect_type": "amp_brit_hotrod",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 17.0,
+        "bass_db": -1.0,
+        "mid_db": 2.0,
+        "treble_db": 0.0,
+        "master_percent": 38.0,
+        "presence_percent": 30.000001907348633,
+        "output_db": -9.0,
+        "sag_percent": 20.0,
+        "low_cut_hz": 85.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "462532cf-161a-598b-8ac3-b840a368ed54",
+      "slot_id": 1,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+    },
+    {
+      "instance_id": "67100ebe-9afe-5778-99a0-f57da38355f7",
+      "slot_id": 2,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 200.0,
+        "band1_db": -0.5,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 1000.0,
+        "band2_db": 1.0,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 3500.0,
+        "band3_db": -2.0,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 80.0,
+        "low_pass_hz": 6000.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "8cf02c48-8680-5d87-8d9c-5ac7ef9a9b37",
+      "slot_id": 3,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.550000011920929,
+        "pre_delay_ms": 12.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 5.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "sha256": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "relative_path": "ir/e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac.wav",
+      "format": "wav"
+    }
+  ]
+}

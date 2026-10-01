@@ -1,0 +1,94 @@
+{
+  "schema_version": 2,
+  "preset_id": "07e8fd36-94f8-5ed0-b079-132634514abd",
+  "name": "System Of A Down / Toxicity - Defined Clean",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": 1.5,
+    "rack_bypass": false
+  },
+  "order": [
+    "a8414dc2-68bc-5c6e-8f1c-9d1d07bcceeb",
+    "042cdf1e-4981-572b-bcac-70ddc34b14df",
+    "e8845787-b5b0-59c4-9faa-b007b606bc13",
+    "f1814c4f-d6df-5058-98fa-8616ead5ed72"
+  ],
+  "instances": [
+    {
+      "instance_id": "a8414dc2-68bc-5c6e-8f1c-9d1d07bcceeb",
+      "slot_id": 0,
+      "effect_type": "amp_solid_clean",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 0.0,
+        "bass_db": -1.0,
+        "mid_db": 0.0,
+        "treble_db": 1.0,
+        "master_percent": 20.0,
+        "presence_percent": 30.000001907348633,
+        "output_db": -3.0,
+        "bright_percent": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "042cdf1e-4981-572b-bcac-70ddc34b14df",
+      "slot_id": 1,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+    },
+    {
+      "instance_id": "e8845787-b5b0-59c4-9faa-b007b606bc13",
+      "slot_id": 2,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 230.0,
+        "band1_db": -2.0,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 1600.0,
+        "band2_db": 1.0,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 4300.0,
+        "band3_db": -1.5,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 65.0,
+        "low_pass_hz": 8000.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "f1814c4f-d6df-5058-98fa-8616ead5ed72",
+      "slot_id": 3,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.550000011920929,
+        "pre_delay_ms": 12.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 5.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "sha256": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "relative_path": "ir/43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d.wav",
+      "format": "wav"
+    }
+  ]
+}

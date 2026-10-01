@@ -1,0 +1,110 @@
+{
+  "schema_version": 2,
+  "preset_id": "01076174-b21d-511b-8d2f-8c1c6ce25d5e",
+  "name": "Nirvana / In Bloom - Full Hard Rhythm",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -11.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "3ee215a6-8d16-5d6f-a019-3b8678216bdf",
+    "06699e57-6c54-56de-b205-915c518cec24",
+    "a36a8ba8-3895-5749-a31f-0f118aa7e741",
+    "3a2073ce-5900-571b-9ea1-60f9a3b5a511",
+    "f8343418-76cd-502b-8374-0e893cddd1ba"
+  ],
+  "instances": [
+    {
+      "instance_id": "3ee215a6-8d16-5d6f-a019-3b8678216bdf",
+      "slot_id": 0,
+      "effect_type": "hard_distortion",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "drive_db": 27.0,
+        "low_cut_hz": 65.0,
+        "filter_hz": 4100.0,
+        "output_db": -10.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "06699e57-6c54-56de-b205-915c518cec24",
+      "slot_id": 1,
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 4.0,
+        "bass_db": 0.0,
+        "mid_db": 1.0,
+        "treble_db": -1.0,
+        "master_percent": 28.0,
+        "presence_percent": 40.0,
+        "output_db": -6.0,
+        "sag_percent": 20.0,
+        "bright_percent": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "a36a8ba8-3895-5749-a31f-0f118aa7e741",
+      "slot_id": 2,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+    },
+    {
+      "instance_id": "3a2073ce-5900-571b-9ea1-60f9a3b5a511",
+      "slot_id": 3,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 230.0,
+        "band1_db": -1.5,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 2400.0,
+        "band2_db": 1.5,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 4300.0,
+        "band3_db": -2.0,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 70.0,
+        "low_pass_hz": 6400.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "f8343418-76cd-502b-8374-0e893cddd1ba",
+      "slot_id": 4,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.550000011920929,
+        "pre_delay_ms": 12.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 5.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b",
+      "sha256": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b",
+      "relative_path": "ir/0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b.wav",
+      "format": "wav"
+    }
+  ]
+}

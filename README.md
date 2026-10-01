@@ -3,8 +3,8 @@
 Fedora Linux standalone guitar monitoring and a native pedalboard using C++20,
 CMake and pinned JUCE 8.0.15. The tone upgrade adds eight original inspired amp
 families, six drives, gate/EQ, modulation, echo/reverb, spectral expression pitch,
-swell/hold, Dual Amp and five original synthetic cabinet responses. There are 93
-complete sounds and 196 reusable voicings. All 81 prior sounds, 174 prior
+swell/hold, Dual Amp and five original synthetic cabinet responses. There are 135
+complete sounds and 256 reusable voicings. All 93 prior sounds, 196 prior
 voicings and executable effect versions remain unchanged. **Art Rock /
 Subterranean Pulse** is the owner's confirmed approved sound and is protected
 exactly. New sounds are technically validated starting points with listening
@@ -22,6 +22,13 @@ Additional Muse templates cover **Citizen Erased** (distortion/clean ending),
 **New Born** (rhythm/lead), **Hysteria**, **Psycho**, **Reapers** (tapping/lead),
 **Defector** and **The Globalist** (clean intro/heavy middle/clean outro). Search
 **Muse expansion** to find this additional collection.
+
+The [alternative collection](docs/alternative-templates.md) adds **42 complete
+chains** for Green Day, Soundgarden, Nirvana and System Of A Down, with separate
+clean/rhythm/lead roles and acoustic-source/electric-adaptation choices. Search
+**Alternative research**. Read the [recording and tuning research](docs/alternative-tone-research.md)
+for sourced facts, uncertainties and proposed app settings; all album matching
+remains pending. Physically retune: these chains contain no pitch shifting.
 
 These are complete loadable chains in the application. Rebuild and restart,
 open **Choose Preset...**, set filters to **All**, search a song and press
@@ -311,7 +318,7 @@ library selections cannot revive a deleted entry. These checks pass in automated
 state/adapter fixtures; the new native dialogs and real-guitar deletion checklist
 still need desktop verification.
 
-The library has **93 full rack presets** and **196 pedal voicings**.
+The library has **135 full rack presets** and **256 pedal voicings**.
 Original factory examples: **Clean**, **Crunch**, **Lead Delay**, **Driven Synthetic
 Cabinet** (Distortion → Cabinet → EQ → Delay → Reverb) and **Small Room** (EQ →
 Reverb). Output defaults to -12 dB. The Cabinet example uses an explicitly

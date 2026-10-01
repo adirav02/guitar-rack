@@ -1,0 +1,95 @@
+{
+  "schema_version": 2,
+  "preset_id": "1ea56fee-493e-5702-8655-ffcbb69d27cc",
+  "name": "Soundgarden / Outshined - Thayil Lead",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -12.5,
+    "rack_bypass": false
+  },
+  "order": [
+    "21ed167c-9705-5084-ac0e-94608bb4398a",
+    "4693b283-3f8b-5ef0-97c1-e1eb1aa611aa",
+    "3686dad6-ea00-5b8e-bde0-4cf840658907",
+    "ec76dc81-5f55-5007-8f6c-2bb15120d272"
+  ],
+  "instances": [
+    {
+      "instance_id": "21ed167c-9705-5084-ac0e-94608bb4398a",
+      "slot_id": 0,
+      "effect_type": "amp_brit_hotrod",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 23.0,
+        "bass_db": -1.0,
+        "mid_db": 3.0,
+        "treble_db": -1.0,
+        "master_percent": 40.0,
+        "presence_percent": 27.000001907348633,
+        "output_db": -9.0,
+        "sag_percent": 26.0,
+        "low_cut_hz": 70.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "4693b283-3f8b-5ef0-97c1-e1eb1aa611aa",
+      "slot_id": 1,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+    },
+    {
+      "instance_id": "3686dad6-ea00-5b8e-bde0-4cf840658907",
+      "slot_id": 2,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 240.0,
+        "band1_db": -1.5,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 1300.0,
+        "band2_db": 2.0,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 3900.0,
+        "band3_db": -1.5,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 95.0,
+        "low_pass_hz": 6500.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "ec76dc81-5f55-5007-8f6c-2bb15120d272",
+      "slot_id": 3,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 1.0,
+        "decay_seconds": 1.350000023841858,
+        "pre_delay_ms": 18.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 8.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "sha256": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "relative_path": "ir/e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac.wav",
+      "format": "wav"
+    }
+  ]
+}

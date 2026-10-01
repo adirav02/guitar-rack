@@ -1,0 +1,110 @@
+{
+  "schema_version": 2,
+  "preset_id": "8d051212-d179-50e9-bc31-88f1898aaba9",
+  "name": "Nirvana / Heart-Shaped Box - Abrasive Rhythm",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -15.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "a43f8eb2-3a71-54e2-8227-192fa2a0204a",
+    "0f2040aa-6911-5def-a422-25fa237ace6d",
+    "2a633ed8-4c60-5889-bdef-ba8cf7306dc6",
+    "59128c6c-63e9-5137-b325-a1f3b8a1fbc8",
+    "e64fa3f4-18c2-580c-8cf9-65547f15cfe6"
+  ],
+  "instances": [
+    {
+      "instance_id": "a43f8eb2-3a71-54e2-8227-192fa2a0204a",
+      "slot_id": 0,
+      "effect_type": "oxford_distortion",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "drive_db": 23.0,
+        "bass_db": -1.0,
+        "contour_percent": 22.0,
+        "treble_db": 1.0,
+        "output_db": -10.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "0f2040aa-6911-5def-a422-25fa237ace6d",
+      "slot_id": 1,
+      "effect_type": "amp_solid_clean",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 5.0,
+        "bass_db": -1.0,
+        "mid_db": 2.0,
+        "treble_db": 0.0,
+        "master_percent": 25.0,
+        "presence_percent": 30.000001907348633,
+        "output_db": -6.0,
+        "bright_percent": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "2a633ed8-4c60-5889-bdef-ba8cf7306dc6",
+      "slot_id": 2,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+    },
+    {
+      "instance_id": "59128c6c-63e9-5137-b325-a1f3b8a1fbc8",
+      "slot_id": 3,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 230.0,
+        "band1_db": -1.0,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 1700.0,
+        "band2_db": 2.0,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 4100.0,
+        "band3_db": -1.5,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 60.0,
+        "low_pass_hz": 6900.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "e64fa3f4-18c2-580c-8cf9-65547f15cfe6",
+      "slot_id": 4,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.550000011920929,
+        "pre_delay_ms": 12.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 5.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "sha256": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "relative_path": "ir/43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d.wav",
+      "format": "wav"
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "schema_version": 2,
+  "preset_id": "9cd49b2e-2151-532f-abc3-1d485a4d2452",
+  "name": "Nirvana / The Man Who Sold the World MTV Unplugged - Colored Acoustic Lead",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": 1.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "f1b566e7-e58f-5a49-bf53-f2ed330a9d84",
+    "5fdfe072-accf-5f65-831e-3e524ce4092b",
+    "801f79be-f9c8-5e8e-b18f-46507817e722",
+    "4d28cafd-79fb-5c69-addf-e864f8202d59",
+    "5dba8258-c24f-5371-9818-b293df925bca",
+    "c9f9d251-25f4-5509-8031-712dd6e4b438"
+  ],
+  "instances": [
+    {
+      "instance_id": "f1b566e7-e58f-5a49-bf53-f2ed330a9d84",
+      "slot_id": 0,
+      "effect_type": "hard_distortion",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "drive_db": 12.0,
+        "low_cut_hz": 100.0,
+        "filter_hz": 3400.0,
+        "output_db": -5.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "5fdfe072-accf-5f65-831e-3e524ce4092b",
+      "slot_id": 1,
+      "effect_type": "chorus",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "rate_hz": 0.649999976158142,
+        "depth_percent": 42.0,
+        "width_percent": 0.0,
+        "mix_percent": 28.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "801f79be-f9c8-5e8e-b18f-46507817e722",
+      "slot_id": 2,
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 0.0,
+        "bass_db": -2.0,
+        "mid_db": 0.0,
+        "treble_db": -1.0,
+        "master_percent": 16.0,
+        "presence_percent": 40.0,
+        "output_db": -3.0,
+        "sag_percent": 20.0,
+        "bright_percent": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "4d28cafd-79fb-5c69-addf-e864f8202d59",
+      "slot_id": 3,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+    },
+    {
+      "instance_id": "5dba8258-c24f-5371-9818-b293df925bca",
+      "slot_id": 4,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 210.0,
+        "band1_db": -1.0,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 1100.0,
+        "band2_db": 0.5,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 3800.0,
+        "band3_db": -1.5,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 65.0,
+        "low_pass_hz": 7600.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "c9f9d251-25f4-5509-8031-712dd6e4b438",
+      "slot_id": 5,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.899999976158142,
+        "pre_delay_ms": 12.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 8.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "sha256": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "relative_path": "ir/43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d.wav",
+      "format": "wav"
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "schema_version": 2,
+  "preset_id": "cd52369e-11d6-5d63-9b7e-8d8a231f4535",
+  "name": "System Of A Down / Toxicity - Articulate Heavy Lead",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -10.5,
+    "rack_bypass": false
+  },
+  "order": [
+    "35fb331c-e0d3-5db8-a7ec-6d770c0f68f7",
+    "5015955e-9f52-58e8-b157-c71d9d38f790",
+    "e77727f4-0318-5349-a84c-bd33aaab6f20",
+    "f00e944e-4c44-5e07-8d7b-466c548936a7"
+  ],
+  "instances": [
+    {
+      "instance_id": "35fb331c-e0d3-5db8-a7ec-6d770c0f68f7",
+      "slot_id": 0,
+      "effect_type": "amp_recto",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 22.0,
+        "bass_db": 0.0,
+        "mid_db": 2.0,
+        "treble_db": -1.0,
+        "master_percent": 36.0,
+        "presence_percent": 28.0,
+        "output_db": -10.0,
+        "sag_percent": 38.0,
+        "resonance_percent": 32.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "5015955e-9f52-58e8-b157-c71d9d38f790",
+      "slot_id": 1,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d"
+    },
+    {
+      "instance_id": "e77727f4-0318-5349-a84c-bd33aaab6f20",
+      "slot_id": 2,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 240.0,
+        "band1_db": -1.5,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 1300.0,
+        "band2_db": 2.0,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 3900.0,
+        "band3_db": -1.5,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 95.0,
+        "low_pass_hz": 6500.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "f00e944e-4c44-5e07-8d7b-466c548936a7",
+      "slot_id": 3,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 1.0,
+        "decay_seconds": 1.350000023841858,
+        "pre_delay_ms": 18.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 8.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d",
+      "sha256": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d",
+      "relative_path": "ir/7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d.wav",
+      "format": "wav"
+    }
+  ]
+}
