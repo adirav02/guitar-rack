@@ -1,0 +1,112 @@
+{
+  "schema_version": 2,
+  "preset_id": "fdd784fd-cb19-5133-9445-93952291df08",
+  "name": "Alter Bridge / Blackbird - Fingerpicked Clean",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": 3.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "5c10b744-9fda-5a16-b975-f1128dbf6cbc",
+    "245473ba-e1e3-5026-99b3-2d6efe9616e6",
+    "b4e75747-ec1f-5dfe-9e14-81135759f5cc",
+    "f6a1b8c3-66b9-5c40-9570-d280e6a90ca3",
+    "0584d33d-1bef-5c16-a532-35a6a562c134"
+  ],
+  "instances": [
+    {
+      "instance_id": "5c10b744-9fda-5a16-b975-f1128dbf6cbc",
+      "slot_id": 0,
+      "effect_type": "compressor",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "threshold_db": -25.0,
+        "ratio": 2.0,
+        "attack_ms": 24.0,
+        "release_ms": 170.0,
+        "makeup_db": 2.0,
+        "mix_percent": 60.000003814697266
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "245473ba-e1e3-5026-99b3-2d6efe9616e6",
+      "slot_id": 1,
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 0.0,
+        "bass_db": -1.0,
+        "mid_db": 1.0,
+        "treble_db": -1.0,
+        "master_percent": 19.0,
+        "presence_percent": 40.0,
+        "output_db": -3.0,
+        "sag_percent": 20.0,
+        "bright_percent": 5.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "b4e75747-ec1f-5dfe-9e14-81135759f5cc",
+      "slot_id": 2,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+    },
+    {
+      "instance_id": "f6a1b8c3-66b9-5c40-9570-d280e6a90ca3",
+      "slot_id": 3,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 220.0,
+        "band1_db": -1.0,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 1400.0,
+        "band2_db": 0.5,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 4300.0,
+        "band3_db": -1.5,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 70.0,
+        "low_pass_hz": 7800.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "0584d33d-1bef-5c16-a532-35a6a562c134",
+      "slot_id": 4,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.899999976158142,
+        "pre_delay_ms": 12.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 8.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "sha256": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "relative_path": "ir/43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d.wav",
+      "format": "wav"
+    }
+  ]
+}

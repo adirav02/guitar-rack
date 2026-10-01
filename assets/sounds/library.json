@@ -3929,6 +3929,927 @@
         "filter_hz": 3400,
         "output_db": -5
       }
+    },
+    {
+      "id": "83669def-0a59-5fa4-ba8d-ce92c6d0d666",
+      "key": "modernrock.echo.short",
+      "name": "Modern Rock / Short Melodic Repeat",
+      "effect_type": "echo",
+      "effect_version": 2,
+      "parameters": {
+        "time_ms": 210,
+        "feedback_percent": 22,
+        "mix_percent": 7,
+        "mode": 1,
+        "color_hz": 3800,
+        "wet_low_cut_hz": 240,
+        "wow_percent": 0,
+        "stereo": 0,
+        "heads": 0,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "809ace52-0551-55a0-aa90-5cdd13a0aaec",
+      "key": "modernrock.echo.kennedy",
+      "name": "Alter Bridge / Expressive Lead Repeat",
+      "effect_type": "echo",
+      "effect_version": 2,
+      "parameters": {
+        "time_ms": 390,
+        "feedback_percent": 24,
+        "mix_percent": 12,
+        "mode": 1,
+        "color_hz": 3800,
+        "wet_low_cut_hz": 240,
+        "wow_percent": 0,
+        "stereo": 0,
+        "heads": 0,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "38bcd533-681a-5c8b-9cd4-f8a46ce5a495",
+      "key": "modernrock.echo.tremonti",
+      "name": "Alter Bridge / Articulate Lead Repeat",
+      "effect_type": "echo",
+      "effect_version": 2,
+      "parameters": {
+        "time_ms": 260,
+        "feedback_percent": 22,
+        "mix_percent": 8,
+        "mode": 1,
+        "color_hz": 3800,
+        "wet_low_cut_hz": 240,
+        "wow_percent": 0,
+        "stereo": 0,
+        "heads": 0,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "eb23f6a5-2c06-58ca-8611-aa4206013ba5",
+      "key": "modernrock.comp.mix",
+      "name": "Foo Fighters / Light Mix Punch",
+      "effect_type": "compressor",
+      "effect_version": 1,
+      "parameters": {
+        "threshold_db": -19,
+        "ratio": 1.6,
+        "attack_ms": 28,
+        "release_ms": 125,
+        "makeup_db": 0,
+        "mix_percent": 40
+      }
+    },
+    {
+      "id": "92991402-3259-5b0c-a3ed-8593a63d8b9a",
+      "key": "modernrock.amp.ff.ring",
+      "name": "Foo Fighters / Ringing American Crunch",
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 12,
+        "bass_db": -1,
+        "mid_db": 2,
+        "treble_db": 0,
+        "master_percent": 30,
+        "output_db": -7,
+        "presence_percent": 30,
+        "sag_percent": 22
+      }
+    },
+    {
+      "id": "d24dfab2-a479-5a97-acb1-b8d906e4198b",
+      "key": "modernrock.amp.ff.pair",
+      "name": "Foo Fighters / Complementary Body And Edge",
+      "effect_type": "dual_amp",
+      "effect_version": 1,
+      "parameters": {
+        "model_a": 1,
+        "gain_a_db": 9,
+        "master_a_percent": 28,
+        "level_a_db": 0,
+        "model_b": 7,
+        "gain_b_db": 16,
+        "master_b_percent": 30,
+        "level_b_db": -3,
+        "blend_percent": 44,
+        "bass_db": -1,
+        "mid_db": 2,
+        "treble_db": 0,
+        "presence_percent": 32,
+        "output_db": -10
+      }
+    },
+    {
+      "id": "06dce4dd-4d91-527b-8ed2-138edaa64f5d",
+      "key": "modernrock.amp.ff.clean",
+      "name": "Foo Fighters / Clear American Picking",
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 1,
+        "bass_db": -1,
+        "mid_db": 1,
+        "treble_db": 0,
+        "master_percent": 19,
+        "output_db": -3,
+        "bright_percent": 12
+      }
+    },
+    {
+      "id": "a362dbd5-e467-5838-a3f9-0eb67661947c",
+      "key": "modernrock.amp.ff.break",
+      "name": "Foo Fighters / Reduced Drive Detail",
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 6,
+        "bass_db": -2,
+        "mid_db": 1,
+        "treble_db": -1,
+        "master_percent": 24,
+        "output_db": -6,
+        "presence_percent": 25
+      }
+    },
+    {
+      "id": "c2da5f9f-a6c1-5dd5-9bb8-17e7bdebd149",
+      "key": "modernrock.amp.ff.walk",
+      "name": "Foo Fighters / Garage American Drive",
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 17,
+        "bass_db": -1,
+        "mid_db": 2,
+        "treble_db": 1,
+        "master_percent": 37,
+        "output_db": -9,
+        "presence_percent": 36,
+        "sag_percent": 22
+      }
+    },
+    {
+      "id": "0229219d-5900-51db-82a9-326043e309a5",
+      "key": "modernrock.amp.ff.chime",
+      "name": "Foo Fighters / Upper Chime Support",
+      "effect_type": "amp_brit_chime",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 16,
+        "bass_db": -2,
+        "treble_db": 1,
+        "master_percent": 28,
+        "cut_percent": 34,
+        "sag_percent": 18,
+        "output_db": -9
+      }
+    },
+    {
+      "id": "66b9f109-90c4-5ced-b82c-0c6eb4f664f4",
+      "key": "modernrock.amp.ff.accent",
+      "name": "Foo Fighters / Cutting Melodic Drive",
+      "effect_type": "amp_brit_crunch",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 19,
+        "bass_db": -3,
+        "mid_db": 3,
+        "treble_db": 0,
+        "master_percent": 30,
+        "output_db": -9,
+        "presence_percent": 34,
+        "sag_percent": 15
+      }
+    },
+    {
+      "id": "ff384d71-1d58-576c-8f51-a42419a8a63b",
+      "key": "modernrock.amp.ff.pretender",
+      "name": "Foo Fighters / Dry British Attack",
+      "effect_type": "amp_brit_hotrod",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 18,
+        "bass_db": -2,
+        "mid_db": 2,
+        "treble_db": 1,
+        "master_percent": 32,
+        "output_db": -9,
+        "low_cut_hz": 85,
+        "presence_percent": 36,
+        "sag_percent": 15
+      }
+    },
+    {
+      "id": "59439b9b-8f79-5990-891d-6704e7309371",
+      "key": "modernrock.amp.ff.open",
+      "name": "Foo Fighters / Open British Chords",
+      "effect_type": "amp_brit_crunch",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 21,
+        "bass_db": -1,
+        "mid_db": 2,
+        "treble_db": 0,
+        "master_percent": 36,
+        "output_db": -9,
+        "presence_percent": 32,
+        "sag_percent": 24
+      }
+    },
+    {
+      "id": "24309a60-2073-5b25-8a52-1c8c3487f2b5",
+      "key": "modernrock.eq.ff.ring",
+      "name": "Foo Fighters / Low-D Chord Separation",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 65,
+        "low_pass_hz": 6800,
+        "band1_hz": 210,
+        "band1_db": -1.5,
+        "band1_q": 0.8,
+        "band2_hz": 1400,
+        "band2_db": 1,
+        "band2_q": 0.8,
+        "band3_hz": 3900,
+        "band3_db": -1.5,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "3243b7a3-dcaf-5ad7-802b-8b14311e0438",
+      "key": "modernrock.eq.ff.body",
+      "name": "Foo Fighters / Firm Chord Body",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 75,
+        "low_pass_hz": 6300,
+        "band1_hz": 200,
+        "band1_db": -0.5,
+        "band1_q": 0.8,
+        "band2_hz": 1100,
+        "band2_db": 1,
+        "band2_q": 0.8,
+        "band3_hz": 3600,
+        "band3_db": -1.5,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "3545bba6-ad66-5ad6-bf3f-0e85f9f0a9f1",
+      "key": "modernrock.eq.ff.upper",
+      "name": "Foo Fighters / Upper Part Definition",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 120,
+        "low_pass_hz": 6800,
+        "band1_hz": 260,
+        "band1_db": -2,
+        "band1_q": 0.8,
+        "band2_hz": 1800,
+        "band2_db": 2,
+        "band2_q": 0.8,
+        "band3_hz": 4300,
+        "band3_db": -1.5,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "34bc6ae2-40a6-5e57-a3e4-c974ea78d798",
+      "key": "modernrock.eq.ff.clean",
+      "name": "Foo Fighters / Picked Clean Balance",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 80,
+        "low_pass_hz": 8100,
+        "band1_hz": 240,
+        "band1_db": -1.5,
+        "band1_q": 0.8,
+        "band2_hz": 1500,
+        "band2_db": 0.5,
+        "band2_q": 0.8,
+        "band3_hz": 4200,
+        "band3_db": -1,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "1685eb06-6bcb-54bd-8dbd-02f68a6095a4",
+      "key": "modernrock.eq.ff.dark",
+      "name": "Foo Fighters / Dark Intro Balance",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 70,
+        "low_pass_hz": 6500,
+        "band1_hz": 220,
+        "band1_db": -0.5,
+        "band1_q": 0.8,
+        "band2_hz": 1300,
+        "band2_db": 0.5,
+        "band2_q": 0.8,
+        "band3_hz": 3900,
+        "band3_db": -2,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "9640de1c-78ab-5c59-b1e4-75df488b2985",
+      "key": "modernrock.eq.ff.walk",
+      "name": "Foo Fighters / Garage Mid Body",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 85,
+        "low_pass_hz": 6400,
+        "band1_hz": 220,
+        "band1_db": -1,
+        "band1_q": 0.8,
+        "band2_hz": 950,
+        "band2_db": 1.5,
+        "band2_q": 0.8,
+        "band3_hz": 3600,
+        "band3_db": -1.5,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "df4bcc3e-1e85-52d3-b130-a962ea041716",
+      "key": "modernrock.eq.ff.stop",
+      "name": "Foo Fighters / Staccato Low-End Control",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 90,
+        "low_pass_hz": 6500,
+        "band1_hz": 180,
+        "band1_db": -2,
+        "band1_q": 0.8,
+        "band2_hz": 1700,
+        "band2_db": 1.5,
+        "band2_q": 0.8,
+        "band3_hz": 4100,
+        "band3_db": -1.5,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "c89c379c-19d2-5bbc-802f-6105ce47f853",
+      "key": "modernrock.amp.sd.madness",
+      "name": "Shinedown / Madness Riff Definition",
+      "effect_type": "amp_modern_tight",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 21,
+        "bass_db": -1,
+        "mid_db": 2,
+        "treble_db": 0,
+        "master_percent": 33,
+        "output_db": -10,
+        "low_cut_hz": 70,
+        "presence_percent": 32,
+        "sag_percent": 10,
+        "resonance_percent": 25
+      }
+    },
+    {
+      "id": "9e09fa42-3961-5639-9a88-c01882544a82",
+      "key": "modernrock.amp.sd.madopen",
+      "name": "Shinedown / Madness Open Chords",
+      "effect_type": "amp_recto",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 20,
+        "bass_db": 0,
+        "mid_db": 2,
+        "treble_db": -1,
+        "master_percent": 36,
+        "output_db": -10,
+        "presence_percent": 27,
+        "sag_percent": 30,
+        "resonance_percent": 30
+      }
+    },
+    {
+      "id": "935d9c82-0052-5285-8926-b07e7f88184d",
+      "key": "modernrock.amp.sd.lead",
+      "name": "Shinedown / Forward Melodic Sustain",
+      "effect_type": "amp_brit_hotrod",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 23,
+        "bass_db": -2,
+        "mid_db": 3,
+        "treble_db": 0,
+        "master_percent": 34,
+        "output_db": -10,
+        "low_cut_hz": 95,
+        "presence_percent": 30,
+        "sag_percent": 20
+      }
+    },
+    {
+      "id": "48e7a475-e8fd-5cb3-93dc-ebbe0aa7e4df",
+      "key": "modernrock.amp.sd.clean",
+      "name": "Shinedown / Sparse Verse Clarity",
+      "effect_type": "amp_solid_clean",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 2,
+        "bass_db": -1,
+        "mid_db": 1,
+        "treble_db": 0,
+        "master_percent": 20,
+        "output_db": -4,
+        "presence_percent": 28
+      }
+    },
+    {
+      "id": "bf06cb3e-a7ce-5ed6-a6c1-0c88c782b7c0",
+      "key": "modernrock.amp.sd.monster",
+      "name": "Shinedown / Wiry D-Standard Riff",
+      "effect_type": "amp_brit_hotrod",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 20,
+        "bass_db": -2,
+        "mid_db": 2,
+        "treble_db": 1,
+        "master_percent": 32,
+        "output_db": -10,
+        "low_cut_hz": 65,
+        "presence_percent": 37,
+        "sag_percent": 14
+      }
+    },
+    {
+      "id": "ec3b3494-7904-5047-9f84-64236f88b58b",
+      "key": "modernrock.amp.sd.monsteropen",
+      "name": "Shinedown / Monsters Full Chords",
+      "effect_type": "amp_modern_tight",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 22,
+        "bass_db": -1,
+        "mid_db": 2,
+        "treble_db": 0,
+        "master_percent": 34,
+        "output_db": -10,
+        "low_cut_hz": 60,
+        "presence_percent": 32,
+        "sag_percent": 12,
+        "resonance_percent": 28
+      }
+    },
+    {
+      "id": "31050108-62fe-5c14-af64-27c2c34e55a1",
+      "key": "modernrock.amp.sd.combo",
+      "name": "Shinedown / Rough Small-Combo Support",
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 5,
+        "bass_db": -2,
+        "mid_db": 2,
+        "treble_db": -1,
+        "master_percent": 28,
+        "output_db": -8,
+        "presence_percent": 24,
+        "sag_percent": 25
+      }
+    },
+    {
+      "id": "fd8f3a69-b20b-55ab-96db-b709218aaa05",
+      "key": "modernrock.amp.sd.cordopen",
+      "name": "Shinedown / Open Combo Drive",
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 18,
+        "bass_db": -1,
+        "mid_db": 2,
+        "treble_db": 0,
+        "master_percent": 38,
+        "output_db": -9,
+        "presence_percent": 30,
+        "sag_percent": 30
+      }
+    },
+    {
+      "id": "cbb298ee-9a38-5bf6-ae40-35420812a2a1",
+      "key": "modernrock.drive.sd.cord",
+      "name": "Shinedown / Rough Combo Fuzz Adaptation",
+      "effect_type": "sustain_fuzz",
+      "effect_version": 1,
+      "parameters": {
+        "drive_db": 20,
+        "compression_percent": 32,
+        "tone_hz": 3500,
+        "output_db": -12
+      }
+    },
+    {
+      "id": "57f632e8-e87e-5981-b231-188436c55cc2",
+      "key": "modernrock.amp.sd.devil",
+      "name": "Shinedown / Devil Dry Stop Attack",
+      "effect_type": "amp_modern_tight",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 22,
+        "bass_db": -2,
+        "mid_db": 2,
+        "treble_db": 0,
+        "master_percent": 32,
+        "output_db": -10,
+        "low_cut_hz": 75,
+        "presence_percent": 36,
+        "sag_percent": 8,
+        "resonance_percent": 24
+      }
+    },
+    {
+      "id": "8b517257-348f-5a5f-bf0c-a07ee756d6e4",
+      "key": "modernrock.amp.sd.devilopen",
+      "name": "Shinedown / Devil Broad Chords",
+      "effect_type": "amp_recto",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 21,
+        "bass_db": -1,
+        "mid_db": 2,
+        "treble_db": -1,
+        "master_percent": 35,
+        "output_db": -10,
+        "presence_percent": 28,
+        "sag_percent": 28,
+        "resonance_percent": 30
+      }
+    },
+    {
+      "id": "539a7782-fb94-5061-a379-886f635447e9",
+      "key": "modernrock.drive.sd.texture",
+      "name": "Shinedown / Filtered Texture Drive",
+      "effect_type": "oxford_distortion",
+      "effect_version": 1,
+      "parameters": {
+        "drive_db": 19,
+        "bass_db": -2,
+        "contour_percent": 18,
+        "treble_db": -1,
+        "output_db": -10
+      }
+    },
+    {
+      "id": "c36555aa-1efd-50e1-a044-28c237c7d0fe",
+      "key": "modernrock.wah.sd.color",
+      "name": "Shinedown / Stationary Lead Color Adaptation",
+      "effect_type": "wah",
+      "effect_version": 1,
+      "parameters": {
+        "position_percent": 48,
+        "heel_hz": 350,
+        "toe_hz": 1900,
+        "q": 1.2,
+        "mix_percent": 58,
+        "output_db": -1
+      }
+    },
+    {
+      "id": "281ea4c8-0e88-5712-a547-0b81be0464c3",
+      "key": "modernrock.eq.sd.madness",
+      "name": "Shinedown / Madness Low-D Control",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 60,
+        "low_pass_hz": 6400,
+        "band1_hz": 180,
+        "band1_db": -1.5,
+        "band1_q": 0.8,
+        "band2_hz": 1200,
+        "band2_db": 1.5,
+        "band2_q": 0.8,
+        "band3_hz": 3700,
+        "band3_db": -2,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "70f51303-5b46-5934-8e12-b6d88814ab32",
+      "key": "modernrock.eq.sd.monster",
+      "name": "Shinedown / Monsters Low-String Balance",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 55,
+        "low_pass_hz": 6700,
+        "band1_hz": 170,
+        "band1_db": -1.5,
+        "band1_q": 0.8,
+        "band2_hz": 1600,
+        "band2_db": 1.5,
+        "band2_q": 0.8,
+        "band3_hz": 4200,
+        "band3_db": -1.5,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "779e037a-8e13-5cb8-b7df-7363d3007ea7",
+      "key": "modernrock.eq.sd.cord",
+      "name": "Shinedown / Combo Fuzz Definition",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 75,
+        "low_pass_hz": 5800,
+        "band1_hz": 200,
+        "band1_db": -2,
+        "band1_q": 0.8,
+        "band2_hz": 1150,
+        "band2_db": 1.5,
+        "band2_q": 0.8,
+        "band3_hz": 3400,
+        "band3_db": -1.5,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "61150646-1868-5514-9279-440a3c082bb3",
+      "key": "modernrock.eq.sd.devil",
+      "name": "Shinedown / Devil Riff Space",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 65,
+        "low_pass_hz": 6200,
+        "band1_hz": 160,
+        "band1_db": -2,
+        "band1_q": 0.8,
+        "band2_hz": 1200,
+        "band2_db": 2,
+        "band2_q": 0.8,
+        "band3_hz": 3800,
+        "band3_db": -2,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "2ecbcd73-78b8-5488-9c23-48e017edb602",
+      "key": "modernrock.eq.sd.texture",
+      "name": "Shinedown / Narrow Texture Adaptation",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 220,
+        "low_pass_hz": 4200,
+        "band1_hz": 280,
+        "band1_db": -2,
+        "band1_q": 0.8,
+        "band2_hz": 1100,
+        "band2_db": 3,
+        "band2_q": 0.8,
+        "band3_hz": 3400,
+        "band3_db": -2,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "82002971-ee61-56cc-a22b-61b19da110e3",
+      "key": "modernrock.eq.lead",
+      "name": "Modern Rock / Lead Mid Separation",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 95,
+        "low_pass_hz": 6500,
+        "band1_hz": 240,
+        "band1_db": -1.5,
+        "band1_q": 0.8,
+        "band2_hz": 1500,
+        "band2_db": 2,
+        "band2_q": 0.8,
+        "band3_hz": 3900,
+        "band3_db": -1.5,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "8e746b92-d065-5fe2-b790-fba94f319571",
+      "key": "modernrock.amp.ab.clean",
+      "name": "Alter Bridge / Fingerpicked Clean Body",
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 0,
+        "bass_db": -1,
+        "mid_db": 1,
+        "treble_db": -1,
+        "master_percent": 19,
+        "output_db": -3,
+        "bright_percent": 5
+      }
+    },
+    {
+      "id": "13506165-f760-5e8b-b832-b64090e5df25",
+      "key": "modernrock.amp.ab.rhythm",
+      "name": "Alter Bridge / Complementary Heavy Body",
+      "effect_type": "dual_amp",
+      "effect_version": 1,
+      "parameters": {
+        "model_a": 7,
+        "gain_a_db": 18,
+        "master_a_percent": 33,
+        "level_a_db": 0,
+        "model_b": 6,
+        "gain_b_db": 16,
+        "master_b_percent": 31,
+        "level_b_db": -2,
+        "blend_percent": 38,
+        "bass_db": 0,
+        "mid_db": 2,
+        "treble_db": -1,
+        "presence_percent": 28,
+        "output_db": -10
+      }
+    },
+    {
+      "id": "b20f5ebc-8fec-5029-bff7-6ae605e68ec1",
+      "key": "modernrock.amp.ab.support",
+      "name": "Alter Bridge / Supporting Mark-Family Rhythm",
+      "effect_type": "amp_mark",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 13,
+        "bass_db": -2,
+        "mid_db": 2,
+        "treble_db": 0,
+        "master_percent": 30,
+        "output_db": -10,
+        "lead_gain_db": 4,
+        "presence_percent": 30,
+        "sag_percent": 16
+      }
+    },
+    {
+      "id": "c2fc92ca-862c-5e9b-a07c-9b3e792022ec",
+      "key": "modernrock.amp.ab.kennedy",
+      "name": "Alter Bridge / Expressive Mark-Family Lead",
+      "effect_type": "amp_mark",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 18,
+        "bass_db": -3,
+        "mid_db": 3,
+        "treble_db": -1,
+        "master_percent": 32,
+        "output_db": -10,
+        "lead_gain_db": 8,
+        "presence_percent": 27,
+        "sag_percent": 20
+      }
+    },
+    {
+      "id": "d35cc275-f9eb-57a0-b15e-e1e435814f73",
+      "key": "modernrock.amp.ab.tremonti",
+      "name": "Alter Bridge / Articulate Hot-Rod Lead",
+      "effect_type": "amp_brit_hotrod",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 22,
+        "bass_db": -2,
+        "mid_db": 3,
+        "treble_db": 0,
+        "master_percent": 33,
+        "output_db": -10,
+        "low_cut_hz": 100,
+        "presence_percent": 33,
+        "sag_percent": 18
+      }
+    },
+    {
+      "id": "24ed4796-71fe-5df7-a25d-4cf781cb10d2",
+      "key": "modernrock.eq.ab.clean",
+      "name": "Alter Bridge / Fingerstyle String Balance",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 70,
+        "low_pass_hz": 7800,
+        "band1_hz": 220,
+        "band1_db": -1,
+        "band1_q": 0.8,
+        "band2_hz": 1400,
+        "band2_db": 0.5,
+        "band2_q": 0.8,
+        "band3_hz": 4300,
+        "band3_db": -1.5,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "25c534d5-85b0-53b3-8e5d-acf42742ce69",
+      "key": "modernrock.eq.ab.body",
+      "name": "Alter Bridge / Heavy Chord Separation",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 60,
+        "low_pass_hz": 5900,
+        "band1_hz": 150,
+        "band1_db": -1,
+        "band1_q": 0.8,
+        "band2_hz": 950,
+        "band2_db": 1,
+        "band2_q": 0.8,
+        "band3_hz": 3300,
+        "band3_db": -2,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "d20df3b0-74c2-5d27-bcfb-3426da360627",
+      "key": "modernrock.eq.ab.support",
+      "name": "Alter Bridge / Complementary Upper Weight",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 85,
+        "low_pass_hz": 6500,
+        "band1_hz": 220,
+        "band1_db": -2,
+        "band1_q": 0.8,
+        "band2_hz": 1700,
+        "band2_db": 1.5,
+        "band2_q": 0.8,
+        "band3_hz": 4000,
+        "band3_db": -1.5,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "62e9760a-3ec1-54f1-a3e4-85347ffd6b0f",
+      "key": "modernrock.eq.ab.kennedy",
+      "name": "Alter Bridge / Warm Expressive Lead Mids",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 95,
+        "low_pass_hz": 5800,
+        "band1_hz": 250,
+        "band1_db": -1,
+        "band1_q": 0.8,
+        "band2_hz": 1100,
+        "band2_db": 2,
+        "band2_q": 0.8,
+        "band3_hz": 3600,
+        "band3_db": -2,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "4235a93c-9d40-5d95-ab7a-b9ef6f4ef16b",
+      "key": "modernrock.eq.ab.tremonti",
+      "name": "Alter Bridge / Fast Lead Note Definition",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 110,
+        "low_pass_hz": 6500,
+        "band1_hz": 240,
+        "band1_db": -2,
+        "band1_q": 0.8,
+        "band2_hz": 1900,
+        "band2_db": 2,
+        "band2_q": 0.8,
+        "band3_hz": 4300,
+        "band3_db": -1.5,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
     }
   ],
   "racks": [
@@ -7702,6 +8623,939 @@
         "9e13597a-6c81-5c12-8f10-ca676e03b54d",
         "6b96c4fa-4704-5379-9b14-ec289ce42c39",
         "85a2dc7c-ff0f-554c-a019-ffc747cc14b8"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "10a3641e-99d7-5947-a180-a8fc55593c68",
+      "key": "modernrock.everlong.intro",
+      "name": "Foo Fighters / Everlong - Ringing Intro Crunch",
+      "output_db": -6.5,
+      "pedals": [
+        "Foo Fighters / Ringing American Crunch",
+        "Cabinet Unity",
+        "Foo Fighters / Low-D Chord Separation",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "92991402-3259-5b0c-a3ed-8593a63d8b9a",
+        "40000000-0000-4000-8000-000000000076",
+        "24309a60-2073-5b25-8a52-1c8c3487f2b5",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "65118ee6-0861-58e8-b252-05ded3627ffa",
+        "9fe95057-0402-587b-9401-665fb2ffb3e2",
+        "950581fb-7643-5c80-ac0c-53ab0911fb5c",
+        "3c8c0962-1e1a-5ba0-9463-047313ff599a"
+      ],
+      "cabinet_assets": {
+        "1": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "423b2544-ed7c-5404-8588-94be615210e9",
+      "key": "modernrock.everlong.rhythm",
+      "name": "Foo Fighters / Everlong - Full Chord Rhythm",
+      "output_db": -4.0,
+      "pedals": [
+        "Foo Fighters / Complementary Body And Edge",
+        "Cabinet Unity",
+        "Foo Fighters / Low-D Chord Separation",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "d24dfab2-a479-5a97-acb1-b8d906e4198b",
+        "40000000-0000-4000-8000-000000000076",
+        "24309a60-2073-5b25-8a52-1c8c3487f2b5",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "d82d0e8c-cd54-53da-8f2d-7cb31df41557",
+        "05ecbd3d-c006-560f-bdd4-a376a6908a7a",
+        "5cb4374f-8107-5493-a16a-32a00e0c94e7",
+        "bc3aa8fe-33e7-50a8-8a2b-e3c4154ac918"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "7036a299-e39d-52eb-9825-497be1e86bad",
+      "key": "modernrock.everlong.upper",
+      "name": "Foo Fighters / Everlong - Upper Part Detail",
+      "output_db": -8.0,
+      "pedals": [
+        "Foo Fighters / Cutting Melodic Drive",
+        "Cabinet Unity",
+        "Foo Fighters / Upper Part Definition",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "66b9f109-90c4-5ced-b82c-0c6eb4f664f4",
+        "40000000-0000-4000-8000-000000000076",
+        "3545bba6-ad66-5ad6-bf3f-0e85f9f0a9f1",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "6fee2483-e0cc-58a6-9b9e-aec6e3899421",
+        "c5ae972a-c1a7-565b-9a9b-320d834d4a66",
+        "d0b51321-6f09-559d-aa19-ba62d6a1124b",
+        "6a0109ab-19c2-50f1-bac0-2cebea3cdb8d"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "fae53a93-cee5-57c3-af79-7f032b798777",
+      "key": "modernrock.everlong.breakdown",
+      "name": "Foo Fighters / Everlong - Clean Breakdown Adaptation",
+      "output_db": -0.5,
+      "pedals": [
+        "Foo Fighters / Reduced Drive Detail",
+        "Cabinet Unity",
+        "Foo Fighters / Dark Intro Balance",
+        "Research / Acoustic Air"
+      ],
+      "pedal_ids": [
+        "a362dbd5-e467-5838-a3f9-0eb67661947c",
+        "40000000-0000-4000-8000-000000000076",
+        "1685eb06-6bcb-54bd-8dbd-02f68a6095a4",
+        "2d897bdc-bef5-5542-b546-6cc97da4a5ea"
+      ],
+      "instance_ids": [
+        "1f4561b0-908b-54e5-8814-1bac224ceee6",
+        "0e4176fa-cc33-55d5-a705-72d3dcfe1812",
+        "b364da73-dd1e-56cc-8a1e-483dc4719630",
+        "31fa11ba-da12-54ed-b5b7-9b6f8078200c"
+      ],
+      "cabinet_assets": {
+        "1": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "c84cfc49-05cf-58b8-85bf-5f214cf95b4b",
+      "key": "modernrock.walk.clean",
+      "name": "Foo Fighters / Walk - Picked Intro Clean",
+      "output_db": 2.5,
+      "pedals": [
+        "Research / Natural Pick Compression",
+        "Foo Fighters / Clear American Picking",
+        "Cabinet Unity",
+        "Foo Fighters / Picked Clean Balance",
+        "Research / Acoustic Air"
+      ],
+      "pedal_ids": [
+        "261ac95d-f4de-54cb-b01a-898dc1ed500e",
+        "06dce4dd-4d91-527b-8ed2-138edaa64f5d",
+        "40000000-0000-4000-8000-000000000076",
+        "34bc6ae2-40a6-5e57-a3e4-c974ea78d798",
+        "2d897bdc-bef5-5542-b546-6cc97da4a5ea"
+      ],
+      "instance_ids": [
+        "249b6005-ed88-5753-bc91-a0823cc1649b",
+        "00b8e439-5ef6-5a36-b22e-3973c66998ca",
+        "f565ec9c-7739-50c2-8f83-6d64f09a2c76",
+        "1831c204-cf76-50ce-8890-d4a6b05d2a60",
+        "feabd53f-9c90-56f0-9447-f5679ea2fb41"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "6f120320-23c4-5d0a-93ba-1bc9202daeca",
+      "key": "modernrock.walk.rhythm",
+      "name": "Foo Fighters / Walk - Driving Rhythm",
+      "output_db": -7.5,
+      "pedals": [
+        "Foo Fighters / Garage American Drive",
+        "Cabinet Unity",
+        "Foo Fighters / Garage Mid Body",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "c2da5f9f-a6c1-5dd5-9bb8-17e7bdebd149",
+        "40000000-0000-4000-8000-000000000076",
+        "9640de1c-78ab-5c59-b1e4-75df488b2985",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "a228e7ca-9c22-5845-ad13-4670a4f3ac31",
+        "1bf41a66-d595-5a0b-a31e-04fc7175bf5f",
+        "c067b6d5-af62-580e-8118-5225d324aab4",
+        "24e4e5bf-b5e4-5266-a38e-b68d995ecf04"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "aac3779e-09bb-52d3-a716-7649d61b2963",
+      "key": "modernrock.walk.upper",
+      "name": "Foo Fighters / Walk - Upper Chime Support",
+      "output_db": -8.5,
+      "pedals": [
+        "Foo Fighters / Upper Chime Support",
+        "Cabinet Unity",
+        "Foo Fighters / Upper Part Definition",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "0229219d-5900-51db-82a9-326043e309a5",
+        "40000000-0000-4000-8000-000000000076",
+        "3545bba6-ad66-5ad6-bf3f-0e85f9f0a9f1",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "ea6f0c5f-4a0b-53d7-a519-755d579043a1",
+        "a7610ccc-d98e-5e3f-87c2-1a9f03e68e55",
+        "acc55f36-0be2-590f-8ebe-cc98612a5a87",
+        "dd2f8c58-0d69-55f6-9569-03f3e9c00d57"
+      ],
+      "cabinet_assets": {
+        "1": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "472b0718-9e99-599e-a87c-1abd225fe6f1",
+      "key": "modernrock.walk.lead",
+      "name": "Foo Fighters / Walk - Melodic Accent Lead",
+      "output_db": -8.0,
+      "pedals": [
+        "Foo Fighters / Cutting Melodic Drive",
+        "Cabinet Unity",
+        "Modern Rock / Lead Mid Separation",
+        "Modern Rock / Short Melodic Repeat",
+        "Research / Restrained Lead Plate"
+      ],
+      "pedal_ids": [
+        "66b9f109-90c4-5ced-b82c-0c6eb4f664f4",
+        "40000000-0000-4000-8000-000000000076",
+        "82002971-ee61-56cc-a22b-61b19da110e3",
+        "83669def-0a59-5fa4-ba8d-ce92c6d0d666",
+        "5e74de2a-e468-57fb-8464-1ee927e0e24f"
+      ],
+      "instance_ids": [
+        "43d46eec-5245-5117-b4f6-08fe94f4c740",
+        "a301113f-51c9-5953-a038-5e415feec506",
+        "6048215e-ff32-56b5-9ea4-4eb55dc6eadc",
+        "2565da14-7772-5230-acc8-64ba874180e0",
+        "f243fd3b-4f9e-59e7-ad1f-dd5a9d9906bf"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "1622ce41-826a-590e-9ee3-54be096a7670",
+      "key": "modernrock.hero.rhythm",
+      "name": "Foo Fighters / My Hero - Body And Edge Rhythm",
+      "output_db": -4.5,
+      "pedals": [
+        "Foo Fighters / Complementary Body And Edge",
+        "Cabinet Unity",
+        "Foo Fighters / Firm Chord Body",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "d24dfab2-a479-5a97-acb1-b8d906e4198b",
+        "40000000-0000-4000-8000-000000000076",
+        "3243b7a3-dcaf-5ad7-802b-8b14311e0438",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "56b40914-104e-5260-92b0-e0cb73a8cae0",
+        "d2830c80-f07f-5cdc-bcd7-38e0c69ab542",
+        "8f993fbe-a51c-530e-a7ed-9e8b3dc07828",
+        "8d520332-7e6f-51e7-b6ad-6f90f056c4a8"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "9c668b93-f46b-5600-ba39-c2caa54b9238",
+      "key": "modernrock.hero.upper",
+      "name": "Foo Fighters / My Hero - Octave Melody Detail",
+      "output_db": -8.0,
+      "pedals": [
+        "Foo Fighters / Cutting Melodic Drive",
+        "Cabinet Unity",
+        "Foo Fighters / Upper Part Definition",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "66b9f109-90c4-5ced-b82c-0c6eb4f664f4",
+        "40000000-0000-4000-8000-000000000076",
+        "3545bba6-ad66-5ad6-bf3f-0e85f9f0a9f1",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "008eebb5-895f-5b9d-8a37-d92477249291",
+        "b967a3e8-84b0-592b-85ec-4bf362f9d920",
+        "40fc0cfc-fe5d-5330-a7b3-c76ec24afb07",
+        "d7c70ac3-fd84-51f0-943b-45ecb5eb4d71"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "2aacc8e2-8e70-5289-83d3-131c529b7910",
+      "key": "modernrock.hero.breakdown",
+      "name": "Foo Fighters / My Hero - Reduced Drive Breakdown",
+      "output_db": 0.0,
+      "pedals": [
+        "Foo Fighters / Reduced Drive Detail",
+        "Cabinet Unity",
+        "Foo Fighters / Picked Clean Balance",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "a362dbd5-e467-5838-a3f9-0eb67661947c",
+        "40000000-0000-4000-8000-000000000076",
+        "34bc6ae2-40a6-5e57-a3e4-c974ea78d798",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "ac03abd4-b3de-5398-b81f-b586dc22d5f0",
+        "26afd015-4e23-5b6c-b56d-1db8a6a357a8",
+        "3c1ae161-88d2-5565-855b-1d81af4a0f5f",
+        "af52c5a9-3f89-5f54-84c0-d52ae9784f15"
+      ],
+      "cabinet_assets": {
+        "1": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "9fbbd0ce-9e6c-5cda-ac0d-6f7f62b1694e",
+      "key": "modernrock.pretender.clean",
+      "name": "Foo Fighters / The Pretender - Dark Clean Intro",
+      "output_db": 1.5,
+      "pedals": [
+        "Research / Natural Pick Compression",
+        "Foo Fighters / Clear American Picking",
+        "Cabinet Unity",
+        "Foo Fighters / Dark Intro Balance",
+        "Research / Acoustic Air"
+      ],
+      "pedal_ids": [
+        "261ac95d-f4de-54cb-b01a-898dc1ed500e",
+        "06dce4dd-4d91-527b-8ed2-138edaa64f5d",
+        "40000000-0000-4000-8000-000000000076",
+        "1685eb06-6bcb-54bd-8dbd-02f68a6095a4",
+        "2d897bdc-bef5-5542-b546-6cc97da4a5ea"
+      ],
+      "instance_ids": [
+        "208455ef-004b-57ac-8c75-cf16a0ed0f88",
+        "ed5d0d32-e2a7-53bf-b9ff-46926b825232",
+        "e745fcc9-5f56-55fc-bb5c-4e03752705e3",
+        "0afd0bd2-a428-5ffd-aaa8-9509d4da8ba9",
+        "be186f8c-ab13-5122-abae-d0de0d1b1443"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "481b51dd-101a-586b-a062-f891c61fc516",
+      "key": "modernrock.pretender.staccato",
+      "name": "Foo Fighters / The Pretender - Staccato Rhythm",
+      "output_db": -10.5,
+      "pedals": [
+        "Foo Fighters / Dry British Attack",
+        "Cabinet Unity",
+        "Foo Fighters / Staccato Low-End Control",
+        "Foo Fighters / Light Mix Punch",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "ff384d71-1d58-576c-8f51-a42419a8a63b",
+        "40000000-0000-4000-8000-000000000076",
+        "df4bcc3e-1e85-52d3-b130-a962ea041716",
+        "eb23f6a5-2c06-58ca-8611-aa4206013ba5",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "c5a0699a-c671-5199-a336-c9a0c4b66db2",
+        "dcda4bac-5d61-5dd3-b236-3db1b74d6924",
+        "f7a7ce16-19b6-54a4-a3e7-e9cf1403ed80",
+        "b47b31e6-e292-5df1-a0a9-0c61a140ff93",
+        "1349c43f-a0f5-5082-bef3-e4c7712bf2dc"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "0c906d91-ba61-572d-a80d-27223d31eb00",
+      "key": "modernrock.pretender.chorus",
+      "name": "Foo Fighters / The Pretender - Open Chorus Rhythm",
+      "output_db": -11.0,
+      "pedals": [
+        "Foo Fighters / Open British Chords",
+        "Cabinet Unity",
+        "Foo Fighters / Firm Chord Body",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "59439b9b-8f79-5990-891d-6704e7309371",
+        "40000000-0000-4000-8000-000000000076",
+        "3243b7a3-dcaf-5ad7-802b-8b14311e0438",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "dc1233f4-b608-5247-a5a1-277a02f68a7b",
+        "9718262a-3bd4-5307-a411-d8bbf6668aea",
+        "349e3e8b-754a-5dd2-ae85-ae51f68f6fdf",
+        "4ff93e67-57d8-5e23-a33f-0b8c0a191952"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "a62845bb-ad61-537a-8095-ff79f5f9ad5d",
+      "key": "modernrock.pretender.counter",
+      "name": "Foo Fighters / The Pretender - Cutting Countermelody",
+      "output_db": -8.0,
+      "pedals": [
+        "Foo Fighters / Cutting Melodic Drive",
+        "Cabinet Unity",
+        "Foo Fighters / Upper Part Definition",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "66b9f109-90c4-5ced-b82c-0c6eb4f664f4",
+        "40000000-0000-4000-8000-000000000076",
+        "3545bba6-ad66-5ad6-bf3f-0e85f9f0a9f1",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "aec63765-afd1-52dd-8974-4d9a493c463c",
+        "6a16cf2a-f3bb-5df8-af52-5bdcb69702ee",
+        "ea99014f-ef73-5b51-85b0-71f4262c2bd5",
+        "7e89ed1a-0fc5-536c-9317-3dbb7d28a335"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "96ac7796-e70d-57b7-9d70-d05fd448cb57",
+      "key": "modernrock.madness.rhythm",
+      "name": "Shinedown / Sound of Madness - Tight Riff Rhythm",
+      "output_db": -12.0,
+      "pedals": [
+        "Research / Rhythm Noise Control",
+        "Shinedown / Madness Riff Definition",
+        "Cabinet Unity",
+        "Shinedown / Madness Low-D Control"
+      ],
+      "pedal_ids": [
+        "d5c53273-e582-5e0e-87b0-f456bca9b2d6",
+        "c89c379c-19d2-5bbc-802f-6105ce47f853",
+        "40000000-0000-4000-8000-000000000076",
+        "281ea4c8-0e88-5712-a547-0b81be0464c3"
+      ],
+      "instance_ids": [
+        "44972aba-2d31-54ef-8b97-037414daa9ae",
+        "123917da-5621-578f-889b-c2b2168f5c08",
+        "4c98fcd3-f4c2-56bb-bf69-8c6ccf88889b",
+        "d3428c53-0995-566a-ab6d-c82ecad52392"
+      ],
+      "cabinet_assets": {
+        "2": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d"
+      }
+    },
+    {
+      "id": "7fd7a60e-c3e9-52f6-beb3-93f43bf3f2e5",
+      "key": "modernrock.madness.chorus",
+      "name": "Shinedown / Sound of Madness - Broad Chorus Chords",
+      "output_db": -15.0,
+      "pedals": [
+        "Shinedown / Madness Open Chords",
+        "Cabinet Unity",
+        "Shinedown / Madness Low-D Control",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "9e09fa42-3961-5639-9a88-c01882544a82",
+        "40000000-0000-4000-8000-000000000076",
+        "281ea4c8-0e88-5712-a547-0b81be0464c3",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "d0362670-2337-5e2e-83fd-f5d9a74022b6",
+        "9fe46d5d-fe5e-50f7-bd9c-260ac5d8233e",
+        "5a7e9b28-70f1-5da4-8104-79f256ac5422",
+        "0e96fca0-fb91-5b06-af17-e932738ce86f"
+      ],
+      "cabinet_assets": {
+        "1": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+      }
+    },
+    {
+      "id": "86b4c7c5-ae11-52cd-aa8a-c09cf353866d",
+      "key": "modernrock.madness.lead",
+      "name": "Shinedown / Sound of Madness - Filtered Lead Adaptation",
+      "output_db": -8.5,
+      "pedals": [
+        "Shinedown / Stationary Lead Color Adaptation",
+        "Shinedown / Forward Melodic Sustain",
+        "Cabinet Unity",
+        "Modern Rock / Lead Mid Separation",
+        "Modern Rock / Short Melodic Repeat",
+        "Research / Restrained Lead Plate"
+      ],
+      "pedal_ids": [
+        "c36555aa-1efd-50e1-a044-28c237c7d0fe",
+        "935d9c82-0052-5285-8926-b07e7f88184d",
+        "40000000-0000-4000-8000-000000000076",
+        "82002971-ee61-56cc-a22b-61b19da110e3",
+        "83669def-0a59-5fa4-ba8d-ce92c6d0d666",
+        "5e74de2a-e468-57fb-8464-1ee927e0e24f"
+      ],
+      "instance_ids": [
+        "95a066ed-7194-5db2-9ac7-9490d83dc34d",
+        "729ff5ea-a2b2-52f8-aa5f-6b9b50cff7da",
+        "79b279f5-b094-59be-a5d9-69bf49cfbc50",
+        "53627725-629d-50b4-a8b9-19a1ddb1dcbc",
+        "1b1e3065-4717-52fa-ad04-e772fa69fa76",
+        "0d51c843-82f3-5654-a6fe-82b4b127fbc0"
+      ],
+      "cabinet_assets": {
+        "2": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "8fc64f6f-9060-5e43-afaf-f4e6435f17ff",
+      "key": "modernrock.monsters.verse",
+      "name": "Shinedown / Monsters - Verse Clarity Adaptation",
+      "output_db": -1.5,
+      "pedals": [
+        "Research / Natural Pick Compression",
+        "Shinedown / Sparse Verse Clarity",
+        "Cabinet Unity",
+        "Shinedown / Monsters Low-String Balance",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "261ac95d-f4de-54cb-b01a-898dc1ed500e",
+        "48e7a475-e8fd-5cb3-93dc-ebbe0aa7e4df",
+        "40000000-0000-4000-8000-000000000076",
+        "70f51303-5b46-5934-8e12-b6d88814ab32",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "29e4b544-fc1a-5fa1-9996-1f7870f50927",
+        "00fb12f0-ab66-51a7-ac41-3929a4e22679",
+        "ac8ca051-ce57-5d33-ac02-ee5af5180e0d",
+        "ab51aafc-f949-5a15-8bcf-ea9f10b376d3",
+        "a58c76f5-7f36-5fd3-bfc3-837269dfcd55"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "754407f1-38e3-5693-8f84-caa3b20a83ef",
+      "key": "modernrock.monsters.riff",
+      "name": "Shinedown / Monsters - Wiry Main Riff",
+      "output_db": -11.5,
+      "pedals": [
+        "Research / Rhythm Noise Control",
+        "Shinedown / Wiry D-Standard Riff",
+        "Cabinet Unity",
+        "Shinedown / Monsters Low-String Balance"
+      ],
+      "pedal_ids": [
+        "d5c53273-e582-5e0e-87b0-f456bca9b2d6",
+        "bf06cb3e-a7ce-5ed6-a6c1-0c88c782b7c0",
+        "40000000-0000-4000-8000-000000000076",
+        "70f51303-5b46-5934-8e12-b6d88814ab32"
+      ],
+      "instance_ids": [
+        "784d38a0-c68e-5e7c-923f-aed8d741bc03",
+        "a62dd98b-3e9e-5744-955c-73ae87bd20fb",
+        "c95dfeed-3435-5827-bab7-bf713ee81b89",
+        "4f926601-461f-54c6-ab10-2fbf8d604cda"
+      ],
+      "cabinet_assets": {
+        "2": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "66ce90a6-8aa2-53e2-911f-6b3a49dfcaaf",
+      "key": "modernrock.monsters.chorus",
+      "name": "Shinedown / Monsters - Full Chorus Rhythm",
+      "output_db": -11.5,
+      "pedals": [
+        "Shinedown / Monsters Full Chords",
+        "Cabinet Unity",
+        "Shinedown / Monsters Low-String Balance",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "ec3b3494-7904-5047-9f84-64236f88b58b",
+        "40000000-0000-4000-8000-000000000076",
+        "70f51303-5b46-5934-8e12-b6d88814ab32",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "2ee795b0-1df4-51b7-9a60-79246d1b4212",
+        "f597a24e-d62f-520b-be2a-d0a94eaa985c",
+        "11bcc6f6-5ebf-5cbf-9a20-0f0c68ad2e74",
+        "a46ae045-ae34-56bd-b441-0ada0fd22827"
+      ],
+      "cabinet_assets": {
+        "1": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d"
+      }
+    },
+    {
+      "id": "eb726d04-0844-5c8f-8d91-147900a3797a",
+      "key": "modernrock.monsters.lead",
+      "name": "Shinedown / Monsters - Melodic Accent Lead",
+      "output_db": -11.0,
+      "pedals": [
+        "Shinedown / Forward Melodic Sustain",
+        "Cabinet Unity",
+        "Modern Rock / Lead Mid Separation",
+        "Modern Rock / Short Melodic Repeat",
+        "Research / Restrained Lead Plate"
+      ],
+      "pedal_ids": [
+        "935d9c82-0052-5285-8926-b07e7f88184d",
+        "40000000-0000-4000-8000-000000000076",
+        "82002971-ee61-56cc-a22b-61b19da110e3",
+        "83669def-0a59-5fa4-ba8d-ce92c6d0d666",
+        "5e74de2a-e468-57fb-8464-1ee927e0e24f"
+      ],
+      "instance_ids": [
+        "40f16869-29dc-59c4-a122-a8be8ebbad0c",
+        "40009ca3-bb71-5073-b3d7-f78b455627d9",
+        "f48563a4-86b0-55a8-b12c-68b6bd3ea426",
+        "4af35edb-c31b-5146-89d8-eab9a1e3d55d",
+        "d9b349f3-054f-531d-bd67-15332ba6d65a"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "0dde262f-8269-51ab-a125-9a892f394a18",
+      "key": "modernrock.cord.riff",
+      "name": "Shinedown / Cut the Cord - Rough Fuzz Combo",
+      "output_db": -10.0,
+      "pedals": [
+        "Research / Rhythm Noise Control",
+        "Shinedown / Rough Combo Fuzz Adaptation",
+        "Shinedown / Rough Small-Combo Support",
+        "Cabinet Unity",
+        "Shinedown / Combo Fuzz Definition"
+      ],
+      "pedal_ids": [
+        "d5c53273-e582-5e0e-87b0-f456bca9b2d6",
+        "cbb298ee-9a38-5bf6-ae40-35420812a2a1",
+        "31050108-62fe-5c14-af64-27c2c34e55a1",
+        "40000000-0000-4000-8000-000000000076",
+        "779e037a-8e13-5cb8-b7df-7363d3007ea7"
+      ],
+      "instance_ids": [
+        "f55a6fd5-d8bb-53f1-9e0b-bdde8b375245",
+        "1cbdd28c-5127-514b-b9d2-338ef903534c",
+        "8339b53a-e175-5ef1-a6b5-d29b2970e061",
+        "a7d76526-b077-50c7-b676-ca9aecc4fdd3",
+        "c3346c56-1d0a-535d-be63-8ab996bbae76"
+      ],
+      "cabinet_assets": {
+        "3": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "69782437-3a87-5b58-a58f-c5d01ed11560",
+      "key": "modernrock.cord.chorus",
+      "name": "Shinedown / Cut the Cord - Open Combo Chorus",
+      "output_db": -9.5,
+      "pedals": [
+        "Shinedown / Open Combo Drive",
+        "Cabinet Unity",
+        "Shinedown / Combo Fuzz Definition",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "fd8f3a69-b20b-55ab-96db-b709218aaa05",
+        "40000000-0000-4000-8000-000000000076",
+        "779e037a-8e13-5cb8-b7df-7363d3007ea7",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "2a819417-5bca-5251-8b2a-89e44c02e894",
+        "1a2991ae-d869-5faf-a26b-c471f7162f66",
+        "2ec7bedd-896d-5a64-9c46-abbf7794d9d1",
+        "746b225d-1187-5e29-ade8-ae6e44008a14"
+      ],
+      "cabinet_assets": {
+        "1": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "5fbb860c-41cf-50cf-80e0-a63c0c4f35d4",
+      "key": "modernrock.cord.accent",
+      "name": "Shinedown / Cut the Cord - Filtered Hook Accent",
+      "output_db": 6,
+      "pedals": [
+        "Shinedown / Stationary Lead Color Adaptation",
+        "Shinedown / Rough Small-Combo Support",
+        "Cabinet Unity",
+        "Modern Rock / Lead Mid Separation",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "c36555aa-1efd-50e1-a044-28c237c7d0fe",
+        "31050108-62fe-5c14-af64-27c2c34e55a1",
+        "40000000-0000-4000-8000-000000000076",
+        "82002971-ee61-56cc-a22b-61b19da110e3",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "4de81974-2016-5624-8620-d06df42d647b",
+        "e4eb0b0c-21f1-5d2d-8ba2-b338bdc90e6a",
+        "6ff6d862-ee41-5b6a-888a-394d536fba98",
+        "88ba390b-065d-5cf0-8cbb-8cca4a62a113",
+        "19d86bf7-f4ea-500c-afe1-4b0b164c1f26"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "c107a32b-42de-5ad2-ad6a-d17ccc1e9c50",
+      "key": "modernrock.devil.rhythm",
+      "name": "Shinedown / Devil - Dry Stop Rhythm",
+      "output_db": -12.0,
+      "pedals": [
+        "Research / Rhythm Noise Control",
+        "Shinedown / Devil Dry Stop Attack",
+        "Cabinet Unity",
+        "Shinedown / Devil Riff Space"
+      ],
+      "pedal_ids": [
+        "d5c53273-e582-5e0e-87b0-f456bca9b2d6",
+        "57f632e8-e87e-5981-b231-188436c55cc2",
+        "40000000-0000-4000-8000-000000000076",
+        "61150646-1868-5514-9279-440a3c082bb3"
+      ],
+      "instance_ids": [
+        "8fa60cc7-fb52-55fe-8d2e-332c5e5b56a7",
+        "8a54f38b-3d81-5d82-8ad2-6af18293f32c",
+        "ae70b5c8-9f70-5fb9-b97d-0790a7778fb6",
+        "64e7482f-0c2d-5311-a7c6-d070fe4119fd"
+      ],
+      "cabinet_assets": {
+        "2": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d"
+      }
+    },
+    {
+      "id": "589ccac6-d60d-5751-acf5-30ed014564b3",
+      "key": "modernrock.devil.chorus",
+      "name": "Shinedown / Devil - Open Chorus Rhythm",
+      "output_db": -15.0,
+      "pedals": [
+        "Shinedown / Devil Broad Chords",
+        "Cabinet Unity",
+        "Shinedown / Devil Riff Space",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "8b517257-348f-5a5f-bf0c-a07ee756d6e4",
+        "40000000-0000-4000-8000-000000000076",
+        "61150646-1868-5514-9279-440a3c082bb3",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "06e89ddf-61c7-54f3-a13a-c1d4d90fc1e2",
+        "db566df7-27bf-55c0-ae45-281b2713b66d",
+        "8eeac0a9-6b1d-54b9-adb3-9c6799a29e61",
+        "989378f6-95e0-55cb-96ce-2643d724b1ef"
+      ],
+      "cabinet_assets": {
+        "1": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+      }
+    },
+    {
+      "id": "32c0af1e-905c-5bdf-8a15-f9259adab7e2",
+      "key": "modernrock.devil.texture",
+      "name": "Shinedown / Devil - Filtered Texture Adaptation",
+      "output_db": -5.0,
+      "pedals": [
+        "Shinedown / Filtered Texture Drive",
+        "Shinedown / Rough Small-Combo Support",
+        "Cabinet Unity",
+        "Shinedown / Narrow Texture Adaptation",
+        "Modern Rock / Short Melodic Repeat"
+      ],
+      "pedal_ids": [
+        "539a7782-fb94-5061-a379-886f635447e9",
+        "31050108-62fe-5c14-af64-27c2c34e55a1",
+        "40000000-0000-4000-8000-000000000076",
+        "2ecbcd73-78b8-5488-9c23-48e017edb602",
+        "83669def-0a59-5fa4-ba8d-ce92c6d0d666"
+      ],
+      "instance_ids": [
+        "aab24e0e-0e44-5296-a4ba-d0f9bac34bd8",
+        "3c28e9ca-da64-5f69-b0c3-1060ca4c9be6",
+        "15971c57-fdd6-5c72-9a4b-c8b5af9d66a3",
+        "539016cc-afef-5e84-b229-6156189c2201",
+        "924a6201-7e6a-56bf-b01f-d19649f7b280"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "fdd784fd-cb19-5133-9445-93952291df08",
+      "key": "modernrock.blackbird.clean",
+      "name": "Alter Bridge / Blackbird - Fingerpicked Clean",
+      "output_db": 3.0,
+      "pedals": [
+        "Research / Natural Pick Compression",
+        "Alter Bridge / Fingerpicked Clean Body",
+        "Cabinet Unity",
+        "Alter Bridge / Fingerstyle String Balance",
+        "Research / Acoustic Air"
+      ],
+      "pedal_ids": [
+        "261ac95d-f4de-54cb-b01a-898dc1ed500e",
+        "8e746b92-d065-5fe2-b790-fba94f319571",
+        "40000000-0000-4000-8000-000000000076",
+        "24ed4796-71fe-5df7-a25d-4cf781cb10d2",
+        "2d897bdc-bef5-5542-b546-6cc97da4a5ea"
+      ],
+      "instance_ids": [
+        "5c10b744-9fda-5a16-b975-f1128dbf6cbc",
+        "245473ba-e1e3-5026-99b3-2d6efe9616e6",
+        "b4e75747-ec1f-5dfe-9e14-81135759f5cc",
+        "f6a1b8c3-66b9-5c40-9570-d280e6a90ca3",
+        "0584d33d-1bef-5c16-a532-35a6a562c134"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "1b09ce14-7209-5e47-afd4-56d680481633",
+      "key": "modernrock.blackbird.tremonti.rhythm",
+      "name": "Alter Bridge / Blackbird - Tremonti Role Rhythm",
+      "output_db": -12.0,
+      "pedals": [
+        "Alter Bridge / Complementary Heavy Body",
+        "Cabinet Unity",
+        "Alter Bridge / Heavy Chord Separation",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "13506165-f760-5e8b-b832-b64090e5df25",
+        "40000000-0000-4000-8000-000000000076",
+        "25c534d5-85b0-53b3-8e5d-acf42742ce69",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "ab9c37d2-aa36-5411-b055-db59fa882575",
+        "e884bba5-1287-5fc2-8d3e-784b3a6030ae",
+        "3d4bc424-f3bd-54e6-8ca7-880a2400be89",
+        "7d20e8c5-3fea-5328-bfc6-65ea09fc91d2"
+      ],
+      "cabinet_assets": {
+        "1": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+      }
+    },
+    {
+      "id": "1cca1ab5-13d2-5892-8444-accf3e778eab",
+      "key": "modernrock.blackbird.kennedy.rhythm",
+      "name": "Alter Bridge / Blackbird - Kennedy Role Support",
+      "output_db": 6,
+      "pedals": [
+        "Alter Bridge / Supporting Mark-Family Rhythm",
+        "Cabinet Unity",
+        "Alter Bridge / Complementary Upper Weight",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "b20f5ebc-8fec-5029-bff7-6ae605e68ec1",
+        "40000000-0000-4000-8000-000000000076",
+        "d20df3b0-74c2-5d27-bcfb-3426da360627",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "e17a6ff7-7079-5db1-83a1-6395a33f608a",
+        "464f8e52-f88a-5fe8-8b47-9872de851788",
+        "e2917151-6cb8-55b0-8209-de0164c295fc",
+        "4310826e-9d55-5fc2-912d-984400f1ce81"
+      ],
+      "cabinet_assets": {
+        "1": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d"
+      }
+    },
+    {
+      "id": "729c73bc-e7fb-5f58-83ac-4e265b9f13f9",
+      "key": "modernrock.blackbird.kennedy.lead",
+      "name": "Alter Bridge / Blackbird - Kennedy Expressive Lead",
+      "output_db": -1.5,
+      "pedals": [
+        "Alter Bridge / Expressive Mark-Family Lead",
+        "Cabinet Unity",
+        "Alter Bridge / Warm Expressive Lead Mids",
+        "Alter Bridge / Expressive Lead Repeat",
+        "Research / Restrained Lead Plate"
+      ],
+      "pedal_ids": [
+        "c2fc92ca-862c-5e9b-a07c-9b3e792022ec",
+        "40000000-0000-4000-8000-000000000076",
+        "62e9760a-3ec1-54f1-a3e4-85347ffd6b0f",
+        "809ace52-0551-55a0-aa90-5cdd13a0aaec",
+        "5e74de2a-e468-57fb-8464-1ee927e0e24f"
+      ],
+      "instance_ids": [
+        "0b8b21f3-2d4f-58fd-a885-b2adae04924f",
+        "70e910f7-dc4e-5df3-b924-a0bffea67328",
+        "f6a7a570-c77f-59be-9732-fb4dcc6db2e6",
+        "7058e447-13eb-5c1b-aaec-dcfbf7fdc912",
+        "1a0e30ee-94b0-541f-8c56-b53546f017a2"
+      ],
+      "cabinet_assets": {
+        "1": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d"
+      }
+    },
+    {
+      "id": "5f8b7345-a006-517b-84b9-297da7cecc26",
+      "key": "modernrock.blackbird.tremonti.lead",
+      "name": "Alter Bridge / Blackbird - Tremonti Articulate Lead",
+      "output_db": -10.0,
+      "pedals": [
+        "Alter Bridge / Articulate Hot-Rod Lead",
+        "Cabinet Unity",
+        "Alter Bridge / Fast Lead Note Definition",
+        "Alter Bridge / Articulate Lead Repeat",
+        "Research / Restrained Lead Plate"
+      ],
+      "pedal_ids": [
+        "d35cc275-f9eb-57a0-b15e-e1e435814f73",
+        "40000000-0000-4000-8000-000000000076",
+        "4235a93c-9d40-5d95-ab7a-b9ef6f4ef16b",
+        "38bcd533-681a-5c8b-9cd4-f8a46ce5a495",
+        "5e74de2a-e468-57fb-8464-1ee927e0e24f"
+      ],
+      "instance_ids": [
+        "0cbd32ea-31e0-58b7-979a-ee65016af0be",
+        "7b360b61-6501-5c84-add5-a4707177e9ed",
+        "55d9198a-c143-5960-b8d4-b456fd8de882",
+        "6c071846-7abd-5aac-b50f-4a101153db31",
+        "31f47e12-ae5e-5abc-9a66-a283bef24dfb"
       ],
       "cabinet_assets": {
         "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"

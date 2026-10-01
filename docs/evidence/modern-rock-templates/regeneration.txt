@@ -1,0 +1,6 @@
+Added 0 racks and 0 voicings; existing records retained.
+Generated 305 pedal voicings and 163 racks.
+
+Updated strict effect/version/control cases in schema v1 and v2.
+
+PASS: seed, library/catalog generators, exporter, schemas and control docs byte-idempotent; 168 presets included

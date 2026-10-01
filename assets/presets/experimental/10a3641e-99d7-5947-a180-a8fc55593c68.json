@@ -1,0 +1,95 @@
+{
+  "schema_version": 2,
+  "preset_id": "10a3641e-99d7-5947-a180-a8fc55593c68",
+  "name": "Foo Fighters / Everlong - Ringing Intro Crunch",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -6.5,
+    "rack_bypass": false
+  },
+  "order": [
+    "65118ee6-0861-58e8-b252-05ded3627ffa",
+    "9fe95057-0402-587b-9401-665fb2ffb3e2",
+    "950581fb-7643-5c80-ac0c-53ab0911fb5c",
+    "3c8c0962-1e1a-5ba0-9463-047313ff599a"
+  ],
+  "instances": [
+    {
+      "instance_id": "65118ee6-0861-58e8-b252-05ded3627ffa",
+      "slot_id": 0,
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 12.0,
+        "bass_db": -1.0,
+        "mid_db": 2.0,
+        "treble_db": 0.0,
+        "master_percent": 30.000001907348633,
+        "presence_percent": 30.000001907348633,
+        "output_db": -7.0,
+        "sag_percent": 22.0,
+        "bright_percent": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "9fe95057-0402-587b-9401-665fb2ffb3e2",
+      "slot_id": 1,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+    },
+    {
+      "instance_id": "950581fb-7643-5c80-ac0c-53ab0911fb5c",
+      "slot_id": 2,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 210.0,
+        "band1_db": -1.5,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 1400.0,
+        "band2_db": 1.0,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 3900.0,
+        "band3_db": -1.5,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 65.0,
+        "low_pass_hz": 6800.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "3c8c0962-1e1a-5ba0-9463-047313ff599a",
+      "slot_id": 3,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.550000011920929,
+        "pre_delay_ms": 12.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 5.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "sha256": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "relative_path": "ir/43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d.wav",
+      "format": "wav"
+    }
+  ]
+}

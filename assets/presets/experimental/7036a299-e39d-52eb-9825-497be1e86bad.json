@@ -1,0 +1,94 @@
+{
+  "schema_version": 2,
+  "preset_id": "7036a299-e39d-52eb-9825-497be1e86bad",
+  "name": "Foo Fighters / Everlong - Upper Part Detail",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -8.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "6fee2483-e0cc-58a6-9b9e-aec6e3899421",
+    "c5ae972a-c1a7-565b-9a9b-320d834d4a66",
+    "d0b51321-6f09-559d-aa19-ba62d6a1124b",
+    "6a0109ab-19c2-50f1-bac0-2cebea3cdb8d"
+  ],
+  "instances": [
+    {
+      "instance_id": "6fee2483-e0cc-58a6-9b9e-aec6e3899421",
+      "slot_id": 0,
+      "effect_type": "amp_brit_crunch",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 19.0,
+        "bass_db": -3.0,
+        "mid_db": 3.0,
+        "treble_db": 0.0,
+        "master_percent": 30.000001907348633,
+        "presence_percent": 34.0,
+        "output_db": -9.0,
+        "sag_percent": 15.000000953674316
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "c5ae972a-c1a7-565b-9a9b-320d834d4a66",
+      "slot_id": 1,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+    },
+    {
+      "instance_id": "d0b51321-6f09-559d-aa19-ba62d6a1124b",
+      "slot_id": 2,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 260.0,
+        "band1_db": -2.0,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 1800.0,
+        "band2_db": 2.0,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 4300.0,
+        "band3_db": -1.5,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 120.0,
+        "low_pass_hz": 6800.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "6a0109ab-19c2-50f1-bac0-2cebea3cdb8d",
+      "slot_id": 3,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.550000011920929,
+        "pre_delay_ms": 12.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 5.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "sha256": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "relative_path": "ir/e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac.wav",
+      "format": "wav"
+    }
+  ]
+}

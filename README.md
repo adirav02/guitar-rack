@@ -3,8 +3,8 @@
 Fedora Linux standalone guitar monitoring and a native pedalboard using C++20,
 CMake and pinned JUCE 8.0.15. The tone upgrade adds eight original inspired amp
 families, six drives, gate/EQ, modulation, echo/reverb, spectral expression pitch,
-swell/hold, Dual Amp and five original synthetic cabinet responses. There are 135
-complete sounds and 256 reusable voicings. All 93 prior sounds, 196 prior
+swell/hold, Dual Amp and five original synthetic cabinet responses. There are 168
+complete sounds and 305 reusable voicings. All 135 prior sounds, 256 prior
 voicings and executable effect versions remain unchanged. **Art Rock /
 Subterranean Pulse** is the owner's confirmed approved sound and is protected
 exactly. New sounds are technically validated starting points with listening
@@ -30,6 +30,14 @@ clean/rhythm/lead roles and acoustic-source/electric-adaptation choices. Search
 for sourced facts, uncertainties and proposed app settings; all album matching
 remains pending. Physically retune: these chains contain no pitch shifting.
 
+The [modern rock collection](docs/modern-rock-templates.md) adds **33 complete
+chains / 49 voices** for Foo Fighters (Everlong, Walk, My Hero, The Pretender),
+Shinedown (Sound of Madness, Monsters, Cut the Cord, Devil) and Alter Bridge
+(Blackbird). Search **Modern rock research**. Separate guitar roles, tuning
+evidence and adaptation limits are covered in the
+[recording research](docs/modern-rock-tone-research.md). All fit Legacy 128;
+reference listening remains pending.
+
 These are complete loadable chains in the application. Rebuild and restart,
 open **Choose Preset...**, set filters to **All**, search a song and press
 **Load**. Individual importable bundles can also be exported with
@@ -43,7 +51,7 @@ sound. Default geometry is 1280×720; the old 1030-pixel minimum is removed.
 Start/Stop/Mute, bypass, meters, clipping and gains remain accessible.
 
 Read [the upgrade contract](docs/tone-upgrade.md), [exact new controls](docs/tone-controls.md),
-[current verification](docs/testing.md#tone-upgrade-current-verification-2026-10-01)
+[current verification](docs/testing.md#modern-rock-template-expansion-2026-10-01)
 and [launch/listening worksheet](docs/listening.md). Linux software is implemented;
 native visual/HiDPI checks, new guitar listening, hardware latency/soak, measured
 IR realism, VST3 and Windows remain pending. The prior M3/M4 owner reports are
@@ -318,7 +326,7 @@ library selections cannot revive a deleted entry. These checks pass in automated
 state/adapter fixtures; the new native dialogs and real-guitar deletion checklist
 still need desktop verification.
 
-The library has **135 full rack presets** and **256 pedal voicings**.
+The library has **168 full rack presets** and **305 pedal voicings**.
 Original factory examples: **Clean**, **Crunch**, **Lead Delay**, **Driven Synthetic
 Cabinet** (Distortion → Cabinet → EQ → Delay → Reverb) and **Small Room** (EQ →
 Reverb). Output defaults to -12 dB. The Cabinet example uses an explicitly

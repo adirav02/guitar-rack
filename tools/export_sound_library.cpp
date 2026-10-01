@@ -25,7 +25,7 @@ int exportSongPack(const std::filesystem::path& directory, const EffectRegistry&
         "older builds may lack required effects/versions.\n\n"
         "The updated app already includes these as factory presets: open Choose\n"
         "Preset, set Source/Artist/Category to All, search Song templates or Muse\n"
-        "expansion or Alternative research, select a chain and press Load.\n\n"
+        "expansion, Alternative research or Modern rock research, then Load.\n\n"
         "To use a file: unzip this pack, press Import in GuitarRack, choose one\n"
         ".grbundle file and resolve any unsaved edits. Use Save As to keep your\n"
         "adjusted chain. The ZIP itself is not an application preset.\n\n"

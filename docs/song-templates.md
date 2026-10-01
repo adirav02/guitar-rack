@@ -3,7 +3,8 @@
 These 24 complete factory sounds and 50 reusable pedal voices are additive.
 This expansion brought the library to 93 complete sounds and 196 voices; the
 subsequent [alternative collection](alternative-templates.md) brings it to
-135 sounds and 256 voices. Every earlier sound
+135 sounds and 256 voices. The [modern rock collection](modern-rock-templates.md)
+brings the current catalog to 168 sounds and 305 voices. Every earlier sound
 and voice retains its exact identity and settings, including the owner-approved
 Art Rock / Subterranean Pulse. The new templates remain listening pending.
 
@@ -30,7 +31,7 @@ GuitarRack to replace an older executable. Set Source, Artist and Category to
 **All** if a saved browser filter hides a song; search **Song templates** or
 **Muse expansion**, then select and press **Load**.
 
-For individual portable files, the exporter can produce all 66 song chains (including these 24)
+For individual portable files, the exporter can produce all 99 song chains (including these 24)
 with their cabinet WAVs included:
 
 ```bash

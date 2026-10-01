@@ -1,0 +1,95 @@
+{
+  "schema_version": 2,
+  "preset_id": "96ac7796-e70d-57b7-9d70-d05fd448cb57",
+  "name": "Shinedown / Sound of Madness - Tight Riff Rhythm",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -12.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "44972aba-2d31-54ef-8b97-037414daa9ae",
+    "123917da-5621-578f-889b-c2b2168f5c08",
+    "4c98fcd3-f4c2-56bb-bf69-8c6ccf88889b",
+    "d3428c53-0995-566a-ab6d-c82ecad52392"
+  ],
+  "instances": [
+    {
+      "instance_id": "44972aba-2d31-54ef-8b97-037414daa9ae",
+      "slot_id": 0,
+      "effect_type": "noise_gate",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "threshold_db": -58.0,
+        "range_db": 45.0,
+        "attack_ms": 1.0,
+        "hold_ms": 45.0,
+        "release_ms": 140.0,
+        "hysteresis_db": 5.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "123917da-5621-578f-889b-c2b2168f5c08",
+      "slot_id": 1,
+      "effect_type": "amp_modern_tight",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 21.0,
+        "bass_db": -1.0,
+        "mid_db": 2.0,
+        "treble_db": 0.0,
+        "master_percent": 33.0,
+        "presence_percent": 32.0,
+        "output_db": -10.0,
+        "sag_percent": 10.0,
+        "low_cut_hz": 70.0,
+        "resonance_percent": 25.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "4c98fcd3-f4c2-56bb-bf69-8c6ccf88889b",
+      "slot_id": 2,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d"
+    },
+    {
+      "instance_id": "d3428c53-0995-566a-ab6d-c82ecad52392",
+      "slot_id": 3,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 180.0,
+        "band1_db": -1.5,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 1200.0,
+        "band2_db": 1.5,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 3700.0,
+        "band3_db": -2.0,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 60.0,
+        "low_pass_hz": 6400.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d",
+      "sha256": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d",
+      "relative_path": "ir/7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d.wav",
+      "format": "wav"
+    }
+  ]
+}

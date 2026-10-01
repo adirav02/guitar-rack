@@ -2,7 +2,9 @@
 
 42 independent complete sounds and 60 reusable pedal voicings for all 14 requested
 songs. Every earlier 93 sound / 196 voice retains its identity and recipe.
-The total inventory is 135 sounds / 256 voices; quantity is not listening approval.
+This expansion brought the inventory to 135 sounds / 256 voices. The subsequent
+[modern rock collection](modern-rock-templates.md) brings it to 168 / 305;
+quantity is not listening approval.
 
 [Recording research, tuning matrix and evidence register](alternative-tone-research.md)
 separates historical findings from proposed settings. All album matching remains
@@ -94,8 +96,9 @@ ctest --preset linux-release
 ./build/linux-release/guitarrack_render --catalog-audit captures/alternative-headroom.csv "Alternative research"
 ```
 
-The song pack now exports 66 song bundles, including all 24 previous Radiohead/Muse
-chains. The exporter verifies each bundle through the application's importer and
+At this expansion the song pack exported 66 song bundles, including all 24
+previous Radiohead/Muse chains. The subsequent [modern rock collection](modern-rock-templates.md)
+brings the current song pack to 99 bundles. The exporter verifies each bundle through the application's importer and
 refuses to overwrite changed bundles. No copyrighted audio or external IR is added.
 Synthetic calibration controls output level/headroom, not perceived loudness or
 recording authenticity. [Verification and limits](testing.md#alternative-template-expansion-2026-10-01)

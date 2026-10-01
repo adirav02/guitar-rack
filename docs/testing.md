@@ -1,5 +1,83 @@
 # Verification record
 
+## Modern rock template expansion 2026-10-01
+
+Local and remote `feat/radiohead-muse-song-tones` were clean at
+`c159e512932d6d95372c71779e91724f93f22104`. Before edits, checkpoint
+`b8e7dc6a42ff086470c7187a3a405c1af2d01a6e` preserved the identical tree.
+Added **33 racks / 49 voices / nine songs** for Foo Fighters, Shinedown and
+Alter Bridge. The full inventory is **168 sounds / 305 voices**, with the same
+42 effect types / 44 exact version descriptors. No DSP implementation, effect
+version, latency profile or cabinet asset changes. All new racks use Legacy
+128 and physical tuning, with no pitch processor. Research separates recording
+eras, both Blackbird players/solos, transcription-only tuning evidence and
+explicit application adaptations. Every new sound remains Listening pending.
+
+Final software checks:
+
+- Core Debug **9/9**, 156.69 s; Release **9/9**, 30.98 s. Existing factory signal
+  tests prepare/load all sounds, check finite output and audit callback heap
+  operations. Two relinked Debug binaries lacked executable permission in this
+  workspace; their permission was restored before the final complete run.
+- Pinned JUCE headless state/asset/pedal/legacy identity checks **4/4**, 2.09 s.
+  State fixtures match compiled factories to portable files, exercise failed
+  restores and transactional behavior, and round-trip all 305 pedal voices.
+- Application export/import verifies **99 complete song bundles**, including
+  every prior 66 song chain. Edited existing bundles remain protected.
+- Strict version-specific schemas validate **168 portable presets** (162 v2,
+  six v1) and **305 expanded voices**. Registry schemas/control docs are
+  regenerated and unchanged. Seed, generators and exporter are byte-idempotent.
+- `check_modern_rock_templates.py --baseline b8e7dc6` verifies every prior JSON
+  recipe/catalog record, preset/IR/legacy identity and accessible file bytes,
+  fresh additive seeding, repeated seeding and deliberate owner-edit retention.
+- The independent pre-alternative-expansion numerical capture retained from
+  checkpoint `15870b7` still compares with **zero failures**, maximum absolute
+  error **4.99981e-11** across the frozen 45-sound subset at 44.1/48/96 kHz.
+  This task reran the comparison; it did not recapture an updated baseline.
+- Headroom **99/99 renders** (33 racks × input scales 0.3/1/3), 48 kHz,
+  eight-second original phrase plus eight-second tail. Maximum peak
+  **0.19744243** (**-14.09 dBFS**); nominal phrase RMS range
+  **0.010599–0.015438**. Only the 33 new rack output trims were calibrated
+  toward 0.015 nominal phrase RMS, in 0.5 dB steps, capped at +6 dB and a
+  worst-input peak below 0.6. The audit checks finite output, zero callback heap
+  operations and Legacy 128. It is synthetic numerical evidence, not measured
+  pickup loudness, true-peak certification, live CPU deadlines or album matching.
+
+The original 10 MB `tests/fixtures/legacy/render.txt.gz` remains unavailable
+locally through the connector. Its Git blob
+`6b266404e4f9f601b04daacc98b59467216f3903` is retained exactly; it was not
+recaptured or replaced. The standard frozen `legacy_audio_compatibility` test
+requires these unavailable bytes and is excluded, not reported as passing.
+The independent earlier checkpoint comparison above provides additional
+regression evidence without replacing that fixture.
+
+Environment remains GNU C++ 13.3.0, CMake 4.4.3 / Make, Python 3.12.14 and JUCE
+8.0.15 at `91ad83ae34a81e0833b1a2b0866f54846370ae53`, using the existing
+callback patch. Native standalone Release configuration was retried and remains
+blocked by missing `PkgConfig`, before GUI/audio compilation. Dependencies were
+not installed into the system. No new native-window, sanitizer, Windows, VST3,
+physical-device, round-trip, soak or reference-listening result is claimed.
+The prior Dual/graph-fade benchmark caveat applies to the new parallel amp racks.
+Only the unchanged original Subterranean Pulse has owner listening approval.
+
+Evidence: [Debug](evidence/modern-rock-templates/core-debug.txt),
+[Release](evidence/modern-rock-templates/core-release.txt),
+[state](evidence/modern-rock-templates/state-tests.txt),
+[schemas](evidence/modern-rock-templates/schema.txt),
+[bundles](evidence/modern-rock-templates/song-pack.txt),
+[preservation](evidence/modern-rock-templates/preservation.txt),
+[regeneration](evidence/modern-rock-templates/regeneration.txt),
+[checkpoint comparison](evidence/modern-rock-templates/checkpoint-audio.txt),
+[native configure](evidence/modern-rock-templates/native-configure.txt),
+[before](evidence/modern-rock-templates/headroom-before.csv) /
+[after headroom](evidence/modern-rock-templates/headroom.csv).
+
+[Research](modern-rock-tone-research.md) and
+[ordered recipes/reproduction commands](modern-rock-templates.md) explain the
+settings and their limits. The pinned headless verification setup described
+in the previous entry also applies; run the new baseline checker and
+`render_sounds --catalog-audit output.csv 'Modern rock research'` separately.
+
 ## Alternative template expansion 2026-10-01
 
 The remote branch was exactly the owner's verified `8800341` state. Before

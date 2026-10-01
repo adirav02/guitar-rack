@@ -1,0 +1,121 @@
+{
+  "schema_version": 2,
+  "preset_id": "729c73bc-e7fb-5f58-83ac-4e265b9f13f9",
+  "name": "Alter Bridge / Blackbird - Kennedy Expressive Lead",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -1.5,
+    "rack_bypass": false
+  },
+  "order": [
+    "0b8b21f3-2d4f-58fd-a885-b2adae04924f",
+    "70e910f7-dc4e-5df3-b924-a0bffea67328",
+    "f6a7a570-c77f-59be-9732-fb4dcc6db2e6",
+    "7058e447-13eb-5c1b-aaec-dcfbf7fdc912",
+    "1a0e30ee-94b0-541f-8c56-b53546f017a2"
+  ],
+  "instances": [
+    {
+      "instance_id": "0b8b21f3-2d4f-58fd-a885-b2adae04924f",
+      "slot_id": 0,
+      "effect_type": "amp_mark",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 18.0,
+        "bass_db": -3.0,
+        "mid_db": 3.0,
+        "treble_db": -1.0,
+        "master_percent": 32.0,
+        "presence_percent": 27.000001907348633,
+        "output_db": -10.0,
+        "sag_percent": 20.0,
+        "lead_gain_db": 8.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "70e910f7-dc4e-5df3-b924-a0bffea67328",
+      "slot_id": 1,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d"
+    },
+    {
+      "instance_id": "f6a7a570-c77f-59be-9732-fb4dcc6db2e6",
+      "slot_id": 2,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 250.0,
+        "band1_db": -1.0,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 1100.0,
+        "band2_db": 2.0,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 3600.0,
+        "band3_db": -2.0,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 95.0,
+        "low_pass_hz": 5800.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "7058e447-13eb-5c1b-aaec-dcfbf7fdc912",
+      "slot_id": 3,
+      "effect_type": "echo",
+      "effect_version": 2,
+      "bypassed": false,
+      "parameters": {
+        "time_ms": 390.0,
+        "bpm": 120.0,
+        "subdivision": 0.0,
+        "clock": 0.0,
+        "mode": 1.0,
+        "feedback_percent": 24.0,
+        "color_hz": 3800.0,
+        "wow_percent": 0.0,
+        "stereo": 0.0,
+        "heads": 0.0,
+        "mix_percent": 12.0,
+        "output_db": 0.0,
+        "wet_low_cut_hz": 240.0,
+        "wow_rate_hz": 0.699999988079071,
+        "wow_width_percent": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "1a0e30ee-94b0-541f-8c56-b53546f017a2",
+      "slot_id": 4,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 1.0,
+        "decay_seconds": 1.350000023841858,
+        "pre_delay_ms": 18.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 8.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d",
+      "sha256": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d",
+      "relative_path": "ir/7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d.wav",
+      "format": "wav"
+    }
+  ]
+}

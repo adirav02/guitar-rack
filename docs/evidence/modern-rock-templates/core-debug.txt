@@ -1,0 +1,23 @@
+Test project /workspace/scratch/db1a83f598f4/guitar-rack/build/core-debug
+    Start 1: monitoring_and_routing
+1/9 Test #1: monitoring_and_routing ...........   Passed    0.03 sec
+    Start 2: serial_rack_lifecycle
+2/9 Test #2: serial_rack_lifecycle ............   Passed    0.72 sec
+    Start 3: built_in_effect_signals
+3/9 Test #3: built_in_effect_signals ..........   Passed    1.38 sec
+    Start 4: distortion_signals
+4/9 Test #4: distortion_signals ...............   Passed    0.21 sec
+    Start 5: reverb_signals
+5/9 Test #5: reverb_signals ...................   Passed    1.28 sec
+    Start 6: cabinet_signals
+6/9 Test #6: cabinet_signals ..................   Passed   10.49 sec
+    Start 7: experimental_signals
+7/9 Test #7: experimental_signals .............   Passed   59.81 sec
+    Start 8: toneupgrade_signals
+8/9 Test #8: toneupgrade_signals ..............   Passed   37.43 sec
+    Start 9: creative_signals
+9/9 Test #9: creative_signals .................   Passed   45.34 sec
+
+100% tests passed out of 9
+
+Total Test time (real) = 156.69 sec

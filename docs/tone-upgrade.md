@@ -6,10 +6,11 @@ no commits/pushes were made, and no packages, remote services or assets were
 installed/purchased. C++20, pinned JUCE 8.0.15, native Linux standalone, shared
 DSP and the existing bounded serial rack remain the implementation.
 
-The current catalog contains 42 effect types (44 exact version descriptors), 135
-complete sounds and 256 reusable pedal voicings. The additive
+The current catalog contains 42 effect types (44 exact version descriptors), 168
+complete sounds and 305 reusable pedal voicings. The additive
 [song templates](song-templates.md) add 24 sounds, 50 voices and Echo v2; the
-[alternative templates](alternative-templates.md) add 42 sounds and 60 voices; the
+[alternative templates](alternative-templates.md) add 42 sounds and 60 voices;
+[modern rock templates](modern-rock-templates.md) add 33 sounds and 49 voices; the
 rest of this document describes the preceding A–D upgrade. Its purpose is varied playable starting
 points; counts are an inventory, not evidence of sound quality. The 45 legacy
 sounds and 77 legacy voicings remain unchanged. New eight amp families, six drive

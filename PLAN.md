@@ -49,7 +49,7 @@ architecture was authorized or performed.
 - [ ] D: New physical routing/round trip/soak and artist-character/listening
   acceptance. Only unchanged Subterranean Pulse is explicitly owner approved.
 
-Current inventory: 42 types, 44 exact descriptors, 135 complete sounds, 256 pedal
+Current inventory: 42 types, 44 exact descriptors, 168 complete sounds, 305 pedal
 voices. Optional chainsaw, reverse/granular delay and stutter remain deferred.
 VST3/Windows/cloud/mobile/plugin hosting/general routing remain outside this
 request. Checkboxes refer to software behavior with recorded evidence, not the
@@ -126,6 +126,28 @@ computer worktrees. The owner authorizes additive changes and branch commits.
 See [research](docs/alternative-tone-research.md),
 [recipes and use](docs/alternative-templates.md) and
 [verification](docs/testing.md#alternative-template-expansion-2026-10-01).
+
+### Foo Fighters / Shinedown / Alter Bridge expansion — 2026-10-01
+
+Continue on `feat/radiohead-muse-song-tones`. Local and remote HEAD were clean
+at `c159e512932d6d95372c71779e91724f93f22104`. Before edits, checkpoint
+`b8e7dc6a42ff086470c7187a3a405c1af2d01a6e` preserved the exact tree. The
+owner requests the same research/template/verification and branch-commit workflow.
+
+- [x] Research all nine album targets, distinguish three Foo Fighters eras and
+  Shinedown periods, separate both Blackbird players/solos, and label tuning
+  evidence strength, unreviewed embedded video and unresolved studio settings.
+- [x] Add 33 separate racks and 49 voices with stable UUIDs using existing DSP;
+  no pitch shift. Preserve all earlier 135 sounds / 256 voices and assets.
+- [x] Regenerate presets; verify loading, callbacks, 99 synthetic headroom
+  renders, full checkpoint preservation and repeatable edit retention.
+  Commit and push the verified changes to the existing branch.
+- [ ] Reference listening, pickup calibration, native display/audio and
+  target-hardware acceptance. Only unchanged Subterranean Pulse is approved.
+
+See [research](docs/modern-rock-tone-research.md),
+[recipes/use](docs/modern-rock-templates.md) and
+[verification](docs/testing.md#modern-rock-template-expansion-2026-10-01).
 
 ### GitHub review handoff — 2026-10-01
 
