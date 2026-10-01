@@ -699,3 +699,61 @@ gain-staging appraisal and factory tuning, native Delete/IR/bundle dialogs,
 latency and measured round trip, LeakSanitizer, real-host/VST3 and Windows.
 Gate, Compressor, Chorus, Basic Amp, other modulation/pitch effects and later
 products are untouched. M5 as a whole remains incomplete.
+
+
+## 2026-10-01 — Experimental pedalboard branch
+
+Environment: cloud Linux, GCC 14.2.0 (Debian 14.2.0-19), C++20, pthreads,
+`-O2` for manual core/state builds. Existing configured CMake/Ninja and native
+ALSA/Freetype/X11 development headers were unavailable. No system packages were
+installed. Sources/headers for the repository's exact pinned JUCE 8.0.15 commit
+`91ad83ae34a81e0833b1a2b0866f54846370ae53` were fetched through GitHub into ignored
+`build/manual-juce`. JUCE core and its separate CompilationTime unit were built
+for persistence checks; browser/curl stayed disabled. These are manual checks,
+not a successful CMake/standalone link or a display/hardware test.
+
+Manual executable results (all pass):
+
+- MonitorTests: startup/routing, meters, protection, variable blocks and heap audit.
+- RackTests: independent instances, order, transitions, stale/failed/saturated
+  updates, reclamation and callback allocation audit.
+- EffectTests: original Overdrive/EQ/Delay signals and lifecycle.
+- DistortionTests, ReverbTests and CabinetTests: existing signal/latency/IR checks.
+  Cabinet initially identified the documented synthetic WAV missing from the
+  upload because `*.wav` was ignored. Restoring exactly the embedded analytic
+  bytes and adding one ignore exception makes the fixture pass; SHA-256 remains
+  `4a9ac650b2983ca0c49c138d11beccd2d0c8607ac9fccf47c537fbbf7bb7adae`.
+- StateTests and AssetTests: exact factory fixture agreement for 45 factories,
+  state round trips, dirty choices, rollback, cancellation/stale loads, library
+  deletion and managed IR/portable bundles.
+- ExperimentalTests: threshold/ratio compression, deep tremolo cycles, measured
+  filter rejection, granular octave spectrum, ring-modulation sidebands, stereo
+  chorus, default Delay v1/v2 exact digital agreement, coherent concurrent row
+  updates, invalid modes, rates 8/44.1/48/96 kHz, variable blocks, activation
+  lifetime and all 40 added racks rendered with callback allocation audits.
+  The 220 Hz octave input produces a dominant peak near 438 Hz; grain sidebands
+  and pitch error are recorded limits, not an exact-frequency harmonizer claim.
+- PedalPresetTests: all 77 physical control round trips, Hebrew/emoji save/reload,
+  factory identity protection, invalid UUID/value/schema and corrupt-entry isolation.
+
+Both changed UI translation units (`RackEditor.cpp`, `PresetBar.cpp`) pass
+`g++ -std=c++20 -Wall -Wextra -Wpedantic -fsyntax-only` with the pinned JUCE headers
+and `JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1`, `JUCE_STANDALONE_APPLICATION=1`,
+`JUCE_USE_CURL=0`, `JUCE_WEB_BROWSER=0`. This validates compilation syntax, not
+linking or displayed layout. JSON Schema validation passes for all 45 tracked
+racks and 77 expanded pedal voices; `git diff --check` is clean.
+
+The new core suite also passes a separate GCC `-O1 -g` ASan/UBSan build, using:
+
+```bash
+g++ -std=c++20 -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer \
+  -pthread -Isrc src/core/*.cpp src/dsp/*.cpp \
+  tests/ExperimentalTests.cpp tests/HeapAudit.cpp -o build/manual/experimental-sanitize
+ASAN_OPTIONS=detect_leaks=0 ./build/manual/experimental-sanitize
+```
+
+Leak detection is unverified. A normal Fedora CMake build, native GUI/keyboard
+acceptance, actual adapter checks for this branch, guitar listening/voicing
+tuning, real-time deadline measurements, hardware stability and round trip
+remain pending. Existing Fedora dependency commands are in dependencies.md.
+No new live listening, device, plugin-host, Windows or performance result is claimed.

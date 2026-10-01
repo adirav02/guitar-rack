@@ -97,11 +97,21 @@
               "eq",
               "delay",
               "distortion",
-              "reverb"
+              "reverb",
+              "fuzz",
+              "amp",
+              "compressor",
+              "chorus",
+              "tremolo",
+              "filter",
+              "pitch",
+              "ring_mod"
             ]
           },
           "effect_version": {
-            "const": 1
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
           },
           "bypassed": {
             "type": "boolean"
@@ -110,247 +120,741 @@
             "type": "object"
           }
         },
-        "allOf": [
+        "oneOf": [
           {
-            "if": {
-              "properties": {
-                "effect_type": {
-                  "const": "gain"
-                }
-              }
-            },
-            "then": {
-              "properties": {
-                "parameters": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "required": [
-                    "level_db"
-                  ],
-                  "properties": {
-                    "level_db": {
-                      "type": "number",
-                      "minimum": -60,
-                      "maximum": 24,
-                      "description": "Physical value in dB; linear normalization. Fixed bank index 0."
-                    }
+            "properties": {
+              "effect_type": {
+                "const": "gain"
+              },
+              "effect_version": {
+                "const": 1
+              },
+              "parameters": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "level_db"
+                ],
+                "properties": {
+                  "level_db": {
+                    "type": "number",
+                    "minimum": -60,
+                    "maximum": 24,
+                    "description": "Physical dB; stable bank index 0, linear normalization."
                   }
                 }
               }
             }
           },
           {
-            "if": {
-              "properties": {
-                "effect_type": {
-                  "const": "overdrive"
-                }
-              }
-            },
-            "then": {
-              "properties": {
-                "parameters": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "required": [
-                    "drive_db",
-                    "tone_hz",
-                    "level_db",
-                    "mix_percent"
-                  ],
-                  "properties": {
-                    "drive_db": {
-                      "type": "number",
-                      "minimum": 0,
-                      "maximum": 36,
-                      "description": "Physical value in dB; linear normalization. Fixed bank index 0."
-                    },
-                    "tone_hz": {
-                      "type": "number",
-                      "minimum": 200,
-                      "maximum": 8000,
-                      "description": "Physical value in Hz; linear normalization. Fixed bank index 1."
-                    },
-                    "level_db": {
-                      "type": "number",
-                      "minimum": -24,
-                      "maximum": 6,
-                      "description": "Physical value in dB; linear normalization. Fixed bank index 2."
-                    },
-                    "mix_percent": {
-                      "type": "number",
-                      "minimum": 0,
-                      "maximum": 100,
-                      "description": "Physical value in %; linear normalization. Fixed bank index 3."
-                    }
+            "properties": {
+              "effect_type": {
+                "const": "overdrive"
+              },
+              "effect_version": {
+                "const": 1
+              },
+              "parameters": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "drive_db",
+                  "tone_hz",
+                  "level_db",
+                  "mix_percent"
+                ],
+                "properties": {
+                  "drive_db": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 36,
+                    "description": "Physical dB; stable bank index 0, linear normalization."
+                  },
+                  "tone_hz": {
+                    "type": "number",
+                    "minimum": 200,
+                    "maximum": 8000,
+                    "description": "Physical Hz; stable bank index 1, linear normalization."
+                  },
+                  "level_db": {
+                    "type": "number",
+                    "minimum": -24,
+                    "maximum": 6,
+                    "description": "Physical dB; stable bank index 2, linear normalization."
+                  },
+                  "mix_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Physical %; stable bank index 3, linear normalization."
                   }
                 }
               }
             }
           },
           {
-            "if": {
-              "properties": {
-                "effect_type": {
-                  "const": "eq"
-                }
-              }
-            },
-            "then": {
-              "properties": {
-                "parameters": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "required": [
-                    "low_db",
-                    "mid_db",
-                    "high_db"
-                  ],
-                  "properties": {
-                    "low_db": {
-                      "type": "number",
-                      "minimum": -12,
-                      "maximum": 12,
-                      "description": "Physical value in dB; linear normalization. Fixed bank index 0."
-                    },
-                    "mid_db": {
-                      "type": "number",
-                      "minimum": -12,
-                      "maximum": 12,
-                      "description": "Physical value in dB; linear normalization. Fixed bank index 1."
-                    },
-                    "high_db": {
-                      "type": "number",
-                      "minimum": -12,
-                      "maximum": 12,
-                      "description": "Physical value in dB; linear normalization. Fixed bank index 2."
-                    }
+            "properties": {
+              "effect_type": {
+                "const": "eq"
+              },
+              "effect_version": {
+                "const": 1
+              },
+              "parameters": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "low_db",
+                  "mid_db",
+                  "high_db"
+                ],
+                "properties": {
+                  "low_db": {
+                    "type": "number",
+                    "minimum": -12,
+                    "maximum": 12,
+                    "description": "Physical dB; stable bank index 0, linear normalization."
+                  },
+                  "mid_db": {
+                    "type": "number",
+                    "minimum": -12,
+                    "maximum": 12,
+                    "description": "Physical dB; stable bank index 1, linear normalization."
+                  },
+                  "high_db": {
+                    "type": "number",
+                    "minimum": -12,
+                    "maximum": 12,
+                    "description": "Physical dB; stable bank index 2, linear normalization."
                   }
                 }
               }
             }
           },
           {
-            "if": {
-              "properties": {
-                "effect_type": {
-                  "const": "delay"
-                }
-              }
-            },
-            "then": {
-              "properties": {
-                "parameters": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "required": [
-                    "time_ms",
-                    "feedback_percent",
-                    "mix_percent"
-                  ],
-                  "properties": {
-                    "time_ms": {
-                      "type": "number",
-                      "minimum": 1,
-                      "maximum": 2000,
-                      "description": "Physical value in ms; linear normalization. Fixed bank index 0."
-                    },
-                    "feedback_percent": {
-                      "type": "number",
-                      "minimum": 0,
-                      "maximum": 85,
-                      "description": "Physical value in %; linear normalization. Fixed bank index 1."
-                    },
-                    "mix_percent": {
-                      "type": "number",
-                      "minimum": 0,
-                      "maximum": 100,
-                      "description": "Physical value in %; linear normalization. Fixed bank index 2."
-                    }
+            "properties": {
+              "effect_type": {
+                "const": "delay"
+              },
+              "effect_version": {
+                "const": 1
+              },
+              "parameters": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "time_ms",
+                  "feedback_percent",
+                  "mix_percent"
+                ],
+                "properties": {
+                  "time_ms": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 2000,
+                    "description": "Physical ms; stable bank index 0, linear normalization."
+                  },
+                  "feedback_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 85,
+                    "description": "Physical %; stable bank index 1, linear normalization."
+                  },
+                  "mix_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Physical %; stable bank index 2, linear normalization."
                   }
                 }
               }
             }
           },
           {
-            "if": {
-              "properties": {
-                "effect_type": {
-                  "const": "distortion"
-                }
-              }
-            },
-            "then": {
-              "properties": {
-                "parameters": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "required": [
-                    "drive_db",
-                    "tone_hz",
-                    "level_db",
-                    "mix_percent"
-                  ],
-                  "properties": {
-                    "drive_db": {
-                      "type": "number",
-                      "minimum": 0,
-                      "maximum": 48
-                    },
-                    "tone_hz": {
-                      "type": "number",
-                      "minimum": 400,
-                      "maximum": 8000
-                    },
-                    "level_db": {
-                      "type": "number",
-                      "minimum": -30,
-                      "maximum": 6
-                    },
-                    "mix_percent": {
-                      "type": "number",
-                      "minimum": 0,
-                      "maximum": 100
-                    }
+            "properties": {
+              "effect_type": {
+                "const": "delay"
+              },
+              "effect_version": {
+                "const": 2
+              },
+              "parameters": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "time_ms",
+                  "feedback_percent",
+                  "mix_percent",
+                  "mode",
+                  "color_hz",
+                  "wow_percent"
+                ],
+                "properties": {
+                  "time_ms": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 2000,
+                    "description": "Physical ms; stable bank index 0, linear normalization."
+                  },
+                  "feedback_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 85,
+                    "description": "Physical %; stable bank index 1, linear normalization."
+                  },
+                  "mix_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Physical %; stable bank index 2, linear normalization."
+                  },
+                  "mode": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 2,
+                    "description": "Physical mode; stable bank index 3, linear normalization. Choices: 0=Digital, 1=Analog, 2=Tape."
+                  },
+                  "color_hz": {
+                    "type": "number",
+                    "minimum": 500,
+                    "maximum": 12000,
+                    "description": "Physical Hz; stable bank index 4, linear normalization."
+                  },
+                  "wow_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Physical %; stable bank index 5, linear normalization."
                   }
                 }
               }
             }
           },
           {
-            "if": {
-              "properties": {
-                "effect_type": {
-                  "const": "reverb"
+            "properties": {
+              "effect_type": {
+                "const": "distortion"
+              },
+              "effect_version": {
+                "const": 1
+              },
+              "parameters": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "drive_db",
+                  "tone_hz",
+                  "level_db",
+                  "mix_percent"
+                ],
+                "properties": {
+                  "drive_db": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 48,
+                    "description": "Physical dB; stable bank index 0, linear normalization."
+                  },
+                  "tone_hz": {
+                    "type": "number",
+                    "minimum": 400,
+                    "maximum": 8000,
+                    "description": "Physical Hz; stable bank index 1, linear normalization."
+                  },
+                  "level_db": {
+                    "type": "number",
+                    "minimum": -30,
+                    "maximum": 6,
+                    "description": "Physical dB; stable bank index 2, linear normalization."
+                  },
+                  "mix_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Physical %; stable bank index 3, linear normalization."
+                  }
                 }
               }
-            },
-            "then": {
-              "properties": {
-                "parameters": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "required": [
-                    "size_percent",
-                    "damping_percent",
-                    "mix_percent"
-                  ],
-                  "properties": {
-                    "size_percent": {
-                      "type": "number",
-                      "minimum": 0,
-                      "maximum": 100
-                    },
-                    "damping_percent": {
-                      "type": "number",
-                      "minimum": 0,
-                      "maximum": 100
-                    },
-                    "mix_percent": {
-                      "type": "number",
-                      "minimum": 0,
-                      "maximum": 100
-                    }
+            }
+          },
+          {
+            "properties": {
+              "effect_type": {
+                "const": "reverb"
+              },
+              "effect_version": {
+                "const": 1
+              },
+              "parameters": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "size_percent",
+                  "damping_percent",
+                  "mix_percent"
+                ],
+                "properties": {
+                  "size_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Physical %; stable bank index 0, linear normalization."
+                  },
+                  "damping_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Physical %; stable bank index 1, linear normalization."
+                  },
+                  "mix_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Physical %; stable bank index 2, linear normalization."
+                  }
+                }
+              }
+            }
+          },
+          {
+            "properties": {
+              "effect_type": {
+                "const": "fuzz"
+              },
+              "effect_version": {
+                "const": 1
+              },
+              "parameters": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "drive_db",
+                  "tone_hz",
+                  "character_percent",
+                  "bias_percent",
+                  "gate_percent",
+                  "level_db",
+                  "mix_percent"
+                ],
+                "properties": {
+                  "drive_db": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 48,
+                    "description": "Physical dB; stable bank index 0, linear normalization."
+                  },
+                  "tone_hz": {
+                    "type": "number",
+                    "minimum": 400,
+                    "maximum": 8000,
+                    "description": "Physical Hz; stable bank index 1, linear normalization."
+                  },
+                  "character_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Physical %; stable bank index 2, linear normalization."
+                  },
+                  "bias_percent": {
+                    "type": "number",
+                    "minimum": -50,
+                    "maximum": 50,
+                    "description": "Physical %; stable bank index 3, linear normalization."
+                  },
+                  "gate_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Physical %; stable bank index 4, linear normalization."
+                  },
+                  "level_db": {
+                    "type": "number",
+                    "minimum": -30,
+                    "maximum": 6,
+                    "description": "Physical dB; stable bank index 5, linear normalization."
+                  },
+                  "mix_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Physical %; stable bank index 6, linear normalization."
+                  }
+                }
+              }
+            }
+          },
+          {
+            "properties": {
+              "effect_type": {
+                "const": "amp"
+              },
+              "effect_version": {
+                "const": 1
+              },
+              "parameters": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "drive_db",
+                  "bass_db",
+                  "mid_db",
+                  "treble_db",
+                  "presence_percent",
+                  "sag_percent",
+                  "level_db",
+                  "mix_percent"
+                ],
+                "properties": {
+                  "drive_db": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 36,
+                    "description": "Physical dB; stable bank index 0, linear normalization."
+                  },
+                  "bass_db": {
+                    "type": "number",
+                    "minimum": -12,
+                    "maximum": 12,
+                    "description": "Physical dB; stable bank index 1, linear normalization."
+                  },
+                  "mid_db": {
+                    "type": "number",
+                    "minimum": -12,
+                    "maximum": 12,
+                    "description": "Physical dB; stable bank index 2, linear normalization."
+                  },
+                  "treble_db": {
+                    "type": "number",
+                    "minimum": -12,
+                    "maximum": 12,
+                    "description": "Physical dB; stable bank index 3, linear normalization."
+                  },
+                  "presence_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Physical %; stable bank index 4, linear normalization."
+                  },
+                  "sag_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Physical %; stable bank index 5, linear normalization."
+                  },
+                  "level_db": {
+                    "type": "number",
+                    "minimum": -30,
+                    "maximum": 6,
+                    "description": "Physical dB; stable bank index 6, linear normalization."
+                  },
+                  "mix_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Physical %; stable bank index 7, linear normalization."
+                  }
+                }
+              }
+            }
+          },
+          {
+            "properties": {
+              "effect_type": {
+                "const": "compressor"
+              },
+              "effect_version": {
+                "const": 1
+              },
+              "parameters": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "threshold_db",
+                  "ratio",
+                  "attack_ms",
+                  "release_ms",
+                  "makeup_db",
+                  "mix_percent"
+                ],
+                "properties": {
+                  "threshold_db": {
+                    "type": "number",
+                    "minimum": -48,
+                    "maximum": 0,
+                    "description": "Physical dB; stable bank index 0, linear normalization."
+                  },
+                  "ratio": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 12,
+                    "description": "Physical :1; stable bank index 1, linear normalization."
+                  },
+                  "attack_ms": {
+                    "type": "number",
+                    "minimum": 0.5,
+                    "maximum": 100,
+                    "description": "Physical ms; stable bank index 2, linear normalization."
+                  },
+                  "release_ms": {
+                    "type": "number",
+                    "minimum": 10,
+                    "maximum": 1000,
+                    "description": "Physical ms; stable bank index 3, linear normalization."
+                  },
+                  "makeup_db": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 18,
+                    "description": "Physical dB; stable bank index 4, linear normalization."
+                  },
+                  "mix_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Physical %; stable bank index 5, linear normalization."
+                  }
+                }
+              }
+            }
+          },
+          {
+            "properties": {
+              "effect_type": {
+                "const": "chorus"
+              },
+              "effect_version": {
+                "const": 1
+              },
+              "parameters": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "rate_hz",
+                  "depth_percent",
+                  "width_percent",
+                  "mix_percent"
+                ],
+                "properties": {
+                  "rate_hz": {
+                    "type": "number",
+                    "minimum": 0.05,
+                    "maximum": 8,
+                    "description": "Physical Hz; stable bank index 0, linear normalization."
+                  },
+                  "depth_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Physical %; stable bank index 1, linear normalization."
+                  },
+                  "width_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Physical %; stable bank index 2, linear normalization."
+                  },
+                  "mix_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Physical %; stable bank index 3, linear normalization."
+                  }
+                }
+              }
+            }
+          },
+          {
+            "properties": {
+              "effect_type": {
+                "const": "tremolo"
+              },
+              "effect_version": {
+                "const": 1
+              },
+              "parameters": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "rate_hz",
+                  "depth_percent",
+                  "shape_percent",
+                  "width_percent",
+                  "mix_percent"
+                ],
+                "properties": {
+                  "rate_hz": {
+                    "type": "number",
+                    "minimum": 0.05,
+                    "maximum": 20,
+                    "description": "Physical Hz; stable bank index 0, linear normalization."
+                  },
+                  "depth_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Physical %; stable bank index 1, linear normalization."
+                  },
+                  "shape_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Physical %; stable bank index 2, linear normalization."
+                  },
+                  "width_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Physical %; stable bank index 3, linear normalization."
+                  },
+                  "mix_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Physical %; stable bank index 4, linear normalization."
+                  }
+                }
+              }
+            }
+          },
+          {
+            "properties": {
+              "effect_type": {
+                "const": "filter"
+              },
+              "effect_version": {
+                "const": 1
+              },
+              "parameters": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "cutoff_hz",
+                  "resonance_percent",
+                  "envelope_percent",
+                  "rate_hz",
+                  "depth_percent",
+                  "mix_percent"
+                ],
+                "properties": {
+                  "cutoff_hz": {
+                    "type": "number",
+                    "minimum": 100,
+                    "maximum": 6000,
+                    "description": "Physical Hz; stable bank index 0, linear normalization."
+                  },
+                  "resonance_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 90,
+                    "description": "Physical %; stable bank index 1, linear normalization."
+                  },
+                  "envelope_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Physical %; stable bank index 2, linear normalization."
+                  },
+                  "rate_hz": {
+                    "type": "number",
+                    "minimum": 0.05,
+                    "maximum": 12,
+                    "description": "Physical Hz; stable bank index 3, linear normalization."
+                  },
+                  "depth_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Physical %; stable bank index 4, linear normalization."
+                  },
+                  "mix_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Physical %; stable bank index 5, linear normalization."
+                  }
+                }
+              }
+            }
+          },
+          {
+            "properties": {
+              "effect_type": {
+                "const": "pitch"
+              },
+              "effect_version": {
+                "const": 1
+              },
+              "parameters": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "semitones",
+                  "cents",
+                  "width_percent",
+                  "mix_percent"
+                ],
+                "properties": {
+                  "semitones": {
+                    "type": "number",
+                    "minimum": -12,
+                    "maximum": 12,
+                    "description": "Physical st; stable bank index 0, linear normalization."
+                  },
+                  "cents": {
+                    "type": "number",
+                    "minimum": -50,
+                    "maximum": 50,
+                    "description": "Physical cent; stable bank index 1, linear normalization."
+                  },
+                  "width_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Physical %; stable bank index 2, linear normalization."
+                  },
+                  "mix_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Physical %; stable bank index 3, linear normalization."
+                  }
+                }
+              }
+            }
+          },
+          {
+            "properties": {
+              "effect_type": {
+                "const": "ring_mod"
+              },
+              "effect_version": {
+                "const": 1
+              },
+              "parameters": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "rate_hz",
+                  "mix_percent",
+                  "width_percent"
+                ],
+                "properties": {
+                  "rate_hz": {
+                    "type": "number",
+                    "minimum": 20,
+                    "maximum": 2000,
+                    "description": "Physical Hz; stable bank index 0, linear normalization."
+                  },
+                  "mix_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Physical %; stable bank index 1, linear normalization."
+                  },
+                  "width_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Physical %; stable bank index 2, linear normalization."
                   }
                 }
               }

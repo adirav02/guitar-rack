@@ -1,0 +1,115 @@
+{
+  "schema_version": 2,
+  "preset_id": "50000000-0000-4000-8000-000000000028",
+  "name": "Noise / Alien Mouth",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -21.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "60000000-0000-4000-8000-000000000433",
+    "60000000-0000-4000-8000-000000000434",
+    "60000000-0000-4000-8000-000000000435",
+    "60000000-0000-4000-8000-000000000436",
+    "60000000-0000-4000-8000-000000000437",
+    "60000000-0000-4000-8000-000000000438"
+  ],
+  "instances": [
+    {
+      "instance_id": "60000000-0000-4000-8000-000000000433",
+      "slot_id": 0,
+      "effect_type": "pitch",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "semitones": 5.0,
+        "cents": -8.0,
+        "width_percent": 65.0,
+        "mix_percent": 40.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "60000000-0000-4000-8000-000000000434",
+      "slot_id": 1,
+      "effect_type": "fuzz",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "drive_db": 35.0,
+        "tone_hz": 2800.0,
+        "character_percent": 35.0,
+        "bias_percent": 35.0,
+        "gate_percent": 45.0,
+        "level_db": -16.0,
+        "mix_percent": 100.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "60000000-0000-4000-8000-000000000435",
+      "slot_id": 2,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "4a9ac650b2983ca0c49c138d11beccd2d0c8607ac9fccf47c537fbbf7bb7adae"
+    },
+    {
+      "instance_id": "60000000-0000-4000-8000-000000000436",
+      "slot_id": 3,
+      "effect_type": "filter",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "cutoff_hz": 500.0,
+        "resonance_percent": 75.0,
+        "envelope_percent": 55.0,
+        "rate_hz": 3.0,
+        "depth_percent": 70.0,
+        "mix_percent": 45.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "60000000-0000-4000-8000-000000000437",
+      "slot_id": 4,
+      "effect_type": "delay",
+      "effect_version": 2,
+      "bypassed": false,
+      "parameters": {
+        "time_ms": 350.0,
+        "feedback_percent": 30.0,
+        "mix_percent": 22.0,
+        "mode": 0.0,
+        "color_hz": 12000.0,
+        "wow_percent": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "60000000-0000-4000-8000-000000000438",
+      "slot_id": 5,
+      "effect_type": "reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "size_percent": 40.0,
+        "damping_percent": 10.0,
+        "mix_percent": 20.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "4a9ac650b2983ca0c49c138d11beccd2d0c8607ac9fccf47c537fbbf7bb7adae",
+      "sha256": "4a9ac650b2983ca0c49c138d11beccd2d0c8607ac9fccf47c537fbbf7bb7adae",
+      "relative_path": "ir/4a9ac650b2983ca0c49c138d11beccd2d0c8607ac9fccf47c537fbbf7bb7adae.wav",
+      "format": "wav"
+    }
+  ]
+}

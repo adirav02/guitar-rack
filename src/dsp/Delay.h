@@ -5,7 +5,7 @@
 namespace guitarrack {
 class DelayProcessor final : public EffectProcessor {
 public:
-    DelayProcessor(const ParameterBank& authority, SlotId identity) : bank(authority), slot(identity) {}
+    DelayProcessor(const ParameterBank& authority, SlotId identity, bool extended=false) : bank(authority), slot(identity), extended(extended) {}
     bool prepare(double, int) override;
     void reset() noexcept override; // Off audio only: clears preallocated temporal storage.
     void activate(const EffectProcessor*) noexcept override; // Never copies/clears the ring.
@@ -20,7 +20,12 @@ private:
     std::array<std::vector<float>, 2> storage;
     std::size_t write = 0;
     float currentTime = 1, nextTime = 1, targetTime = 1;
-    LinearRamp timeMix, feedback, mix, ingress;
+    LinearRamp timeMix, feedback, mix, ingress, character, colorPole, wow;
+    bool extended=false;
+    double phase=0;
+    std::array<float,2> lowpass{};
 };
 EffectDescriptor delayDescriptor();
+EffectDescriptor delayV2Descriptor();
 }
+

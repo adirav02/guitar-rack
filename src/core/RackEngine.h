@@ -45,6 +45,7 @@ public:
     void attachControls(MonitorControls* controls) noexcept { globals = controls; }
     bool setParameter(const InstanceId&, unsigned bankIndex, float physicalValue);
     bool setBypassed(const InstanceId&, bool);
+    bool setParameters(const InstanceId&, const std::vector<float>& physicalValues);
     // Single control producer, before issuing asset-bearing transactions.
     void setAssetResolver(std::function<ImpulseResponse(const std::string&)>);
     const EffectRegistry& registry() const noexcept { return effects; }
@@ -96,3 +97,4 @@ static_assert(std::atomic<std::uint64_t>::is_always_lock_free);
 static_assert(std::atomic<double>::is_always_lock_free);
 static_assert(std::atomic<PreparedRack*>::is_always_lock_free);
 }
+

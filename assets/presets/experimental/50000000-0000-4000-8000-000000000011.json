@@ -1,0 +1,100 @@
+{
+  "schema_version": 2,
+  "preset_id": "50000000-0000-4000-8000-000000000011",
+  "name": "Art Rock / Broken Transmission",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -18.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "60000000-0000-4000-8000-000000000161",
+    "60000000-0000-4000-8000-000000000162",
+    "60000000-0000-4000-8000-000000000163",
+    "60000000-0000-4000-8000-000000000164",
+    "60000000-0000-4000-8000-000000000165"
+  ],
+  "instances": [
+    {
+      "instance_id": "60000000-0000-4000-8000-000000000161",
+      "slot_id": 0,
+      "effect_type": "fuzz",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "drive_db": 35.0,
+        "tone_hz": 2800.0,
+        "character_percent": 35.0,
+        "bias_percent": 35.0,
+        "gate_percent": 45.0,
+        "level_db": -16.0,
+        "mix_percent": 100.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "60000000-0000-4000-8000-000000000162",
+      "slot_id": 1,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "4a9ac650b2983ca0c49c138d11beccd2d0c8607ac9fccf47c537fbbf7bb7adae"
+    },
+    {
+      "instance_id": "60000000-0000-4000-8000-000000000163",
+      "slot_id": 2,
+      "effect_type": "filter",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "cutoff_hz": 900.0,
+        "resonance_percent": 20.0,
+        "envelope_percent": 0.0,
+        "rate_hz": 1.0,
+        "depth_percent": 0.0,
+        "mix_percent": 100.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "60000000-0000-4000-8000-000000000164",
+      "slot_id": 3,
+      "effect_type": "delay",
+      "effect_version": 2,
+      "bypassed": false,
+      "parameters": {
+        "time_ms": 12.0,
+        "feedback_percent": 55.0,
+        "mix_percent": 40.0,
+        "mode": 0.0,
+        "color_hz": 12000.0,
+        "wow_percent": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "60000000-0000-4000-8000-000000000165",
+      "slot_id": 4,
+      "effect_type": "reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "size_percent": 40.0,
+        "damping_percent": 10.0,
+        "mix_percent": 20.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "4a9ac650b2983ca0c49c138d11beccd2d0c8607ac9fccf47c537fbbf7bb7adae",
+      "sha256": "4a9ac650b2983ca0c49c138d11beccd2d0c8607ac9fccf47c537fbbf7bb7adae",
+      "relative_path": "ir/4a9ac650b2983ca0c49c138d11beccd2d0c8607ac9fccf47c537fbbf7bb7adae.wav",
+      "format": "wav"
+    }
+  ]
+}

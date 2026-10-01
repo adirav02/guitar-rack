@@ -259,3 +259,11 @@ No large histories are copied; warm-up does not preserve temporal tails. At most
 two graphs process. Stop clears compensation rings off audio. Device-reported
 I/O estimates and measured round trip remain separate; no physical latency
 measurement has been made for this addition.
+
+
+## Experimental pedalboard extension
+
+The eight added processors, Delay v2 character controls, physical ranges, musical
+wet delays, native-rate aliasing and granular pitch limitations are documented in
+[pedalboard.md](pedalboard.md). Existing version 1 mappings/algorithms remain.
+There are 15 effect types, 77 factory pedal voicings and 45 complete rack factories.

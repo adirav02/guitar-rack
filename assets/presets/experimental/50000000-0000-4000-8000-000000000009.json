@@ -1,0 +1,99 @@
+{
+  "schema_version": 2,
+  "preset_id": "50000000-0000-4000-8000-000000000009",
+  "name": "Art Rock / Climbing Echo",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -15.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "60000000-0000-4000-8000-000000000129",
+    "60000000-0000-4000-8000-000000000130",
+    "60000000-0000-4000-8000-000000000131",
+    "60000000-0000-4000-8000-000000000132",
+    "60000000-0000-4000-8000-000000000133"
+  ],
+  "instances": [
+    {
+      "instance_id": "60000000-0000-4000-8000-000000000129",
+      "slot_id": 0,
+      "effect_type": "overdrive",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "drive_db": 9.0,
+        "tone_hz": 2500.0,
+        "level_db": -6.0,
+        "mix_percent": 70.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "60000000-0000-4000-8000-000000000130",
+      "slot_id": 1,
+      "effect_type": "amp",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "drive_db": 9.0,
+        "bass_db": -2.0,
+        "mid_db": 2.0,
+        "treble_db": 3.0,
+        "presence_percent": 70.0,
+        "sag_percent": 25.0,
+        "level_db": -9.0,
+        "mix_percent": 100.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "60000000-0000-4000-8000-000000000131",
+      "slot_id": 2,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "4a9ac650b2983ca0c49c138d11beccd2d0c8607ac9fccf47c537fbbf7bb7adae"
+    },
+    {
+      "instance_id": "60000000-0000-4000-8000-000000000132",
+      "slot_id": 3,
+      "effect_type": "delay",
+      "effect_version": 2,
+      "bypassed": false,
+      "parameters": {
+        "time_ms": 350.0,
+        "feedback_percent": 30.0,
+        "mix_percent": 22.0,
+        "mode": 0.0,
+        "color_hz": 12000.0,
+        "wow_percent": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "60000000-0000-4000-8000-000000000133",
+      "slot_id": 4,
+      "effect_type": "reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "size_percent": 70.0,
+        "damping_percent": 60.000003814697266,
+        "mix_percent": 25.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "4a9ac650b2983ca0c49c138d11beccd2d0c8607ac9fccf47c537fbbf7bb7adae",
+      "sha256": "4a9ac650b2983ca0c49c138d11beccd2d0c8607ac9fccf47c537fbbf7bb7adae",
+      "relative_path": "ir/4a9ac650b2983ca0c49c138d11beccd2d0c8607ac9fccf47c537fbbf7bb7adae.wav",
+      "format": "wav"
+    }
+  ]
+}

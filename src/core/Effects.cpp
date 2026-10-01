@@ -6,6 +6,7 @@
 #include "dsp/Cabinet.h"
 #include "dsp/Distortion.h"
 #include "dsp/Reverb.h"
+#include "dsp/Experimental.h"
 #include "Impulse.h"
 #include <cmath>
 #include <cstdio>
@@ -51,6 +52,10 @@ bool validInstanceId(const InstanceId& id) noexcept {
     }
     return id != "00000000-0000-0000-0000-000000000000";
 }
+bool ParameterDescriptor::accepts(float value) const noexcept {
+    return std::isfinite(value) && value >= minimum && value <= maximum
+        && (choices.empty() || value == std::round(value));
+}
 float ParameterDescriptor::normalize(float value) const noexcept { return (value - minimum) / (maximum - minimum); }
 float ParameterDescriptor::denormalize(float value) const noexcept { return minimum + value * (maximum - minimum); }
 ParameterBank::ParameterBank() {
@@ -61,11 +66,42 @@ ParameterBank::ParameterBank() {
 float ParameterBank::value(SlotId slot, unsigned index) const noexcept { return values[slot][index].load(); }
 bool ParameterBank::setValue(SlotId slot, unsigned index, float value) noexcept {
     if (slot >= rackSlots || index >= controlsPerSlot || !std::isfinite(value) || value < 0 || value > 1) return false;
+    sequences[slot].fetch_add(1);
     if (values[slot][index].exchange(value) != value) edits.fetch_add(1);
+    sequences[slot].fetch_add(1);
     return true;
 }
 bool ParameterBank::bypassed(SlotId slot) const noexcept { return bypass[slot].load(); }
-void ParameterBank::setBypassed(SlotId slot, bool value) noexcept { if (slot < rackSlots && bypass[slot].exchange(value) != value) edits.fetch_add(1); }
+void ParameterBank::setBypassed(SlotId slot, bool value) noexcept {
+    if (slot >= rackSlots) return;
+    sequences[slot].fetch_add(1);
+    if (bypass[slot].exchange(value) != value) edits.fetch_add(1);
+    sequences[slot].fetch_add(1);
+}
+bool ParameterBank::setValues(SlotId slot, const std::array<float, controlsPerSlot>& row) noexcept {
+    if (slot >= rackSlots) return false;
+    for (float x : row) if (!std::isfinite(x) || x < 0 || x > 1) return false;
+    sequences[slot].fetch_add(1);
+    bool changed = false;
+    for (unsigned p=0; p<controlsPerSlot; ++p) changed |= values[slot][p].exchange(row[p]) != row[p];
+    if (changed) edits.fetch_add(1);
+    sequences[slot].fetch_add(1);
+    return true;
+}
+bool ParameterBank::readSlot(SlotId slot, std::array<float, controlsPerSlot>& row, bool& state) const noexcept {
+    if (slot >= rackSlots) return false;
+    // Two attempts, then retain the previous DSP view. Atomic payload plus seq_cst
+    // ordering makes this a bounded coherent transfer, not a blocking seqlock.
+    for (unsigned attempt=0; attempt<2; ++attempt) {
+        const auto before=sequences[slot].load();
+        if (before & 1) continue;
+        std::array<float, controlsPerSlot> candidate{};
+        for (unsigned p=0;p<controlsPerSlot;++p) candidate[p]=values[slot][p].load();
+        const bool candidateBypass=bypass[slot].load();
+        if (sequences[slot].load()==before) { row=candidate; state=candidateBypass; return true; }
+    }
+    return false;
+}
 std::string ParameterBank::parameterId(SlotId slot, unsigned index) {
     char id[40]; std::snprintf(id, sizeof(id), "slot_%02u_param_%02u", slot, index); return id;
 }
@@ -89,7 +125,8 @@ bool EffectRegistry::add(EffectDescriptor d) {
         if (p.key.empty() || p.bankIndex >= controlsPerSlot || (indices & (1u << p.bankIndex))
             || !keys.insert(p.key).second || !std::isfinite(p.minimum) || !std::isfinite(p.maximum)
             || !std::isfinite(p.defaultValue) || p.maximum <= p.minimum
-            || p.defaultValue < p.minimum || p.defaultValue > p.maximum
+            || !p.accepts(p.defaultValue)
+            || (!p.choices.empty() && (p.minimum != 0 || p.maximum != p.choices.size()-1))
             || !std::isfinite(p.smoothingMs) || p.smoothingMs < 0) return false;
         indices |= 1u << p.bankIndex;
     }
@@ -99,7 +136,20 @@ const EffectDescriptor* EffectRegistry::find(const std::string& type, unsigned v
     for (const auto& entry : entries) if (entry.typeId == type && entry.version == version) return &entry;
     return nullptr;
 }
-EffectRegistry EffectRegistry::builtIns() { EffectRegistry result; result.add(gainDescriptor()); result.add(overdriveDescriptor()); result.add(eqDescriptor()); result.add(delayDescriptor()); result.add(distortionDescriptor()); result.add(reverbDescriptor()); result.add(cabinetDescriptor()); return result; }
+const EffectDescriptor* EffectRegistry::latest(const std::string& type) const noexcept {
+    const EffectDescriptor* result=nullptr;
+    for (const auto& d:entries) if (d.typeId==type && (!result || d.version>result->version)) result=&d;
+    return result;
+}
+EffectRegistry EffectRegistry::builtIns() {
+    EffectRegistry result;
+    result.add(gainDescriptor()); result.add(overdriveDescriptor()); result.add(eqDescriptor());
+    result.add(delayDescriptor()); result.add(delayV2Descriptor()); result.add(distortionDescriptor());
+    result.add(reverbDescriptor()); result.add(cabinetDescriptor()); result.add(fuzzDescriptor());
+    result.add(ampDescriptor()); result.add(compressorDescriptor()); result.add(chorusDescriptor());
+    result.add(tremoloDescriptor()); result.add(filterDescriptor()); result.add(pitchDescriptor());
+    result.add(ringDescriptor()); return result;
+}
 bool sameIdentity(const RackInstance& a,const RackInstance& b) noexcept { return a.id==b.id&&a.slot==b.slot&&a.effectType==b.effectType&&a.effectVersion==b.effectVersion; }
 const RackInstance* RackDefinition::find(const InstanceId& id) const noexcept {
     for (const auto& instance : instances) if (instance.id == id) return &instance;
@@ -119,3 +169,4 @@ std::string validateRack(const RackDefinition& d, const EffectRegistry& registry
     return {};
 }
 }
+

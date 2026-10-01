@@ -328,3 +328,23 @@ only at the callback boundary. The GUI never convolves or owns DSP histories.
 Managed assets left by unsuccessful/stale imports are harmless unreferenced files;
 cleanup is explicitly outside scope. Asset/bundle format/security and licenses
 are documented in assets.md and assets/ir/README.md.
+
+
+## Coherent pedal voicings (experimental extension)
+
+The designated message/control producer validates a complete physical control
+vector against its exact effect/version before changing a slot. A per-slot atomic
+sequence surrounds all single and grouped control writes. The payload itself is
+atomic; sequentially consistent payload/sequence operations avoid data races and
+ensure that equal even sequences identify one coherent row. Each prepared DSP
+view attempts to read the row twice at a chunk boundary. Contention retains the
+previous private view until a later chunk; the callback never waits or retries
+without a fixed bound. A voicing therefore changes only current controls through
+existing smoothers, without replacing processors or resetting temporal rings.
+
+Full tone transactions still install at the existing activation boundary while
+message-thread editing is disabled. Graph lifetime, stale requests, bounded
+mailboxes/retirement and single control-producer rules remain. New DSP allocates
+its rings and descriptor copies during preparation, copies only small fixed state
+on activation and frees resources through the existing off-audio reclaimer.
+Pedal persistence and menu refresh use the message thread, never the callback.

@@ -1,0 +1,98 @@
+{
+  "schema_version": 2,
+  "preset_id": "50000000-0000-4000-8000-000000000029",
+  "name": "Noise / Metallic Bells",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -15.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "60000000-0000-4000-8000-000000000449",
+    "60000000-0000-4000-8000-000000000450",
+    "60000000-0000-4000-8000-000000000451",
+    "60000000-0000-4000-8000-000000000452",
+    "60000000-0000-4000-8000-000000000453"
+  ],
+  "instances": [
+    {
+      "instance_id": "60000000-0000-4000-8000-000000000449",
+      "slot_id": 0,
+      "effect_type": "amp",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "drive_db": 0.0,
+        "bass_db": -1.0,
+        "mid_db": 1.0,
+        "treble_db": 2.0,
+        "presence_percent": 65.0,
+        "sag_percent": 10.0,
+        "level_db": -3.0,
+        "mix_percent": 100.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "60000000-0000-4000-8000-000000000450",
+      "slot_id": 1,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "4a9ac650b2983ca0c49c138d11beccd2d0c8607ac9fccf47c537fbbf7bb7adae"
+    },
+    {
+      "instance_id": "60000000-0000-4000-8000-000000000451",
+      "slot_id": 2,
+      "effect_type": "ring_mod",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "rate_hz": 440.0,
+        "mix_percent": 40.0,
+        "width_percent": 15.000000953674316
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "60000000-0000-4000-8000-000000000452",
+      "slot_id": 3,
+      "effect_type": "delay",
+      "effect_version": 2,
+      "bypassed": false,
+      "parameters": {
+        "time_ms": 110.0,
+        "feedback_percent": 12.000000953674316,
+        "mix_percent": 18.0,
+        "mode": 0.0,
+        "color_hz": 12000.0,
+        "wow_percent": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "60000000-0000-4000-8000-000000000453",
+      "slot_id": 4,
+      "effect_type": "reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "size_percent": 80.0,
+        "damping_percent": 25.0,
+        "mix_percent": 30.000001907348633
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "4a9ac650b2983ca0c49c138d11beccd2d0c8607ac9fccf47c537fbbf7bb7adae",
+      "sha256": "4a9ac650b2983ca0c49c138d11beccd2d0c8607ac9fccf47c537fbbf7bb7adae",
+      "relative_path": "ir/4a9ac650b2983ca0c49c138d11beccd2d0c8607ac9fccf47c537fbbf7bb7adae.wav",
+      "format": "wav"
+    }
+  ]
+}

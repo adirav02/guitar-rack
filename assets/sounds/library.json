@@ -1,0 +1,1349 @@
+{
+  "description": "Original experimental starting points inspired by art rock, including Radiohead. Not measured artist or commercial pedal emulations. All cabinet recipes use the original synthetic filter.",
+  "pedals": [
+    {
+      "effect_type": "gain",
+      "effect_version": 1,
+      "name": "Unity",
+      "parameters": {
+        "level_db": 0
+      }
+    },
+    {
+      "effect_type": "gain",
+      "effect_version": 1,
+      "name": "Solo Lift",
+      "parameters": {
+        "level_db": 3
+      }
+    },
+    {
+      "effect_type": "gain",
+      "effect_version": 1,
+      "name": "Soft Landing",
+      "parameters": {
+        "level_db": -6
+      }
+    },
+    {
+      "effect_type": "overdrive",
+      "effect_version": 1,
+      "name": "Warm Crunch",
+      "parameters": {
+        "drive_db": 9,
+        "tone_hz": 2500,
+        "level_db": -6,
+        "mix_percent": 70
+      }
+    },
+    {
+      "effect_type": "overdrive",
+      "effect_version": 1,
+      "name": "Edge of Breakup",
+      "parameters": {
+        "drive_db": 4,
+        "tone_hz": 4500,
+        "level_db": -3,
+        "mix_percent": 85
+      }
+    },
+    {
+      "effect_type": "overdrive",
+      "effect_version": 1,
+      "name": "Midnight Drive",
+      "parameters": {
+        "drive_db": 16,
+        "tone_hz": 1800,
+        "level_db": -9,
+        "mix_percent": 100
+      }
+    },
+    {
+      "effect_type": "overdrive",
+      "effect_version": 1,
+      "name": "Bright Bite",
+      "parameters": {
+        "drive_db": 12,
+        "tone_hz": 5000,
+        "level_db": -8,
+        "mix_percent": 75
+      }
+    },
+    {
+      "effect_type": "overdrive",
+      "effect_version": 1,
+      "name": "Parallel Grit",
+      "parameters": {
+        "drive_db": 24,
+        "tone_hz": 3200,
+        "level_db": -12,
+        "mix_percent": 30
+      }
+    },
+    {
+      "effect_type": "distortion",
+      "effect_version": 1,
+      "name": "Heavy Drive",
+      "parameters": {
+        "drive_db": 24,
+        "tone_hz": 2800,
+        "level_db": -15,
+        "mix_percent": 100
+      }
+    },
+    {
+      "effect_type": "distortion",
+      "effect_version": 1,
+      "name": "Art Rock Grind",
+      "parameters": {
+        "drive_db": 18,
+        "tone_hz": 2200,
+        "level_db": -12,
+        "mix_percent": 85
+      }
+    },
+    {
+      "effect_type": "distortion",
+      "effect_version": 1,
+      "name": "Tight Rhythm",
+      "parameters": {
+        "drive_db": 30,
+        "tone_hz": 4200,
+        "level_db": -16,
+        "mix_percent": 100
+      }
+    },
+    {
+      "effect_type": "distortion",
+      "effect_version": 1,
+      "name": "Dark Wall",
+      "parameters": {
+        "drive_db": 38,
+        "tone_hz": 1300,
+        "level_db": -18,
+        "mix_percent": 100
+      }
+    },
+    {
+      "effect_type": "distortion",
+      "effect_version": 1,
+      "name": "Broken Speaker",
+      "parameters": {
+        "drive_db": 42,
+        "tone_hz": 6500,
+        "level_db": -20,
+        "mix_percent": 90
+      }
+    },
+    {
+      "effect_type": "fuzz",
+      "effect_version": 1,
+      "name": "Velvet Fuzz",
+      "parameters": {
+        "drive_db": 18,
+        "tone_hz": 2200,
+        "character_percent": 0,
+        "bias_percent": 5,
+        "gate_percent": 0,
+        "level_db": -12,
+        "mix_percent": 100
+      }
+    },
+    {
+      "effect_type": "fuzz",
+      "effect_version": 1,
+      "name": "Folded Teeth",
+      "parameters": {
+        "drive_db": 28,
+        "tone_hz": 4200,
+        "character_percent": 85,
+        "bias_percent": 12,
+        "gate_percent": 12,
+        "level_db": -15,
+        "mix_percent": 90
+      }
+    },
+    {
+      "effect_type": "fuzz",
+      "effect_version": 1,
+      "name": "Broken Transistor",
+      "parameters": {
+        "drive_db": 35,
+        "tone_hz": 2800,
+        "character_percent": 35,
+        "bias_percent": 35,
+        "gate_percent": 45,
+        "level_db": -16,
+        "mix_percent": 100
+      }
+    },
+    {
+      "effect_type": "fuzz",
+      "effect_version": 1,
+      "name": "Bass Octopus",
+      "parameters": {
+        "drive_db": 20,
+        "tone_hz": 1000,
+        "character_percent": 50,
+        "bias_percent": -20,
+        "gate_percent": 8,
+        "level_db": -14,
+        "mix_percent": 85
+      }
+    },
+    {
+      "effect_type": "fuzz",
+      "effect_version": 1,
+      "name": "Radio Static",
+      "parameters": {
+        "drive_db": 44,
+        "tone_hz": 6000,
+        "character_percent": 100,
+        "bias_percent": -35,
+        "gate_percent": 30,
+        "level_db": -20,
+        "mix_percent": 75
+      }
+    },
+    {
+      "effect_type": "fuzz",
+      "effect_version": 1,
+      "name": "Starved Battery",
+      "parameters": {
+        "drive_db": 25,
+        "tone_hz": 1700,
+        "character_percent": 10,
+        "bias_percent": 45,
+        "gate_percent": 70,
+        "level_db": -14,
+        "mix_percent": 100
+      }
+    },
+    {
+      "effect_type": "amp",
+      "effect_version": 1,
+      "name": "Clean Glass",
+      "parameters": {
+        "drive_db": 0,
+        "bass_db": -1,
+        "mid_db": 1,
+        "treble_db": 2,
+        "presence_percent": 65,
+        "sag_percent": 10,
+        "level_db": -3,
+        "mix_percent": 100
+      }
+    },
+    {
+      "effect_type": "amp",
+      "effect_version": 1,
+      "name": "Warm Combo",
+      "parameters": {
+        "drive_db": 7,
+        "bass_db": 2,
+        "mid_db": 1,
+        "treble_db": -2,
+        "presence_percent": 35,
+        "sag_percent": 35,
+        "level_db": -7,
+        "mix_percent": 100
+      }
+    },
+    {
+      "effect_type": "amp",
+      "effect_version": 1,
+      "name": "Chiming Edge",
+      "parameters": {
+        "drive_db": 9,
+        "bass_db": -2,
+        "mid_db": 2,
+        "treble_db": 3,
+        "presence_percent": 70,
+        "sag_percent": 25,
+        "level_db": -9,
+        "mix_percent": 100
+      }
+    },
+    {
+      "effect_type": "amp",
+      "effect_version": 1,
+      "name": "Sagging Stack",
+      "parameters": {
+        "drive_db": 22,
+        "bass_db": 1,
+        "mid_db": 3,
+        "treble_db": -2,
+        "presence_percent": 45,
+        "sag_percent": 75,
+        "level_db": -14,
+        "mix_percent": 100
+      }
+    },
+    {
+      "effect_type": "amp",
+      "effect_version": 1,
+      "name": "Lean Rhythm Amp",
+      "parameters": {
+        "drive_db": 15,
+        "bass_db": -3,
+        "mid_db": 1,
+        "treble_db": 1,
+        "presence_percent": 55,
+        "sag_percent": 10,
+        "level_db": -12,
+        "mix_percent": 100
+      }
+    },
+    {
+      "effect_type": "compressor",
+      "effect_version": 1,
+      "name": "Arpeggio Glue",
+      "parameters": {
+        "threshold_db": -26,
+        "ratio": 3,
+        "attack_ms": 15,
+        "release_ms": 180,
+        "makeup_db": 3,
+        "mix_percent": 75
+      }
+    },
+    {
+      "effect_type": "compressor",
+      "effect_version": 1,
+      "name": "Clean Sustain",
+      "parameters": {
+        "threshold_db": -32,
+        "ratio": 5,
+        "attack_ms": 8,
+        "release_ms": 300,
+        "makeup_db": 5,
+        "mix_percent": 80
+      }
+    },
+    {
+      "effect_type": "compressor",
+      "effect_version": 1,
+      "name": "Percussive Snap",
+      "parameters": {
+        "threshold_db": -24,
+        "ratio": 4,
+        "attack_ms": 35,
+        "release_ms": 90,
+        "makeup_db": 2,
+        "mix_percent": 65
+      }
+    },
+    {
+      "effect_type": "compressor",
+      "effect_version": 1,
+      "name": "Parallel Crush",
+      "parameters": {
+        "threshold_db": -38,
+        "ratio": 10,
+        "attack_ms": 1,
+        "release_ms": 220,
+        "makeup_db": 6,
+        "mix_percent": 35
+      }
+    },
+    {
+      "effect_type": "chorus",
+      "effect_version": 1,
+      "name": "Arpeggio Air",
+      "parameters": {
+        "rate_hz": 0.45,
+        "depth_percent": 25,
+        "width_percent": 80,
+        "mix_percent": 22
+      }
+    },
+    {
+      "effect_type": "chorus",
+      "effect_version": 1,
+      "name": "Liquid Motion",
+      "parameters": {
+        "rate_hz": 0.8,
+        "depth_percent": 55,
+        "width_percent": 100,
+        "mix_percent": 35
+      }
+    },
+    {
+      "effect_type": "chorus",
+      "effect_version": 1,
+      "name": "Seasick",
+      "parameters": {
+        "rate_hz": 2.2,
+        "depth_percent": 90,
+        "width_percent": 75,
+        "mix_percent": 50
+      }
+    },
+    {
+      "effect_type": "chorus",
+      "effect_version": 1,
+      "name": "Vibrato Drift",
+      "parameters": {
+        "rate_hz": 1.4,
+        "depth_percent": 45,
+        "width_percent": 20,
+        "mix_percent": 100
+      }
+    },
+    {
+      "effect_type": "chorus",
+      "effect_version": 1,
+      "name": "Slow Bloom",
+      "parameters": {
+        "rate_hz": 0.15,
+        "depth_percent": 70,
+        "width_percent": 100,
+        "mix_percent": 28
+      }
+    },
+    {
+      "effect_type": "tremolo",
+      "effect_version": 1,
+      "name": "Subterranean Pulse",
+      "parameters": {
+        "rate_hz": 4,
+        "depth_percent": 85,
+        "shape_percent": 20,
+        "width_percent": 0,
+        "mix_percent": 100
+      }
+    },
+    {
+      "effect_type": "tremolo",
+      "effect_version": 1,
+      "name": "Hard Chop",
+      "parameters": {
+        "rate_hz": 8,
+        "depth_percent": 100,
+        "shape_percent": 100,
+        "width_percent": 0,
+        "mix_percent": 100
+      }
+    },
+    {
+      "effect_type": "tremolo",
+      "effect_version": 1,
+      "name": "Stereo Orbit",
+      "parameters": {
+        "rate_hz": 2,
+        "depth_percent": 80,
+        "shape_percent": 0,
+        "width_percent": 100,
+        "mix_percent": 100
+      }
+    },
+    {
+      "effect_type": "tremolo",
+      "effect_version": 1,
+      "name": "Heartbeat",
+      "parameters": {
+        "rate_hz": 1.3,
+        "depth_percent": 70,
+        "shape_percent": 60,
+        "width_percent": 0,
+        "mix_percent": 100
+      }
+    },
+    {
+      "effect_type": "tremolo",
+      "effect_version": 1,
+      "name": "Machine Gun",
+      "parameters": {
+        "rate_hz": 15,
+        "depth_percent": 100,
+        "shape_percent": 90,
+        "width_percent": 15,
+        "mix_percent": 100
+      }
+    },
+    {
+      "effect_type": "filter",
+      "effect_version": 1,
+      "name": "Telephone",
+      "parameters": {
+        "cutoff_hz": 900,
+        "resonance_percent": 20,
+        "envelope_percent": 0,
+        "depth_percent": 0,
+        "mix_percent": 100
+      }
+    },
+    {
+      "effect_type": "filter",
+      "effect_version": 1,
+      "name": "Auto Quack",
+      "parameters": {
+        "cutoff_hz": 350,
+        "resonance_percent": 55,
+        "envelope_percent": 80,
+        "rate_hz": 1,
+        "depth_percent": 0,
+        "mix_percent": 75
+      }
+    },
+    {
+      "effect_type": "filter",
+      "effect_version": 1,
+      "name": "Resonant Sweep",
+      "parameters": {
+        "cutoff_hz": 800,
+        "resonance_percent": 65,
+        "envelope_percent": 0,
+        "rate_hz": 0.6,
+        "depth_percent": 90,
+        "mix_percent": 60
+      }
+    },
+    {
+      "effect_type": "filter",
+      "effect_version": 1,
+      "name": "Dark Underwater",
+      "parameters": {
+        "cutoff_hz": 300,
+        "resonance_percent": 35,
+        "envelope_percent": 0,
+        "depth_percent": 0,
+        "mix_percent": 100
+      }
+    },
+    {
+      "effect_type": "filter",
+      "effect_version": 1,
+      "name": "Alien Mouth",
+      "parameters": {
+        "cutoff_hz": 500,
+        "resonance_percent": 75,
+        "envelope_percent": 55,
+        "rate_hz": 3,
+        "depth_percent": 70,
+        "mix_percent": 45
+      }
+    },
+    {
+      "effect_type": "filter",
+      "effect_version": 1,
+      "name": "Slow Opening",
+      "parameters": {
+        "cutoff_hz": 600,
+        "resonance_percent": 40,
+        "envelope_percent": 100,
+        "depth_percent": 0,
+        "mix_percent": 80
+      }
+    },
+    {
+      "effect_type": "pitch",
+      "effect_version": 1,
+      "name": "Octave Below",
+      "parameters": {
+        "semitones": -12,
+        "cents": 0,
+        "width_percent": 0,
+        "mix_percent": 45
+      }
+    },
+    {
+      "effect_type": "pitch",
+      "effect_version": 1,
+      "name": "Octave Above",
+      "parameters": {
+        "semitones": 12,
+        "cents": 0,
+        "width_percent": 25,
+        "mix_percent": 30
+      }
+    },
+    {
+      "effect_type": "pitch",
+      "effect_version": 1,
+      "name": "Fifth Halo",
+      "parameters": {
+        "semitones": 7,
+        "cents": 0,
+        "width_percent": 35,
+        "mix_percent": 22
+      }
+    },
+    {
+      "effect_type": "pitch",
+      "effect_version": 1,
+      "name": "Detuned Double",
+      "parameters": {
+        "semitones": 0,
+        "cents": 12,
+        "width_percent": 75,
+        "mix_percent": 30
+      }
+    },
+    {
+      "effect_type": "pitch",
+      "effect_version": 1,
+      "name": "Alien Fourth",
+      "parameters": {
+        "semitones": 5,
+        "cents": -8,
+        "width_percent": 65,
+        "mix_percent": 40
+      }
+    },
+    {
+      "effect_type": "pitch",
+      "effect_version": 1,
+      "name": "Sub Drone",
+      "parameters": {
+        "semitones": -12,
+        "cents": -7,
+        "width_percent": 40,
+        "mix_percent": 100
+      }
+    },
+    {
+      "effect_type": "ring_mod",
+      "effect_version": 1,
+      "name": "Alien Carrier",
+      "parameters": {
+        "rate_hz": 120,
+        "mix_percent": 45,
+        "width_percent": 30
+      }
+    },
+    {
+      "effect_type": "ring_mod",
+      "effect_version": 1,
+      "name": "Metallic Bell",
+      "parameters": {
+        "rate_hz": 440,
+        "mix_percent": 40,
+        "width_percent": 15
+      }
+    },
+    {
+      "effect_type": "ring_mod",
+      "effect_version": 1,
+      "name": "Radio Interference",
+      "parameters": {
+        "rate_hz": 870,
+        "mix_percent": 65,
+        "width_percent": 75
+      }
+    },
+    {
+      "effect_type": "ring_mod",
+      "effect_version": 1,
+      "name": "Low Mechanical",
+      "parameters": {
+        "rate_hz": 35,
+        "mix_percent": 60,
+        "width_percent": 0
+      }
+    },
+    {
+      "effect_type": "delay",
+      "effect_version": 2,
+      "name": "Digital Slap",
+      "parameters": {
+        "time_ms": 110,
+        "feedback_percent": 12,
+        "mix_percent": 18,
+        "mode": 0,
+        "color_hz": 12000,
+        "wow_percent": 0
+      }
+    },
+    {
+      "effect_type": "delay",
+      "effect_version": 2,
+      "name": "Lead Echo",
+      "parameters": {
+        "time_ms": 350,
+        "feedback_percent": 30,
+        "mix_percent": 22,
+        "mode": 0,
+        "color_hz": 12000,
+        "wow_percent": 0
+      }
+    },
+    {
+      "effect_type": "delay",
+      "effect_version": 2,
+      "name": "Analog Trail",
+      "parameters": {
+        "time_ms": 420,
+        "feedback_percent": 42,
+        "mix_percent": 28,
+        "mode": 1,
+        "color_hz": 2600,
+        "wow_percent": 0
+      }
+    },
+    {
+      "effect_type": "delay",
+      "effect_version": 2,
+      "name": "Tape Orbit",
+      "parameters": {
+        "time_ms": 550,
+        "feedback_percent": 48,
+        "mix_percent": 30,
+        "mode": 2,
+        "color_hz": 3500,
+        "wow_percent": 35
+      }
+    },
+    {
+      "effect_type": "delay",
+      "effect_version": 2,
+      "name": "Broken Tape",
+      "parameters": {
+        "time_ms": 280,
+        "feedback_percent": 55,
+        "mix_percent": 32,
+        "mode": 2,
+        "color_hz": 1800,
+        "wow_percent": 85
+      }
+    },
+    {
+      "effect_type": "delay",
+      "effect_version": 2,
+      "name": "Dotted Pulse",
+      "parameters": {
+        "time_ms": 375,
+        "feedback_percent": 38,
+        "mix_percent": 30,
+        "mode": 0,
+        "color_hz": 12000,
+        "wow_percent": 0
+      }
+    },
+    {
+      "effect_type": "delay",
+      "effect_version": 2,
+      "name": "Long Memory",
+      "parameters": {
+        "time_ms": 900,
+        "feedback_percent": 65,
+        "mix_percent": 32,
+        "mode": 1,
+        "color_hz": 3000,
+        "wow_percent": 0
+      }
+    },
+    {
+      "effect_type": "delay",
+      "effect_version": 2,
+      "name": "Dub Feedback",
+      "parameters": {
+        "time_ms": 650,
+        "feedback_percent": 72,
+        "mix_percent": 30,
+        "mode": 2,
+        "color_hz": 2200,
+        "wow_percent": 40
+      }
+    },
+    {
+      "effect_type": "delay",
+      "effect_version": 2,
+      "name": "Short Comb",
+      "parameters": {
+        "time_ms": 12,
+        "feedback_percent": 55,
+        "mix_percent": 40,
+        "mode": 0,
+        "color_hz": 12000,
+        "wow_percent": 0
+      }
+    },
+    {
+      "effect_type": "delay",
+      "effect_version": 1,
+      "name": "Digital Slap Legacy",
+      "parameters": {
+        "time_ms": 110,
+        "feedback_percent": 12,
+        "mix_percent": 18
+      }
+    },
+    {
+      "effect_type": "delay",
+      "effect_version": 1,
+      "name": "Lead Echo Legacy",
+      "parameters": {
+        "time_ms": 350,
+        "feedback_percent": 30,
+        "mix_percent": 22
+      }
+    },
+    {
+      "effect_type": "reverb",
+      "effect_version": 1,
+      "name": "Small Space",
+      "parameters": {
+        "size_percent": 25,
+        "damping_percent": 65,
+        "mix_percent": 12
+      }
+    },
+    {
+      "effect_type": "reverb",
+      "effect_version": 1,
+      "name": "Long Decay",
+      "parameters": {
+        "size_percent": 70,
+        "damping_percent": 60,
+        "mix_percent": 25
+      }
+    },
+    {
+      "effect_type": "reverb",
+      "effect_version": 1,
+      "name": "Bright Cloud",
+      "parameters": {
+        "size_percent": 80,
+        "damping_percent": 25,
+        "mix_percent": 30
+      }
+    },
+    {
+      "effect_type": "reverb",
+      "effect_version": 1,
+      "name": "Dark Cathedral",
+      "parameters": {
+        "size_percent": 90,
+        "damping_percent": 80,
+        "mix_percent": 30
+      }
+    },
+    {
+      "effect_type": "reverb",
+      "effect_version": 1,
+      "name": "Wet Horizon",
+      "parameters": {
+        "size_percent": 95,
+        "damping_percent": 45,
+        "mix_percent": 55
+      }
+    },
+    {
+      "effect_type": "reverb",
+      "effect_version": 1,
+      "name": "Short Metallic",
+      "parameters": {
+        "size_percent": 40,
+        "damping_percent": 10,
+        "mix_percent": 20
+      }
+    },
+    {
+      "effect_type": "eq",
+      "effect_version": 1,
+      "name": "Mid Focus",
+      "parameters": {
+        "low_db": -2,
+        "mid_db": 3,
+        "high_db": -2
+      }
+    },
+    {
+      "effect_type": "eq",
+      "effect_version": 1,
+      "name": "Soft Highs",
+      "parameters": {
+        "low_db": 0,
+        "mid_db": 0,
+        "high_db": -4
+      }
+    },
+    {
+      "effect_type": "eq",
+      "effect_version": 1,
+      "name": "Lean Bass",
+      "parameters": {
+        "low_db": -5,
+        "mid_db": 1,
+        "high_db": 0
+      }
+    },
+    {
+      "effect_type": "eq",
+      "effect_version": 1,
+      "name": "Clean Sparkle",
+      "parameters": {
+        "low_db": -2,
+        "mid_db": 1,
+        "high_db": 3
+      }
+    },
+    {
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "name": "Cabinet Unity",
+      "parameters": {
+        "level_db": 0
+      }
+    },
+    {
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "name": "Cabinet Pad",
+      "parameters": {
+        "level_db": -3
+      }
+    }
+  ],
+  "racks": [
+    {
+      "name": "Clean / Glass Arpeggio",
+      "output_db": -12,
+      "pedals": [
+        "Arpeggio Glue",
+        "Clean Glass",
+        "Cabinet Unity",
+        "Arpeggio Air",
+        "Small Space"
+      ]
+    },
+    {
+      "name": "Clean / Chiming Edge",
+      "output_db": -12,
+      "pedals": [
+        "Percussive Snap",
+        "Chiming Edge",
+        "Cabinet Unity",
+        "Digital Slap",
+        "Small Space"
+      ]
+    },
+    {
+      "name": "Clean / Wide Double",
+      "output_db": -12,
+      "pedals": [
+        "Clean Glass",
+        "Cabinet Unity",
+        "Detuned Double",
+        "Small Space"
+      ]
+    },
+    {
+      "name": "Clean / Warm Sustain",
+      "output_db": -12,
+      "pedals": [
+        "Clean Sustain",
+        "Warm Combo",
+        "Cabinet Unity",
+        "Analog Trail",
+        "Small Space"
+      ]
+    },
+    {
+      "name": "Clean / Funk Quack",
+      "output_db": -12,
+      "pedals": [
+        "Percussive Snap",
+        "Auto Quack",
+        "Clean Glass",
+        "Cabinet Unity",
+        "Small Space"
+      ]
+    },
+    {
+      "name": "Art Rock / Arpeggio Air",
+      "output_db": -12,
+      "pedals": [
+        "Arpeggio Glue",
+        "Clean Glass",
+        "Cabinet Unity",
+        "Arpeggio Air",
+        "Dotted Pulse",
+        "Long Decay"
+      ]
+    },
+    {
+      "name": "Art Rock / Paranoid Rhythm",
+      "output_db": -15,
+      "pedals": [
+        "Art Rock Grind",
+        "Lean Rhythm Amp",
+        "Cabinet Unity",
+        "Mid Focus",
+        "Small Space"
+      ]
+    },
+    {
+      "name": "Art Rock / Subterranean Pulse",
+      "output_db": -12,
+      "pedals": [
+        "Clean Glass",
+        "Cabinet Unity",
+        "Subterranean Pulse",
+        "Analog Trail",
+        "Long Decay"
+      ]
+    },
+    {
+      "name": "Art Rock / Climbing Echo",
+      "output_db": -15,
+      "pedals": [
+        "Warm Crunch",
+        "Chiming Edge",
+        "Cabinet Unity",
+        "Lead Echo",
+        "Long Decay"
+      ]
+    },
+    {
+      "name": "Art Rock / Fishes Motion",
+      "output_db": -12,
+      "pedals": [
+        "Clean Glass",
+        "Cabinet Unity",
+        "Liquid Motion",
+        "Dotted Pulse",
+        "Bright Cloud"
+      ]
+    },
+    {
+      "name": "Art Rock / Broken Transmission",
+      "output_db": -18,
+      "pedals": [
+        "Broken Transistor",
+        "Cabinet Unity",
+        "Telephone",
+        "Short Comb",
+        "Short Metallic"
+      ]
+    },
+    {
+      "name": "Art Rock / Blooming Delay",
+      "output_db": -15,
+      "pedals": [
+        "Chiming Edge",
+        "Cabinet Unity",
+        "Slow Bloom",
+        "Tape Orbit",
+        "Long Decay"
+      ]
+    },
+    {
+      "name": "Heavy / Tight Rhythm",
+      "output_db": -18,
+      "pedals": [
+        "Tight Rhythm",
+        "Lean Rhythm Amp",
+        "Cabinet Unity",
+        "Lean Bass",
+        "Small Space"
+      ]
+    },
+    {
+      "name": "Heavy / Dark Wall",
+      "output_db": -18,
+      "pedals": [
+        "Dark Wall",
+        "Sagging Stack",
+        "Cabinet Unity",
+        "Soft Highs",
+        "Small Space"
+      ]
+    },
+    {
+      "name": "Heavy / Velvet Lead",
+      "output_db": -18,
+      "pedals": [
+        "Velvet Fuzz",
+        "Warm Combo",
+        "Cabinet Unity",
+        "Lead Echo",
+        "Long Decay"
+      ]
+    },
+    {
+      "name": "Heavy / Octave Lead",
+      "output_db": -18,
+      "pedals": [
+        "Octave Above",
+        "Art Rock Grind",
+        "Cabinet Unity",
+        "Mid Focus",
+        "Lead Echo",
+        "Small Space"
+      ]
+    },
+    {
+      "name": "Heavy / Sub Fuzz",
+      "output_db": -18,
+      "pedals": [
+        "Octave Below",
+        "Bass Octopus",
+        "Cabinet Unity",
+        "Soft Highs",
+        "Small Space"
+      ]
+    },
+    {
+      "name": "Heavy / Gated Riff",
+      "output_db": -18,
+      "pedals": [
+        "Starved Battery",
+        "Lean Rhythm Amp",
+        "Cabinet Unity",
+        "Hard Chop",
+        "Small Space"
+      ]
+    },
+    {
+      "name": "Ambient / Fifth Halo",
+      "output_db": -15,
+      "pedals": [
+        "Clean Glass",
+        "Cabinet Unity",
+        "Fifth Halo",
+        "Slow Bloom",
+        "Long Memory",
+        "Bright Cloud"
+      ]
+    },
+    {
+      "name": "Ambient / Octave Cloud",
+      "output_db": -15,
+      "pedals": [
+        "Clean Glass",
+        "Cabinet Unity",
+        "Octave Above",
+        "Tape Orbit",
+        "Wet Horizon"
+      ]
+    },
+    {
+      "name": "Ambient / Dark Drone",
+      "output_db": -15,
+      "pedals": [
+        "Sub Drone",
+        "Warm Combo",
+        "Cabinet Unity",
+        "Dark Underwater",
+        "Long Memory",
+        "Dark Cathedral"
+      ]
+    },
+    {
+      "name": "Ambient / Stereo Orbit",
+      "output_db": -12,
+      "pedals": [
+        "Clean Glass",
+        "Cabinet Unity",
+        "Stereo Orbit",
+        "Tape Orbit",
+        "Long Decay"
+      ]
+    },
+    {
+      "name": "Ambient / Seasick Horizon",
+      "output_db": -15,
+      "pedals": [
+        "Clean Glass",
+        "Cabinet Unity",
+        "Seasick",
+        "Broken Tape",
+        "Wet Horizon"
+      ]
+    },
+    {
+      "name": "Ambient / Slow Opening",
+      "output_db": -15,
+      "pedals": [
+        "Clean Sustain",
+        "Slow Opening",
+        "Clean Glass",
+        "Cabinet Unity",
+        "Analog Trail",
+        "Bright Cloud"
+      ]
+    },
+    {
+      "name": "Ambient / Detuned Glass",
+      "output_db": -12,
+      "pedals": [
+        "Clean Glass",
+        "Cabinet Unity",
+        "Detuned Double",
+        "Digital Slap",
+        "Long Decay"
+      ]
+    },
+    {
+      "name": "Noise / Radio Static",
+      "output_db": -24,
+      "pedals": [
+        "Radio Static",
+        "Cabinet Unity",
+        "Radio Interference",
+        "Telephone",
+        "Broken Tape",
+        "Short Metallic"
+      ]
+    },
+    {
+      "name": "Noise / Folded Teeth",
+      "output_db": -21,
+      "pedals": [
+        "Folded Teeth",
+        "Cabinet Unity",
+        "Resonant Sweep",
+        "Tape Orbit",
+        "Long Decay"
+      ]
+    },
+    {
+      "name": "Noise / Alien Mouth",
+      "output_db": -21,
+      "pedals": [
+        "Alien Fourth",
+        "Broken Transistor",
+        "Cabinet Unity",
+        "Alien Mouth",
+        "Lead Echo",
+        "Short Metallic"
+      ]
+    },
+    {
+      "name": "Noise / Metallic Bells",
+      "output_db": -15,
+      "pedals": [
+        "Clean Glass",
+        "Cabinet Unity",
+        "Metallic Bell",
+        "Digital Slap",
+        "Bright Cloud"
+      ]
+    },
+    {
+      "name": "Noise / Machine Cut",
+      "output_db": -21,
+      "pedals": [
+        "Broken Speaker",
+        "Cabinet Unity",
+        "Machine Gun",
+        "Short Comb",
+        "Small Space"
+      ]
+    },
+    {
+      "name": "Noise / Low Mechanical",
+      "output_db": -21,
+      "pedals": [
+        "Bass Octopus",
+        "Cabinet Unity",
+        "Low Mechanical",
+        "Dark Underwater",
+        "Analog Trail"
+      ]
+    },
+    {
+      "name": "Noise / Carrier Drift",
+      "output_db": -18,
+      "pedals": [
+        "Vibrato Drift",
+        "Alien Carrier",
+        "Cabinet Unity",
+        "Tape Orbit",
+        "Bright Cloud"
+      ]
+    },
+    {
+      "name": "Noise / Starved Radio",
+      "output_db": -24,
+      "pedals": [
+        "Starved Battery",
+        "Cabinet Unity",
+        "Radio Interference",
+        "Broken Tape",
+        "Dark Cathedral"
+      ]
+    },
+    {
+      "name": "Experimental / Dub Guitar",
+      "output_db": -18,
+      "pedals": [
+        "Warm Combo",
+        "Cabinet Unity",
+        "Resonant Sweep",
+        "Dub Feedback",
+        "Small Space"
+      ]
+    },
+    {
+      "name": "Experimental / Heartbeat",
+      "output_db": -12,
+      "pedals": [
+        "Warm Combo",
+        "Cabinet Unity",
+        "Heartbeat",
+        "Analog Trail",
+        "Long Decay"
+      ]
+    },
+    {
+      "name": "Experimental / Underwater Trem",
+      "output_db": -15,
+      "pedals": [
+        "Clean Glass",
+        "Cabinet Unity",
+        "Dark Underwater",
+        "Stereo Orbit",
+        "Bright Cloud"
+      ]
+    },
+    {
+      "name": "Experimental / Twin Echoes",
+      "output_db": -15,
+      "pedals": [
+        "Clean Glass",
+        "Cabinet Unity",
+        "Digital Slap",
+        "Tape Orbit",
+        "Long Decay"
+      ]
+    },
+    {
+      "name": "Experimental / Shifting Fifth",
+      "output_db": -18,
+      "pedals": [
+        "Fifth Halo",
+        "Chiming Edge",
+        "Cabinet Unity",
+        "Liquid Motion",
+        "Analog Trail",
+        "Long Decay"
+      ]
+    },
+    {
+      "name": "Experimental / Velvet Telephone",
+      "output_db": -18,
+      "pedals": [
+        "Velvet Fuzz",
+        "Cabinet Unity",
+        "Telephone",
+        "Dotted Pulse",
+        "Short Metallic"
+      ]
+    },
+    {
+      "name": "Experimental / Infinite Corridor",
+      "output_db": -18,
+      "pedals": [
+        "Parallel Grit",
+        "Clean Glass",
+        "Cabinet Unity",
+        "Slow Bloom",
+        "Long Memory",
+        "Wet Horizon"
+      ]
+    }
+  ]
+}

@@ -1,16 +1,23 @@
 # GuitarRack
 
 Fedora Linux standalone guitar monitoring and a modular serial rack using C++20,
-CMake and JUCE 8.0.15. M4 adds versioned presets, validation, transactional recall,
-Save/Save As, confirmed deletion of saved user presets, import/export and local preferences. The catalog now includes Gain,
-Overdrive, EQ, Delay, Distortion, Reverb and Cabinet/IR (focused first part of M5). The owner reports opening the M3 GUI on Fedora and
+CMake and JUCE 8.0.15. The experimental pedalboard extension adds a native pedal layout with rotary controls,
+footswitches, signal cables, per-pedal factory/user voicings, and 40 additional full
+rack recipes. The catalog contains 15 effect types: Gain, Overdrive, EQ, Delay,
+Distortion, Reverb, Cabinet/IR, Fuzz, Basic Amp, Compressor, Chorus, Tremolo,
+Resonant Filter/Auto-Wah, Pitch Shifter and Ring Modulator. New Delay instances
+support Digital, Analog and Tape; existing v1 Delay presets retain their original
+algorithm. See [experimental pedalboard](docs/pedalboard.md) for controls, sound
+recipes, compatibility and listening checks. M4 supplies versioned presets,
+validation, transactional recall, Save/Save As, confirmed deletion, import/export
+and local preferences. The owner reports opening the M3 GUI on Fedora and
 playing a real guitar: Overdrive, EQ and Delay work individually and together in
 one rack. This is user-reported desktop/listening evidence. Earlier M-Track Solo
 Input 2 monitoring at PipeWire 256/48000 and 512/48000 was acceptable; 256 is the
 preference. The owner also reports that the M4 desktop preset workflow works well;
 this is user-reported acceptance. The new Delete dialogs, unreported keyboard/live
 transition details, the 10-minute soak, reconnect, measured latency and
-LeakSanitizer checks remain pending. Gate, Compressor, Chorus, Basic Amp, other modulation/pitch effects, VST3 and Windows
+LeakSanitizer checks remain pending. Gate, Phaser, Flanger, dedicated reverb algorithms, VST3 and Windows
 stay pending in their planned milestones in [PLAN.md](PLAN.md).
 
 The application provides a native resizable window, device/backend/channel
@@ -127,9 +134,10 @@ are not inferred from software checks or that listening report.
 5. Check Stop/Start with the rack present, both output channels and meter/clipping
    warnings. Record the actual backend/rate/buffer and any clicks/dropouts.
 
-The picker contains **Gain, Overdrive, EQ, Delay, Distortion, Reverb and Cabinet/IR**. Every card has labeled
+The picker contains all **15 implemented effect types**. Each pedal has rotary
 controls, units, numeric entry, double-click default reset and a Reset button.
-The rack scrolls vertically to reach every card. It supports **16 instances**
+The board wraps in signal order and scrolls vertically. Earlier/Later move a
+pedal; its settings and stable identity follow it. The footswitch LED shows engagement. It supports **16 instances**
 and 20 ms gain/bypass/structural transitions.
 Rack bypass retains input/output gain and protection. The complete rack reserves
 128 samples of DSP latency for aligned oversampling/bypass/transitions: 2.67 ms
@@ -275,7 +283,8 @@ library selections cannot revive a deleted entry. These checks pass in automated
 state/adapter fixtures; the new native dialogs and real-guitar deletion checklist
 still need desktop verification.
 
-Factory examples: **Clean**, **Crunch**, **Lead Delay**, **Driven Synthetic
+The library has **45 full rack presets** (five original plus 40 experimental) and
+**77 pedal voicings**. Original factory examples: **Clean**, **Crunch**, **Lead Delay**, **Driven Synthetic
 Cabinet** (Distortion → Cabinet → EQ → Delay → Reverb) and **Small Room** (EQ →
 Reverb). Output defaults to -12 dB. The Cabinet example uses an explicitly
 synthetic CC0 filter, not a measured cabinet or nonlinear amp simulation.
@@ -325,3 +334,4 @@ without starting monitoring. It requires access to the desktop display.
 Architecture/real-time ownership is documented in
 [docs/architecture.md](docs/architecture.md). Actual verification results are in
 [docs/testing.md](docs/testing.md).
+

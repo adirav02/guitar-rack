@@ -15,12 +15,16 @@ private:
     RackEngine& rack;
     PresetSession& presets;
     juce::ComboBox picker;
+    std::vector<std::string> pickerTypes;
     juce::TextButton addEffect{"Add Effect"}, bypass{"Bypass rack"};
     juce::Label status;
     juce::Viewport viewport;
-    juce::Component content;
+    class Board final : public juce::Component { public: void paint(juce::Graphics&) override; };
+    Board content;
     std::vector<std::unique_ptr<Card>> cards;
     RackDefinition displayed;
+    std::uint64_t voicingRevision=0;
     void layoutCards();
 };
 }
+

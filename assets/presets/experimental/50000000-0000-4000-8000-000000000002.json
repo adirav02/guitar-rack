@@ -1,0 +1,101 @@
+{
+  "schema_version": 2,
+  "preset_id": "50000000-0000-4000-8000-000000000002",
+  "name": "Clean / Chiming Edge",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -12.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "60000000-0000-4000-8000-000000000017",
+    "60000000-0000-4000-8000-000000000018",
+    "60000000-0000-4000-8000-000000000019",
+    "60000000-0000-4000-8000-000000000020",
+    "60000000-0000-4000-8000-000000000021"
+  ],
+  "instances": [
+    {
+      "instance_id": "60000000-0000-4000-8000-000000000017",
+      "slot_id": 0,
+      "effect_type": "compressor",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "threshold_db": -24.0,
+        "ratio": 4.0,
+        "attack_ms": 35.0,
+        "release_ms": 90.0,
+        "makeup_db": 2.0,
+        "mix_percent": 65.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "60000000-0000-4000-8000-000000000018",
+      "slot_id": 1,
+      "effect_type": "amp",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "drive_db": 9.0,
+        "bass_db": -2.0,
+        "mid_db": 2.0,
+        "treble_db": 3.0,
+        "presence_percent": 70.0,
+        "sag_percent": 25.0,
+        "level_db": -9.0,
+        "mix_percent": 100.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "60000000-0000-4000-8000-000000000019",
+      "slot_id": 2,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "4a9ac650b2983ca0c49c138d11beccd2d0c8607ac9fccf47c537fbbf7bb7adae"
+    },
+    {
+      "instance_id": "60000000-0000-4000-8000-000000000020",
+      "slot_id": 3,
+      "effect_type": "delay",
+      "effect_version": 2,
+      "bypassed": false,
+      "parameters": {
+        "time_ms": 110.0,
+        "feedback_percent": 12.000000953674316,
+        "mix_percent": 18.0,
+        "mode": 0.0,
+        "color_hz": 12000.0,
+        "wow_percent": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "60000000-0000-4000-8000-000000000021",
+      "slot_id": 4,
+      "effect_type": "reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "size_percent": 25.0,
+        "damping_percent": 65.0,
+        "mix_percent": 12.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "4a9ac650b2983ca0c49c138d11beccd2d0c8607ac9fccf47c537fbbf7bb7adae",
+      "sha256": "4a9ac650b2983ca0c49c138d11beccd2d0c8607ac9fccf47c537fbbf7bb7adae",
+      "relative_path": "ir/4a9ac650b2983ca0c49c138d11beccd2d0c8607ac9fccf47c537fbbf7bb7adae.wav",
+      "format": "wav"
+    }
+  ]
+}

@@ -105,7 +105,7 @@ void PresetBar::fileDialog(bool importing) {
 }
 void PresetBar::resized() {
     auto area=getLocalBounds(); auto row=area.removeFromTop(30);
-    choices.setBounds(row.removeFromLeft(200));
+    choices.setBounds(row.removeFromLeft(280));
     for(auto* button:{&saveButton,&saveAsButton,&deleteButton,&importButton,&exportButton}) { row.removeFromLeft(5); button->setBounds(row.removeFromLeft(72)); }
     row.removeFromLeft(5); cancelButton.setBounds(row.removeFromLeft(100));
     // Keep dirty/loading feedback visible even at the minimum window width.
@@ -113,3 +113,4 @@ void PresetBar::resized() {
     status.setBounds(area);
 }
 }
+
