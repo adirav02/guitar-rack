@@ -1,0 +1,109 @@
+{
+  "schema_version": 2,
+  "preset_id": "a46552c2-76f5-5c5f-91c3-8982cdc929cc",
+  "name": "Muse / Hysteria - Guitar Drive",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -9.5,
+    "rack_bypass": false
+  },
+  "order": [
+    "cca2fa49-433c-5299-8219-bb2c205ff49b",
+    "3341bd1e-f9db-57cb-bd33-a3061a5afaa8",
+    "bc69319e-eed9-5484-a84f-634d425935a6",
+    "f3a78799-fe55-5d8c-a54a-525ecc92a673",
+    "bc9e464b-ec0b-5b83-8e2b-d400d7fcdb18"
+  ],
+  "instances": [
+    {
+      "instance_id": "cca2fa49-433c-5299-8219-bb2c205ff49b",
+      "slot_id": 0,
+      "effect_type": "hard_distortion",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "drive_db": 19.0,
+        "low_cut_hz": 100.0,
+        "filter_hz": 4400.0,
+        "output_db": -13.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "3341bd1e-f9db-57cb-bd33-a3061a5afaa8",
+      "slot_id": 1,
+      "effect_type": "amp_brit_crunch",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 10.0,
+        "bass_db": -1.0,
+        "mid_db": 1.0,
+        "treble_db": 1.0,
+        "master_percent": 45.0,
+        "presence_percent": 40.0,
+        "output_db": -10.0,
+        "sag_percent": 20.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "bc69319e-eed9-5484-a84f-634d425935a6",
+      "slot_id": 2,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+    },
+    {
+      "instance_id": "f3a78799-fe55-5d8c-a54a-525ecc92a673",
+      "slot_id": 3,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 200.0,
+        "band1_db": -1.0,
+        "band1_q": 0.699999988079071,
+        "band2_hz": 1200.0,
+        "band2_db": 2.5,
+        "band2_q": 0.899999976158142,
+        "band3_hz": 3800.0,
+        "band3_db": -1.0,
+        "band3_q": 0.699999988079071,
+        "high_pass_hz": 90.0,
+        "low_pass_hz": 6500.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "bc9e464b-ec0b-5b83-8e2b-d400d7fcdb18",
+      "slot_id": 4,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 1.0,
+        "decay_seconds": 1.600000023841858,
+        "pre_delay_ms": 18.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 12.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "sha256": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "relative_path": "ir/e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac.wav",
+      "format": "wav"
+    }
+  ]
+}

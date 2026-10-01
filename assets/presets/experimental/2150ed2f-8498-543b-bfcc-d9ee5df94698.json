@@ -1,0 +1,151 @@
+{
+  "schema_version": 2,
+  "preset_id": "2150ed2f-8498-543b-bfcc-d9ee5df94698",
+  "name": "Radiohead / Let Down - Space Layer",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": 4.5,
+    "rack_bypass": false
+  },
+  "order": [
+    "9e39bd30-ac12-584c-a3cb-43b7680750df",
+    "5faa4b8d-6aea-5ab2-9adc-aa5555b97594",
+    "a6d7b12a-3cf3-5dcc-b6af-8178adffddb2",
+    "e9a10337-b776-5654-aab9-e9fed71c8c85",
+    "0fe45fe0-8588-5e78-b6f7-618f8b99331c",
+    "ac8c7abd-8988-56dd-b4e5-555d24f0786f",
+    "564f3dc7-2865-5241-a7cd-088c501d738e"
+  ],
+  "instances": [
+    {
+      "instance_id": "9e39bd30-ac12-584c-a3cb-43b7680750df",
+      "slot_id": 0,
+      "effect_type": "compressor",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "threshold_db": -24.0,
+        "ratio": 2.200000047683716,
+        "attack_ms": 25.0,
+        "release_ms": 160.0,
+        "makeup_db": 2.0,
+        "mix_percent": 70.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "5faa4b8d-6aea-5ab2-9adc-aa5555b97594",
+      "slot_id": 1,
+      "effect_type": "amp_brit_chime",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 1.0,
+        "bass_db": -2.0,
+        "treble_db": 2.0,
+        "master_percent": 20.0,
+        "output_db": -3.0,
+        "sag_percent": 20.0,
+        "cut_percent": 30.000001907348633
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "a6d7b12a-3cf3-5dcc-b6af-8178adffddb2",
+      "slot_id": 2,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "e69b28f563f39599f8882d80bb0e56ae336d51cc16b7a273eb7b916511c51da6"
+    },
+    {
+      "instance_id": "e9a10337-b776-5654-aab9-e9fed71c8c85",
+      "slot_id": 3,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 220.0,
+        "band1_db": -1.5,
+        "band1_q": 0.699999988079071,
+        "band2_hz": 1800.0,
+        "band2_db": 1.0,
+        "band2_q": 0.699999988079071,
+        "band3_hz": 4200.0,
+        "band3_db": -1.0,
+        "band3_q": 0.699999988079071,
+        "high_pass_hz": 85.0,
+        "low_pass_hz": 8500.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "0fe45fe0-8588-5e78-b6f7-618f8b99331c",
+      "slot_id": 4,
+      "effect_type": "chorus",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "rate_hz": 0.180000007152557,
+        "depth_percent": 38.0,
+        "width_percent": 90.0,
+        "mix_percent": 20.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "ac8c7abd-8988-56dd-b4e5-555d24f0786f",
+      "slot_id": 5,
+      "effect_type": "echo",
+      "effect_version": 2,
+      "bypassed": false,
+      "parameters": {
+        "time_ms": 410.0,
+        "bpm": 120.0,
+        "subdivision": 0.0,
+        "clock": 0.0,
+        "mode": 2.0,
+        "feedback_percent": 34.0,
+        "color_hz": 4200.0,
+        "wow_percent": 28.0,
+        "stereo": 0.0,
+        "heads": 0.0,
+        "mix_percent": 25.0,
+        "output_db": 0.0,
+        "wet_low_cut_hz": 180.0,
+        "wow_rate_hz": 0.239999979734421,
+        "wow_width_percent": 90.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "564f3dc7-2865-5241-a7cd-088c501d738e",
+      "slot_id": 6,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 2.0,
+        "decay_seconds": 3.600000143051147,
+        "pre_delay_ms": 28.0,
+        "damping_hz": 4500.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 24.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "e69b28f563f39599f8882d80bb0e56ae336d51cc16b7a273eb7b916511c51da6",
+      "sha256": "e69b28f563f39599f8882d80bb0e56ae336d51cc16b7a273eb7b916511c51da6",
+      "relative_path": "ir/e69b28f563f39599f8882d80bb0e56ae336d51cc16b7a273eb7b916511c51da6.wav",
+      "format": "wav"
+    }
+  ]
+}

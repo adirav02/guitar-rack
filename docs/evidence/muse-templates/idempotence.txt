@@ -1,0 +1,1 @@
+PASS: additive seed and source/catalog/schema/control/preset generation preserve 101 artifacts byte-for-byte.

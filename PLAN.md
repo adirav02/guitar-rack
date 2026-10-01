@@ -49,11 +49,69 @@ architecture was authorized or performed.
 - [ ] D: New physical routing/round trip/soak and artist-character/listening
   acceptance. Only unchanged Subterranean Pulse is explicitly owner approved.
 
-Current inventory: 42 types, 43 exact descriptors, 69 complete sounds, 146 pedal
+Current inventory: 42 types, 44 exact descriptors, 93 complete sounds, 196 pedal
 voices. Optional chainsaw, reverse/granular delay and stutter remain deferred.
 VST3/Windows/cloud/mobile/plugin hosting/general routing remain outside this
 request. Checkboxes refer to software behavior with recorded evidence, not the
 unfinished M5 physical or subjective acceptance.
+
+### Research-led song templates — 2026-10-01
+
+The owner's new request is implemented on `feat/radiohead-muse-song-tones`.
+[Research](docs/song-tone-research.md) was completed before project inspection
+and branch creation; network policy blocked YouTube and specialist gear sites.
+Primary DSP sources were read successfully. Song-specific settings are inferred
+starting points, with source/listening limitations visible in catalog details.
+
+- [x] Add 12 complete Radiohead/Muse templates and 28 reusable voicings, including
+  separate Let Down clean/space and Subterranean clean/floating-lead sounds,
+  No Surprises clean guitar, and Muse fuzz/heavy/chime/lead sounds.
+- [x] Version Echo v2 with wet/feedback low cut, adjustable tape wow rate and
+  stereo phase; retain Echo v1 and all earlier recipes/mappings/identities.
+- [x] Regenerate embedded recipes/catalog, portable fixtures, strict schemas
+  and control documentation. All song templates fit Legacy 128.
+- [ ] Complete owner reference listening, guitar/pickup calibration, native
+  Fedora display/audio build and physical acceptance for this branch.
+
+Software verification and environment limits are recorded in
+[testing](docs/testing.md#song-template-verification-2026-10-01);
+[usage and chains](docs/song-templates.md) describe the final behavior. Existing
+graph/lifetime/16-control/latency/asset contracts remain. No commits, pushes,
+system packages, new external audio assets or global audio settings were added.
+
+### Additional Muse templates — 2026-10-01
+
+The owner requested more templates for Citizen Erased (distortion and clean
+ending), New Born, Hysteria, Psycho, Reapers, Defector and The Globalist.
+Added 12 separate sounds and 22 reusable voicings on the existing song-tone
+branch, using existing processors. New Born/Reapers include rhythm/tapping and
+lead alternatives; The Globalist includes clean intro, heavy middle and clean
+outro guitar. All fit Legacy 128. No new DSP, routing, scene automation or latency
+profile is introduced. All prior 81 sounds / 174 voices remain unchanged.
+The owner subsequently confirmed all seven album versions as the target and
+requested fresh tone research. MuseWiki/artist interview access is blocked by
+HTTP policy; the [research/matching guide](docs/muse-tone-research.md) distinguishes
+that pending verification from inferred settings. Outputs are calibrated using
+the existing synthetic phrase; physical/reference listening remains pending.
+See [template roles](docs/song-templates.md#more-muse-song-templates)
+and [verification](docs/testing.md#muse-template-expansion-verification-2026-10-01).
+
+The owner's follow-up requests usable application chains. These are already
+embedded in the factory/session/browser loading path. The exporter now supports
+`--song-pack <directory>` to deliver individual cabinet-inclusive portable
+bundles, verified through the application's importer. Native release build was
+attempted here but is blocked by missing X11/audio/font development headers;
+the owner must rebuild the executable on the configured Fedora desktop.
+See [handoff verification](docs/testing.md#application-chain-handoff-2026-10-01).
+
+### GitHub review handoff — 2026-10-01
+
+The owner now explicitly authorizes committing and uploading this song-tone
+worktree to the existing GitHub repository and opening a pull request against
+`main`. This supersedes the earlier local-only scope for these changes. Publish
+the source, factory presets, research and verification records on
+`feat/radiohead-muse-song-tones`; native build/audio/listening limitations remain
+visible for review. No merge or release publication is requested.
 
 ## 1. Product goal
 

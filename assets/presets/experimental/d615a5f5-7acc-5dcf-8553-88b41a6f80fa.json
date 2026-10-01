@@ -1,0 +1,151 @@
+{
+  "schema_version": 2,
+  "preset_id": "d615a5f5-7acc-5dcf-8553-88b41a6f80fa",
+  "name": "Radiohead / Weird Fishes - Interlocking Clean",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": 2.5,
+    "rack_bypass": false
+  },
+  "order": [
+    "d9ef0f21-3c9d-5829-96e7-736f5cab4e42",
+    "7930cadd-8fa9-5bd9-a042-c58b7e4c60d1",
+    "e8bd8c4b-8251-570f-af50-e9d938ecfe42",
+    "11ca7a3b-62a9-59ad-8291-f93af3bbfa01",
+    "5e4b3931-5e96-5115-b339-e31dd050c455",
+    "e86bda5a-8f1e-5cf0-b191-1d225d34bc93",
+    "f0a8a4a9-1ba6-5524-98f6-4dbd944468b4"
+  ],
+  "instances": [
+    {
+      "instance_id": "d9ef0f21-3c9d-5829-96e7-736f5cab4e42",
+      "slot_id": 0,
+      "effect_type": "compressor",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "threshold_db": -24.0,
+        "ratio": 2.200000047683716,
+        "attack_ms": 25.0,
+        "release_ms": 160.0,
+        "makeup_db": 2.0,
+        "mix_percent": 70.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "7930cadd-8fa9-5bd9-a042-c58b7e4c60d1",
+      "slot_id": 1,
+      "effect_type": "amp_brit_chime",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 1.0,
+        "bass_db": -2.0,
+        "treble_db": 2.0,
+        "master_percent": 20.0,
+        "output_db": -3.0,
+        "sag_percent": 20.0,
+        "cut_percent": 30.000001907348633
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "e8bd8c4b-8251-570f-af50-e9d938ecfe42",
+      "slot_id": 2,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "e69b28f563f39599f8882d80bb0e56ae336d51cc16b7a273eb7b916511c51da6"
+    },
+    {
+      "instance_id": "11ca7a3b-62a9-59ad-8291-f93af3bbfa01",
+      "slot_id": 3,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 220.0,
+        "band1_db": -1.5,
+        "band1_q": 0.699999988079071,
+        "band2_hz": 1800.0,
+        "band2_db": 1.0,
+        "band2_q": 0.699999988079071,
+        "band3_hz": 4200.0,
+        "band3_db": -1.0,
+        "band3_q": 0.699999988079071,
+        "high_pass_hz": 85.0,
+        "low_pass_hz": 8500.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "5e4b3931-5e96-5115-b339-e31dd050c455",
+      "slot_id": 4,
+      "effect_type": "chorus",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "rate_hz": 0.280000001192093,
+        "depth_percent": 16.0,
+        "width_percent": 65.0,
+        "mix_percent": 12.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "e86bda5a-8f1e-5cf0-b191-1d225d34bc93",
+      "slot_id": 5,
+      "effect_type": "echo",
+      "effect_version": 2,
+      "bypassed": false,
+      "parameters": {
+        "time_ms": 200.0,
+        "bpm": 120.0,
+        "subdivision": 0.0,
+        "clock": 0.0,
+        "mode": 2.0,
+        "feedback_percent": 22.0,
+        "color_hz": 5200.0,
+        "wow_percent": 8.0,
+        "stereo": 0.0,
+        "heads": 0.0,
+        "mix_percent": 16.0,
+        "output_db": 0.0,
+        "wet_low_cut_hz": 150.0,
+        "wow_rate_hz": 0.400000035762787,
+        "wow_width_percent": 65.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "f0a8a4a9-1ba6-5524-98f6-4dbd944468b4",
+      "slot_id": 6,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 1.0,
+        "decay_seconds": 1.799999952316284,
+        "pre_delay_ms": 22.0,
+        "damping_hz": 5800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 14.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "e69b28f563f39599f8882d80bb0e56ae336d51cc16b7a273eb7b916511c51da6",
+      "sha256": "e69b28f563f39599f8882d80bb0e56ae336d51cc16b7a273eb7b916511c51da6",
+      "relative_path": "ir/e69b28f563f39599f8882d80bb0e56ae336d51cc16b7a273eb7b916511c51da6.wav",
+      "format": "wav"
+    }
+  ]
+}

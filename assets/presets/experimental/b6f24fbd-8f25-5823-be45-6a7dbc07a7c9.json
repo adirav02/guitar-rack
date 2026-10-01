@@ -1,0 +1,152 @@
+{
+  "schema_version": 2,
+  "preset_id": "b6f24fbd-8f25-5823-be45-6a7dbc07a7c9",
+  "name": "Radiohead / Subterranean Homesick Alien - Clean Foundation",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -2.5,
+    "rack_bypass": false
+  },
+  "order": [
+    "c992744c-ebe9-5b16-85ba-660d5125e0ad",
+    "ea4d479f-5fec-519e-9602-33b4b194870e",
+    "29f258b2-5c39-5480-b6e7-d8c9104c0726",
+    "608ccea3-22d1-5865-a7f2-3f8cbb91398e",
+    "c03fb197-f662-5229-9ae6-3b2c25a4ca0e",
+    "92ae1575-4b3f-53c7-8bbf-fc11834d516b",
+    "4f30e3a0-bc86-5ba7-ba4f-918b42946a31"
+  ],
+  "instances": [
+    {
+      "instance_id": "c992744c-ebe9-5b16-85ba-660d5125e0ad",
+      "slot_id": 0,
+      "effect_type": "compressor",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "threshold_db": -24.0,
+        "ratio": 2.200000047683716,
+        "attack_ms": 25.0,
+        "release_ms": 160.0,
+        "makeup_db": 2.0,
+        "mix_percent": 70.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "ea4d479f-5fec-519e-9602-33b4b194870e",
+      "slot_id": 1,
+      "effect_type": "amp_solid_clean",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 2.0,
+        "bass_db": -2.0,
+        "mid_db": 1.0,
+        "treble_db": 0.0,
+        "master_percent": 20.0,
+        "presence_percent": 40.0,
+        "output_db": -3.0,
+        "bright_percent": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "29f258b2-5c39-5480-b6e7-d8c9104c0726",
+      "slot_id": 2,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+    },
+    {
+      "instance_id": "608ccea3-22d1-5865-a7f2-3f8cbb91398e",
+      "slot_id": 3,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 240.0,
+        "band1_db": -1.0,
+        "band1_q": 0.699999988079071,
+        "band2_hz": 1500.0,
+        "band2_db": 0.5,
+        "band2_q": 0.699999988079071,
+        "band3_hz": 3800.0,
+        "band3_db": -1.5,
+        "band3_q": 0.699999988079071,
+        "high_pass_hz": 90.0,
+        "low_pass_hz": 6500.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "c03fb197-f662-5229-9ae6-3b2c25a4ca0e",
+      "slot_id": 4,
+      "effect_type": "chorus",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "rate_hz": 0.280000001192093,
+        "depth_percent": 16.0,
+        "width_percent": 65.0,
+        "mix_percent": 12.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "92ae1575-4b3f-53c7-8bbf-fc11834d516b",
+      "slot_id": 5,
+      "effect_type": "echo",
+      "effect_version": 2,
+      "bypassed": false,
+      "parameters": {
+        "time_ms": 400.0,
+        "bpm": 120.0,
+        "subdivision": 0.0,
+        "clock": 0.0,
+        "mode": 2.0,
+        "feedback_percent": 24.0,
+        "color_hz": 4200.0,
+        "wow_percent": 18.0,
+        "stereo": 0.0,
+        "heads": 0.0,
+        "mix_percent": 15.000000953674316,
+        "output_db": 0.0,
+        "wet_low_cut_hz": 150.0,
+        "wow_rate_hz": 0.300000011920929,
+        "wow_width_percent": 60.000003814697266
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "4f30e3a0-bc86-5ba7-ba4f-918b42946a31",
+      "slot_id": 6,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 1.0,
+        "decay_seconds": 1.799999952316284,
+        "pre_delay_ms": 22.0,
+        "damping_hz": 5800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 14.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "sha256": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "relative_path": "ir/43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d.wav",
+      "format": "wav"
+    }
+  ]
+}

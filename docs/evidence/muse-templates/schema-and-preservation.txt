@@ -1,0 +1,1 @@
+PASS: prior 81 sounds / 174 voices / catalog metadata retained exactly; 93 factory fixtures and 196 voices pass strict JSON Schema.

@@ -1,0 +1,109 @@
+{
+  "schema_version": 2,
+  "preset_id": "0b0e1efc-6bd1-5833-b0bb-7a78171970d4",
+  "name": "Muse / Time Is Running Out - Guitar Fuzz",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -14.5,
+    "rack_bypass": false
+  },
+  "order": [
+    "e8328282-c27d-562d-be98-cfddb4ba0258",
+    "1b8d0d5e-b523-5d5b-b7fe-417c53d70d9a",
+    "f80d0db9-cf12-5e81-9f3f-4cc578a93a7c",
+    "6e44db40-8e34-5bad-aec9-5cec434462f9",
+    "fb9c6999-2398-5bf4-9ed3-4375c4b29297"
+  ],
+  "instances": [
+    {
+      "instance_id": "e8328282-c27d-562d-be98-cfddb4ba0258",
+      "slot_id": 0,
+      "effect_type": "sustain_fuzz",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "drive_db": 22.0,
+        "compression_percent": 40.0,
+        "tone_hz": 3300.0,
+        "output_db": -13.999998092651367
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "1b8d0d5e-b523-5d5b-b7fe-417c53d70d9a",
+      "slot_id": 1,
+      "effect_type": "amp_brit_crunch",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 10.0,
+        "bass_db": -1.0,
+        "mid_db": 1.0,
+        "treble_db": 1.0,
+        "master_percent": 45.0,
+        "presence_percent": 40.0,
+        "output_db": -10.0,
+        "sag_percent": 20.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "f80d0db9-cf12-5e81-9f3f-4cc578a93a7c",
+      "slot_id": 2,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+    },
+    {
+      "instance_id": "6e44db40-8e34-5bad-aec9-5cec434462f9",
+      "slot_id": 3,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 160.0,
+        "band1_db": 0.0,
+        "band1_q": 0.699999988079071,
+        "band2_hz": 1100.0,
+        "band2_db": 5.0,
+        "band2_q": 1.200000047683716,
+        "band3_hz": 3000.0,
+        "band3_db": 0.0,
+        "band3_q": 0.699999988079071,
+        "high_pass_hz": 100.0,
+        "low_pass_hz": 6200.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "fb9c6999-2398-5bf4-9ed3-4375c4b29297",
+      "slot_id": 4,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 1.0,
+        "decay_seconds": 1.600000023841858,
+        "pre_delay_ms": 18.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 12.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "sha256": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "relative_path": "ir/e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac.wav",
+      "format": "wav"
+    }
+  ]
+}

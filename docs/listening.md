@@ -4,6 +4,13 @@ Status: pending for the new upgrade. Only the exact legacy **Art Rock /
 Subterranean Pulse** has the owner's explicit listening approval. Signal tests
 and synthetic renders cannot approve artist character or album matching.
 
+For the new [song templates](song-templates.md), compare Let Down's defined
+arpeggio and separate space layer, No Surprises' clean guitar, and Subterranean
+Homesick Alien's foundation and floating lead against your reference. Match
+perceived volume before judging attack, modulation, echo timing and tail tone.
+Record pickup/interface settings and the exact accepted UUID. All these new
+sounds fit Legacy 128; reference listening remains pending.
+
 ## Launch and choose a sound
 
 ```bash

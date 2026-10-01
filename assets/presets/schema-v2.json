@@ -2656,6 +2656,132 @@
           {
             "properties": {
               "effect_type": {
+                "const": "echo"
+              },
+              "effect_version": {
+                "const": 2
+              },
+              "parameters": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "time_ms",
+                  "bpm",
+                  "subdivision",
+                  "clock",
+                  "mode",
+                  "feedback_percent",
+                  "color_hz",
+                  "wow_percent",
+                  "stereo",
+                  "heads",
+                  "mix_percent",
+                  "output_db",
+                  "wet_low_cut_hz",
+                  "wow_rate_hz",
+                  "wow_width_percent"
+                ],
+                "properties": {
+                  "time_ms": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 4000,
+                    "description": "Physical ms; stable bank index 0, linear normalization."
+                  },
+                  "bpm": {
+                    "type": "number",
+                    "minimum": 40,
+                    "maximum": 240,
+                    "description": "Physical BPM; stable bank index 1, linear normalization."
+                  },
+                  "subdivision": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 4,
+                    "description": "Physical mode; stable bank index 2, linear normalization. Choices: 0=Quarter, 1=Eighth, 2=Dotted eighth, 3=Sixteenth, 4=Half."
+                  },
+                  "clock": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "description": "Physical mode; stable bank index 3, linear normalization. Choices: 0=Milliseconds, 1=BPM."
+                  },
+                  "mode": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 2,
+                    "description": "Physical mode; stable bank index 4, linear normalization. Choices: 0=Digital, 1=Analog, 2=Tape."
+                  },
+                  "feedback_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 70,
+                    "description": "Physical %; stable bank index 5, linear normalization."
+                  },
+                  "color_hz": {
+                    "type": "number",
+                    "minimum": 500,
+                    "maximum": 16000,
+                    "description": "Physical Hz; stable bank index 6, linear normalization."
+                  },
+                  "wow_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Physical %; stable bank index 7, linear normalization."
+                  },
+                  "stereo": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "description": "Physical mode; stable bank index 8, linear normalization. Choices: 0=Stereo, 1=Ping-pong."
+                  },
+                  "heads": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "description": "Physical mode; stable bank index 9, linear normalization. Choices: 0=Single, 1=Three: 1 / 0.75 / 0.5."
+                  },
+                  "mix_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Physical %; stable bank index 10, linear normalization."
+                  },
+                  "output_db": {
+                    "type": "number",
+                    "minimum": -24,
+                    "maximum": 6,
+                    "description": "Physical dB; stable bank index 11, linear normalization."
+                  },
+                  "wet_low_cut_hz": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1000,
+                    "description": "Physical Hz; stable bank index 12, linear normalization."
+                  },
+                  "wow_rate_hz": {
+                    "type": "number",
+                    "minimum": 0.05,
+                    "maximum": 5,
+                    "description": "Physical Hz; stable bank index 13, linear normalization."
+                  },
+                  "wow_width_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Physical %; stable bank index 14, linear normalization."
+                  }
+                }
+              },
+              "ir_asset": {
+                "const": ""
+              }
+            }
+          },
+          {
+            "properties": {
+              "effect_type": {
                 "const": "space_reverb"
               },
               "effect_version": {

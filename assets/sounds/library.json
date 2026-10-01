@@ -1992,6 +1992,877 @@
         "width_percent": 60,
         "mix_percent": 18
       }
+    },
+    {
+      "id": "2568c58e-71df-5e72-b09e-ce838f5a94b0",
+      "key": "song.comp.transient",
+      "name": "Song / Gentle Pick Compression",
+      "effect_type": "compressor",
+      "effect_version": 1,
+      "parameters": {
+        "threshold_db": -24,
+        "ratio": 2.2,
+        "attack_ms": 25,
+        "release_ms": 160,
+        "makeup_db": 2,
+        "mix_percent": 70
+      }
+    },
+    {
+      "id": "90b5ff42-5f9e-5e1a-89a9-fc041db2d5c6",
+      "key": "song.comp.bell",
+      "name": "Song / Bell Compression",
+      "effect_type": "compressor",
+      "effect_version": 1,
+      "parameters": {
+        "threshold_db": -27,
+        "ratio": 2.5,
+        "attack_ms": 18,
+        "release_ms": 180,
+        "makeup_db": 2,
+        "mix_percent": 75
+      }
+    },
+    {
+      "id": "c1858a4e-f8d1-568d-962d-3460436b1bd7",
+      "key": "song.amp.chime",
+      "name": "Song / Clear Chime",
+      "effect_type": "amp_brit_chime",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 1,
+        "bass_db": -2,
+        "treble_db": 2,
+        "cut_percent": 30,
+        "master_percent": 20,
+        "output_db": -3
+      }
+    },
+    {
+      "id": "e243a2d5-eb36-59c1-938e-c6dac540d6f4",
+      "key": "song.amp.round",
+      "name": "Song / Rounded Clean Combo",
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 0,
+        "bass_db": -2,
+        "mid_db": 0,
+        "treble_db": 0,
+        "master_percent": 20,
+        "output_db": -3
+      }
+    },
+    {
+      "id": "6b9a94ba-342c-55a2-b49c-ac2dd514b39b",
+      "key": "song.amp.alien",
+      "name": "Song / Warm Alien Clean",
+      "effect_type": "amp_solid_clean",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 2,
+        "bass_db": -2,
+        "mid_db": 1,
+        "treble_db": 0,
+        "master_percent": 20,
+        "output_db": -3
+      }
+    },
+    {
+      "id": "67174aea-4a2d-51be-b2cf-9b4d1ec826bc",
+      "key": "song.amp.starlight",
+      "name": "Song / Starlight Edge",
+      "effect_type": "amp_brit_chime",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 6,
+        "bass_db": -2,
+        "treble_db": 2,
+        "cut_percent": 35,
+        "master_percent": 28,
+        "output_db": -6
+      }
+    },
+    {
+      "id": "0b8a98d8-55e5-52f2-87f4-ddeadb13053f",
+      "key": "song.eq.chime",
+      "name": "Song / Chime Focus",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 85,
+        "low_pass_hz": 8500,
+        "band1_hz": 220,
+        "band1_db": -1.5,
+        "band2_hz": 1800,
+        "band2_db": 1,
+        "band3_hz": 4200,
+        "band3_db": -1
+      }
+    },
+    {
+      "id": "c8611094-c631-508d-b495-6dccd72934ff",
+      "key": "song.eq.bell",
+      "name": "Song / Rounded Bell Focus",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 90,
+        "low_pass_hz": 6500,
+        "band1_hz": 240,
+        "band1_db": -1,
+        "band2_hz": 1500,
+        "band2_db": 0.5,
+        "band3_hz": 3800,
+        "band3_db": -1.5
+      }
+    },
+    {
+      "id": "06aedd3e-1bbe-5cab-b33f-3b282f9b9f29",
+      "key": "song.eq.alien",
+      "name": "Song / Alien Lead Focus",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 100,
+        "low_pass_hz": 7200,
+        "band1_hz": 240,
+        "band1_db": -1.5,
+        "band2_hz": 1100,
+        "band2_db": 1,
+        "band3_hz": 3600,
+        "band3_db": -1
+      }
+    },
+    {
+      "id": "a0df5d25-3e0c-50c1-924b-2fe534eb1487",
+      "key": "song.mod.arpeggio",
+      "name": "Song / Arpeggio Halo",
+      "effect_type": "chorus",
+      "effect_version": 1,
+      "parameters": {
+        "rate_hz": 0.28,
+        "depth_percent": 16,
+        "width_percent": 65,
+        "mix_percent": 12
+      }
+    },
+    {
+      "id": "ec48c6f6-5ab0-56bb-b2ea-9bba3a7e2949",
+      "key": "song.mod.alien",
+      "name": "Song / Alien Slow Motion",
+      "effect_type": "chorus",
+      "effect_version": 1,
+      "parameters": {
+        "rate_hz": 0.32,
+        "depth_percent": 32,
+        "width_percent": 85,
+        "mix_percent": 23
+      }
+    },
+    {
+      "id": "2b310928-00e4-56a9-af6d-be37bcc9f256",
+      "key": "song.mod.space",
+      "name": "Song / Slow Space Chorus",
+      "effect_type": "chorus",
+      "effect_version": 1,
+      "parameters": {
+        "rate_hz": 0.18,
+        "depth_percent": 38,
+        "width_percent": 90,
+        "mix_percent": 20
+      }
+    },
+    {
+      "id": "0d0cfab2-ce94-5df1-bc73-1ca5ba14253c",
+      "key": "song.echo.letdown",
+      "name": "Song / Let Down Picking Echo",
+      "effect_type": "echo",
+      "effect_version": 2,
+      "parameters": {
+        "time_ms": 205,
+        "bpm": 120,
+        "clock": 0,
+        "subdivision": 0,
+        "mode": 2,
+        "feedback_percent": 22,
+        "color_hz": 5200,
+        "wow_percent": 4,
+        "stereo": 0,
+        "heads": 0,
+        "mix_percent": 16,
+        "output_db": 0,
+        "wet_low_cut_hz": 150,
+        "wow_rate_hz": 0.4,
+        "wow_width_percent": 35
+      }
+    },
+    {
+      "id": "ac979655-df2e-5701-8f0d-f3b43b4072a8",
+      "key": "song.echo.letdown.space",
+      "name": "Song / Let Down Space Echo",
+      "effect_type": "echo",
+      "effect_version": 2,
+      "parameters": {
+        "time_ms": 410,
+        "bpm": 120,
+        "clock": 0,
+        "subdivision": 0,
+        "mode": 2,
+        "feedback_percent": 34,
+        "color_hz": 4200,
+        "wow_percent": 28,
+        "stereo": 0,
+        "heads": 0,
+        "mix_percent": 25,
+        "output_db": 0,
+        "wet_low_cut_hz": 180,
+        "wow_rate_hz": 0.24,
+        "wow_width_percent": 90
+      }
+    },
+    {
+      "id": "79337e4b-066e-558d-8291-9dd8ea3b4da6",
+      "key": "song.echo.alien.rhythm",
+      "name": "Song / Alien Foundation Echo",
+      "effect_type": "echo",
+      "effect_version": 2,
+      "parameters": {
+        "time_ms": 400,
+        "bpm": 120,
+        "clock": 0,
+        "subdivision": 0,
+        "mode": 2,
+        "feedback_percent": 24,
+        "color_hz": 4200,
+        "wow_percent": 18,
+        "stereo": 0,
+        "heads": 0,
+        "mix_percent": 15,
+        "output_db": 0,
+        "wet_low_cut_hz": 150,
+        "wow_rate_hz": 0.3,
+        "wow_width_percent": 60
+      }
+    },
+    {
+      "id": "5604463b-b866-53ff-8497-5dc7998faf48",
+      "key": "song.echo.alien.lead",
+      "name": "Song / Alien Floating Echo",
+      "effect_type": "echo",
+      "effect_version": 2,
+      "parameters": {
+        "time_ms": 400,
+        "bpm": 120,
+        "clock": 0,
+        "subdivision": 0,
+        "mode": 2,
+        "feedback_percent": 42,
+        "color_hz": 3600,
+        "wow_percent": 45,
+        "stereo": 0,
+        "heads": 0,
+        "mix_percent": 30,
+        "output_db": 0,
+        "wet_low_cut_hz": 200,
+        "wow_rate_hz": 0.22,
+        "wow_width_percent": 100
+      }
+    },
+    {
+      "id": "1d898cba-ea5a-5f1b-9414-03c2e6ae70bf",
+      "key": "song.echo.weird",
+      "name": "Song / Interlocking Arpeggio Echo",
+      "effect_type": "echo",
+      "effect_version": 2,
+      "parameters": {
+        "time_ms": 200,
+        "bpm": 120,
+        "clock": 0,
+        "subdivision": 0,
+        "mode": 2,
+        "feedback_percent": 22,
+        "color_hz": 5200,
+        "wow_percent": 8,
+        "stereo": 0,
+        "heads": 0,
+        "mix_percent": 16,
+        "output_db": 0,
+        "wet_low_cut_hz": 150,
+        "wow_rate_hz": 0.4,
+        "wow_width_percent": 65
+      }
+    },
+    {
+      "id": "b5c8ea61-f94e-5780-aea2-1f3768b24d7d",
+      "key": "song.echo.starlight",
+      "name": "Song / Chiming Eighth Echo",
+      "effect_type": "echo",
+      "effect_version": 2,
+      "parameters": {
+        "time_ms": 250,
+        "bpm": 120,
+        "clock": 1,
+        "subdivision": 1,
+        "mode": 2,
+        "feedback_percent": 22,
+        "color_hz": 5000,
+        "wow_percent": 8,
+        "stereo": 0,
+        "heads": 0,
+        "mix_percent": 14,
+        "output_db": 0,
+        "wet_low_cut_hz": 150,
+        "wow_rate_hz": 0.4,
+        "wow_width_percent": 50
+      }
+    },
+    {
+      "id": "2ec4cd59-b0b3-5a40-a61a-59d41620af16",
+      "key": "song.echo.western",
+      "name": "Song / Western Gallop Echo",
+      "effect_type": "echo",
+      "effect_version": 2,
+      "parameters": {
+        "time_ms": 175,
+        "bpm": 120,
+        "clock": 0,
+        "subdivision": 0,
+        "mode": 2,
+        "feedback_percent": 23,
+        "color_hz": 4200,
+        "wow_percent": 10,
+        "stereo": 0,
+        "heads": 0,
+        "mix_percent": 16,
+        "output_db": 0,
+        "wet_low_cut_hz": 150,
+        "wow_rate_hz": 0.5,
+        "wow_width_percent": 55
+      }
+    },
+    {
+      "id": "0f781ffc-81e7-5e7b-9e40-881a550a2c69",
+      "key": "song.echo.lead",
+      "name": "Song / Stadium Lead Echo",
+      "effect_type": "echo",
+      "effect_version": 2,
+      "parameters": {
+        "time_ms": 360,
+        "bpm": 120,
+        "clock": 0,
+        "subdivision": 0,
+        "mode": 2,
+        "feedback_percent": 30,
+        "color_hz": 3800,
+        "wow_percent": 20,
+        "stereo": 0,
+        "heads": 0,
+        "mix_percent": 19,
+        "output_db": 0,
+        "wet_low_cut_hz": 200,
+        "wow_rate_hz": 0.3,
+        "wow_width_percent": 80
+      }
+    },
+    {
+      "id": "0d44b86e-eb9b-5e6c-9be2-4c6882e812d4",
+      "key": "song.space.pick",
+      "name": "Song / Picking Plate",
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "parameters": {
+        "mode": 1,
+        "decay_seconds": 1.8,
+        "pre_delay_ms": 22,
+        "damping_hz": 5800,
+        "tone_hz": 6500,
+        "mix_percent": 14,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "102fa882-f305-5568-8171-b3709757b116",
+      "key": "song.space.bell",
+      "name": "Song / Bell Room",
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "parameters": {
+        "mode": 0,
+        "decay_seconds": 1.2,
+        "pre_delay_ms": 12,
+        "damping_hz": 5200,
+        "tone_hz": 6500,
+        "mix_percent": 11,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "319b8bb8-070a-5e1e-b7ea-d3afbac5a4b9",
+      "key": "song.space.letdown",
+      "name": "Song / Let Down Hall",
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "parameters": {
+        "mode": 2,
+        "decay_seconds": 3.6,
+        "pre_delay_ms": 28,
+        "damping_hz": 4500,
+        "tone_hz": 6500,
+        "mix_percent": 24,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "70fd023c-966c-5a79-b3a1-23f21265afdd",
+      "key": "song.space.alien",
+      "name": "Song / Alien Floating Hall",
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "parameters": {
+        "mode": 2,
+        "decay_seconds": 4.2,
+        "pre_delay_ms": 30,
+        "damping_hz": 3800,
+        "tone_hz": 6500,
+        "mix_percent": 27,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "07e21c31-6aa4-5e53-82b1-92bf96937fd3",
+      "key": "song.space.muse",
+      "name": "Song / Muse Lead Plate",
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "parameters": {
+        "mode": 1,
+        "decay_seconds": 1.6,
+        "pre_delay_ms": 18,
+        "damping_hz": 4800,
+        "tone_hz": 6500,
+        "mix_percent": 12,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "20239536-ec8e-583d-9608-6748494fdf9c",
+      "key": "song.fuzz.plug",
+      "name": "Song / Plug In Singing Fuzz",
+      "effect_type": "bias_fuzz",
+      "effect_version": 1,
+      "parameters": {
+        "drive_db": 25,
+        "gate_db": -70,
+        "compression_percent": 35,
+        "bias_percent": 10,
+        "stability_percent": 100,
+        "output_db": -15
+      }
+    },
+    {
+      "id": "2ddd5815-10a4-57cd-9422-45092e2df363",
+      "key": "song.fuzz.time",
+      "name": "Song / Focused Sustain Fuzz",
+      "effect_type": "sustain_fuzz",
+      "effect_version": 1,
+      "parameters": {
+        "drive_db": 22,
+        "compression_percent": 40,
+        "tone_hz": 3300,
+        "output_db": -14
+      }
+    },
+    {
+      "id": "ed0d58bb-b62e-5a7b-ae21-260a3c838d32",
+      "key": "song.amp.stockholm",
+      "name": "Song / Stockholm Tight Rhythm",
+      "effect_type": "amp_modern_tight",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 23,
+        "bass_db": -3,
+        "mid_db": 2,
+        "treble_db": 0,
+        "master_percent": 35,
+        "presence_percent": 35,
+        "sag_percent": 5,
+        "low_cut_hz": 150,
+        "resonance_percent": 18,
+        "output_db": -14
+      }
+    },
+    {
+      "id": "dd8400d1-f87a-5076-93c8-c5420ea2554f",
+      "key": "muse.citizen.fuzz",
+      "name": "Muse / Citizen Dense Sustain",
+      "effect_type": "sustain_fuzz",
+      "effect_version": 1,
+      "parameters": {
+        "drive_db": 21,
+        "compression_percent": 30,
+        "tone_hz": 3600,
+        "output_db": -14
+      }
+    },
+    {
+      "id": "9e5ceec2-06e9-5bc8-8ea6-f9453de4ee3c",
+      "key": "muse.citizen.amp",
+      "name": "Muse / Citizen Low-String Amp",
+      "effect_type": "amp_brit_hotrod",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 16,
+        "bass_db": -2,
+        "mid_db": 2,
+        "treble_db": 0,
+        "master_percent": 38,
+        "presence_percent": 30,
+        "low_cut_hz": 70,
+        "output_db": -11
+      }
+    },
+    {
+      "id": "5392e1f3-d116-555f-a1c4-6d03853a8831",
+      "key": "muse.citizen.clean",
+      "name": "Muse / Citizen Ending Clean Amp",
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 0,
+        "bass_db": -1,
+        "mid_db": 0,
+        "treble_db": 1,
+        "master_percent": 18,
+        "output_db": -3
+      }
+    },
+    {
+      "id": "ef3d9187-9f6b-5cef-948a-9082aaf97f71",
+      "key": "muse.citizen.eq",
+      "name": "Muse / Citizen Low-String Focus",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 50,
+        "low_pass_hz": 6800,
+        "band1_hz": 180,
+        "band1_db": -2,
+        "band2_hz": 950,
+        "band2_db": 2,
+        "band3_hz": 3800,
+        "band3_db": -1
+      }
+    },
+    {
+      "id": "814cf7d0-1d2c-5a7c-8e57-199f5ccc352b",
+      "key": "muse.newborn.fuzz",
+      "name": "Muse / New Born Tight Bias Fuzz",
+      "effect_type": "bias_fuzz",
+      "effect_version": 1,
+      "parameters": {
+        "drive_db": 27,
+        "gate_db": -68,
+        "compression_percent": 40,
+        "bias_percent": 15,
+        "stability_percent": 95,
+        "output_db": -15
+      }
+    },
+    {
+      "id": "653dfce3-b58c-5e53-87a0-281e9a919bbf",
+      "key": "muse.newborn.amp",
+      "name": "Muse / New Born Forward Chime",
+      "effect_type": "amp_brit_chime",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 7,
+        "bass_db": -3,
+        "treble_db": 1,
+        "cut_percent": 38,
+        "master_percent": 30,
+        "output_db": -9
+      }
+    },
+    {
+      "id": "9fd92f46-72bf-5944-aef0-3c45fe181ae6",
+      "key": "muse.hysteria.drive",
+      "name": "Muse / Hysteria Guitar Saturation",
+      "effect_type": "hard_distortion",
+      "effect_version": 1,
+      "parameters": {
+        "drive_db": 19,
+        "low_cut_hz": 100,
+        "filter_hz": 4400,
+        "output_db": -13
+      }
+    },
+    {
+      "id": "8da6513d-4c57-5004-9981-efc2c57641ec",
+      "key": "muse.hysteria.eq",
+      "name": "Muse / Hysteria Guitar Mid Focus",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 90,
+        "low_pass_hz": 6500,
+        "band1_hz": 200,
+        "band1_db": -1,
+        "band2_hz": 1200,
+        "band2_db": 2.5,
+        "band2_q": 0.9,
+        "band3_hz": 3800,
+        "band3_db": -1
+      }
+    },
+    {
+      "id": "c818dc18-9824-5fca-9f01-d9ccf6f17bd0",
+      "key": "muse.psycho.amp",
+      "name": "Muse / Psycho Dry Riff Amp",
+      "effect_type": "amp_modern_tight",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 21,
+        "bass_db": -2,
+        "mid_db": 2.5,
+        "treble_db": -1,
+        "master_percent": 36,
+        "presence_percent": 30,
+        "sag_percent": 8,
+        "low_cut_hz": 120,
+        "resonance_percent": 25,
+        "output_db": -13
+      }
+    },
+    {
+      "id": "af35b5b2-2a2d-5de4-bebe-e6219641e40a",
+      "key": "muse.reapers.tap",
+      "name": "Muse / Reapers Tapping Amp",
+      "effect_type": "amp_brit_hotrod",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 18,
+        "bass_db": -3,
+        "mid_db": 2,
+        "treble_db": 1,
+        "master_percent": 35,
+        "presence_percent": 38,
+        "low_cut_hz": 140,
+        "output_db": -12
+      }
+    },
+    {
+      "id": "f22fb627-2fd8-5db4-a451-25e89dc8a11a",
+      "key": "muse.reapers.wah",
+      "name": "Muse / Reapers Lead Wah",
+      "effect_type": "wah",
+      "effect_version": 1,
+      "parameters": {
+        "position_percent": 62,
+        "heel_hz": 300,
+        "toe_hz": 2600,
+        "q": 2.0,
+        "output_db": 0,
+        "mix_percent": 55
+      }
+    },
+    {
+      "id": "5aa5fef6-b0fb-58cd-8bd5-b286dbee236c",
+      "key": "muse.defector.amp",
+      "name": "Muse / Defector Broad Rhythm Amp",
+      "effect_type": "amp_brit_hotrod",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 22,
+        "bass_db": 0,
+        "mid_db": 1,
+        "treble_db": 0,
+        "master_percent": 40,
+        "presence_percent": 32,
+        "low_cut_hz": 100,
+        "output_db": -14
+      }
+    },
+    {
+      "id": "984e9dbf-2433-57af-a75e-59a90d6467d1",
+      "key": "muse.globalist.intro",
+      "name": "Muse / Globalist Intro Clean Amp",
+      "effect_type": "amp_solid_clean",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 0,
+        "bass_db": -2,
+        "mid_db": 0,
+        "treble_db": 1,
+        "master_percent": 18,
+        "output_db": -3
+      }
+    },
+    {
+      "id": "e03b58d5-0e74-54cf-9784-d511535af253",
+      "key": "muse.globalist.heavy",
+      "name": "Muse / Globalist Heavy Amp",
+      "effect_type": "amp_recto",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 22,
+        "bass_db": -3,
+        "mid_db": 1.5,
+        "treble_db": -1,
+        "master_percent": 42,
+        "presence_percent": 28,
+        "sag_percent": 35,
+        "resonance_percent": 25,
+        "output_db": -14
+      }
+    },
+    {
+      "id": "bfae22bc-091c-5f2e-a505-e7f34a86edbd",
+      "key": "muse.globalist.outro",
+      "name": "Muse / Globalist Outro Clean Amp",
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 0,
+        "bass_db": -2,
+        "mid_db": 1,
+        "treble_db": -1,
+        "master_percent": 20,
+        "output_db": -3
+      }
+    },
+    {
+      "id": "cb6c8b25-dfb3-516b-8f25-3bb9d08799ff",
+      "key": "muse.clean.chorus",
+      "name": "Muse / Gentle Ending Chorus",
+      "effect_type": "chorus",
+      "effect_version": 1,
+      "parameters": {
+        "rate_hz": 0.25,
+        "depth_percent": 18,
+        "width_percent": 70,
+        "mix_percent": 13
+      }
+    },
+    {
+      "id": "3ae27bb9-30ab-5d6e-a4b8-d00975d9729e",
+      "key": "muse.citizen.echo",
+      "name": "Muse / Citizen Ending Echo",
+      "effect_type": "echo",
+      "effect_version": 2,
+      "parameters": {
+        "time_ms": 380,
+        "bpm": 120,
+        "clock": 0,
+        "subdivision": 0,
+        "mode": 2,
+        "feedback_percent": 29,
+        "color_hz": 4500,
+        "wow_percent": 15,
+        "stereo": 0,
+        "heads": 0,
+        "mix_percent": 20,
+        "output_db": 0,
+        "wet_low_cut_hz": 160,
+        "wow_rate_hz": 0.25,
+        "wow_width_percent": 75
+      }
+    },
+    {
+      "id": "d867f05f-9891-5017-b7f6-450301cb265e",
+      "key": "muse.reapers.echo",
+      "name": "Muse / Reapers Lead Echo",
+      "effect_type": "echo",
+      "effect_version": 2,
+      "parameters": {
+        "time_ms": 300,
+        "bpm": 120,
+        "clock": 0,
+        "subdivision": 0,
+        "mode": 2,
+        "feedback_percent": 28,
+        "color_hz": 4200,
+        "wow_percent": 8,
+        "stereo": 0,
+        "heads": 0,
+        "mix_percent": 18,
+        "output_db": 0,
+        "wet_low_cut_hz": 180,
+        "wow_rate_hz": 0.45,
+        "wow_width_percent": 70
+      }
+    },
+    {
+      "id": "a3792a62-24a3-5830-a3be-1fb96ed5dcc3",
+      "key": "muse.globalist.echo",
+      "name": "Muse / Globalist Intro Echo",
+      "effect_type": "echo",
+      "effect_version": 2,
+      "parameters": {
+        "time_ms": 460,
+        "bpm": 120,
+        "clock": 0,
+        "subdivision": 0,
+        "mode": 2,
+        "feedback_percent": 36,
+        "color_hz": 3900,
+        "wow_percent": 25,
+        "stereo": 0,
+        "heads": 0,
+        "mix_percent": 26,
+        "output_db": 0,
+        "wet_low_cut_hz": 180,
+        "wow_rate_hz": 0.2,
+        "wow_width_percent": 90
+      }
+    },
+    {
+      "id": "e9f10b88-5075-587f-ad66-229e52782bd4",
+      "key": "muse.citizen.space",
+      "name": "Muse / Citizen Ending Plate",
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "parameters": {
+        "mode": 1,
+        "decay_seconds": 2.4,
+        "pre_delay_ms": 24,
+        "damping_hz": 4800,
+        "tone_hz": 6500,
+        "mix_percent": 19,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "b67dd53d-157e-5360-9242-41ded8142cff",
+      "key": "muse.globalist.space",
+      "name": "Muse / Globalist Intro Hall",
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "parameters": {
+        "mode": 2,
+        "decay_seconds": 4.8,
+        "pre_delay_ms": 32,
+        "damping_hz": 4000,
+        "tone_hz": 6500,
+        "mix_percent": 28,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "0f4aeb91-d606-52d1-a1dc-fbc5ffc6dd1d",
+      "key": "muse.globalist.outro.space",
+      "name": "Muse / Globalist Outro Room",
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "parameters": {
+        "mode": 0,
+        "decay_seconds": 1.5,
+        "pre_delay_ms": 16,
+        "damping_hz": 4500,
+        "tone_hz": 6500,
+        "mix_percent": 13,
+        "output_db": 0
+      }
     }
   ],
   "racks": [
@@ -3786,6 +4657,783 @@
       ],
       "cabinet_assets": {
         "2": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+      }
+    },
+    {
+      "id": "b068f603-5fe9-53d3-9301-7597a171c1d8",
+      "key": "radiohead.letdown.clean",
+      "name": "Radiohead / Let Down - Clean Arpeggio",
+      "output_db": 1.5,
+      "pedals": [
+        "Song / Gentle Pick Compression",
+        "Song / Clear Chime",
+        "Cabinet Unity",
+        "Song / Chime Focus",
+        "Song / Let Down Picking Echo",
+        "Song / Picking Plate"
+      ],
+      "pedal_ids": [
+        "2568c58e-71df-5e72-b09e-ce838f5a94b0",
+        "c1858a4e-f8d1-568d-962d-3460436b1bd7",
+        "40000000-0000-4000-8000-000000000076",
+        "0b8a98d8-55e5-52f2-87f4-ddeadb13053f",
+        "0d0cfab2-ce94-5df1-bc73-1ca5ba14253c",
+        "0d44b86e-eb9b-5e6c-9be2-4c6882e812d4"
+      ],
+      "instance_ids": [
+        "97495ea4-3a16-5239-8acb-1265339567d0",
+        "5c422d4f-9874-5e6d-a5bf-ccd21c4a1cb7",
+        "4a16b66e-1e68-5671-9f45-2465f9775e3b",
+        "1d373b08-a84b-5d42-91e3-15c00b1f69d7",
+        "f6fc56d0-2882-56a5-a45f-61a017850409",
+        "8b19aed7-437b-5aaa-99a6-f75bdc90ca55"
+      ],
+      "cabinet_assets": {
+        "2": "e69b28f563f39599f8882d80bb0e56ae336d51cc16b7a273eb7b916511c51da6"
+      }
+    },
+    {
+      "id": "2150ed2f-8498-543b-bfcc-d9ee5df94698",
+      "key": "radiohead.letdown.space",
+      "name": "Radiohead / Let Down - Space Layer",
+      "output_db": 4.5,
+      "pedals": [
+        "Song / Gentle Pick Compression",
+        "Song / Clear Chime",
+        "Cabinet Unity",
+        "Song / Chime Focus",
+        "Song / Slow Space Chorus",
+        "Song / Let Down Space Echo",
+        "Song / Let Down Hall"
+      ],
+      "pedal_ids": [
+        "2568c58e-71df-5e72-b09e-ce838f5a94b0",
+        "c1858a4e-f8d1-568d-962d-3460436b1bd7",
+        "40000000-0000-4000-8000-000000000076",
+        "0b8a98d8-55e5-52f2-87f4-ddeadb13053f",
+        "2b310928-00e4-56a9-af6d-be37bcc9f256",
+        "ac979655-df2e-5701-8f0d-f3b43b4072a8",
+        "319b8bb8-070a-5e1e-b7ea-d3afbac5a4b9"
+      ],
+      "instance_ids": [
+        "9e39bd30-ac12-584c-a3cb-43b7680750df",
+        "5faa4b8d-6aea-5ab2-9adc-aa5555b97594",
+        "a6d7b12a-3cf3-5dcc-b6af-8178adffddb2",
+        "e9a10337-b776-5654-aab9-e9fed71c8c85",
+        "0fe45fe0-8588-5e78-b6f7-618f8b99331c",
+        "ac8c7abd-8988-56dd-b4e5-555d24f0786f",
+        "564f3dc7-2865-5241-a7cd-088c501d738e"
+      ],
+      "cabinet_assets": {
+        "2": "e69b28f563f39599f8882d80bb0e56ae336d51cc16b7a273eb7b916511c51da6"
+      }
+    },
+    {
+      "id": "b435cacd-3086-597b-92a4-732ce6c7bfa9",
+      "key": "radiohead.nosurprises.clean",
+      "name": "Radiohead / No Surprises - Bell Clean",
+      "output_db": 1.0,
+      "pedals": [
+        "Song / Bell Compression",
+        "Song / Rounded Clean Combo",
+        "Cabinet Unity",
+        "Song / Rounded Bell Focus",
+        "Song / Bell Room"
+      ],
+      "pedal_ids": [
+        "90b5ff42-5f9e-5e1a-89a9-fc041db2d5c6",
+        "e243a2d5-eb36-59c1-938e-c6dac540d6f4",
+        "40000000-0000-4000-8000-000000000076",
+        "c8611094-c631-508d-b495-6dccd72934ff",
+        "102fa882-f305-5568-8171-b3709757b116"
+      ],
+      "instance_ids": [
+        "f0265983-30f5-5a70-992b-42295abe9a81",
+        "d0077471-cc2b-502e-a754-41ae63eda629",
+        "fdf5976a-82fc-536d-9c5f-88321afe9e30",
+        "865603af-1314-5437-b223-5a3acff7740c",
+        "69453e3a-e6e9-5eed-a860-59f1df85e9d6"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "b6f24fbd-8f25-5823-be45-6a7dbc07a7c9",
+      "key": "radiohead.alien.foundation",
+      "name": "Radiohead / Subterranean Homesick Alien - Clean Foundation",
+      "output_db": -2.5,
+      "pedals": [
+        "Song / Gentle Pick Compression",
+        "Song / Warm Alien Clean",
+        "Cabinet Unity",
+        "Song / Rounded Bell Focus",
+        "Song / Arpeggio Halo",
+        "Song / Alien Foundation Echo",
+        "Song / Picking Plate"
+      ],
+      "pedal_ids": [
+        "2568c58e-71df-5e72-b09e-ce838f5a94b0",
+        "6b9a94ba-342c-55a2-b49c-ac2dd514b39b",
+        "40000000-0000-4000-8000-000000000076",
+        "c8611094-c631-508d-b495-6dccd72934ff",
+        "a0df5d25-3e0c-50c1-924b-2fe534eb1487",
+        "79337e4b-066e-558d-8291-9dd8ea3b4da6",
+        "0d44b86e-eb9b-5e6c-9be2-4c6882e812d4"
+      ],
+      "instance_ids": [
+        "c992744c-ebe9-5b16-85ba-660d5125e0ad",
+        "ea4d479f-5fec-519e-9602-33b4b194870e",
+        "29f258b2-5c39-5480-b6e7-d8c9104c0726",
+        "608ccea3-22d1-5865-a7f2-3f8cbb91398e",
+        "c03fb197-f662-5229-9ae6-3b2c25a4ca0e",
+        "92ae1575-4b3f-53c7-8bbf-fc11834d516b",
+        "4f30e3a0-bc86-5ba7-ba4f-918b42946a31"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "5885942c-18e4-5240-903e-a6a8a4ad6af5",
+      "key": "radiohead.alien.lead",
+      "name": "Radiohead / Subterranean Homesick Alien - Floating Lead",
+      "output_db": 1.0,
+      "pedals": [
+        "Song / Gentle Pick Compression",
+        "Song / Warm Alien Clean",
+        "Cabinet Unity",
+        "Song / Alien Lead Focus",
+        "Song / Alien Slow Motion",
+        "Song / Alien Floating Echo",
+        "Song / Alien Floating Hall"
+      ],
+      "pedal_ids": [
+        "2568c58e-71df-5e72-b09e-ce838f5a94b0",
+        "6b9a94ba-342c-55a2-b49c-ac2dd514b39b",
+        "40000000-0000-4000-8000-000000000076",
+        "06aedd3e-1bbe-5cab-b33f-3b282f9b9f29",
+        "ec48c6f6-5ab0-56bb-b2ea-9bba3a7e2949",
+        "5604463b-b866-53ff-8497-5dc7998faf48",
+        "70fd023c-966c-5a79-b3a1-23f21265afdd"
+      ],
+      "instance_ids": [
+        "acee116a-fea4-5628-8a71-44065224627d",
+        "59ea9624-15bb-5bc8-9dd4-4993aad14cb4",
+        "d7bb8cab-8325-5387-a1bd-d4797c961f86",
+        "aa5bf740-c7f1-50a0-bd8f-9c43d8adad85",
+        "894f521c-2d62-5b48-a6ff-307d0bf8b1bf",
+        "42d9146b-0b81-5ef9-9084-3e73359f8a54",
+        "946d5cbf-37b9-531f-bf5d-7c6e927c065c"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "d615a5f5-7acc-5dcf-8553-88b41a6f80fa",
+      "key": "radiohead.weirdfishes.clean",
+      "name": "Radiohead / Weird Fishes - Interlocking Clean",
+      "output_db": 2.5,
+      "pedals": [
+        "Song / Gentle Pick Compression",
+        "Song / Clear Chime",
+        "Cabinet Unity",
+        "Song / Chime Focus",
+        "Song / Arpeggio Halo",
+        "Song / Interlocking Arpeggio Echo",
+        "Song / Picking Plate"
+      ],
+      "pedal_ids": [
+        "2568c58e-71df-5e72-b09e-ce838f5a94b0",
+        "c1858a4e-f8d1-568d-962d-3460436b1bd7",
+        "40000000-0000-4000-8000-000000000076",
+        "0b8a98d8-55e5-52f2-87f4-ddeadb13053f",
+        "a0df5d25-3e0c-50c1-924b-2fe534eb1487",
+        "1d898cba-ea5a-5f1b-9414-03c2e6ae70bf",
+        "0d44b86e-eb9b-5e6c-9be2-4c6882e812d4"
+      ],
+      "instance_ids": [
+        "d9ef0f21-3c9d-5829-96e7-736f5cab4e42",
+        "7930cadd-8fa9-5bd9-a042-c58b7e4c60d1",
+        "e8bd8c4b-8251-570f-af50-e9d938ecfe42",
+        "11ca7a3b-62a9-59ad-8291-f93af3bbfa01",
+        "5e4b3931-5e96-5115-b339-e31dd050c455",
+        "e86bda5a-8f1e-5cf0-b191-1d225d34bc93",
+        "f0a8a4a9-1ba6-5524-98f6-4dbd944468b4"
+      ],
+      "cabinet_assets": {
+        "2": "e69b28f563f39599f8882d80bb0e56ae336d51cc16b7a273eb7b916511c51da6"
+      }
+    },
+    {
+      "id": "fe249724-9ab3-505f-a71b-21a2c28719a6",
+      "key": "muse.pluginbaby.fuzz",
+      "name": "Muse / Plug In Baby - Singing Fuzz",
+      "output_db": -11.0,
+      "pedals": [
+        "Song / Plug In Singing Fuzz",
+        "British Chime Edge",
+        "Cabinet Unity",
+        "Post-Cab Tight",
+        "Song / Muse Lead Plate"
+      ],
+      "pedal_ids": [
+        "20239536-ec8e-583d-9608-6748494fdf9c",
+        "2e9722f5-4b3c-5115-ad89-0e5baae4fc31",
+        "40000000-0000-4000-8000-000000000076",
+        "8d2b09db-b4a8-51f2-983c-aee9df0a8d3e",
+        "07e21c31-6aa4-5e53-82b1-92bf96937fd3"
+      ],
+      "instance_ids": [
+        "7c3abca6-0081-5081-b3a6-d7cf87a65a44",
+        "6e8b9419-b361-52dc-9073-b9347206fb32",
+        "bccabe58-6b5a-519f-918b-f1f500026420",
+        "0156f263-6b07-50eb-b7ce-8fc63add03c9",
+        "b9ea5540-d9d0-53d7-8b4e-b8077d4fedbf"
+      ],
+      "cabinet_assets": {
+        "2": "e69b28f563f39599f8882d80bb0e56ae336d51cc16b7a273eb7b916511c51da6"
+      }
+    },
+    {
+      "id": "f7e72fb3-429c-5823-97d6-1780f8ad897c",
+      "key": "muse.stockholm.rhythm",
+      "name": "Muse / Stockholm Syndrome - Tight Rhythm",
+      "output_db": -13.0,
+      "pedals": [
+        "Tight Gate",
+        "Metal Tight Boost",
+        "Song / Stockholm Tight Rhythm",
+        "Cabinet Unity",
+        "Post-Cab Tight"
+      ],
+      "pedal_ids": [
+        "9562fefa-bd0e-5173-a6a4-89a64fea90c6",
+        "0711b147-09a8-5836-9f22-5ff36750a189",
+        "ed0d58bb-b62e-5a7b-ae21-260a3c838d32",
+        "40000000-0000-4000-8000-000000000076",
+        "8d2b09db-b4a8-51f2-983c-aee9df0a8d3e"
+      ],
+      "instance_ids": [
+        "6f385762-44e7-5a9e-beab-f328fb259445",
+        "6e598776-c729-58be-b7c6-c3e092ced6db",
+        "e00aa8b7-3835-5700-8172-062dcf5a6603",
+        "7b920755-ce7a-5d6f-b44b-b0caf2ceef40",
+        "346fc104-e1b0-5099-8e1b-c19901efdc3a"
+      ],
+      "cabinet_assets": {
+        "3": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d"
+      }
+    },
+    {
+      "id": "9c3a69b7-8ba8-5aba-8372-2024d10e0bb0",
+      "key": "muse.starlight.chime",
+      "name": "Muse / Starlight - Chiming Guitar",
+      "output_db": -1.5,
+      "pedals": [
+        "Song / Gentle Pick Compression",
+        "Song / Starlight Edge",
+        "Cabinet Unity",
+        "Song / Chime Focus",
+        "Song / Chiming Eighth Echo",
+        "Song / Picking Plate"
+      ],
+      "pedal_ids": [
+        "2568c58e-71df-5e72-b09e-ce838f5a94b0",
+        "67174aea-4a2d-51be-b2cf-9b4d1ec826bc",
+        "40000000-0000-4000-8000-000000000076",
+        "0b8a98d8-55e5-52f2-87f4-ddeadb13053f",
+        "b5c8ea61-f94e-5780-aea2-1f3768b24d7d",
+        "0d44b86e-eb9b-5e6c-9be2-4c6882e812d4"
+      ],
+      "instance_ids": [
+        "f0710a92-5c87-57d3-aa86-ca077e1eb39b",
+        "432d7ee9-04fd-50a8-87df-bc352f0c9344",
+        "3c2a5df3-49e7-5752-a21d-c21262591a52",
+        "7aeea3c5-cf47-5a47-9980-22e8d4d3035b",
+        "ad101605-e95f-5d55-9ffc-777179d4dabb",
+        "0f439e46-6147-5cff-bf61-9763eabbe3b4"
+      ],
+      "cabinet_assets": {
+        "2": "e69b28f563f39599f8882d80bb0e56ae336d51cc16b7a273eb7b916511c51da6"
+      }
+    },
+    {
+      "id": "b2700a25-ec15-5e3f-9cbf-923e0ff49fe2",
+      "key": "muse.knights.western",
+      "name": "Muse / Knights of Cydonia - Western Guitar",
+      "output_db": -8.0,
+      "pedals": [
+        "British Crunch Rhythm",
+        "Cabinet Unity",
+        "Post-Cab Tight",
+        "Song / Western Gallop Echo",
+        "Gentle Room"
+      ],
+      "pedal_ids": [
+        "70d344a0-b946-55f7-8193-9dfef0aecc97",
+        "40000000-0000-4000-8000-000000000076",
+        "8d2b09db-b4a8-51f2-983c-aee9df0a8d3e",
+        "2ec4cd59-b0b3-5a40-a61a-59d41620af16",
+        "2dfcccc9-76fe-5044-8ff2-6ee24bd4a6fb"
+      ],
+      "instance_ids": [
+        "273a2f0b-ea10-5935-84ce-602a4e3560fa",
+        "d431b371-cd23-5403-9017-4ed7ca12a1e8",
+        "e7ccd9d7-58d0-5274-b650-c4db1820531c",
+        "b6ea4522-99e6-5182-8124-d08239ebaa2e",
+        "45a639e5-3d23-5c0f-822f-e960b679531d"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "f8493334-b6f0-5398-b2c6-f4a7cd165502",
+      "key": "muse.space.lead",
+      "name": "Muse / Space Lead - Sustained Echo",
+      "output_db": -8.0,
+      "pedals": [
+        "Lead Decay Gate",
+        "British Hot-Rod Lead",
+        "Cabinet Unity",
+        "Post-Cab Tight",
+        "Song / Stadium Lead Echo",
+        "Song / Muse Lead Plate"
+      ],
+      "pedal_ids": [
+        "1531bb69-45a7-5112-993d-ada461e7a808",
+        "c9825f2a-13e4-5e5d-a15a-59f6cf0d4984",
+        "40000000-0000-4000-8000-000000000076",
+        "8d2b09db-b4a8-51f2-983c-aee9df0a8d3e",
+        "0f781ffc-81e7-5e7b-9e40-881a550a2c69",
+        "07e21c31-6aa4-5e53-82b1-92bf96937fd3"
+      ],
+      "instance_ids": [
+        "950ddf0e-6a23-55e0-98d0-d96c5d6ee98f",
+        "e68bb31f-6ba8-5990-a887-4aed33ce6a17",
+        "857f4367-8118-56c1-924e-3d7e6c32a31e",
+        "c0a85289-e0dc-579d-9846-a1f636f84eee",
+        "43b22ab7-8fae-5cef-9bb6-5c5cbe802c58",
+        "80f0f864-71da-5482-aff4-1b00450b41f4"
+      ],
+      "cabinet_assets": {
+        "2": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "0b0e1efc-6bd1-5833-b0bb-7a78171970d4",
+      "key": "muse.time.fuzz",
+      "name": "Muse / Time Is Running Out - Guitar Fuzz",
+      "output_db": -14.5,
+      "pedals": [
+        "Song / Focused Sustain Fuzz",
+        "British Crunch Edge",
+        "Cabinet Unity",
+        "Nasal Mid Fuzz",
+        "Song / Muse Lead Plate"
+      ],
+      "pedal_ids": [
+        "2ddd5815-10a4-57cd-9422-45092e2df363",
+        "b520b28c-68d1-5892-ba9a-21c39281508f",
+        "40000000-0000-4000-8000-000000000076",
+        "e45835f6-4628-512e-a1d3-dbdc13183193",
+        "07e21c31-6aa4-5e53-82b1-92bf96937fd3"
+      ],
+      "instance_ids": [
+        "e8328282-c27d-562d-be98-cfddb4ba0258",
+        "1b8d0d5e-b523-5d5b-b7fe-417c53d70d9a",
+        "f80d0db9-cf12-5e81-9f3f-4cc578a93a7c",
+        "6e44db40-8e34-5bad-aec9-5cec434462f9",
+        "fb9c6999-2398-5bf4-9ed3-4375c4b29297"
+      ],
+      "cabinet_assets": {
+        "2": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "6a07c9b3-7fac-5681-b647-4c429b01d8e8",
+      "key": "muse.citizen.distortion",
+      "name": "Muse / Citizen Erased - Dense Distortion",
+      "output_db": -17.5,
+      "pedals": [
+        "Muse / Citizen Dense Sustain",
+        "Muse / Citizen Low-String Amp",
+        "Cabinet Unity",
+        "Muse / Citizen Low-String Focus",
+        "Gentle Room"
+      ],
+      "pedal_ids": [
+        "dd8400d1-f87a-5076-93c8-c5420ea2554f",
+        "9e5ceec2-06e9-5bc8-8ea6-f9453de4ee3c",
+        "40000000-0000-4000-8000-000000000076",
+        "ef3d9187-9f6b-5cef-948a-9082aaf97f71",
+        "2dfcccc9-76fe-5044-8ff2-6ee24bd4a6fb"
+      ],
+      "instance_ids": [
+        "292f6b2b-d17e-5c16-bdf3-7cc01581cba1",
+        "6bf2a0cc-f080-5e83-9d36-d7cb72851a26",
+        "a32ed350-2fff-56ee-8daf-c52b925330a1",
+        "f7d64b49-e204-5fd3-8325-31eace99e728",
+        "b2cb9da4-f9aa-5936-9421-636a34a07c02"
+      ],
+      "cabinet_assets": {
+        "2": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+      }
+    },
+    {
+      "id": "e64e882a-5970-5ec3-9fff-558c3334bbc4",
+      "key": "muse.citizen.clean",
+      "name": "Muse / Citizen Erased - Clean Ending",
+      "output_db": 4.0,
+      "pedals": [
+        "Song / Gentle Pick Compression",
+        "Muse / Citizen Ending Clean Amp",
+        "Cabinet Unity",
+        "Song / Rounded Bell Focus",
+        "Muse / Gentle Ending Chorus",
+        "Muse / Citizen Ending Echo",
+        "Muse / Citizen Ending Plate"
+      ],
+      "pedal_ids": [
+        "2568c58e-71df-5e72-b09e-ce838f5a94b0",
+        "5392e1f3-d116-555f-a1c4-6d03853a8831",
+        "40000000-0000-4000-8000-000000000076",
+        "c8611094-c631-508d-b495-6dccd72934ff",
+        "cb6c8b25-dfb3-516b-8f25-3bb9d08799ff",
+        "3ae27bb9-30ab-5d6e-a4b8-d00975d9729e",
+        "e9f10b88-5075-587f-ad66-229e52782bd4"
+      ],
+      "instance_ids": [
+        "b6e9794e-240b-553b-b225-f5c67dff96be",
+        "090d0e25-6a07-55a8-b8e2-0d0e2ea83ddc",
+        "14feae07-9b76-51dc-9efd-20fd7cde76ca",
+        "004208c9-08d9-56c7-8f81-3389d166ce6d",
+        "febe3f64-b818-5f5b-ba44-ba1234138f16",
+        "457ae7f7-fd83-5d3e-8b0a-2073cd04497e",
+        "ad764e3f-5a8b-5f3a-b48a-42c28dae803c"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "95e42649-f38c-5ca3-b7dd-2a739dce0f5f",
+      "key": "muse.newborn.rhythm",
+      "name": "Muse / New Born - Fuzz Rhythm",
+      "output_db": -10.5,
+      "pedals": [
+        "Muse / New Born Tight Bias Fuzz",
+        "Muse / New Born Forward Chime",
+        "Cabinet Unity",
+        "Post-Cab Tight",
+        "Gentle Room"
+      ],
+      "pedal_ids": [
+        "814cf7d0-1d2c-5a7c-8e57-199f5ccc352b",
+        "653dfce3-b58c-5e53-87a0-281e9a919bbf",
+        "40000000-0000-4000-8000-000000000076",
+        "8d2b09db-b4a8-51f2-983c-aee9df0a8d3e",
+        "2dfcccc9-76fe-5044-8ff2-6ee24bd4a6fb"
+      ],
+      "instance_ids": [
+        "24db1393-acea-5354-b5fa-0fc8123f3455",
+        "20ead8cd-c2df-589f-863f-648aa07874f2",
+        "475926cf-e42b-51e8-9cc5-e98bf8aab23f",
+        "3c1075eb-09f9-5755-8457-0708c84c3dff",
+        "2a02f500-dd35-5464-892d-446470ca0e68"
+      ],
+      "cabinet_assets": {
+        "2": "e69b28f563f39599f8882d80bb0e56ae336d51cc16b7a273eb7b916511c51da6"
+      }
+    },
+    {
+      "id": "99f370ae-930b-5794-8787-a61437c488c0",
+      "key": "muse.newborn.lead",
+      "name": "Muse / New Born - Filtered Fuzz Lead",
+      "output_db": -2.0,
+      "pedals": [
+        "Muse / New Born Tight Bias Fuzz",
+        "Singing Manual Wah",
+        "Muse / New Born Forward Chime",
+        "Cabinet Unity",
+        "Post-Cab Tight",
+        "Song / Stadium Lead Echo",
+        "Song / Muse Lead Plate"
+      ],
+      "pedal_ids": [
+        "814cf7d0-1d2c-5a7c-8e57-199f5ccc352b",
+        "06251879-8138-5d76-87c3-07811a0e6e6b",
+        "653dfce3-b58c-5e53-87a0-281e9a919bbf",
+        "40000000-0000-4000-8000-000000000076",
+        "8d2b09db-b4a8-51f2-983c-aee9df0a8d3e",
+        "0f781ffc-81e7-5e7b-9e40-881a550a2c69",
+        "07e21c31-6aa4-5e53-82b1-92bf96937fd3"
+      ],
+      "instance_ids": [
+        "c6345fbf-8d62-53ed-aa6a-6af69815f8be",
+        "ae2efdf5-2f54-559b-a431-43a2f4898c59",
+        "14b2fa12-371a-56e1-aae1-b9248ae5fd47",
+        "d9141d7e-b902-5065-af70-84cf587eb2e7",
+        "68170862-6f3c-50f4-adaf-6300b1cdf852",
+        "b5112347-d249-577f-b2ab-8efbeff28e86",
+        "cd5a87e3-a07f-515c-8c9f-a97cde942c83"
+      ],
+      "cabinet_assets": {
+        "3": "e69b28f563f39599f8882d80bb0e56ae336d51cc16b7a273eb7b916511c51da6"
+      }
+    },
+    {
+      "id": "a46552c2-76f5-5c5f-91c3-8982cdc929cc",
+      "key": "muse.hysteria.guitar",
+      "name": "Muse / Hysteria - Guitar Drive",
+      "output_db": -9.5,
+      "pedals": [
+        "Muse / Hysteria Guitar Saturation",
+        "British Crunch Edge",
+        "Cabinet Unity",
+        "Muse / Hysteria Guitar Mid Focus",
+        "Song / Muse Lead Plate"
+      ],
+      "pedal_ids": [
+        "9fd92f46-72bf-5944-aef0-3c45fe181ae6",
+        "b520b28c-68d1-5892-ba9a-21c39281508f",
+        "40000000-0000-4000-8000-000000000076",
+        "8da6513d-4c57-5004-9981-efc2c57641ec",
+        "07e21c31-6aa4-5e53-82b1-92bf96937fd3"
+      ],
+      "instance_ids": [
+        "cca2fa49-433c-5299-8219-bb2c205ff49b",
+        "3341bd1e-f9db-57cb-bd33-a3061a5afaa8",
+        "bc69319e-eed9-5484-a84f-634d425935a6",
+        "f3a78799-fe55-5d8c-a54a-525ecc92a673",
+        "bc9e464b-ec0b-5b83-8e2b-d400d7fcdb18"
+      ],
+      "cabinet_assets": {
+        "2": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "cf2b7dcb-8c8e-5c91-b9d0-d6c9a3dfe5f9",
+      "key": "muse.psycho.rhythm",
+      "name": "Muse / Psycho - Dry Riff",
+      "output_db": -12.5,
+      "pedals": [
+        "Tight Gate",
+        "Muse / Psycho Dry Riff Amp",
+        "Cabinet Unity",
+        "Post-Cab Tight"
+      ],
+      "pedal_ids": [
+        "9562fefa-bd0e-5173-a6a4-89a64fea90c6",
+        "c818dc18-9824-5fca-9f01-d9ccf6f17bd0",
+        "40000000-0000-4000-8000-000000000076",
+        "8d2b09db-b4a8-51f2-983c-aee9df0a8d3e"
+      ],
+      "instance_ids": [
+        "2d68a361-506c-5e16-914d-4d01ec75f832",
+        "ae4660d9-3171-5beb-af4d-d4982af25d3e",
+        "ae631153-453f-5aae-8ff9-89d7b7cee456",
+        "b90c0564-a71b-52d1-a047-ad970d66f27f"
+      ],
+      "cabinet_assets": {
+        "2": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d"
+      }
+    },
+    {
+      "id": "339161f6-ae58-5df0-a22e-afdc6d40cf57",
+      "key": "muse.reapers.tapping",
+      "name": "Muse / Reapers - Articulate Tapping",
+      "output_db": -9.5,
+      "pedals": [
+        "Song / Gentle Pick Compression",
+        "Muse / Reapers Tapping Amp",
+        "Cabinet Unity",
+        "Post-Cab Tight",
+        "Song / Muse Lead Plate"
+      ],
+      "pedal_ids": [
+        "2568c58e-71df-5e72-b09e-ce838f5a94b0",
+        "af35b5b2-2a2d-5de4-bebe-e6219641e40a",
+        "40000000-0000-4000-8000-000000000076",
+        "8d2b09db-b4a8-51f2-983c-aee9df0a8d3e",
+        "07e21c31-6aa4-5e53-82b1-92bf96937fd3"
+      ],
+      "instance_ids": [
+        "fe760c27-f4f8-505d-a8c7-8772f34d1504",
+        "c640e372-ba8b-5cfa-9e4c-42e791d176ea",
+        "6fb15431-7d09-5872-8ba7-73fc5f1d651f",
+        "7c0535a5-d5b1-5f74-883b-335e7a355728",
+        "73172ea4-c517-533e-a717-77a4b09a2f27"
+      ],
+      "cabinet_assets": {
+        "2": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d"
+      }
+    },
+    {
+      "id": "2c375f80-9051-57d3-9950-c94c32185bfd",
+      "key": "muse.reapers.lead",
+      "name": "Muse / Reapers - Singing Lead",
+      "output_db": -8.0,
+      "pedals": [
+        "Lead Decay Gate",
+        "Muse / Reapers Lead Wah",
+        "British Hot-Rod Lead",
+        "Cabinet Unity",
+        "Post-Cab Tight",
+        "Muse / Reapers Lead Echo",
+        "Song / Muse Lead Plate"
+      ],
+      "pedal_ids": [
+        "1531bb69-45a7-5112-993d-ada461e7a808",
+        "f22fb627-2fd8-5db4-a451-25e89dc8a11a",
+        "c9825f2a-13e4-5e5d-a15a-59f6cf0d4984",
+        "40000000-0000-4000-8000-000000000076",
+        "8d2b09db-b4a8-51f2-983c-aee9df0a8d3e",
+        "d867f05f-9891-5017-b7f6-450301cb265e",
+        "07e21c31-6aa4-5e53-82b1-92bf96937fd3"
+      ],
+      "instance_ids": [
+        "ab3b4105-7a60-5486-970d-670a7a625e4a",
+        "8c98d96d-b7f6-505c-8865-7f2047177cb0",
+        "d9041e24-f8d0-545a-99dc-2196e285590a",
+        "2eb475fe-d778-55b9-87d2-9baae8e2b923",
+        "c250d51f-a984-50f3-bcc0-187403d2bf8c",
+        "51f7aa36-d0b3-55d1-b74d-3bc384b01094",
+        "257bd56f-ff3c-50a7-afef-bf371c00e9a6"
+      ],
+      "cabinet_assets": {
+        "3": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "3f7b52b4-cf82-5a39-877e-d6d8e4714298",
+      "key": "muse.defector.rhythm",
+      "name": "Muse / Defector - Broad Distortion",
+      "output_db": -13.0,
+      "pedals": [
+        "Tight Gate",
+        "Muse / Defector Broad Rhythm Amp",
+        "Cabinet Unity",
+        "Post-Cab Full",
+        "Song / Muse Lead Plate"
+      ],
+      "pedal_ids": [
+        "9562fefa-bd0e-5173-a6a4-89a64fea90c6",
+        "5aa5fef6-b0fb-58cd-8bd5-b286dbee236c",
+        "40000000-0000-4000-8000-000000000076",
+        "08c5bad8-1eb9-5611-9c9f-ecbd5ec92f60",
+        "07e21c31-6aa4-5e53-82b1-92bf96937fd3"
+      ],
+      "instance_ids": [
+        "80af3f23-16c7-516f-9ed3-26ba3c5b51e3",
+        "874ac212-edc8-58d8-9008-2ac8199876f7",
+        "cdc611c2-85a7-56e3-9137-9394364b8813",
+        "dc2d3eb1-88bd-5da2-a045-1581ce56326f",
+        "92231fa4-0d93-50b0-964e-a9670661539d"
+      ],
+      "cabinet_assets": {
+        "2": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+      }
+    },
+    {
+      "id": "ec51b92c-693c-5dab-8979-567058a8f7e1",
+      "key": "muse.globalist.intro",
+      "name": "Muse / The Globalist - Spacious Clean Intro",
+      "output_db": 3.0,
+      "pedals": [
+        "Song / Gentle Pick Compression",
+        "Muse / Globalist Intro Clean Amp",
+        "Cabinet Unity",
+        "Song / Alien Lead Focus",
+        "Song / Slow Space Chorus",
+        "Muse / Globalist Intro Echo",
+        "Muse / Globalist Intro Hall"
+      ],
+      "pedal_ids": [
+        "2568c58e-71df-5e72-b09e-ce838f5a94b0",
+        "984e9dbf-2433-57af-a75e-59a90d6467d1",
+        "40000000-0000-4000-8000-000000000076",
+        "06aedd3e-1bbe-5cab-b33f-3b282f9b9f29",
+        "2b310928-00e4-56a9-af6d-be37bcc9f256",
+        "a3792a62-24a3-5830-a3be-1fb96ed5dcc3",
+        "b67dd53d-157e-5360-9242-41ded8142cff"
+      ],
+      "instance_ids": [
+        "891f6e83-974d-5b83-bde9-890b9d252f0e",
+        "36ad4302-5f56-5d56-95a4-3b4da84677a7",
+        "77d9aa71-a81f-545a-9101-81478d3c06b2",
+        "00581a2b-936f-57bd-903d-2662b4a15a49",
+        "d50b955e-8aac-5a63-8d46-c9c95b6ac090",
+        "061cf86c-af64-5f84-b14f-59c80222a31a",
+        "ce1075d2-c955-5a5f-8ee5-c725f892ea31"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "5a958122-6aa6-5758-ae6d-bfa0f5ec515b",
+      "key": "muse.globalist.heavy",
+      "name": "Muse / The Globalist - Heavy Middle",
+      "output_db": -15.0,
+      "pedals": [
+        "Tight Gate",
+        "Metal Tight Boost",
+        "Muse / Globalist Heavy Amp",
+        "Cabinet Unity",
+        "Post-Cab Tight",
+        "Gentle Room"
+      ],
+      "pedal_ids": [
+        "9562fefa-bd0e-5173-a6a4-89a64fea90c6",
+        "0711b147-09a8-5836-9f22-5ff36750a189",
+        "e03b58d5-0e74-54cf-9784-d511535af253",
+        "40000000-0000-4000-8000-000000000076",
+        "8d2b09db-b4a8-51f2-983c-aee9df0a8d3e",
+        "2dfcccc9-76fe-5044-8ff2-6ee24bd4a6fb"
+      ],
+      "instance_ids": [
+        "14f09151-8547-54bc-96ce-646090d84a4e",
+        "0d6014c3-9eff-5e0c-8e64-d41f81090117",
+        "c464d532-3539-53aa-ba98-946d9dbf06e1",
+        "a4a2af86-bad5-5f88-bf7e-b9ca9da6b712",
+        "e6544037-6247-53c2-b359-bb6925a87e4f",
+        "3c5e60c1-66ce-5cd3-8213-d90155bda19d"
+      ],
+      "cabinet_assets": {
+        "3": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+      }
+    },
+    {
+      "id": "f7edf4c9-bda3-582e-bb3c-e7e7eb1310c6",
+      "key": "muse.globalist.outro",
+      "name": "Muse / The Globalist - Clean Outro Guitar",
+      "output_db": 0.5,
+      "pedals": [
+        "Song / Bell Compression",
+        "Muse / Globalist Outro Clean Amp",
+        "Cabinet Unity",
+        "Song / Rounded Bell Focus",
+        "Muse / Globalist Outro Room"
+      ],
+      "pedal_ids": [
+        "90b5ff42-5f9e-5e1a-89a9-fc041db2d5c6",
+        "bfae22bc-091c-5f2e-a505-e7f34a86edbd",
+        "40000000-0000-4000-8000-000000000076",
+        "c8611094-c631-508d-b495-6dccd72934ff",
+        "0f4aeb91-d606-52d1-a1dc-fbc5ffc6dd1d"
+      ],
+      "instance_ids": [
+        "d4359d0f-b089-5b87-8e9f-addb376bd450",
+        "4b17340d-db5c-57d4-addd-7a83986222eb",
+        "c51b6353-81b1-57d2-9450-128fe507d0f5",
+        "5e4d32a4-9ef6-5d09-9a12-5bdf99898854",
+        "1c4f2bca-903e-5357-b65c-6a47bb2c645c"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
       }
     }
   ]

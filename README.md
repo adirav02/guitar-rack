@@ -3,12 +3,31 @@
 Fedora Linux standalone guitar monitoring and a native pedalboard using C++20,
 CMake and pinned JUCE 8.0.15. The tone upgrade adds eight original inspired amp
 families, six drives, gate/EQ, modulation, echo/reverb, spectral expression pitch,
-swell/hold, Dual Amp and five original synthetic cabinet responses. There are 69
-complete sounds and 146 reusable voicings. All 45 original sounds, 77 original
+swell/hold, Dual Amp and five original synthetic cabinet responses. There are 93
+complete sounds and 196 reusable voicings. All 81 prior sounds, 174 prior
 voicings and executable effect versions remain unchanged. **Art Rock /
 Subterranean Pulse** is the owner's confirmed approved sound and is protected
 exactly. New sounds are technically validated starting points with listening
 pending; no album/circuit accuracy is claimed.
+
+The [song templates](docs/song-templates.md) add clean/space versions of **Let Down**,
+**No Surprises** and **Subterranean Homesick Alien**, plus Weird Fishes and six Muse
+guitar sounds. Search **Song templates** in Choose Preset...; all fit Legacy 128.
+New Stereo / Tape Echo v2 adds wet low cut, adjustable wow rate and stereo phase,
+while existing echo versions retain their saved sound. Read the
+[research and access limitations](docs/song-tone-research.md) before treating
+these inferred settings as recording matches.
+
+Additional Muse templates cover **Citizen Erased** (distortion/clean ending),
+**New Born** (rhythm/lead), **Hysteria**, **Psycho**, **Reapers** (tapping/lead),
+**Defector** and **The Globalist** (clean intro/heavy middle/clean outro). Search
+**Muse expansion** to find this additional collection.
+
+These are complete loadable chains in the application. Rebuild and restart,
+open **Choose Preset...**, set filters to **All**, search a song and press
+**Load**. Individual importable bundles can also be exported with
+`./build/linux-release/guitarrack_export_sounds --song-pack build/song-presets`;
+see [bundle import instructions](docs/song-templates.md#choose-and-adjust).
 
 Choose Preset... opens a searchable native window; selecting/searching does not
 change audio. Load/Enter/double-click uses the dirty guard and transactional
@@ -292,8 +311,8 @@ library selections cannot revive a deleted entry. These checks pass in automated
 state/adapter fixtures; the new native dialogs and real-guitar deletion checklist
 still need desktop verification.
 
-The library has **69 full rack presets** (45 legacy plus 24 upgraded) and
-**146 pedal voicings**. Original factory examples: **Clean**, **Crunch**, **Lead Delay**, **Driven Synthetic
+The library has **93 full rack presets** and **196 pedal voicings**.
+Original factory examples: **Clean**, **Crunch**, **Lead Delay**, **Driven Synthetic
 Cabinet** (Distortion → Cabinet → EQ → Delay → Reverb) and **Small Room** (EQ →
 Reverb). Output defaults to -12 dB. The Cabinet example uses an explicitly
 synthetic CC0 filter, not a measured cabinet or nonlinear amp simulation.
@@ -308,7 +327,7 @@ Start/Stop, Mute, and delay-buffer contents never appear in exported tone files.
 
 The [version 1 schema](assets/presets/schema-v1.json) retains existing M4 presets;
 [version 2](assets/presets/schema-v2.json) adds Cabinet checksum references.
-The registry supports 42 stable types / 43 exact descriptors, including Delay
+The registry supports 42 stable types / 44 exact descriptors, including Delay
 v1/v2. Legacy versions remain executable. Unknown fields/effects, unsupported
 versions, unsafe/missing assets and invalid values fail transactionally. JSON
 is limited to 128 KiB; portable IR bundles to 17 MiB. See
@@ -344,4 +363,3 @@ without starting monitoring. It requires access to the desktop display.
 Architecture/real-time ownership is documented in
 [docs/architecture.md](docs/architecture.md). Actual verification results are in
 [docs/testing.md](docs/testing.md).
-

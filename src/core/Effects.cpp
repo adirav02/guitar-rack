@@ -155,7 +155,7 @@ EffectRegistry EffectRegistry::builtIns() {
     for(auto d:driveDescriptors()) result.add(std::move(d));
     result.add(graphicEQDescriptor());result.add(parametricEQDescriptor());result.add(noiseGateDescriptor());
     for(auto d:creativeDescriptors())result.add(std::move(d));
-    result.add(echoDescriptor());result.add(spaceReverbDescriptor());result.add(expressionPitchDescriptor());result.add(dualAmpDescriptor());
+    result.add(echoDescriptor());result.add(echoDescriptor(2));result.add(spaceReverbDescriptor());result.add(expressionPitchDescriptor());result.add(dualAmpDescriptor());
     return result;
 }
 bool sameIdentity(const RackInstance& a,const RackInstance& b) noexcept { return a.id==b.id&&a.slot==b.slot&&a.effectType==b.effectType&&a.effectVersion==b.effectVersion; }
@@ -177,4 +177,3 @@ std::string validateRack(const RackDefinition& d, const EffectRegistry& registry
     return {};
 }
 }
-

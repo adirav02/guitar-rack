@@ -1,0 +1,3 @@
+Exported and import-verified 24 complete song bundles to "build/song-presets"
+PASS: all frozen legacy identities, recipes, bytes and control mappings; protected Subterranean
+PASS: ZIP contains 24 complete .grbundle chains and loading instructions; ZIP integrity check passes.

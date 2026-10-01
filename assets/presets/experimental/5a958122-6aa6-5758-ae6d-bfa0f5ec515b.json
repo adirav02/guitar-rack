@@ -1,0 +1,127 @@
+{
+  "schema_version": 2,
+  "preset_id": "5a958122-6aa6-5758-ae6d-bfa0f5ec515b",
+  "name": "Muse / The Globalist - Heavy Middle",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -15.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "14f09151-8547-54bc-96ce-646090d84a4e",
+    "0d6014c3-9eff-5e0c-8e64-d41f81090117",
+    "c464d532-3539-53aa-ba98-946d9dbf06e1",
+    "a4a2af86-bad5-5f88-bf7e-b9ca9da6b712",
+    "e6544037-6247-53c2-b359-bb6925a87e4f",
+    "3c5e60c1-66ce-5cd3-8213-d90155bda19d"
+  ],
+  "instances": [
+    {
+      "instance_id": "14f09151-8547-54bc-96ce-646090d84a4e",
+      "slot_id": 0,
+      "effect_type": "noise_gate",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "threshold_db": -54.0,
+        "range_db": 65.0,
+        "attack_ms": 1.0,
+        "hold_ms": 35.0,
+        "release_ms": 130.0,
+        "hysteresis_db": 7.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "0d6014c3-9eff-5e0c-8e64-d41f81090117",
+      "slot_id": 1,
+      "effect_type": "tight_boost",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "drive_db": 1.0,
+        "low_cut_hz": 140.0,
+        "attack_percent": 30.000001907348633,
+        "output_db": 6.000001907348633
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "c464d532-3539-53aa-ba98-946d9dbf06e1",
+      "slot_id": 2,
+      "effect_type": "amp_recto",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 22.0,
+        "bass_db": -3.0,
+        "mid_db": 1.5,
+        "treble_db": -1.0,
+        "master_percent": 42.0,
+        "presence_percent": 28.0,
+        "output_db": -13.999998092651367,
+        "sag_percent": 35.0,
+        "resonance_percent": 25.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "a4a2af86-bad5-5f88-bf7e-b9ca9da6b712",
+      "slot_id": 3,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+    },
+    {
+      "instance_id": "e6544037-6247-53c2-b359-bb6925a87e4f",
+      "slot_id": 4,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 180.0,
+        "band1_db": -1.0,
+        "band1_q": 0.699999988079071,
+        "band2_hz": 850.0,
+        "band2_db": 1.0,
+        "band2_q": 0.699999988079071,
+        "band3_hz": 3800.0,
+        "band3_db": -2.0,
+        "band3_q": 0.699999988079071,
+        "high_pass_hz": 80.0,
+        "low_pass_hz": 8000.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "3c5e60c1-66ce-5cd3-8213-d90155bda19d",
+      "slot_id": 5,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.800000011920929,
+        "pre_delay_ms": 8.0,
+        "damping_hz": 6500.0,
+        "tone_hz": 9000.0,
+        "mix_percent": 10.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b",
+      "sha256": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b",
+      "relative_path": "ir/0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b.wav",
+      "format": "wav"
+    }
+  ]
+}

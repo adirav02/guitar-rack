@@ -10,7 +10,7 @@ namespace {
 int failures=0;void check(bool ok,const char* label){if(!ok){++failures;std::cerr<<"FAIL: "<<label<<'\n';}}
 struct Effect {
  EffectRegistry registry=EffectRegistry::builtIns();ParameterBank bank;const EffectDescriptor* d;std::unique_ptr<EffectProcessor> p;double rate;
- Effect(const char* type,double r=48000):d(registry.latest(type)),rate(r){for(const auto& c:d->parameters)bank.setValue(0,c.bankIndex,c.normalize(c.defaultValue));p=d->factory(bank,0);check(p->prepare(rate,512),"creative preparation");p->activate(nullptr);}
+ Effect(const char* type,double r=48000,unsigned version=0):d(version?registry.find(type,version):registry.latest(type)),rate(r){for(const auto& c:d->parameters)bank.setValue(0,c.bankIndex,c.normalize(c.defaultValue));p=d->factory(bank,0);check(p->prepare(rate,512),"creative preparation");p->activate(nullptr);}
  void set(const char* key,float value){for(const auto& c:d->parameters)if(c.key==key){check(c.accepts(value),"creative test value valid");bank.setValue(0,c.bankIndex,c.normalize(value));return;}check(false,"creative test key exists");}
  std::vector<float> render(int length,double frequency=0,bool impulse=false,bool rightImpulse=false){std::vector<float> y(length);std::array<float,512> l{},r{};for(int at=0;at<length;at+=127){int n=std::min(127,length-at);for(int j=0;j<n;++j){l[j]=impulse?(at+j==0?.1f:0.f):float(.1*std::sin(2*std::numbers::pi*frequency*(at+j)/rate));r[j]=rightImpulse?l[j]:0;}heapAudit::begin();p->process(l.data(),r.data(),n);check(heapAudit::finish(),"creative callback heap audit");std::copy_n(l.begin(),n,y.begin()+at);}return y;}
 };
@@ -24,6 +24,56 @@ void timing(){
  check(std::abs(firstLeft-.1)<1e-6&&firstRight==0&&secondLeft==0&&std::abs(secondRight-.05)<1e-6,"ping-pong repeats cross channels after the first echo");
  Effect wah("wah");wah.set("position_percent",0);wah.p->reset();auto heel=wah.render(48000,350);wah.set("position_percent",100);wah.p->reset();auto toe=wah.render(48000,350);check(amplitude(heel,350)>4*amplitude(toe,350),"wah moves a resonant band-pass, not a low-pass cutoff");
  Effect flanger("flanger");flanger.set("rate_hz",.05);flanger.set("depth_percent",0);flanger.set("manual_ms",2);flanger.set("mix_percent",100);flanger.set("feedback_percent",0);flanger.p->reset();auto flange=flanger.render(1000,0,true);check(std::abs(flange[96]-.1)<1e-6&&energy(flange,0,96)==0,"flanger short wet delay timing");
+}
+void stereoEcho(){
+ // Neutral additions preserve the v1 sound; stored v1 controls stay executable.
+ for(double rate:{44100.,48000.,96000.}){
+  Effect old("echo",rate,1),fresh("echo",rate,2);
+  for(auto* e:{&old,&fresh}){e->set("mode",2);e->set("wow_percent",45);e->set("heads",1);e->set("feedback_percent",42);e->p->reset();}
+  auto a=old.render(int(rate),733),b=fresh.render(int(rate),733);
+  double difference=0;for(std::size_t i=0;i<a.size();++i)difference=std::max(difference,std::abs(double(a[i])-b[i]));
+  check(difference<1e-6,"echo v2 neutral additions preserve the v1 tape/multihead sound");
+  Effect echo("echo",rate,2);echo.set("time_ms",50);echo.set("mix_percent",100);echo.set("feedback_percent",0);echo.p->reset();
+  auto uncutLow=echo.render(int(rate),82);echo.set("wet_low_cut_hz",200);echo.p->reset();auto cutLow=echo.render(int(rate),82);
+  echo.set("wet_low_cut_hz",0);echo.p->reset();auto uncutHigh=echo.render(int(rate),2000);
+  echo.set("wet_low_cut_hz",200);echo.p->reset();auto cutHigh=echo.render(int(rate),2000);
+  check(amplitude(cutLow,82,rate)<.42*amplitude(uncutLow,82,rate),"wet low cut measurably rejects low echoes at each sample rate");
+  check(amplitude(cutHigh,2000,rate)>.95*amplitude(uncutHigh,2000,rate),"wet low cut preserves upper-register echoes");
+  echo.set("mix_percent",0);echo.p->reset();std::array<float,512> l{},r{};l.fill(.123f);r.fill(-.2f);
+  heapAudit::begin();echo.p->process(l.data(),r.data(),0);echo.p->process(l.data(),r.data(),37);check(heapAudit::finish(),"new echo first/zero/variable callback is heap free");
+  check(l[0]==.123f&&r[0]==-.2f,"wet low cut leaves the zero-mix dry guitar exact");
+ }
+ Effect echo("echo",48000,2);echo.set("time_ms",40);echo.set("feedback_percent",0);echo.set("mode",2);echo.set("wow_percent",90);echo.set("mix_percent",100);
+ auto motion=[&](float width,float speed){
+  echo.set("wow_width_percent",width);echo.set("wow_rate_hz",speed);echo.p->reset();
+  std::array<float,127> l{},r{};double difference=0,energy=0;
+  for(int at=0;at<96000;at+=127){const int n=std::min(127,96000-at);for(int j=0;j<n;++j)l[j]=r[j]=float(.1*std::sin(2*std::numbers::pi*431*(at+j)/48000));
+   heapAudit::begin();echo.p->process(l.data(),r.data(),n);check(heapAudit::finish(),"stereo wow callback is heap free");
+   if(at>=48000)for(int j=0;j<n;++j){difference+=std::pow(l[j]-r[j],2);energy+=l[j]*l[j];}
+  }return std::sqrt(difference/energy);
+ };
+ check(motion(0,.25f)==0,"zero stereo wow phase preserves duplicated mono");
+ check(motion(100,.25f)>.1,"stereo tape wow creates actual width from mono guitar");
+ echo.set("wow_width_percent",0);echo.set("wow_rate_hz",.2f);echo.p->reset();auto slow=echo.render(96000,431);
+ echo.set("wow_rate_hz",1.5f);echo.p->reset();auto fast=echo.render(96000,431);
+ check(slow!=fast,"adjustable wow rate changes echo pitch movement");
+ // Filtering also acts on recirculation: sustained DC must not build up in echoes.
+ echo.set("mode",0);echo.set("wow_percent",0);echo.set("wet_low_cut_hz",200);echo.set("feedback_percent",70);echo.p->reset();
+ std::array<float,512> l{},r{};
+ for(int block=0;block<188;++block){l.fill(.1f);r=l;heapAudit::begin();echo.p->process(l.data(),r.data(),512);check(heapAudit::finish(),"feedback low-cut callback is heap free");}
+ check(std::abs(l.back())<1e-6,"wet feedback low cut removes sustained DC without accumulation");
+ echo.set("wet_low_cut_hz",0);echo.set("feedback_percent",0);
+ for(int block=0;block<100;++block){l.fill(0);r=l;echo.p->process(l.data(),r.data(),512);}
+ check(std::abs(l.back())<1e-12,"disabling wet low cut leaves no residual DC in silence");
+ // Hostile values and smoothed live changes remain finite without protection.
+ for(const auto& control:echo.d->parameters)echo.set(control.key.c_str(),control.maximum);
+ echo.p->reset();double peak=0;
+ for(int block=0;block<800;++block){if(block==400){echo.set("time_ms",1);echo.set("wow_rate_hz",.05f);echo.set("wet_low_cut_hz",0);}
+  for(int j=0;j<512;++j)l[j]=r[j]=float(.3*std::sin(.3*(block*512+j)));
+  heapAudit::begin();echo.p->process(l.data(),r.data(),block%2?512:1);check(heapAudit::finish(),"echo extremes and automation remain heap free");
+  for(float x:l){check(std::isfinite(x),"echo automation is finite");peak=std::max(peak,std::abs(double(x)));}
+ }
+ check(peak<4,"maximum feedback/color/wow/output and live time changes remain bounded");
 }
 void spaces(){
  Effect space("space_reverb");space.set("mix_percent",100);space.set("pre_delay_ms",0);space.set("decay_seconds",.5);space.p->reset();auto shortTail=space.render(4*48000,0,true);
@@ -68,4 +118,4 @@ void blend(){
  a.set("blend_percent",50);a.p->reset();auto half=a.render(48000,211);check(half==dry,"correlated equal branches do not double level at 50/50 blend");
 }
 }
-int main(){timing();spaces();pitch();blend();if(!failures)std::cout<<"PASS: creative timing, networks, capture, pitch cents/alignment and parallel polarity\n";return failures?1:0;}
+int main(){timing();stereoEcho();spaces();pitch();blend();if(!failures)std::cout<<"PASS: creative timing, stereo echo filtering/compatibility, networks, capture, pitch cents/alignment and parallel polarity\n";return failures?1:0;}

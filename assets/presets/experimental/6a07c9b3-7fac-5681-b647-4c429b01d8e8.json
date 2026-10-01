@@ -1,0 +1,110 @@
+{
+  "schema_version": 2,
+  "preset_id": "6a07c9b3-7fac-5681-b647-4c429b01d8e8",
+  "name": "Muse / Citizen Erased - Dense Distortion",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -17.5,
+    "rack_bypass": false
+  },
+  "order": [
+    "292f6b2b-d17e-5c16-bdf3-7cc01581cba1",
+    "6bf2a0cc-f080-5e83-9d36-d7cb72851a26",
+    "a32ed350-2fff-56ee-8daf-c52b925330a1",
+    "f7d64b49-e204-5fd3-8325-31eace99e728",
+    "b2cb9da4-f9aa-5936-9421-636a34a07c02"
+  ],
+  "instances": [
+    {
+      "instance_id": "292f6b2b-d17e-5c16-bdf3-7cc01581cba1",
+      "slot_id": 0,
+      "effect_type": "sustain_fuzz",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "drive_db": 21.0,
+        "compression_percent": 30.000001907348633,
+        "tone_hz": 3600.0,
+        "output_db": -13.999998092651367
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "6bf2a0cc-f080-5e83-9d36-d7cb72851a26",
+      "slot_id": 1,
+      "effect_type": "amp_brit_hotrod",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 16.0,
+        "bass_db": -2.0,
+        "mid_db": 2.0,
+        "treble_db": 0.0,
+        "master_percent": 38.0,
+        "presence_percent": 30.000001907348633,
+        "output_db": -11.0,
+        "sag_percent": 20.0,
+        "low_cut_hz": 70.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "a32ed350-2fff-56ee-8daf-c52b925330a1",
+      "slot_id": 2,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+    },
+    {
+      "instance_id": "f7d64b49-e204-5fd3-8325-31eace99e728",
+      "slot_id": 3,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 180.0,
+        "band1_db": -2.0,
+        "band1_q": 0.699999988079071,
+        "band2_hz": 950.0,
+        "band2_db": 2.0,
+        "band2_q": 0.699999988079071,
+        "band3_hz": 3800.0,
+        "band3_db": -1.0,
+        "band3_q": 0.699999988079071,
+        "high_pass_hz": 50.0,
+        "low_pass_hz": 6800.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "b2cb9da4-f9aa-5936-9421-636a34a07c02",
+      "slot_id": 4,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.800000011920929,
+        "pre_delay_ms": 8.0,
+        "damping_hz": 6500.0,
+        "tone_hz": 9000.0,
+        "mix_percent": 10.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b",
+      "sha256": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b",
+      "relative_path": "ir/0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b.wav",
+      "format": "wav"
+    }
+  ]
+}
