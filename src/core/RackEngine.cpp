@@ -70,8 +70,10 @@ public:
     }
     void sync() noexcept {
         for (const auto& i : definition.instances) {
-            for (unsigned p = 0; p < controlsPerSlot; ++p) bank.setValue(i.slot, p, authority.value(i.slot, p));
-            bank.setBypassed(i.slot, authority.bypassed(i.slot));
+            std::array<float, controlsPerSlot> values{}; bool bypass=false;
+            if (authority.readSlot(i.slot, values, bypass)) {
+                bank.setValues(i.slot, values); bank.setBypassed(i.slot, bypass);
+            }
         }
     }
     void activate(const PreparedRack* previous) noexcept {
@@ -222,7 +224,7 @@ bool RackEngine::submit(const RackDefinition& d) { std::lock_guard lock(mutex); 
 bool RackEngine::add(const std::string& type) {
     std::lock_guard lock(mutex);
     if (requestedTone) return false;
-    const auto* descriptor = effects.find(type, 1);
+    const auto* descriptor = effects.latest(type);
     if (!descriptor) { state.error = "Unknown effect."; return false; }
     unsigned used = 0;
     for (const auto& i : state.requested.instances) used |= 1u << i.slot;
@@ -256,10 +258,24 @@ bool RackEngine::setParameter(const InstanceId& id, unsigned index, float physic
     const auto* i = state.requested.find(id); if (!i) return false;
     const auto* effect = effects.find(i->effectType, i->effectVersion);
     for (const auto& p : effect->parameters) if (p.bankIndex == index) {
-        if (!std::isfinite(physical) || physical < p.minimum || physical > p.maximum) return false;
+        if (!p.accepts(physical)) return false;
         return bank.setValue(i->slot, index, p.normalize(physical));
     }
     return false;
+}
+bool RackEngine::setParameters(const InstanceId& id, const std::vector<float>& physical) {
+    std::lock_guard lock(mutex);
+    if (requestedTone) return false;
+    const auto* instance=state.requested.find(id); if (!instance) return false;
+    const auto* effect=effects.find(instance->effectType,instance->effectVersion);
+    if (physical.size()!=effect->parameters.size()) return false;
+    std::array<float,controlsPerSlot> values{};
+    for (std::size_t p=0;p<physical.size();++p) {
+        const auto& descriptor=effect->parameters[p];
+        if (!descriptor.accepts(physical[p])) return false;
+        values[descriptor.bankIndex]=descriptor.normalize(physical[p]);
+    }
+    return bank.setValues(instance->slot,values);
 }
 void RackEngine::setAssetResolver(std::function<ImpulseResponse(const std::string&)> resolver) { std::lock_guard lock(mutex); assetResolver=std::move(resolver); }
 bool RackEngine::setBypassed(const InstanceId& id, bool bypass) {
@@ -419,3 +435,4 @@ void RackEngine::workerLoop() {
     for (auto& graph : owned) if (graph) { graph.reset(); ++state.reclaimed; --state.graphs; }
 }
 }
+

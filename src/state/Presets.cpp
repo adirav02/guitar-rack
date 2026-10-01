@@ -1,4 +1,5 @@
 #include "Presets.h"
+#include "core/SoundLibrary.h"
 #include "core/Impulse.h"
 #include <cmath>
 #include <charconv>
@@ -141,6 +142,7 @@ ToneState migratePreset(const juce::var& root, const EffectRegistry& registry) {
         for(const auto& p:d->parameters) {
             if(!o->hasProperty(p.key.c_str())) fail("Missing required parameter: "+p.key);
             auto x=static_cast<float>(number(o->getProperty(p.key.c_str()),p.minimum,p.maximum));
+            if (!p.accepts(x)) fail("Invalid effect mode: "+p.key);
             t.controls.values[i.slot][p.bankIndex]=p.normalize(x);
         }
         t.controls.bypass[i.slot]=boolean(v["bypassed"]); t.rack.instances.push_back(i);
@@ -333,6 +335,9 @@ std::vector<ToneState> factoryPresets(const EffectRegistry& r) {
         } else { add("eq"); add("reverb"); }
         result.push_back(std::move(t));
     }
+    auto extra=experimentalFactoryPresets(r);
+    result.insert(result.end(),extra.begin(),extra.end());
     return result;
 }
 }
+

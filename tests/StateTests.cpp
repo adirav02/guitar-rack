@@ -25,7 +25,9 @@ struct Audio {
 void fixturesAndValidation(const EffectRegistry& registry) {
     auto factories=factoryPresets(registry);
     for(std::size_t i=0;i<factories.size();++i) {
-        auto disk=parsePreset(readBounded(std::filesystem::path(GUITARRACK_SOURCE_DIR)/"assets/presets"/(std::array<const char*,5>{"clean.json","crunch.json","lead-delay.json","driven-synthetic-cabinet.json","small-room.json"}[i])),registry);
+        const auto file=i<5 ? std::filesystem::path(std::array<const char*,5>{"clean.json","crunch.json","lead-delay.json","driven-synthetic-cabinet.json","small-room.json"}[i])
+                            : std::filesystem::path("experimental")/(factories[i].id+".json");
+        auto disk=parsePreset(readBounded(std::filesystem::path(GUITARRACK_SOURCE_DIR)/"assets/presets"/file),registry);
         check(serializePreset(disk,registry)==serializePreset(parsePreset(serializePreset(factories[i],registry),registry),registry),"tracked factory fixtures match embedded factory configurations");
     }
     auto tone=factories[2]; tone.name="צליל גיטרה – Lead 🎸";
@@ -336,3 +338,4 @@ int main() {
     try { fixturesAndValidation(registry); filesAndActions(registry,root); deletionActions(registry,root); deletionFailures(registry,root); deletionCompetition(root); deletionSound(registry,root); transactions(); equivalentDSP(registry); } catch(const std::exception& e) { ++failures; std::cerr<<"Unexpected: "<<e.what()<<'\n'; }
     std::filesystem::remove_all(root); if(failures) return 1; std::cout<<"PASS: strict presets, Unicode, files, dirty actions, rollback, stale/cancelled loads, DSP equivalence, RT audit\n";
 }
+

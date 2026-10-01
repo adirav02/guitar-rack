@@ -1,0 +1,99 @@
+{
+  "schema_version": 2,
+  "preset_id": "50000000-0000-4000-8000-000000000001",
+  "name": "Clean / Glass Arpeggio",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -12.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "60000000-0000-4000-8000-000000000001",
+    "60000000-0000-4000-8000-000000000002",
+    "60000000-0000-4000-8000-000000000003",
+    "60000000-0000-4000-8000-000000000004",
+    "60000000-0000-4000-8000-000000000005"
+  ],
+  "instances": [
+    {
+      "instance_id": "60000000-0000-4000-8000-000000000001",
+      "slot_id": 0,
+      "effect_type": "compressor",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "threshold_db": -26.0,
+        "ratio": 3.0,
+        "attack_ms": 15.0,
+        "release_ms": 180.0,
+        "makeup_db": 3.0,
+        "mix_percent": 75.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "60000000-0000-4000-8000-000000000002",
+      "slot_id": 1,
+      "effect_type": "amp",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "drive_db": 0.0,
+        "bass_db": -1.0,
+        "mid_db": 1.0,
+        "treble_db": 2.0,
+        "presence_percent": 65.0,
+        "sag_percent": 10.0,
+        "level_db": -3.0,
+        "mix_percent": 100.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "60000000-0000-4000-8000-000000000003",
+      "slot_id": 2,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "4a9ac650b2983ca0c49c138d11beccd2d0c8607ac9fccf47c537fbbf7bb7adae"
+    },
+    {
+      "instance_id": "60000000-0000-4000-8000-000000000004",
+      "slot_id": 3,
+      "effect_type": "chorus",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "rate_hz": 0.449999988079071,
+        "depth_percent": 25.0,
+        "width_percent": 80.0,
+        "mix_percent": 22.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "60000000-0000-4000-8000-000000000005",
+      "slot_id": 4,
+      "effect_type": "reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "size_percent": 25.0,
+        "damping_percent": 65.0,
+        "mix_percent": 12.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "4a9ac650b2983ca0c49c138d11beccd2d0c8607ac9fccf47c537fbbf7bb7adae",
+      "sha256": "4a9ac650b2983ca0c49c138d11beccd2d0c8607ac9fccf47c537fbbf7bb7adae",
+      "relative_path": "ir/4a9ac650b2983ca0c49c138d11beccd2d0c8607ac9fccf47c537fbbf7bb7adae.wav",
+      "format": "wav"
+    }
+  ]
+}

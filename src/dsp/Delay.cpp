@@ -1,6 +1,7 @@
 #include "Delay.h"
 #include <algorithm>
 #include <cmath>
+#include <numbers>
 
 namespace guitarrack {
 bool DelayProcessor::prepare(double sampleRate, int chunk) {
@@ -13,13 +14,19 @@ void DelayProcessor::controls(bool immediate) noexcept {
     const float samples = static_cast<float>((1 + 1999 * static_cast<double>(bank.value(slot, 0))) * rate / 1000);
     targetTime = samples;
     if (immediate) { currentTime = nextTime = targetTime; timeMix.reset(1); }
+    if (extended) {
+        const std::array<float,3> targets{2*bank.value(slot,3),
+            static_cast<float>(std::exp(-2*std::numbers::pi*std::min(rate*.45,500.0+11500*bank.value(slot,4))/rate)),bank.value(slot,5)};
+        const std::array<LinearRamp*,3> ramps{&character,&colorPole,&wow};
+        for (unsigned j=0;j<3;++j) { if(immediate) ramps[j]->reset(targets[j]); else ramps[j]->aim(targets[j],rampSamples); }
+    }
     const float fb = 0.85f * bank.value(slot, 1), wet = bank.value(slot, 2);
     if (immediate) { feedback.reset(fb); mix.reset(wet); }
     else { feedback.aim(fb, rampSamples); mix.aim(wet, rampSamples); }
 }
 void DelayProcessor::reset() noexcept {
     for (auto& channel : storage) std::fill(channel.begin(), channel.end(), 0);
-    write = 0; ingress.reset(1); controls(true);
+    write = 0; phase=0; lowpass={}; ingress.reset(1); controls(true);
 }
 void DelayProcessor::activate(const EffectProcessor* previous) noexcept {
     // Prepared graph has an empty ring. Copying seconds of history in a callback
@@ -27,6 +34,7 @@ void DelayProcessor::activate(const EffectProcessor* previous) noexcept {
     if (const auto* old = dynamic_cast<const DelayProcessor*>(previous); old && old->rate == rate) {
         currentTime = old->currentTime; nextTime = old->nextTime; timeMix = old->timeMix;
         feedback = old->feedback; mix = old->mix;
+        if (extended==old->extended) { character=old->character; colorPole=old->colorPole; wow=old->wow; phase=old->phase; }
     }
     controls(previous == nullptr);
     // Fade input written to the fresh history, avoiding a hard leading edge
@@ -52,10 +60,21 @@ void DelayProcessor::process(float* l, float* r, int count) noexcept {
             return (1-fraction)*channel[first] + fraction*channel[second];
         };
         const float fb = std::clamp(feedback.next(), 0.0f, 0.85f), wet = mix.next(), inputFade = ingress.next();
+        const float mode=extended?character.next():0, pole=extended?colorPole.next():0, depth=extended?wow.next():0;
+        phase+=.7/rate; phase-=std::floor(phase);
+        const float modulation=mode>1 ? static_cast<float>((mode-1)*depth*.0008*rate*std::sin(2*std::numbers::pi*phase)) : 0;
         std::array<float*, 2> samples{l+i, r+i};
         for (unsigned channel = 0; channel < 2; ++channel) {
             const float dry = std::isfinite(*samples[channel]) ? std::clamp(*samples[channel], -1.0e6f, 1.0e6f) : 0;
-            const float delayed = (1-crossfade)*readAt(storage[channel], currentTime) + crossfade*readAt(storage[channel], nextTime);
+            float delayed = (1-crossfade)*readAt(storage[channel], currentTime+modulation) + crossfade*readAt(storage[channel], nextTime+modulation);
+            if (extended) {
+                lowpass[channel]=(1-pole)*delayed+pole*lowpass[channel];
+                if (std::abs(lowpass[channel])<1e-20f) lowpass[channel]=0;
+                const float amount=std::min(mode,1.f);
+                delayed=(1-amount)*delayed+amount*lowpass[channel];
+                const float tape=std::max(0.f,mode-1);
+                delayed=(1-tape)*delayed+tape*std::tanh(delayed*1.2f)/1.2f;
+            }
             float next = std::clamp(dry*inputFade + fb*delayed, -1.0e6f, 1.0e6f);
             if (std::abs(next) < 1.0e-20f) next = 0;
             storage[channel][write] = next;
@@ -71,4 +90,14 @@ EffectDescriptor delayDescriptor() {
          {"mix_percent", "Mix", "%", 2, 0, 100, 25}},
         [](const ParameterBank& b, SlotId s) { return std::make_unique<DelayProcessor>(b, s); }};
 }
+EffectDescriptor delayV2Descriptor() {
+    auto d=delayDescriptor(); d.version=2;
+    d.parameters.push_back({"mode","Mode","",3,0,2,0,20,{"Digital","Analog","Tape"}});
+    d.parameters.push_back({"color_hz","Color","Hz",4,500,12000,4500});
+    d.parameters.push_back({"wow_percent","Wow","%",5,0,100,15});
+    d.factory=[](const ParameterBank& b,SlotId s) { return std::make_unique<DelayProcessor>(b,s,true); };
+    return d;
 }
+
+}
+

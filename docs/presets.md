@@ -180,3 +180,20 @@ store and fails with an actionable missing-asset error otherwise. Portable bundl
 validation completes before any managed asset writes; no arbitrary path is
 extracted. Failed disk writes can leave unreferenced validated assets, but never
 partially switch the tone. Preset deletion keeps all shared IR files, as before.
+
+
+## Pedal voicings
+
+[Pedal voicings](pedalboard.md) use their own strict version 1 control-only JSON
+format and managed UUID store under the data directory's `pedals` folder. They
+retain a required effect type/version and every physical control, with no device,
+slot, bypass, ordering or IR fields. Applying one validates the entire vector,
+then performs a coherent bounded per-slot transfer through current smoothers.
+No graph replacement is needed and DSP temporal histories continue. A voice edit
+changes the complete rack's dirty state; saving the voice leaves that rack dirty.
+
+The native factory list now appends 40 original experimental recipes to the
+existing five without changing their identities. All 45 have tracked JSON fixtures.
+Rack schemas retain their existing version 1/2 structures; effect/version pairs
+are explicit, and Delay v2 adds integer musical mode plus Color/Wow controls.
+Delay v1 remains exact and new effects do not rewrite existing host bank IDs.

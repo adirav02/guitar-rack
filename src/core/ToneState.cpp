@@ -11,6 +11,13 @@ std::string validateTone(const ToneState& t, const EffectRegistry& r) {
         || !std::isfinite(t.controls.outputDb) || t.controls.outputDb < -60 || t.controls.outputDb > 6) return "Invalid global gain.";
     for (const auto& row : t.controls.values) for (float v : row)
         if (!std::isfinite(v) || v < 0 || v > 1) return "Invalid normalized parameter.";
+    for (const auto& i : t.rack.instances)
+        for (const auto& p : r.find(i.effectType,i.effectVersion)->parameters)
+            if (!p.choices.empty()) {
+                const float value=p.denormalize(t.controls.values[i.slot][p.bankIndex]);
+                if (!p.accepts(value)) return "Invalid discrete effect mode.";
+            }
     return {};
 }
 }
+

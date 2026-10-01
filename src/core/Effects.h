@@ -22,6 +22,8 @@ struct ParameterDescriptor {
     unsigned bankIndex = 0;
     float minimum = 0, maximum = 1, defaultValue = 0;
     float smoothingMs = 20; // versioned effect-specific smoothing contract
+    std::vector<std::string> choices{}; // Optional integer-valued musical modes.
+    bool accepts(float value) const noexcept;
     float normalize(float value) const noexcept;
     float denormalize(float normalized) const noexcept;
 };
@@ -33,6 +35,8 @@ public:
     ParameterBank();
     float value(SlotId slot, unsigned index) const noexcept;
     bool setValue(SlotId slot, unsigned index, float normalized) noexcept;
+    bool setValues(SlotId, const std::array<float, controlsPerSlot>&) noexcept;
+    bool readSlot(SlotId, std::array<float, controlsPerSlot>&, bool&) const noexcept;
     bool bypassed(SlotId slot) const noexcept;
     void setBypassed(SlotId slot, bool bypass) noexcept;
     void setRackBypassed(bool bypass) noexcept { if (rackBypass.exchange(bypass) != bypass) edits.fetch_add(1); }
@@ -48,6 +52,7 @@ private:
     std::array<std::array<std::atomic<float>, controlsPerSlot>, rackSlots> values;
     std::array<std::atomic<bool>, rackSlots> bypass;
     std::array<std::atomic<unsigned>, rackSlots> reservations;
+    std::array<std::atomic<std::uint64_t>, rackSlots> sequences{};
     std::atomic<bool> rackBypass{false};
     std::atomic<std::uint64_t> edits{0};
 };
@@ -74,6 +79,7 @@ class EffectRegistry {
 public:
     bool add(EffectDescriptor descriptor);
     const EffectDescriptor* find(const std::string& type, unsigned version) const noexcept;
+    const EffectDescriptor* latest(const std::string& type) const noexcept;
     const std::vector<EffectDescriptor>& descriptors() const noexcept { return entries; }
     static EffectRegistry builtIns();
 private:
@@ -99,3 +105,4 @@ struct RackDefinition {
 };
 std::string validateRack(const RackDefinition&, const EffectRegistry&);
 }
+
