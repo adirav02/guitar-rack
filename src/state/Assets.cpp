@@ -1,4 +1,5 @@
 #include "Assets.h"
+#include "core/CabinetAssets.h"
 #include <algorithm>
 #include <cerrno>
 #include <cstring>
@@ -60,7 +61,7 @@ private: std::span<const std::uint8_t> b; std::size_t p=0;
 }
 std::vector<std::uint8_t> AssetStore::bytes(const std::string& id) const {
     if(!validAssetId(id)) fail("Invalid IR checksum identity.");
-    if(id==syntheticIRId()) return syntheticIRBytes();
+    if(auto bytes=builtinIRBytes(id);!bytes.empty())return bytes;
     std::vector<std::uint8_t> b;
     try { safeDirectory(directory); b=read(directory/(id+".wav"),maxIRBytes); }
     catch(const std::exception& e) { fail("IR asset unavailable ("+id.substr(0,12)+"). Import its portable bundle or load the original mono WAV again. "+e.what()); }
@@ -68,7 +69,7 @@ std::vector<std::uint8_t> AssetStore::bytes(const std::string& id) const {
     return b;
 }
 std::string AssetStore::install(std::span<const std::uint8_t> b) const {
-    decodeIR(b); auto id=sha256(b); if(id==syntheticIRId()) return id;
+    decodeIR(b); auto id=sha256(b); if(!builtinIRBytes(id).empty()) return id;
     safeDirectory(directory); auto p=directory/(id+".wav"); auto st=std::filesystem::symlink_status(p);
     if(std::filesystem::exists(st)) { auto old=read(p,maxIRBytes); if(sha256(old)!=id) fail("Managed IR checksum mismatch; restore the asset before retrying."); }
     else write(p,b);

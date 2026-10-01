@@ -2,7 +2,7 @@
 /captures/
 /CMakeUserPresets.json
 *.wav
-!/assets/ir/synthetic-filter.wav
+!/assets/ir/*.wav
 *.core
 __pycache__/
 

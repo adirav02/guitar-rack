@@ -50,7 +50,8 @@ public:
     void setAssetResolver(std::function<ImpulseResponse(const std::string&)>);
     const EffectRegistry& registry() const noexcept { return effects; }
     double tailSeconds() const noexcept { return reportedTail.load(std::memory_order_relaxed); }
-    int latencySamples() const noexcept { return rackLatencySamples; }
+    int latencySamples() const noexcept { return static_cast<int>(latencyBudget.load()); }
+    bool setLatencyProfile(unsigned samples); // Stopped/drained only; 128 or 4096.
     ParameterBank bank;
     // Callback entry once per device block, followed by <=512-sample chunks.
     void beginBlock() noexcept;
@@ -62,6 +63,7 @@ private:
     void retire(PreparedRack*) noexcept;
     void updateCommitted(); // worker, under mutex
     void stoppedMaintenance(); // worker, under mutex, no callback can be active
+    std::atomic<unsigned> latencyBudget{rackLatencySamples};
     EffectRegistry effects;
     std::function<ImpulseResponse(const std::string&)> assetResolver;
     MonitorControls* globals = nullptr;

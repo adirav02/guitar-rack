@@ -1,24 +1,32 @@
 # GuitarRack
 
-Fedora Linux standalone guitar monitoring and a modular serial rack using C++20,
-CMake and JUCE 8.0.15. The experimental pedalboard extension adds a native pedal layout with rotary controls,
-footswitches, signal cables, per-pedal factory/user voicings, and 40 additional full
-rack recipes. The catalog contains 15 effect types: Gain, Overdrive, EQ, Delay,
-Distortion, Reverb, Cabinet/IR, Fuzz, Basic Amp, Compressor, Chorus, Tremolo,
-Resonant Filter/Auto-Wah, Pitch Shifter and Ring Modulator. New Delay instances
-support Digital, Analog and Tape; existing v1 Delay presets retain their original
-algorithm. See [experimental pedalboard](docs/pedalboard.md) for controls, sound
-recipes, compatibility and listening checks. M4 supplies versioned presets,
-validation, transactional recall, Save/Save As, confirmed deletion, import/export
-and local preferences. The owner reports opening the M3 GUI on Fedora and
-playing a real guitar: Overdrive, EQ and Delay work individually and together in
-one rack. This is user-reported desktop/listening evidence. Earlier M-Track Solo
-Input 2 monitoring at PipeWire 256/48000 and 512/48000 was acceptable; 256 is the
-preference. The owner also reports that the M4 desktop preset workflow works well;
-this is user-reported acceptance. The new Delete dialogs, unreported keyboard/live
-transition details, the 10-minute soak, reconnect, measured latency and
-LeakSanitizer checks remain pending. Gate, Phaser, Flanger, dedicated reverb algorithms, VST3 and Windows
-stay pending in their planned milestones in [PLAN.md](PLAN.md).
+Fedora Linux standalone guitar monitoring and a native pedalboard using C++20,
+CMake and pinned JUCE 8.0.15. The tone upgrade adds eight original inspired amp
+families, six drives, gate/EQ, modulation, echo/reverb, spectral expression pitch,
+swell/hold, Dual Amp and five original synthetic cabinet responses. There are 69
+complete sounds and 146 reusable voicings. All 45 original sounds, 77 original
+voicings and executable effect versions remain unchanged. **Art Rock /
+Subterranean Pulse** is the owner's confirmed approved sound and is protected
+exactly. New sounds are technically validated starting points with listening
+pending; no album/circuit accuracy is claimed.
+
+Choose Preset... opens a searchable native window; selecting/searching does not
+change audio. Load/Enter/double-click uses the dirty guard and transactional
+recall. Audio Setup and per-pedal All controls expand locally without dirtying
+sound. Default geometry is 1280×720; the old 1030-pixel minimum is removed.
+Start/Stop/Mute, bypass, meters, clipping and gains remain accessible.
+
+Read [the upgrade contract](docs/tone-upgrade.md), [exact new controls](docs/tone-controls.md),
+[current verification](docs/testing.md#tone-upgrade-current-verification-2026-10-01)
+and [launch/listening worksheet](docs/listening.md). Linux software is implemented;
+native visual/HiDPI checks, new guitar listening, hardware latency/soak, measured
+IR realism, VST3 and Windows remain pending. The prior M3/M4 owner reports are
+historical acceptance of those workflows, not approval of this new catalog.
+
+The release benchmark has useful margin for ordinary 48-kHz rhythm chains, but
+dense oversampled/long-IR racks and combined Dual Amp model/graph fades can exceed
+block periods. See current verification before using heavy chains live; the
+16-slot capacity does not guarantee hardware deadlines.
 
 The application provides a native resizable window, device/backend/channel
 selection, supported sample rate/buffer choices, explicit Start/Stop/Mute,
@@ -134,13 +142,13 @@ are not inferred from software checks or that listening report.
 5. Check Stop/Start with the rack present, both output channels and meter/clipping
    warnings. Record the actual backend/rate/buffer and any clicks/dropouts.
 
-The picker contains all **15 implemented effect types**. Each pedal has rotary
+The picker contains all **42 implemented effect types**. Each pedal has rotary
 controls, units, numeric entry, double-click default reset and a Reset button.
 The board wraps in signal order and scrolls vertically. Earlier/Later move a
 pedal; its settings and stable identity follow it. The footswitch LED shows engagement. It supports **16 instances**
 and 20 ms gain/bypass/structural transitions.
-Rack bypass retains input/output gain and protection. The complete rack reserves
-128 samples of DSP latency for aligned oversampling/bypass/transitions: 2.67 ms
+Rack bypass retains input/output gain and protection.
+Legacy reserves 128 samples of DSP latency for aligned oversampling/bypass/transitions: 2.67 ms
 at 48 kHz, including empty and bypassed racks. Gain itself adds no stage latency.
 M4 saves custom racks and recalls the last selected saved/loaded tone after a
 normal close. Every launch remains stopped. The 10-minute soak, real disconnect/reconnect, measured round trip and detailed edit/bypass/
@@ -220,8 +228,9 @@ checks do not establish subjective tone or physical hardware stability.
 
 DSP algorithms, fixed mappings, latency and tail limits are in
 [effects.md](docs/effects.md); actual checks and synthetic processing-cost results
-are in [testing.md](docs/testing.md). This is only the first M5 subset; the
-remaining catalog, VST3 and Windows are pending.
+are in [testing.md](docs/testing.md). This checklist describes the first M5
+subset; the later tone upgrade extends its catalog. Physical/listening acceptance,
+M5 as a whole, VST3 and Windows remain pending.
 
 ## Presets and restart checklist (M4)
 
@@ -283,8 +292,8 @@ library selections cannot revive a deleted entry. These checks pass in automated
 state/adapter fixtures; the new native dialogs and real-guitar deletion checklist
 still need desktop verification.
 
-The library has **45 full rack presets** (five original plus 40 experimental) and
-**77 pedal voicings**. Original factory examples: **Clean**, **Crunch**, **Lead Delay**, **Driven Synthetic
+The library has **69 full rack presets** (45 legacy plus 24 upgraded) and
+**146 pedal voicings**. Original factory examples: **Clean**, **Crunch**, **Lead Delay**, **Driven Synthetic
 Cabinet** (Distortion → Cabinet → EQ → Delay → Reverb) and **Small Room** (EQ →
 Reverb). Output defaults to -12 dB. The Cabinet example uses an explicitly
 synthetic CC0 filter, not a measured cabinet or nonlinear amp simulation.
@@ -299,7 +308,8 @@ Start/Stop, Mute, and delay-buffer contents never appear in exported tone files.
 
 The [version 1 schema](assets/presets/schema-v1.json) retains existing M4 presets;
 [version 2](assets/presets/schema-v2.json) adds Cabinet checksum references.
-All seven effect types are version 1. Unknown fields/effects, unsupported
+The registry supports 42 stable types / 43 exact descriptors, including Delay
+v1/v2. Legacy versions remain executable. Unknown fields/effects, unsupported
 versions, unsafe/missing assets and invalid values fail transactionally. JSON
 is limited to 128 KiB; portable IR bundles to 17 MiB. See
 [asset/bundle format](docs/assets.md) and [synthetic asset rights](assets/ir/README.md).

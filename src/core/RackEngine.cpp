@@ -2,6 +2,7 @@
 #include "MonitorEngine.h"
 #include "LinearRamp.h"
 #include "dsp/Cabinet.h"
+#include "CabinetAssets.h"
 #include <algorithm>
 #include <chrono>
 #include <cmath>
@@ -31,7 +32,7 @@ public:
         authority.reserve(mask);
     }
     ~PreparedRack() { authority.unreserve(mask); }
-    void build(const EffectRegistry& registry, double rate, const std::function<ImpulseResponse(const std::string&)>& resolver) {
+    void build(const EffectRegistry& registry, double rate, const std::function<ImpulseResponse(const std::string&)>& resolver,unsigned budget) {
         unsigned latency=0;
         std::size_t irSamples=0;
         if (tone) {
@@ -59,14 +60,15 @@ public:
             // M5 admits bounded latency; stage bypass and graph padding align dry paths.
             // Temporal histories can shorten on structural replacement.
             const double tail = processor->tailSeconds();
-            if (processor->latencySamples() < 0 || processor->latencySamples() > 8 || !std::isfinite(tail) || tail < 0 || tail > 120)
-                throw std::runtime_error("Effect exceeds supported 0–8 sample latency or 120 second tail bound.");
+            if (processor->latencySamples() < 0 || processor->latencySamples() > int(creativeLatencySamples) || !std::isfinite(tail) || tail < 0 || tail > 120)
+                throw std::runtime_error("Effect exceeds the supported stage latency or 120 second tail bound.");
             tailBound += tail;
             StereoDelay dry; dry.length=static_cast<unsigned>(processor->latencySamples());
             latency+=dry.length;
+            if(latency>budget) throw std::runtime_error("This rack exceeds the selected processor latency profile. Stop and select Creative 4096, or remove latency-bearing stages. The current sound is retained.");
             nodes.push_back({i, std::move(processor), {}, dry});
         }
-        padding.length=rackLatencySamples-latency;
+        padding.length=budget-latency;
     }
     void sync() noexcept {
         for (const auto& i : definition.instances) {
@@ -83,7 +85,7 @@ public:
             if (previous) for (const auto& old : previous->nodes)
                 if (old.identity == node.identity) { match = &old; break; }
             node.processor->activate(match ? match->processor.get() : nullptr);
-            if (match) { node.wet = match->wet; node.dryDelay=match->dryDelay; }
+            if (match) { node.wet = match->wet; node.dryDelay.inherit(match->dryDelay); }
             else node.wet.reset(bank.bypassed(node.identity.slot) ? 0.0f : 1.0f);
         }
     }
@@ -124,7 +126,7 @@ private:
 };
 RackEngine::RackEngine(EffectRegistry registry) : effects(std::move(registry)) {
     dryDelay.length=rackLatencySamples;
-    assetResolver=[](const std::string& id) { if(id!=syntheticIRId()) throw std::runtime_error("IR asset is unavailable; import its portable bundle or load the original WAV."); return decodeIR(syntheticIRBytes()); };
+    assetResolver=[](const std::string& id) { auto bytes=builtinIRBytes(id);if(bytes.empty()) throw std::runtime_error("IR asset is unavailable; import its portable bundle or load the original WAV."); return decodeIR(bytes); };
     worker = std::thread([this] { workerLoop(); }); }
 RackEngine::~RackEngine() {
     stop();
@@ -282,6 +284,16 @@ bool RackEngine::setBypassed(const InstanceId& id, bool bypass) {
     std::lock_guard lock(mutex); if (requestedTone) return false; const auto* i = state.requested.find(id); if (!i) return false;
     bank.setBypassed(i->slot, bypass); return true;
 }
+bool RackEngine::setLatencyProfile(unsigned samples) {
+    std::unique_lock lock(mutex);
+    if(live || (samples!=rackLatencySamples && samples!=creativeLatencySamples) || requestedTone) return false;
+    if(samples==latencyBudget.load())return true;
+    const unsigned previous=latencyBudget.load();latencyBudget.store(samples);
+    requested.store(++state.requestedGeneration);state.error.clear();wake.notify_one();
+    wake.wait(lock,[&]{return attempted==state.requestedGeneration && (acknowledged.load()==attempted || !state.error.empty());});
+    if(!state.error.empty()) {latencyBudget.store(previous);return false;}
+    dryDelay.length=samples;dryDelay.reset();return true;
+}
 bool RackEngine::prepare(double sampleRate) {
     if (!std::isfinite(sampleRate) || sampleRate < 8000 || sampleRate > 768000) return false;
     stop();
@@ -321,7 +333,7 @@ void RackEngine::activatePending() noexcept {
         bank.setRackBypassed(c.rackBypass);
         if (globals) globals->restorePreparedGains(c.inputDb,c.outputDb,next->inputGain,next->outputGain);
     }
-    next->activate(active); fading = active; active = next; fadePosition = -static_cast<int>(rackLatencySamples);
+    next->activate(active); fading = active; active = next; fadePosition = -static_cast<int>(latencyBudget.load());
     reportedTail.store(std::max(active->tailBound, fading ? fading->tailBound : 0), std::memory_order_relaxed);
     activated.store(active->generation, std::memory_order_release);
     if (!fading) acknowledged.store(active->generation, std::memory_order_release);
@@ -392,7 +404,7 @@ void RackEngine::workerLoop() {
         }
         readIndex.store(r, std::memory_order_release);
         if (attempted != state.requestedGeneration && pending.load() == nullptr && state.graphs < owned.size()) {
-            const auto generation = state.requestedGeneration; const auto definition = requestedTone ? requestedTone->rack : state.requested; const auto tone = requestedTone; const auto buildRate = rate; const auto resolver=assetResolver;
+            const auto generation = state.requestedGeneration; const auto definition = requestedTone ? requestedTone->rack : state.requested; const auto tone = requestedTone; const auto buildRate = rate; const auto resolver=assetResolver;const auto budget=latencyBudget.load();
             attempted = generation;
             // Reservation happens under the control mutex, before the slow factory
             // runs, so a removed slot cannot be reused while it is being built.
@@ -402,7 +414,7 @@ void RackEngine::workerLoop() {
             buildingDefinition=definition;
             lock.unlock();
             std::string failure;
-            try { graph->build(effects, buildRate, resolver); } catch (const std::exception& e) { failure = e.what(); } catch (...) { failure = "Effect preparation threw an unknown exception."; }
+            try { graph->build(effects, buildRate, resolver,budget); } catch (const std::exception& e) { failure = e.what(); } catch (...) { failure = "Effect preparation threw an unknown exception."; }
             lock.lock(); buildingDefinition.reset();
             if (generation != state.requestedGeneration || !failure.empty()) {
                 graph.reset(); --state.graphs; ++state.reclaimed;

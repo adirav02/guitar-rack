@@ -1,0 +1,108 @@
+{
+  "schema_version": 2,
+  "preset_id": "d3259f8b-c933-597b-b019-5dac83c25522",
+  "name": "Radiohead / Resonant Filter Drive",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -0.029999999329448,
+    "rack_bypass": false
+  },
+  "order": [
+    "a0ee0e4b-3459-5d7f-8712-9a1d5473f307",
+    "ab99148d-6e7b-53c2-81e6-6db37b987501",
+    "b8cc82a9-bcd2-509e-b1ff-0ceede1843bd",
+    "bd52f372-c762-5e9a-8e30-292a64e7a55c",
+    "4c9cf7e4-cc67-58d5-ac5a-54df4d73b525"
+  ],
+  "instances": [
+    {
+      "instance_id": "a0ee0e4b-3459-5d7f-8712-9a1d5473f307",
+      "slot_id": 0,
+      "effect_type": "envelope_wah",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "position_percent": 0.0,
+        "heel_hz": 350.0,
+        "toe_hz": 2400.0,
+        "q": 2.5,
+        "attack_ms": 10.0,
+        "release_ms": 220.0,
+        "sensitivity_db": 18.0,
+        "direction": 0.0,
+        "output_db": 0.0,
+        "mix_percent": 65.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "ab99148d-6e7b-53c2-81e6-6db37b987501",
+      "slot_id": 1,
+      "effect_type": "asymmetric_drive",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "drive_db": 14.0,
+        "low_cut_hz": 90.0,
+        "tone_hz": 4000.0,
+        "output_db": -10.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "b8cc82a9-bcd2-509e-b1ff-0ceede1843bd",
+      "slot_id": 2,
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 10.0,
+        "bass_db": -1.0,
+        "mid_db": 1.0,
+        "treble_db": 1.0,
+        "master_percent": 45.0,
+        "presence_percent": 40.0,
+        "output_db": -10.0,
+        "sag_percent": 20.0,
+        "bright_percent": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "bd52f372-c762-5e9a-8e30-292a64e7a55c",
+      "slot_id": 3,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+    },
+    {
+      "instance_id": "4c9cf7e4-cc67-58d5-ac5a-54df4d73b525",
+      "slot_id": 4,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.800000011920929,
+        "pre_delay_ms": 8.0,
+        "damping_hz": 6500.0,
+        "tone_hz": 9000.0,
+        "mix_percent": 10.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "sha256": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "relative_path": "ir/43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d.wav",
+      "format": "wav"
+    }
+  ]
+}

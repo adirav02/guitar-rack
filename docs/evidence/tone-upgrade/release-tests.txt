@@ -1,0 +1,35 @@
+Test project /home/adir/Projects/01_Active/guitar-effects-rack/build/linux-release
+      Start  1: monitoring_and_routing
+ 1/15 Test  #1: monitoring_and_routing ...........   Passed    0.00 sec
+      Start  2: serial_rack_lifecycle
+ 2/15 Test  #2: serial_rack_lifecycle ............   Passed    0.24 sec
+      Start  3: built_in_effect_signals
+ 3/15 Test  #3: built_in_effect_signals ..........   Passed    0.16 sec
+      Start  4: distortion_signals
+ 4/15 Test  #4: distortion_signals ...............   Passed    0.04 sec
+      Start  5: reverb_signals
+ 5/15 Test  #5: reverb_signals ...................   Passed    0.16 sec
+      Start  6: cabinet_signals
+ 6/15 Test  #6: cabinet_signals ..................   Passed    1.35 sec
+      Start  7: experimental_signals
+ 7/15 Test  #7: experimental_signals .............   Passed    2.99 sec
+      Start  8: toneupgrade_signals
+ 8/15 Test  #8: toneupgrade_signals ..............   Passed   10.14 sec
+      Start  9: creative_signals
+ 9/15 Test  #9: creative_signals .................   Passed    8.58 sec
+      Start 10: ir_assets_and_bundles
+10/15 Test #10: ir_assets_and_bundles ............   Passed    0.13 sec
+      Start 11: legacy_audio_compatibility
+11/15 Test #11: legacy_audio_compatibility .......   Passed   64.17 sec
+      Start 12: legacy_identity_compatibility
+12/15 Test #12: legacy_identity_compatibility ....   Passed    0.05 sec
+      Start 13: pedal_voicing_persistence
+13/15 Test #13: pedal_voicing_persistence ........   Passed    0.01 sec
+      Start 14: presets_and_persistence
+14/15 Test #14: presets_and_persistence ..........   Passed    0.72 sec
+      Start 15: device_adapter_lifecycle
+15/15 Test #15: device_adapter_lifecycle .........   Passed    0.04 sec
+
+100% tests passed, 0 tests failed out of 15
+
+Total Test time (real) =  88.77 sec

@@ -4,7 +4,7 @@
 
 Build the real-time guitar effects rack described in `PLAN.md`. Linux/Fedora standalone comes first; share DSP with Linux VST3 and later Windows products. The owner uses an M-Audio M-Track Solo and wants to add many built-in effects, reorder them, and save sounds.
 
-Read `PLAN.md` before implementation. At this handoff the repository contains planning documents only. There is no working application, no selected JUCE dependency version, and no completed milestone. Do not describe suggested commands as existing targets until you implement them.
+Read `PLAN.md` before implementation. The repository contains a working Linux standalone through M4, the initial M5, experimental pedalboard and tone upgrade software. Read docs/tone-upgrade.md and the latest docs/testing.md record for current contracts: 42 types/43 descriptors, 69 sounds, 146 voicings, explicit Legacy 128 / Creative 4096 latency, strict local preferences v2 and frozen legacy compatibility. JUCE 8.0.15 is pinned to 91ad83ae34a81e0833b1a2b0866f54846370ae53. Read current PLAN.md status and verification records; do not restart M0. Software results and owner listening evidence are separate. The final tone-upgrade release/debug and optimized ASan/UBSan suites pass 15/15, with 4/4 selected TSan checks. The 60-row synthetic benchmark exposes dense-chain and combined Dual model/graph-fade overloads; 16 slots are a capacity limit, not a hardware deadline guarantee. Native display/HiDPI, hardware/round-trip/soak and new listening acceptance remain pending.
 
 Use the canonical filename `AGENTS.md` at the repository root. Linux paths are case-sensitive. Do not create a second `AGENTS.MD` or duplicate lowercase plan that can drift out of sync.
 
@@ -16,7 +16,7 @@ Explicit owner instructions take precedence over this document. Inspect applicab
 - Work one milestone at a time. Carry authorized work through implementation and relevant checks rather than stopping at a proposed plan.
 - Make routine reversible implementation decisions autonomously. Do not ask permission for every dependency integration, refactor, build, or bug fix.
 - Clarify materially missing facts or consequential product changes. Do not infer additional scope such as cloud services, third-party plugin hosting, or a mobile app.
-- Do not create/push a remote repository, publish binaries, change global audio policies, or install/remove system packages without the owner's authorization for that action. The current handoff authorizes document creation only; implementation will be requested separately.
+- Do not create/push a remote repository, publish binaries, change global audio policies, or install/remove system packages without the owner's authorization for that action. The active tone and pedalboard upgrade authorizes local implementation, builds and checks; remote writes, package installation and publication remain excluded.
 - When system packages are missing, report the exact Fedora install command; if installation is already authorized, continue within that authorization.
 - Do not introduce a mandatory multi-agent workflow. Use additional agents only if the owner or another applicable instruction requests them.
 - Provide progress updates during longer work. Report outcomes, checks, and remaining limitations clearly.
@@ -95,6 +95,17 @@ Write a short architecture note describing thread ownership, producer/consumer b
 
 Definition of done for an implementation task: requested behavior is implemented, relevant checks pass or blockers are specifically reported, no user changes are lost, the plan reflects actual status, and the handoff states what the owner can run next.
 
-## Starting task
+## Starting task for a new empty project only
 
-When the owner asks to begin, implement M0 before M1. Deliver a standalone window, explicit device/channel selection, safe Start/Stop/Mute, clean mono guitar monitoring, meters, and gain controls. Defer the rack effects until the audio path works. Follow any narrower scope in the active request.
+This checkout already has the application; do not restart M0. For a new empty project, implement M0 before M1. Deliver a standalone window, explicit device/channel selection, safe Start/Stop/Mute, clean mono guitar monitoring, meters, and gain controls. Defer the rack effects until the audio path works. Follow any narrower scope in the active request.
+
+## Tone upgrade ownership and acceptance
+
+All legacy IDs/recipes/control mappings and original cabinet bytes are frozen in
+`tests/fixtures/legacy`; never recapture them merely to pass a regression. New
+factory identity is explicit and independent of display name/array position.
+Regenerate source/schema/docs using the commands in docs/tone-upgrade.md.
+Only the exact Art Rock / Subterranean Pulse legacy sound has owner listening
+approval; all upgraded catalog entries remain listening pending. Local Linux
+build/test/render evidence is separate from physical/display acceptance. The
+upgrade does not complete M5 as a whole, VST3 or Windows.

@@ -1,0 +1,94 @@
+{
+  "schema_version": 2,
+  "preset_id": "207c65ce-f4a1-50a5-953f-3b8edb25c7aa",
+  "name": "Muse / Western Echo",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -4.650000095367432,
+    "rack_bypass": false
+  },
+  "order": [
+    "c248fd75-51dc-5d96-99bd-154e11507034",
+    "04066efa-f75f-510b-b0e9-cf2cf25a381b",
+    "ad45b023-bf9e-5642-8419-07e5f57bb83b",
+    "dd79182e-2f4b-5077-8cd7-d59b24d6de1c"
+  ],
+  "instances": [
+    {
+      "instance_id": "c248fd75-51dc-5d96-99bd-154e11507034",
+      "slot_id": 0,
+      "effect_type": "amp_brit_crunch",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 22.0,
+        "bass_db": -1.0,
+        "mid_db": 1.0,
+        "treble_db": 1.0,
+        "master_percent": 35.0,
+        "presence_percent": 40.0,
+        "output_db": -13.999998092651367,
+        "sag_percent": 20.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "04066efa-f75f-510b-b0e9-cf2cf25a381b",
+      "slot_id": 1,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+    },
+    {
+      "instance_id": "ad45b023-bf9e-5642-8419-07e5f57bb83b",
+      "slot_id": 2,
+      "effect_type": "echo",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "time_ms": 180.0,
+        "bpm": 120.0,
+        "subdivision": 0.0,
+        "clock": 0.0,
+        "mode": 1.0,
+        "feedback_percent": 28.0,
+        "color_hz": 4500.0,
+        "wow_percent": 0.0,
+        "stereo": 0.0,
+        "heads": 0.0,
+        "mix_percent": 20.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "dd79182e-2f4b-5077-8cd7-d59b24d6de1c",
+      "slot_id": 3,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.800000011920929,
+        "pre_delay_ms": 8.0,
+        "damping_hz": 6500.0,
+        "tone_hz": 9000.0,
+        "mix_percent": 10.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "sha256": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "relative_path": "ir/e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac.wav",
+      "format": "wav"
+    }
+  ]
+}

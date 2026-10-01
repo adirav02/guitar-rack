@@ -1,0 +1,88 @@
+{
+  "schema_version": 2,
+  "preset_id": "0b7f40ab-537f-5984-846f-076d23cc6366",
+  "name": "Radiohead / Open Art-Rock Crunch",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -6.190000057220459,
+    "rack_bypass": false
+  },
+  "order": [
+    "c4380636-863d-5d26-93dd-65b0e99426f8",
+    "c8086742-83b0-5479-87f2-b03490fad613",
+    "316498f0-e4d0-54fb-be73-e7525b95e590",
+    "26facff0-cb59-5e57-830f-f6d4a9027f2a"
+  ],
+  "instances": [
+    {
+      "instance_id": "c4380636-863d-5d26-93dd-65b0e99426f8",
+      "slot_id": 0,
+      "effect_type": "oxford_distortion",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "drive_db": 8.0,
+        "bass_db": -1.0,
+        "contour_percent": 15.000000953674316,
+        "treble_db": 1.0,
+        "output_db": -8.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "c8086742-83b0-5479-87f2-b03490fad613",
+      "slot_id": 1,
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 10.0,
+        "bass_db": -1.0,
+        "mid_db": 1.0,
+        "treble_db": 1.0,
+        "master_percent": 45.0,
+        "presence_percent": 40.0,
+        "output_db": -10.0,
+        "sag_percent": 20.0,
+        "bright_percent": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "316498f0-e4d0-54fb-be73-e7525b95e590",
+      "slot_id": 2,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+    },
+    {
+      "instance_id": "26facff0-cb59-5e57-830f-f6d4a9027f2a",
+      "slot_id": 3,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.800000011920929,
+        "pre_delay_ms": 8.0,
+        "damping_hz": 6500.0,
+        "tone_hz": 9000.0,
+        "mix_percent": 10.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "sha256": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "relative_path": "ir/43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d.wav",
+      "format": "wav"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+Test project /home/adir/Projects/01_Active/guitar-effects-rack/build/core-thread-sanitize
+    Start  1: monitoring_and_routing
+1/4 Test  #1: monitoring_and_routing ...........   Passed    0.12 sec
+    Start  2: serial_rack_lifecycle
+2/4 Test  #2: serial_rack_lifecycle ............   Passed    2.61 sec
+    Start 14: presets_and_persistence
+3/4 Test #14: presets_and_persistence ..........   Passed   17.57 sec
+    Start 15: device_adapter_lifecycle
+4/4 Test #15: device_adapter_lifecycle .........   Passed    0.63 sec
+
+100% tests passed, 0 tests failed out of 4
+
+Total Test time (real) =  20.93 sec

@@ -1,0 +1,117 @@
+{
+  "schema_version": 2,
+  "preset_id": "ef1075f4-cdc4-51d2-8372-1113d4a98eff",
+  "name": "Muse / Saturated Chime Blend",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -4.159999847412109,
+    "rack_bypass": false
+  },
+  "order": [
+    "8b1c9f98-f85b-55fb-abbc-2ef45270af20",
+    "287d601a-7438-5206-8a8f-244cca68020b",
+    "3a95950d-7893-5871-845c-e0fd7726c594",
+    "1b033d7c-e501-50fa-9e8b-b10997b08c19",
+    "667962ef-fd19-5f8e-989c-49a9f053a0b4"
+  ],
+  "instances": [
+    {
+      "instance_id": "8b1c9f98-f85b-55fb-abbc-2ef45270af20",
+      "slot_id": 0,
+      "effect_type": "noise_gate",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "threshold_db": -54.0,
+        "range_db": 65.0,
+        "attack_ms": 1.0,
+        "hold_ms": 35.0,
+        "release_ms": 130.0,
+        "hysteresis_db": 7.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "287d601a-7438-5206-8a8f-244cca68020b",
+      "slot_id": 1,
+      "effect_type": "dual_amp",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "model_a": 6.0,
+        "gain_a_db": 20.0,
+        "master_a_percent": 35.0,
+        "level_a_db": -2.0,
+        "model_b": 2.0,
+        "gain_b_db": 8.0,
+        "master_b_percent": 35.0,
+        "level_b_db": 0.0,
+        "blend_percent": 30.000001907348633,
+        "bass_db": 0.0,
+        "mid_db": 0.0,
+        "treble_db": 0.0,
+        "presence_percent": 40.0,
+        "output_db": -13.999998092651367
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "3a95950d-7893-5871-845c-e0fd7726c594",
+      "slot_id": 2,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+    },
+    {
+      "instance_id": "1b033d7c-e501-50fa-9e8b-b10997b08c19",
+      "slot_id": 3,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 180.0,
+        "band1_db": -1.0,
+        "band1_q": 0.699999988079071,
+        "band2_hz": 850.0,
+        "band2_db": 1.0,
+        "band2_q": 0.699999988079071,
+        "band3_hz": 3800.0,
+        "band3_db": -2.0,
+        "band3_q": 0.699999988079071,
+        "high_pass_hz": 80.0,
+        "low_pass_hz": 8000.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "667962ef-fd19-5f8e-989c-49a9f053a0b4",
+      "slot_id": 4,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.800000011920929,
+        "pre_delay_ms": 8.0,
+        "damping_hz": 6500.0,
+        "tone_hz": 9000.0,
+        "mix_percent": 10.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "sha256": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "relative_path": "ir/e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac.wav",
+      "format": "wav"
+    }
+  ]
+}

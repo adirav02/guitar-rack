@@ -17,6 +17,7 @@ public:
     void select(const ToneState&);
     void importFile(std::filesystem::path);
     void loadIR(const InstanceId&,std::filesystem::path);
+    void selectBuiltinIR(const InstanceId&,const std::string& checksum);
     bool cancelLoad();
     void poll();
     bool busy() const;

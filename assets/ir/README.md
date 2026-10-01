@@ -21,3 +21,21 @@ license is selected here. It may be used in factory examples and portable bundle
 
 Cabinet convolution is linear filtering and does not provide nonlinear amp
 simulation. Real cabinet tone and live listening remain owner checks.
+
+## Five additional original synthetic responses
+
+`clean-open-2x12.wav`, `chime-2x12.wav`, `british-4x12.wav`,
+`tight-modern-4x12.wav` and `dark-full-4x12.wav` are original analytic cascades,
+not measurements or recordings of cabinets/speakers/microphones. Their names
+describe intended voicing only. Each is mono float32 RIFF, 48000 Hz, 2048 taps.
+Their response is normalized to magnitude 1 at 1 kHz before float32 rounding;
+there is no additional runtime normalization. [catalog.json](catalog.json) records
+exact SHA-256 identifiers, response parameters, rate, origin and normalization.
+
+All five generated WAV assets are dedicated under CC0 1.0 on the same terms as
+the original asset above. They contain no third-party recordings. Regenerate
+with `python3 tools/generate_cabinet_assets.py` from the project root; generated
+embedded bytes live in src/core/CabinetAssets.cpp. This does not rewrite the
+original synthetic-filter.wav. Software response variety does not establish
+speaker realism. Measured cabinet bundles require verified redistribution rights
+and remain pending; owners can import their own licensed IRs locally.

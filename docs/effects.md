@@ -1,8 +1,13 @@
 # Built-in effects and fixed version 1 controls
 
+Current tone-upgrade behavior is documented in [tone-upgrade.md](tone-upgrade.md);
+exact new type/version/index/range/default mappings are in [tone-controls.md](tone-controls.md).
+The legacy implementation descriptions below remain compatibility references.
+They do not supersede the new profile/UI/catalog contracts.
+
 These are shared native C++ DSP processors registered alongside Gain. All run
 stereo internally after mono guitar mapping and use the existing fixed parameter bank.
-M5 adds Distortion, Reverb and Cabinet/IR; the complete rack now has fixed
+M5 adds Distortion, Reverb and Cabinet/IR; the legacy profile has fixed
 128-sample processing latency, including empty and bypassed racks. Individual
 latency and alignment details follow below. Delay echo time is intentional musical
 delay, separate from processing/device latency and measured round trip.
@@ -132,7 +137,9 @@ At most 16 effects and four owned graphs (two processing) remain allowed. A
 bounds this worst-case delay storage at about 786.5 MB. Allocation failure rolls
 back off audio; these are storage calculations, not measured CPU/load results.
 
-The builder accepts 0–8 samples of stage latency and finite nonnegative tails <=120 s
+The original M5 builder accepted 0–8 samples of stage latency. The upgrade
+accepts bounded stages through 4096 samples, with their serial sum required to
+fit the explicit Legacy 128 / Creative 4096 profile, and finite tails <=120 s
 per effect. The shared adapter reports a conservative sum of stage tails, taking
 the maximum of the active/fading graphs during transitions via a lock-free atomic.
 M5 compensates stage bypass and pads every graph to the same 128-sample latency. See the M5 section below. Common-rate signal tests, callbacks and lifetime audits are
@@ -244,7 +251,7 @@ provenance in assets/ir/README.md. User IRs keep the user's redistribution right
 
 ### Rack latency alignment
 
-Every graph reserves **128 samples = 16 slots × 8 samples**, even when empty or
+Every Legacy-profile graph reserves **128 samples = 16 slots × 8 samples**, even when empty or
 fully bypassed: 2.667 ms at 48 kHz, 2.902 ms at 44.1 kHz. The graph sums stage
 latencies, delays individual dry bypass paths, then pads its output by the
 remaining budget. Rack bypass has the same fixed delay. Distortion handles
@@ -266,4 +273,6 @@ measurement has been made for this addition.
 The eight added processors, Delay v2 character controls, physical ranges, musical
 wet delays, native-rate aliasing and granular pitch limitations are documented in
 [pedalboard.md](pedalboard.md). Existing version 1 mappings/algorithms remain.
-There are 15 effect types, 77 factory pedal voicings and 45 complete rack factories.
+That legacy extension contained 15 effect types, 77 factory pedal voicings and
+45 complete rack factories. The current additive inventory is 42 types / 43
+descriptors, 146 voicings and 69 racks; the original mappings remain frozen.

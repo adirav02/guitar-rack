@@ -1,0 +1,110 @@
+{
+  "schema_version": 2,
+  "preset_id": "02f87861-0451-5667-a9f4-2caa3f09771e",
+  "name": "Metal / Modern Tight Rhythm",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -9.289999961853027,
+    "rack_bypass": false
+  },
+  "order": [
+    "48c2581d-ccc6-5412-aca3-2114f2a2f5b8",
+    "c350f52b-1ca1-5937-985f-f769737cb812",
+    "7797f1ed-63d6-58b5-9976-d0c6e1760122",
+    "87f0d851-7052-56b2-9097-63c3aeb2ad5f",
+    "8f1564a8-e930-5009-b114-5b791222904f"
+  ],
+  "instances": [
+    {
+      "instance_id": "48c2581d-ccc6-5412-aca3-2114f2a2f5b8",
+      "slot_id": 0,
+      "effect_type": "noise_gate",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "threshold_db": -54.0,
+        "range_db": 65.0,
+        "attack_ms": 1.0,
+        "hold_ms": 35.0,
+        "release_ms": 130.0,
+        "hysteresis_db": 7.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "c350f52b-1ca1-5937-985f-f769737cb812",
+      "slot_id": 1,
+      "effect_type": "tight_boost",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "drive_db": 1.0,
+        "low_cut_hz": 140.0,
+        "attack_percent": 30.000001907348633,
+        "output_db": 6.000001907348633
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "7797f1ed-63d6-58b5-9976-d0c6e1760122",
+      "slot_id": 2,
+      "effect_type": "amp_modern_tight",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 22.0,
+        "bass_db": -1.0,
+        "mid_db": 1.0,
+        "treble_db": 1.0,
+        "master_percent": 35.0,
+        "presence_percent": 40.0,
+        "output_db": -13.999998092651367,
+        "sag_percent": 5.0,
+        "low_cut_hz": 140.0,
+        "resonance_percent": 20.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "87f0d851-7052-56b2-9097-63c3aeb2ad5f",
+      "slot_id": 3,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d"
+    },
+    {
+      "instance_id": "8f1564a8-e930-5009-b114-5b791222904f",
+      "slot_id": 4,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 180.0,
+        "band1_db": -1.0,
+        "band1_q": 0.699999988079071,
+        "band2_hz": 850.0,
+        "band2_db": 1.0,
+        "band2_q": 0.699999988079071,
+        "band3_hz": 3800.0,
+        "band3_db": -2.0,
+        "band3_q": 0.699999988079071,
+        "high_pass_hz": 80.0,
+        "low_pass_hz": 8000.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d",
+      "sha256": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d",
+      "relative_path": "ir/7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d.wav",
+      "format": "wav"
+    }
+  ]
+}

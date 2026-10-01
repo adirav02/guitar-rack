@@ -1,5 +1,10 @@
 # GuitarRack architecture
 
+Current tone-upgrade behavior is documented in [tone-upgrade.md](tone-upgrade.md);
+exact new type/version/index/range/default mappings are in [tone-controls.md](tone-controls.md).
+The legacy implementation descriptions below remain compatibility references.
+They do not supersede the new profile/UI/catalog contracts.
+
 ## Current processing and ownership
 
 The native JUCE standalone shell owns device discovery, the selected physical
@@ -101,7 +106,7 @@ re-prepares at the actual rate before callbacks resume; see M2 ownership below.
 Peak snapshots and diagnostic bits use lock-free atomics polled at 20 Hz. Peak
 publication has fixed work; a racing poll may defer a peak to the next poll.
 The UI holds clipping indicators until cleared. Configuration distinguishes
-requested/actual format, device-reported I/O estimate, current added DSP latency (128 samples from M5),
+requested/actual format, device-reported I/O estimate, selected DSP latency (Legacy 128 / Creative 4096 samples),
 and **unmeasured** round trip. Unsupported backend xrun reporting is displayed
 as unavailable. No CPU/round-trip/dropout benchmark is inferred from tests.
 
@@ -175,7 +180,7 @@ to finish, then retains its accepted destination if a fade is in flight. Entries
 after the failed request was published cannot accept older pending results.
 New control requests cancel stale failures as well as stale successes. Failed
 validation never changes requested/committed structure. Factory exceptions,
-null factories, false prepare results, positive latency and invalid/unbounded tails discard the
+null factories, false prepare results, over-budget latency and invalid/unbounded tails discard the
 replacement and keep the accepted sound. Parameter updates are never restored
 from graph snapshots. UI sliders use validated physical units; future host writes
 use the same normalized bank without calling structural/UI setters.
@@ -297,14 +302,17 @@ partition boundaries and arbitrary callback partitions. CPU work is bounded by
 validated partition counts; boundaries do more work and are included in the
 unpaced release benchmark. Cost/headroom on the physical interface is pending.
 
-Distortion adds 8 samples; other catalog effects add zero buffering delay.
-Every prepared graph is padded to **128 total samples** (16×8), with fixed
+Legacy Distortion adds 8 samples; the other legacy effects add zero declared
+buffering delay. New amp/drive/Dual Amp networks add 16 samples and Expression
+Pitch declares 2048 samples; the selected profile bounds the serial sum.
+In the legacy profile, every prepared graph is padded to **128 total samples** (originally 16×8), with fixed
 per-node dry delay for individual bypass and a separate 128-sample rack dry ring.
 This is an intentional small latency increase for prior empty/M4 racks that
 avoids changing latency on structural/preset edits. It is reported as samples
 and milliseconds in standalone; `MonitorProcessor` declares it outside audio.
 No VST3 or host acceptance is inferred from that adapter declaration. Future
-larger-latency processors require a deliberate budget/compatibility change.
+larger-latency processors now use the explicitly selected stopped-state Creative
+4096 profile; incompatible loads retain the accepted sound.
 
 At activation, the replacement starts processing fresh padding and temporal
 storage while the old graph remains audible for 128 warm-up samples. Then the

@@ -1,10 +1,17 @@
 #!/usr/bin/env python3
 """Generate native factory recipes from the reviewable library JSON."""
 import json
+import uuid
 from pathlib import Path
 
 root = Path(__file__).resolve().parents[1]
 library = json.loads((root / "assets/sounds/library.json").read_text())
+identities = [p["id"] for p in library["pedals"]] + [r["id"] for r in library["racks"]]
+if len(set(identities)) != len(identities):
+    raise ValueError("Duplicate factory UUID")
+for identity in identities:
+    if str(uuid.UUID(identity)) != identity:
+        raise ValueError("Noncanonical factory UUID")
 def quote(x):
     return json.dumps(x, ensure_ascii=True)
 # Float literals must contain a decimal point.
@@ -30,11 +37,10 @@ std::string validateEffectPreset(const EffectPreset& p,const EffectRegistry& reg
 }
 std::vector<EffectPreset> effectPresets(const EffectRegistry& registry) {
     std::vector<EffectPreset> result;
-    auto add=[&](const char* type,unsigned version,const char* name,
+    auto add=[&](const char* id,const char* type,unsigned version,const char* name,
                  std::initializer_list<std::pair<const char*,float>> settings) {
         const auto* d=registry.find(type,version);
         if (!d) throw std::runtime_error("Factory pedal references an unknown effect.");
-        char id[40]; std::snprintf(id,sizeof(id),"40000000-0000-4000-8000-%012u",static_cast<unsigned>(result.size()+1));
         EffectPreset p{id,name,type,version,{}};
         for (const auto& parameter:d->parameters) {
             float value=parameter.defaultValue;
@@ -51,25 +57,23 @@ std::vector<EffectPreset> effectPresets(const EffectRegistry& registry) {
     };
 """
 for p in library["pedals"]:
-    code += f'    add({quote(p["effect_type"])},{p["effect_version"]},{quote(p["name"])},{pairs(p["parameters"])});\n'
+    code += f'    add({quote(p["id"])},{quote(p["effect_type"])},{p["effect_version"]},{quote(p["name"])},{pairs(p["parameters"])});\n'
 code += """    return result;
 }
 std::vector<ToneState> experimentalFactoryPresets(const EffectRegistry& registry) {
     const auto pedals=effectPresets(registry);
     std::vector<ToneState> result;
-    auto add=[&](const char* name,float output,std::initializer_list<const char*> recipe) {
-        ToneState tone; char id[40];
-        std::snprintf(id,sizeof(id),"50000000-0000-4000-8000-%012u",static_cast<unsigned>(result.size()+1));
+    struct Recipe {const char* instance;const char* voice;const char* asset;};
+    auto add=[&](const char* id,const char* name,float output,std::initializer_list<Recipe> recipe) {
+        ToneState tone;
         tone.id=id; tone.name=name; tone.controls.outputDb=output;
-        for (const auto* voice:recipe) {
-            const auto at=std::find_if(pedals.begin(),pedals.end(),[&](const auto& p){return p.name==voice;});
+        for (const auto& [instance,voice,asset]:recipe) {
+            const auto at=std::find_if(pedals.begin(),pedals.end(),[&](const auto& p){return p.id==voice;});
             if (at==pedals.end()) throw std::runtime_error("Unknown pedal voicing in factory rack.");
             const auto slot=static_cast<unsigned>(tone.rack.instances.size());
-            std::snprintf(id,sizeof(id),"60000000-0000-4000-8000-%012u",
-                          static_cast<unsigned>(result.size()*16+slot+1));
-            tone.rack.instances.push_back({id,slot,at->effectType,at->effectVersion,
-                                          at->effectType=="cabinet"?syntheticIRId():""});
-            tone.rack.order.push_back(id);
+            tone.rack.instances.push_back({instance,slot,at->effectType,at->effectVersion,
+                                          at->effectType=="cabinet"?(*asset?asset:syntheticIRId()):""});
+            tone.rack.order.push_back(instance);
             if (at->effectType=="cabinet") tone.schemaVersion=2;
             const auto* d=registry.find(at->effectType,at->effectVersion);
             for (std::size_t j=0;j<at->values.size();++j)
@@ -80,7 +84,10 @@ std::vector<ToneState> experimentalFactoryPresets(const EffectRegistry& registry
     };
 """
 for r in library["racks"]:
-    code += f'    add({quote(r["name"])},{number(r["output_db"])},' + "{" + ",".join(quote(p) for p in r["pedals"]) + "});\n"
+    if len(r["pedal_ids"]) != len(r["instance_ids"]):
+        raise ValueError("Recipe/instance UUID count mismatch")
+    recipe = "{" + ",".join("{" + quote(i) + "," + quote(v) + "," + quote(r.get("cabinet_assets",{}).get(str(slot),"")) + "}" for slot,(i,v) in enumerate(zip(r["instance_ids"],r["pedal_ids"]))) + "}"
+    code += f'    add({quote(r["id"])},{quote(r["name"])},{number(r["output_db"])},{recipe});\n'
 code += "    return result;\n}\n}\n"
 (root/"src/core/SoundLibrary.cpp").write_text(code)
 print(f'Generated {len(library["pedals"])} pedal voicings and {len(library["racks"])} racks.')

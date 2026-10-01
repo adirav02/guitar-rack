@@ -75,7 +75,18 @@ void filesAndActions(const EffectRegistry& registry,const std::filesystem::path&
     Preferences p; p.backend="JACK"; p.inputDevice="missing input"; p.outputDevice="interface"; p.input=1; p.left=0; p.right=1; atomicWrite(root/"settings.json",serializePreferences(p)); check(parsePreferences(readBounded(root/"settings.json"))==p,"device/window preferences saved separately");
     juce::StringArray devices{"another microphone","interface"};
     check(exactDeviceIndex(devices,p.inputDevice)==-1&&exactDeviceIndex(devices,p.outputDevice)==1&&exactDeviceIndex(devices,"")==-1,"missing remembered input never substitutes another microphone");
-    auto preferences=parseJson(serializePreferences(p)); replace(preferences,"settings_version",2); rejects([&]{parsePreferences(json(preferences));},"invalid preference version rejected");
+    auto preferences=parseJson(serializePreferences(p)); replace(preferences,"settings_version",3); rejects([&]{parsePreferences(json(preferences));},"invalid preference version rejected");
+    auto oldPreferences=parseJson(serializePreferences(p));
+    for(const auto* key:{"audio_collapsed","browser_x","browser_y","browser_width","browser_height","board_scroll","search","source","artist","category","favorites","expanded","latency_profile"}) oldPreferences.getDynamicObject()->removeProperty(key);
+    replace(oldPreferences,"settings_version",1); replace(oldPreferences,"height",1200);
+    auto migrated=parsePreferences(json(oldPreferences));
+    check(migrated.height==768&&migrated.inputDevice==p.inputDevice&&migrated.rate==p.rate&&migrated.favorites.empty(),"strict v1 migration lowers old tall window and preserves device choices");
+    p.width=1366;p.height=768;p.audioCollapsed=true;p.search="צליל";p.favorites={t.id};p.expanded={t.rack.order.front()};p.boardScroll=123;p.latencyProfile=4096;
+    check(parsePreferences(serializePreferences(p))==p,"local browser, expansion, UTF-8 and compact geometry round trip");
+    auto duplicate=parseJson(serializePreferences(p));duplicate["favorites"].getArray()->add(juce::String(t.id));
+    rejects([&]{parsePreferences(json(duplicate));},"duplicate local favorite identities rejected");
+    auto tooSmall=parseJson(serializePreferences(p));replace(tooSmall,"height",449);
+    rejects([&]{parsePreferences(json(tooSmall));},"inaccessible window size rejected");
     RackEngine rack; MonitorControls c; MonitorEngine engine(c,&rack); PresetSession session(rack,root/"session");
     session.select(t); check(wait([&]{session.poll();return !session.busy();}),"stopped preset commits without monitoring");
     check(session.selected()&&session.selected()->name==t.name&&!session.dirty(),"selected preset and clean baseline committed together");
@@ -103,6 +114,16 @@ void filesAndActions(const EffectRegistry& registry,const std::filesystem::path&
     session.select(factoryPresets(registry)[1]); session.select(factoryPresets(registry)[0]); check(wait([&]{session.poll();return !session.busy();}),"competing asynchronous requests finish"); check(session.selected()->name=="Clean"&&session.current().rack.instances.empty(),"latest asynchronous load wins");
     session.select(t); c.setInputDb(-7);
     check(wait([&]{session.poll();return !session.busy();})&&session.selected()->name=="Clean"&&c.inputDb()==-7,"control edit during asynchronous parsing supersedes old load");
+    session.select(factoryPresets(registry)[3]);check(wait([&]{session.poll();return !session.busy();}),"cabinet selection settles");
+    auto cabinetTone=session.current();auto cabinet=std::find_if(cabinetTone.rack.instances.begin(),cabinetTone.rack.instances.end(),[](const auto& i){return i.effectType=="cabinet";});
+    check(cabinet!=cabinetTone.rack.instances.end(),"cabinet fixture present");
+    auto approvedId=session.selected()->id;auto priorCabinet=cabinetTone;
+    session.selectBuiltinIR(cabinet->id,std::string(64,'0'));check(session.current()==priorCabinet&&!session.dirty()&&session.selected()->id==approvedId,"unknown built-in asset retains sound and association");
+    session.selectBuiltinIR(cabinet->id,"43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d");check(wait([&]{session.poll();return !session.busy();}),"built-in cabinet transaction completes");
+    check(session.current().rack.order==priorCabinet.rack.order&&session.selected()->id==approvedId&&session.dirty(),"cabinet voicing changes only asset and dirties existing association");
+    auto dirtyCabinet=session.current();auto pitched=factoryPresets(registry);auto pitchTone=std::find_if(pitched.begin(),pitched.end(),[](const auto& tone){return std::any_of(tone.rack.instances.begin(),tone.rack.instances.end(),[](const auto& i){return i.effectType=="expression_pitch";});});
+    session.select(*pitchTone);check(wait([&]{session.poll();return !session.busy();})&&!session.error.empty()&&session.current()==dirtyCabinet&&session.dirty()&&session.selected()->id==approvedId,"incompatible latency load preserves dirty tone and identity");
+    session.select(factoryPresets(registry)[0]);check(wait([&]{session.poll();return !session.busy();}),"restore clean before cancellation check");
     session.select(t); check(session.cancelLoad(),"queued async load cancelled"); for(int i=0;i<20;++i) { session.poll(); std::this_thread::sleep_for(std::chrono::milliseconds(1)); } check(session.selected()->name=="Clean","cancelled parser completion cannot change selection");
 }
 void deletionActions(const EffectRegistry& registry, const std::filesystem::path& root) {

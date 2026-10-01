@@ -1,0 +1,7 @@
+Test project /home/adir/Projects/01_Active/guitar-effects-rack/build/linux-release
+    Start 13: pedal_voicing_persistence
+1/1 Test #13: pedal_voicing_persistence ........   Passed    0.01 sec
+
+100% tests passed, 0 tests failed out of 1
+
+Total Test time (real) =   0.01 sec

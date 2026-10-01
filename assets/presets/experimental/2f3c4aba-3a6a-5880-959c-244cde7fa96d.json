@@ -1,0 +1,110 @@
+{
+  "schema_version": 2,
+  "preset_id": "2f3c4aba-3a6a-5880-959c-244cde7fa96d",
+  "name": "Radiohead / Oxford Contour Drive",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -3.839999914169312,
+    "rack_bypass": false
+  },
+  "order": [
+    "774fceed-d0f0-5aab-b88b-0e1c44959a37",
+    "2e445567-b3a1-5a8a-a044-d26e0640f66e",
+    "799c7f9c-af26-54a6-b15b-265bc2f5a653",
+    "c2b5b2de-c72f-5dfe-87dd-dd1e77a8d15f",
+    "503be7a4-0274-59d5-869b-1720b51d2394"
+  ],
+  "instances": [
+    {
+      "instance_id": "774fceed-d0f0-5aab-b88b-0e1c44959a37",
+      "slot_id": 0,
+      "effect_type": "oxford_distortion",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "drive_db": 18.0,
+        "bass_db": 1.0,
+        "contour_percent": 25.0,
+        "treble_db": 2.0,
+        "output_db": -13.999998092651367
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "2e445567-b3a1-5a8a-a044-d26e0640f66e",
+      "slot_id": 1,
+      "effect_type": "amp_solid_clean",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 2.0,
+        "bass_db": -1.0,
+        "mid_db": 1.0,
+        "treble_db": 1.0,
+        "master_percent": 25.0,
+        "presence_percent": 40.0,
+        "output_db": -6.0,
+        "bright_percent": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "799c7f9c-af26-54a6-b15b-265bc2f5a653",
+      "slot_id": 2,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+    },
+    {
+      "instance_id": "c2b5b2de-c72f-5dfe-87dd-dd1e77a8d15f",
+      "slot_id": 3,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 180.0,
+        "band1_db": -1.0,
+        "band1_q": 0.699999988079071,
+        "band2_hz": 850.0,
+        "band2_db": 1.0,
+        "band2_q": 0.699999988079071,
+        "band3_hz": 3800.0,
+        "band3_db": -2.0,
+        "band3_q": 0.699999988079071,
+        "high_pass_hz": 80.0,
+        "low_pass_hz": 8000.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "503be7a4-0274-59d5-869b-1720b51d2394",
+      "slot_id": 4,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.800000011920929,
+        "pre_delay_ms": 8.0,
+        "damping_hz": 6500.0,
+        "tone_hz": 9000.0,
+        "mix_percent": 10.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "sha256": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "relative_path": "ir/e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac.wav",
+      "format": "wav"
+    }
+  ]
+}

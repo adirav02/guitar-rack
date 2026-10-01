@@ -109,7 +109,7 @@ void AudioSession::poll() {
     }
 }
 juce::String AudioSession::configuration() const {
-    if (!started || !device) return "Device closed. DSP latency: 128 samples (fixed rack alignment). Round-trip latency: not measured.";
+    if (!started || !device) return "Device closed. DSP latency: "+juce::String(processor.rack.latencySamples())+" samples (session profile). Round-trip latency: not measured.";
     const auto latency = device->getInputLatencyInSamples() + device->getOutputLatencyInSamples();
     const auto xruns = device->getXRunCount();
     return "Requested: " + juce::String(requestedRate, 0) + " Hz / " + juce::String(requestedBlock)

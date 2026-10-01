@@ -8,6 +8,8 @@
 #include "dsp/Reverb.h"
 #include "dsp/Experimental.h"
 #include "Impulse.h"
+#include "dsp/Amplifiers.h"
+#include "dsp/CreativeEffects.h"
 #include <cmath>
 #include <cstdio>
 #include <random>
@@ -148,7 +150,13 @@ EffectRegistry EffectRegistry::builtIns() {
     result.add(reverbDescriptor()); result.add(cabinetDescriptor()); result.add(fuzzDescriptor());
     result.add(ampDescriptor()); result.add(compressorDescriptor()); result.add(chorusDescriptor());
     result.add(tremoloDescriptor()); result.add(filterDescriptor()); result.add(pitchDescriptor());
-    result.add(ringDescriptor()); return result;
+    result.add(ringDescriptor());
+    for(auto d:amplifierDescriptors()) result.add(std::move(d));
+    for(auto d:driveDescriptors()) result.add(std::move(d));
+    result.add(graphicEQDescriptor());result.add(parametricEQDescriptor());result.add(noiseGateDescriptor());
+    for(auto d:creativeDescriptors())result.add(std::move(d));
+    result.add(echoDescriptor());result.add(spaceReverbDescriptor());result.add(expressionPitchDescriptor());result.add(dualAmpDescriptor());
+    return result;
 }
 bool sameIdentity(const RackInstance& a,const RackInstance& b) noexcept { return a.id==b.id&&a.slot==b.slot&&a.effectType==b.effectType&&a.effectVersion==b.effectVersion; }
 const RackInstance* RackDefinition::find(const InstanceId& id) const noexcept {

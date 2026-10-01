@@ -1,0 +1,110 @@
+{
+  "schema_version": 2,
+  "preset_id": "712dcf09-9157-5c95-8342-bed87a6f269d",
+  "name": "Metal / Doom Fuzz Wall",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -11.840000152587891,
+    "rack_bypass": false
+  },
+  "order": [
+    "6e8a590f-7d0e-5951-a6dd-9e03f5260c22",
+    "0698dff0-0dbc-5863-8f1b-fed2680bc3ad",
+    "43903f33-eca5-5979-86ce-a4563093c40c",
+    "86503b03-00eb-574e-8009-e76d3718133b",
+    "98729681-7b78-5a15-9088-f0d528b85db8"
+  ],
+  "instances": [
+    {
+      "instance_id": "6e8a590f-7d0e-5951-a6dd-9e03f5260c22",
+      "slot_id": 0,
+      "effect_type": "sustain_fuzz",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "drive_db": 30.0,
+        "compression_percent": 65.0,
+        "tone_hz": 1800.0,
+        "output_db": -17.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "0698dff0-0dbc-5863-8f1b-fed2680bc3ad",
+      "slot_id": 1,
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 10.0,
+        "bass_db": -1.0,
+        "mid_db": 1.0,
+        "treble_db": 1.0,
+        "master_percent": 45.0,
+        "presence_percent": 40.0,
+        "output_db": -10.0,
+        "sag_percent": 20.0,
+        "bright_percent": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "43903f33-eca5-5979-86ce-a4563093c40c",
+      "slot_id": 2,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+    },
+    {
+      "instance_id": "86503b03-00eb-574e-8009-e76d3718133b",
+      "slot_id": 3,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 150.0,
+        "band1_db": 0.0,
+        "band1_q": 0.699999988079071,
+        "band2_hz": 900.0,
+        "band2_db": 1.0,
+        "band2_q": 0.699999988079071,
+        "band3_hz": 3500.0,
+        "band3_db": -1.0,
+        "band3_q": 0.699999988079071,
+        "high_pass_hz": 70.0,
+        "low_pass_hz": 7200.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "98729681-7b78-5a15-9088-f0d528b85db8",
+      "slot_id": 4,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 1.0,
+        "decay_seconds": 1.799999952316284,
+        "pre_delay_ms": 18.0,
+        "damping_hz": 5500.0,
+        "tone_hz": 9000.0,
+        "mix_percent": 14.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b",
+      "sha256": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b",
+      "relative_path": "ir/0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b.wav",
+      "format": "wav"
+    }
+  ]
+}

@@ -1,5 +1,10 @@
 # Cabinet assets and portable bundles (M5)
 
+Current tone-upgrade behavior is documented in [tone-upgrade.md](tone-upgrade.md);
+exact new type/version/index/range/default mappings are in [tone-controls.md](tone-controls.md).
+The legacy implementation descriptions below remain compatibility references.
+They do not supersede the new profile/UI/catalog contracts.
+
 Cabinet convolution is linear FIR processing. It provides frequency/impulse
 response shaping, not nonlinear amp simulation. The supplied filter is synthetic
 and must never be described as a measured guitar cabinet.
@@ -28,7 +33,8 @@ operations run off audio. A failed/cancelled/stale load retains the accepted
 cabinet, rack, selected preset and dirty baseline. Output Level uses bank index
 0, -24…+6 dB/default 0; it smooths over 20 ms. No convolution history is saved.
 Zero buffering latency is tested; nonzero IR onset is intentional response time.
-The whole rack separately reserves 128 samples for oversampling alignment.
+The rack separately reserves the selected processor profile (Legacy 128 or
+explicit stopped-state Creative 4096) for algorithmic/bypass alignment.
 
 ## Managed local storage
 
@@ -108,8 +114,20 @@ empty store and verify identical IR bytes/configuration.
 
 ## Rights
 
-Only the original synthetic starter is distributed by this task. Its
+The initial M5 asset was the original synthetic starter. The tone upgrade adds
+five original synthetic responses, also under CC0 (see below). The starter's
 [asset notice](../assets/ir/README.md) dedicates the WAV to CC0; the project's code
 license and JUCE dependency terms are unchanged. User-provided IRs may have their
 own restrictions; including their bytes in a private export does not grant new
 redistribution rights. No downloaded, branded or measured cabinet is bundled.
+
+## Additional original synthetic cabinets
+
+Five embedded 48-kHz, 2048-tap original analytic assets are listed with SHA-256,
+CC0 rights, normalization and response recipe in assets/ir/catalog.json. Cabinet
+UI explicitly offers the unchanged legacy filter, these named synthetic voices
+and user IR import. Selecting one uses the same worker asset transaction, retains
+preset association and dirties only the tone asset reference. No missing checksum
+fallback, fake microphone positions, automatic hardware-dependent bypass or
+measured-speaker realism claim exists. Bundles include required exact WAV bytes.
+See assets/ir/README.md and tone-upgrade.md for generation and limitations.

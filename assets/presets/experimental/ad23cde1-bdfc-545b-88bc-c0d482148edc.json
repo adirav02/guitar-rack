@@ -1,0 +1,110 @@
+{
+  "schema_version": 2,
+  "preset_id": "ad23cde1-bdfc-545b-88bc-c0d482148edc",
+  "name": "Metallica / Glass Chorus Clean",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": 4.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "491891cf-7b46-5bc4-b824-b2fccd9fdeb9",
+    "51d9e5fc-d948-5e76-bb3b-e11223427e24",
+    "421901c1-04b1-55be-a9d8-82a5defe0330",
+    "8e469b22-114b-5865-8681-b0734fa521ee",
+    "8da517d6-2d26-5e95-9c81-3288adbba59f"
+  ],
+  "instances": [
+    {
+      "instance_id": "491891cf-7b46-5bc4-b824-b2fccd9fdeb9",
+      "slot_id": 0,
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 2.0,
+        "bass_db": -1.0,
+        "mid_db": 1.0,
+        "treble_db": 1.0,
+        "master_percent": 25.0,
+        "presence_percent": 40.0,
+        "output_db": -6.0,
+        "sag_percent": 20.0,
+        "bright_percent": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "51d9e5fc-d948-5e76-bb3b-e11223427e24",
+      "slot_id": 1,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+    },
+    {
+      "instance_id": "421901c1-04b1-55be-a9d8-82a5defe0330",
+      "slot_id": 2,
+      "effect_type": "chorus",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "rate_hz": 0.349999994039536,
+        "depth_percent": 22.0,
+        "width_percent": 60.000003814697266,
+        "mix_percent": 18.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "8e469b22-114b-5865-8681-b0734fa521ee",
+      "slot_id": 3,
+      "effect_type": "echo",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "time_ms": 180.0,
+        "bpm": 120.0,
+        "subdivision": 0.0,
+        "clock": 0.0,
+        "mode": 1.0,
+        "feedback_percent": 28.0,
+        "color_hz": 4500.0,
+        "wow_percent": 0.0,
+        "stereo": 0.0,
+        "heads": 0.0,
+        "mix_percent": 20.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "8da517d6-2d26-5e95-9c81-3288adbba59f",
+      "slot_id": 4,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.800000011920929,
+        "pre_delay_ms": 8.0,
+        "damping_hz": 6500.0,
+        "tone_hz": 9000.0,
+        "mix_percent": 10.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "sha256": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "relative_path": "ir/43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d.wav",
+      "format": "wav"
+    }
+  ]
+}

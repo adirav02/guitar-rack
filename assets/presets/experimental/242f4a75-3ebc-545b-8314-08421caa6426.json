@@ -1,0 +1,129 @@
+{
+  "schema_version": 2,
+  "preset_id": "242f4a75-3ebc-545b-8314-08421caa6426",
+  "name": "Metallica / Black Stadium",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -9.060000419616699,
+    "rack_bypass": false
+  },
+  "order": [
+    "d80ac7ed-bed7-538b-ae5f-961037ef0d20",
+    "6a4cddf6-3a0d-5fba-b2c9-a524b65d7266",
+    "19444798-d376-51e1-a9aa-5e59641d829f",
+    "5314e8d2-cc86-5585-beb4-83de9c4f84ae",
+    "b8ac70a4-9248-5c6b-acd0-06d99615503e",
+    "bf0ddd06-eddb-5222-bded-6e3f122927b7"
+  ],
+  "instances": [
+    {
+      "instance_id": "d80ac7ed-bed7-538b-ae5f-961037ef0d20",
+      "slot_id": 0,
+      "effect_type": "noise_gate",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "threshold_db": -54.0,
+        "range_db": 65.0,
+        "attack_ms": 1.0,
+        "hold_ms": 35.0,
+        "release_ms": 130.0,
+        "hysteresis_db": 7.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "6a4cddf6-3a0d-5fba-b2c9-a524b65d7266",
+      "slot_id": 1,
+      "effect_type": "amp_mark",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 22.0,
+        "bass_db": -4.0,
+        "mid_db": 1.0,
+        "treble_db": 1.0,
+        "master_percent": 35.0,
+        "presence_percent": 40.0,
+        "output_db": -13.999998092651367,
+        "sag_percent": 20.0,
+        "lead_gain_db": 22.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "19444798-d376-51e1-a9aa-5e59641d829f",
+      "slot_id": 2,
+      "effect_type": "graphic_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "80_hz_db": 2.0,
+        "240_hz_db": -1.0,
+        "750_hz_db": -4.0,
+        "2200_hz_db": 1.0,
+        "6600_hz_db": 0.0,
+        "output_db": -1.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "5314e8d2-cc86-5585-beb4-83de9c4f84ae",
+      "slot_id": 3,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+    },
+    {
+      "instance_id": "b8ac70a4-9248-5c6b-acd0-06d99615503e",
+      "slot_id": 4,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 150.0,
+        "band1_db": 0.0,
+        "band1_q": 0.699999988079071,
+        "band2_hz": 900.0,
+        "band2_db": 1.0,
+        "band2_q": 0.699999988079071,
+        "band3_hz": 3500.0,
+        "band3_db": -1.0,
+        "band3_q": 0.699999988079071,
+        "high_pass_hz": 70.0,
+        "low_pass_hz": 7200.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "bf0ddd06-eddb-5222-bded-6e3f122927b7",
+      "slot_id": 5,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.800000011920929,
+        "pre_delay_ms": 8.0,
+        "damping_hz": 6500.0,
+        "tone_hz": 9000.0,
+        "mix_percent": 10.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b",
+      "sha256": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b",
+      "relative_path": "ir/0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b.wav",
+      "format": "wav"
+    }
+  ]
+}

@@ -1,5 +1,10 @@
 # Portable state and Linux persistence
 
+Current tone-upgrade behavior is documented in [tone-upgrade.md](tone-upgrade.md);
+exact new type/version/index/range/default mappings are in [tone-controls.md](tone-controls.md).
+The legacy implementation descriptions below remain compatibility references.
+They do not supersede the new profile/UI/catalog contracts.
+
 `ToneState` is a configuration-only model independent of JUCE, physical devices
 and DSP history. It separates the rack definition (UUIDs, immutable slots,
 effect type/version and order) from the fixed control snapshot and preset
@@ -197,3 +202,23 @@ existing five without changing their identities. All 45 have tracked JSON fixtur
 Rack schemas retain their existing version 1/2 structures; effect/version pairs
 are explicit, and Delay v2 adds integer musical mode plus Color/Wow controls.
 Delay v1 remains exact and new effects do not rewrite existing host bank IDs.
+
+## Tone-upgrade identity, metadata and preferences
+
+All old UUID→recipe/instance/slot/order mappings are frozen. Factory source now
+uses explicit UUIDs and pedal UUID references, not display names/array positions.
+New processors use separate IDs (v1) and no implicit legacy migration occurs.
+Schemas v1/v2 and the pedal schema enumerate exact executable registry versions;
+arbitrary metadata still fails portable validation. Separate catalog version 1
+contains character/tags/artist/style/gain, tuning/pickup/input suggestions, amp/
+cab requirements and honest evidence/listening status. No song-part state exists.
+
+Strict local preferences v2 has 24 exact fields: original device/configuration/
+window fields plus audio collapse, browser rectangle, scroll/search/source/artist/
+gain filters, UUID favorites/expanded instances and explicit latency profile.
+V1 device values persist, old tall height reduces to at most 768; added state uses
+defaults, including Legacy 128. New main geometry is 700×450…7680×4320 logical
+pixels; browser 700×400…7680×4320. Canonical unique UUID arrays are bounded at 512.
+These settings never enter tone/pedal files or dirty comparison. Profile is
+restored while stopped before the startup tone's graph submission; no live input
+is opened. Unsupported profile/tone requirements reject transactionally.

@@ -1,9 +1,8 @@
 #include "PresetBar.h"
 namespace guitarrack {
-PresetBar::PresetBar(RackEngine& rack) : presets(rack,userDataDirectory()/"presets") {
-    for(auto* c: std::initializer_list<juce::Component*>{&choices,&saveButton,&saveAsButton,&deleteButton,&importButton,&exportButton,&cancelButton,&indicator,&status}) addAndMakeVisible(c);
-    choices.setTextWhenNothingSelected("Clean"); refreshChoices();
-    choices.onChange=[this] { int i=choices.getSelectedItemIndex(); if(i<0) return; auto tone=displayed[static_cast<std::size_t>(i)]; guard([safe=juce::Component::SafePointer<PresetBar>(this),tone] { if(safe) safe->presets.select(tone); }); };
+PresetBar::PresetBar(RackEngine& rack) : presets(rack,userDataDirectory()/"presets"),registry(rack.registry()) {
+    for(auto* c: std::initializer_list<juce::Component*>{&chooseButton,&currentName,&saveButton,&saveAsButton,&indicator,&status}) addAndMakeVisible(c);
+    chooseButton.onClick=[this]{openBrowser();};
     saveButton.onClick=[this] { if(presets.selectedIsFactory()) saveAs(); else presets.save(); };
     saveAsButton.onClick=[this] { saveAs(); };
     deleteButton.onClick=[this] { deletePreset(); };
@@ -15,24 +14,34 @@ PresetBar::PresetBar(RackEngine& rack) : presets(rack,userDataDirectory()/"prese
     try { auto path=userDataDirectory()/"last-tone.json"; if(std::filesystem::exists(path)) presets.importFile(path); }
     catch(const std::exception& e) { presets.error=e.what(); }
 }
-void PresetBar::refreshChoices() {
-    displayed=presets.library; choices.clear(juce::dontSendNotification);
-    for(std::size_t i=0;i<displayed.size();++i) choices.addItem(juce::String::fromUTF8(displayed[i].name.c_str()),static_cast<int>(i+1));
+PresetBar::~PresetBar() {browser.reset();}
+void PresetBar::restoreLocal(const Preferences& p) {browserPreferences=p; if(browser)browser->restore(p);}
+void PresetBar::captureLocal(Preferences& p) const {
+    auto copy=browserPreferences;if(browser)browser->capture(copy);
+    p.browserX=copy.browserX;p.browserY=copy.browserY;p.browserWidth=copy.browserWidth;p.browserHeight=copy.browserHeight;
+    p.search=copy.search;p.source=copy.source;p.artist=copy.artist;p.category=copy.category;p.favorites=copy.favorites;
+}
+void PresetBar::openBrowser() {
+    if(!browser) {
+        browser=std::make_unique<PresetBrowser>(presets,registry,
+            [this](ToneState tone){guard([safe=juce::Component::SafePointer<PresetBar>(this),tone]{if(safe)safe->presets.select(tone);});},
+            [this]{importButton.triggerClick();},[this]{exportButton.triggerClick();},[this]{deleteButton.triggerClick();});
+        browser->restore(browserPreferences);
+    }
+    browser->poll();browser->setVisible(true);browser->toFront(true);
 }
 void PresetBar::poll() {
     presets.poll();
-    if(displayed!=presets.library) refreshChoices();
     auto selected=presets.selected();
-    int index=-1; if(selected) for(std::size_t i=0;i<displayed.size();++i) if(displayed[i].id==selected->id) index=static_cast<int>(i);
-    choices.setSelectedItemIndex(index,juce::dontSendNotification);
-    if(index<0) choices.setText(selected?juce::String::fromUTF8(selected->name.c_str()):presets.dirty()?"Untitled rack":"Clean",juce::dontSendNotification);
+    currentName.setText(selected?juce::String::fromUTF8(selected->name.c_str()):presets.dirty()?"Untitled rack":"Clean",juce::dontSendNotification);
     const bool busy=presets.busy();
     indicator.setText(busy?(presets.loading()?"Loading preset...":"Applying edits..."):presets.dirty()?"* Unsaved changes":"Saved / unchanged",juce::dontSendNotification);
     status.setText(juce::String::fromUTF8(presets.error.c_str()),juce::dontSendNotification);
     status.setTooltip(juce::String::fromUTF8(presets.error.c_str()));
     saveButton.setEnabled(!busy&&!dialogOpen); saveAsButton.setEnabled(!busy&&!dialogOpen); exportButton.setEnabled(!busy&&!dialogOpen);
     deleteButton.setEnabled(presets.canDelete()&&!dialogOpen);
-    importButton.setEnabled(!dialogOpen); choices.setEnabled(!dialogOpen); cancelButton.setEnabled(presets.loading()&&!dialogOpen);
+    importButton.setEnabled(!dialogOpen); chooseButton.setEnabled(!dialogOpen); cancelButton.setEnabled(presets.loading()&&!dialogOpen);
+    if(browser) browser->poll();
 }
 void PresetBar::guard(std::function<void()> action) {
     if(dialogOpen) return;
@@ -104,13 +113,10 @@ void PresetBar::fileDialog(bool importing) {
     });
 }
 void PresetBar::resized() {
-    auto area=getLocalBounds(); auto row=area.removeFromTop(30);
-    choices.setBounds(row.removeFromLeft(280));
-    for(auto* button:{&saveButton,&saveAsButton,&deleteButton,&importButton,&exportButton}) { row.removeFromLeft(5); button->setBounds(row.removeFromLeft(72)); }
-    row.removeFromLeft(5); cancelButton.setBounds(row.removeFromLeft(100));
-    // Keep dirty/loading feedback visible even at the minimum window width.
-    auto feedback=area.removeFromTop(22); indicator.setBounds(feedback);
-    status.setBounds(area);
+    auto area=getLocalBounds();auto row=area.removeFromTop(30);
+    chooseButton.setBounds(row.removeFromLeft(150));row.removeFromLeft(8);
+    saveAsButton.setBounds(row.removeFromRight(80));row.removeFromRight(6);saveButton.setBounds(row.removeFromRight(65));
+    currentName.setBounds(row);
+    auto feedback=area.removeFromTop(22);indicator.setBounds(feedback.removeFromLeft(230));status.setBounds(feedback);
 }
 }
-

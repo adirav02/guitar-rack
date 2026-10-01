@@ -71,8 +71,12 @@ MainComponent::MainComponent() {
     bufferBox.setTooltip("JACK uses the existing server buffer. ALSA exposes the device's supported choices.");
     outputGain.setTooltip("Defaults to -12 dB. Output protection clamps peaks at 0.98; clipping changes tone.");
     addAndMakeVisible(rackEditor); addAndMakeVisible(presetBar);
+    addAndMakeVisible(latencyProfile);latencyProfile.addItem("Legacy: 128 DSP samples",1);latencyProfile.addItem("Creative: 4096 DSP samples",2);latencyProfile.setSelectedId(1,juce::dontSendNotification);
+    latencyProfile.setTooltip("Stopped-state session setting. Creative enables spectral pitch; all sounds in this session use 4096 samples. This is processor latency, not total I/O latency. Not stored in portable tones.");
+    latencyProfile.onChange=[this]{if(!session.processor.rack.setLatencyProfile(latencyProfile.getSelectedId()==2?creativeLatencySamples:rackLatencySamples)) {presetBar.presets.error="Latency profile could not change: "+session.processor.rack.snapshot().error;latencyProfile.setSelectedId(session.processor.rack.latencySamples()==128?1:2,juce::dontSendNotification);}else session.processor.setLatencySamples(session.processor.rack.latencySamples());};
+    addAndMakeVisible(audioSetup);audioSetup.onClick=[this]{audioCollapsed=!audioCollapsed;resized();};
     refreshDevices();
-    setSize(920, 1080); restorePreferences();
+    setSize(1280, 720); restorePreferences();
     startTimerHz(20);
 }
 MainComponent::~MainComponent() { stopTimer(); session.stopNow(); }
@@ -135,11 +139,21 @@ void MainComponent::startAudio() {
 void MainComponent::updateEnabled() {
     const bool busy = session.isBusy();
     for (auto* combo : {&backendBox, &inputDevice, &outputDevice, &inputChannel, &leftChannel, &rightChannel, &rateBox, &bufferBox}) combo->setEnabled(!busy);
+    latencyProfile.setEnabled(!busy&&!presetBar.presets.busy());
     refreshButton.setEnabled(!busy); stopButton.setEnabled(session.isRunning());
     startButton.setEnabled(!busy && !presetBar.presets.busy() && session.preview() && inputChannel.getSelectedItemIndex() >= 0
         && leftChannel.getSelectedItemIndex() >= 0 && rightChannel.getSelectedItemIndex() >= 0
         && leftChannel.getSelectedItemIndex() != rightChannel.getSelectedItemIndex()
         && rateBox.getSelectedItemIndex() >= 0 && bufferBox.getSelectedItemIndex() >= 0);
+}
+void MainComponent::updateConfigurationLabel() {
+    const auto diagnostics=session.configuration();
+    auto selection=backendBox.getText()+" | "+(inputDevice.getText().isEmpty()?juce::String("Select audio device"):inputDevice.getText());
+    if(outputDevice.getText().isNotEmpty()&&outputDevice.getText()!=inputDevice.getText())selection+=" → "+outputDevice.getText();
+    auto channel=[](const juce::ComboBox& box){return box.getSelectedItemIndex()<0?juce::String("?"):juce::String(box.getSelectedItemIndex()+1);};
+    selection+=" | In "+channel(inputChannel)+" / Out "+channel(leftChannel)+"+"+channel(rightChannel);
+    configLabel.setText(audioCollapsed?selection+" | "+diagnostics.upToFirstOccurrenceOf("\n",false,false):diagnostics,juce::dontSendNotification);
+    configLabel.setTooltip(selection+"\n"+diagnostics);
 }
 void MainComponent::timerCallback() {
     session.poll(); presetBar.poll(); updateEnabled();
@@ -161,7 +175,8 @@ void MainComponent::timerCallback() {
     if (clipFlags & MonitorEngine::nonFiniteDSP) clips += "Invalid DSP samples silenced. ";
     clipLabel.setText(clips.isEmpty() ? "No clipping detected." : clips, juce::dontSendNotification);
     statusLabel.setText(setupError.isNotEmpty() ? setupError : session.status(), juce::dontSendNotification);
-    configLabel.setText(session.configuration(), juce::dontSendNotification);
+    statusLabel.setTooltip(statusLabel.getText());
+    updateConfigurationLabel();
 }
 void MainComponent::restorePreferences() {
     try {
@@ -170,6 +185,11 @@ void MainComponent::restorePreferences() {
             if (!std::filesystem::exists(path)) return;
             remembered=parsePreferences(readBounded(path));
             setSize(remembered->width,remembered->height);
+            if(session.processor.rack.setLatencyProfile(remembered->latencyProfile)) {
+                latencyProfile.setSelectedId(remembered->latencyProfile==128?1:2,juce::dontSendNotification);
+                session.processor.setLatencySamples(session.processor.rack.latencySamples());
+            }
+            audioCollapsed=remembered->audioCollapsed;presetBar.restoreLocal(*remembered);rackEditor.restoreLocal(*remembered);resized();
         }
         const auto& p=*remembered;
         backendBox.setSelectedItemIndex(exactDeviceIndex(session.backendNames(),p.backend),juce::dontSendNotification);
@@ -192,9 +212,10 @@ void MainComponent::persistLocal() {
     auto ri=rateBox.getSelectedItemIndex(), bi=bufferBox.getSelectedItemIndex();
     if(ri>=0) p.rate=rates[ri];
     if(bi>=0) p.buffer=buffers[bi];
-    p.width=std::clamp(getWidth(),850,1600); p.height=std::clamp(getHeight(),1030,1400);
+    p.width=std::clamp(getWidth(),700,7680); p.height=std::clamp(getHeight(),450,4320);
     // Keep missing remembered device names so reconnect can restore them next launch.
     if(remembered&&(p.inputDevice.empty()||p.outputDevice.empty())) { auto width=p.width,height=p.height; p=*remembered; p.width=width; p.height=height; }
+    p.latencyProfile=int(session.processor.rack.latencySamples());p.audioCollapsed=audioCollapsed;presetBar.captureLocal(p);rackEditor.captureLocal(p);
     atomicWrite(userConfigDirectory()/"settings.json",serializePreferences(p));
     // Close after Discard recalls the saved tone, never the discarded edits.
     auto& presets=presetBar.presets;
@@ -212,50 +233,49 @@ bool MainComponent::keyPressed(const juce::KeyPress& key) {
     return false;
 }
 void MainComponent::resized() {
-    auto area = getLocalBounds().reduced(20);
-    title.setBounds(area.removeFromTop(36));
-    hint.setBounds(area.removeFromTop(52)); area.removeFromTop(8);
-    auto backendRow = area.removeFromTop(32);
-    backendLabel.setBounds(backendRow.removeFromLeft(150)); backendBox.setBounds(backendRow);
-    area.removeFromTop(12);
-    const int gap = 18, half = (area.getWidth() - gap) / 2;
-    auto names = area.removeFromTop(24);
-    inputDeviceLabel.setBounds(names.removeFromLeft(half)); names.removeFromLeft(gap); outputDeviceLabel.setBounds(names);
-    auto devices = area.removeFromTop(30);
-    inputDevice.setBounds(devices.removeFromLeft(half)); devices.removeFromLeft(gap); outputDevice.setBounds(devices);
-    area.removeFromTop(12);
-    const int third = (area.getWidth() - 2 * gap) / 3;
-    auto channelsText = area.removeFromTop(24);
-    inputLabel.setBounds(channelsText.removeFromLeft(third)); channelsText.removeFromLeft(gap);
-    leftLabel.setBounds(channelsText.removeFromLeft(third)); channelsText.removeFromLeft(gap); rightLabel.setBounds(channelsText);
-    auto channels = area.removeFromTop(30);
-    inputChannel.setBounds(channels.removeFromLeft(third)); channels.removeFromLeft(gap);
-    leftChannel.setBounds(channels.removeFromLeft(third)); channels.removeFromLeft(gap); rightChannel.setBounds(channels);
-    area.removeFromTop(12);
-    auto configText = area.removeFromTop(24);
-    rateLabel.setBounds(configText.removeFromLeft(half)); configText.removeFromLeft(gap); bufferLabel.setBounds(configText);
-    auto config = area.removeFromTop(30);
-    rateBox.setBounds(config.removeFromLeft(half)); config.removeFromLeft(gap); bufferBox.setBounds(config);
-    area.removeFromTop(20);
-    auto buttons = area.removeFromTop(36);
-    for (auto* button : {&startButton, &stopButton, &muteButton}) { button->setBounds(buttons.removeFromLeft(110)); buttons.removeFromLeft(12); }
-    refreshButton.setBounds(buttons.removeFromLeft(190));
-    area.removeFromTop(16);
-    auto gainText = area.removeFromTop(24);
-    inputGainLabel.setBounds(gainText.removeFromLeft(half)); gainText.removeFromLeft(gap); outputGainLabel.setBounds(gainText);
-    auto gains = area.removeFromTop(36);
-    inputGain.setBounds(gains.removeFromLeft(half)); gains.removeFromLeft(gap); outputGain.setBounds(gains);
-    area.removeFromTop(12);
-    auto meterText = area.removeFromTop(24);
-    inputMeterLabel.setBounds(meterText.removeFromLeft(half)); meterText.removeFromLeft(gap); outputMeterLabel.setBounds(meterText);
-    auto meters = area.removeFromTop(28);
-    inputMeter.setBounds(meters.removeFromLeft(half)); meters.removeFromLeft(gap); outputMeter.setBounds(meters);
-    area.removeFromTop(12);
-    auto clipping = area.removeFromTop(44);
-    resetClips.setBounds(clipping.removeFromRight(130).withHeight(30)); clipLabel.setBounds(clipping);
-    statusLabel.setBounds(area.removeFromTop(52));
-    configLabel.setBounds(area.removeFromTop(76));
-    area.removeFromTop(4); presetBar.setBounds(area.removeFromTop(96));
-    area.removeFromTop(6); rackEditor.setBounds(area);
+    auto area=getLocalBounds().reduced(12);
+    const bool compact=audioCollapsed||getHeight()<600;
+    auto header=area.removeFromTop(34);audioSetup.setBounds(header.removeFromRight(150));latencyProfile.setBounds(header.removeFromRight(220).reduced(4));title.setBounds(header);
+    audioSetup.setButtonText(audioCollapsed?"Audio Setup ▸":"Audio Setup ▾");
+    for(auto* c:std::initializer_list<juce::Component*>{&hint,&backendLabel,&inputDeviceLabel,&outputDeviceLabel,&inputLabel,&leftLabel,&rightLabel,&rateLabel,&bufferLabel,&backendBox,&inputDevice,&outputDevice,&inputChannel,&leftChannel,&rightChannel,&rateBox,&bufferBox}) c->setVisible(!audioCollapsed);
+    const int gap=12,half=(area.getWidth()-gap)/2;
+    if(!audioCollapsed) {
+        hint.setBounds(area.removeFromTop(36));
+        auto deviceLabels=area.removeFromTop(18);auto devices=area.removeFromTop(26);
+        int third=(area.getWidth()-2*gap)/3;
+        for(auto pair:{std::pair{&backendLabel,&backendBox},std::pair{&inputDeviceLabel,&inputDevice},std::pair{&outputDeviceLabel,&outputDevice}}) {
+            pair.first->setBounds(deviceLabels.removeFromLeft(third));deviceLabels.removeFromLeft(gap);
+            pair.second->setBounds(devices.removeFromLeft(third));devices.removeFromLeft(gap);
+        }
+        area.removeFromTop(4);auto labels=area.removeFromTop(18);auto selectors=area.removeFromTop(26);
+        int fifth=(area.getWidth()-4*gap)/5;
+        for(auto pair:{std::pair{&inputLabel,&inputChannel},std::pair{&leftLabel,&leftChannel},std::pair{&rightLabel,&rightChannel},std::pair{&rateLabel,&rateBox},std::pair{&bufferLabel,&bufferBox}}) {
+            pair.first->setBounds(labels.removeFromLeft(fifth));labels.removeFromLeft(gap);
+            pair.second->setBounds(selectors.removeFromLeft(fifth));selectors.removeFromLeft(gap);
+        }
+    }
+    auto buttons=area.removeFromTop(32);
+    for(auto* button:{&startButton,&stopButton,&muteButton}){button->setBounds(buttons.removeFromLeft(100).reduced(2));}
+    refreshButton.setBounds(buttons.removeFromLeft(175).reduced(2));statusLabel.setBounds(buttons);
+    inputGainLabel.setText(compact?"Input trim":"Input trim (-24 to +24 dB)",juce::dontSendNotification);
+    outputGainLabel.setText(compact?"Output level":"Output level (-60 to +6 dB)",juce::dontSendNotification);
+    inputMeterLabel.setText(compact?"Input peak":"Input peak after trim",juce::dontSendNotification);
+    inputMeterLabel.setTooltip("Input peak after trim. Raw full-scale input is also checked for clipping.");
+    if(compact) {
+        auto gains=area.removeFromTop(32);auto left=gains.removeFromLeft(half);gains.removeFromLeft(gap);
+        inputGainLabel.setBounds(left.removeFromLeft(96));inputGain.setBounds(left);
+        outputGainLabel.setBounds(gains.removeFromLeft(96));outputGain.setBounds(gains);
+        auto meters=area.removeFromTop(26);left=meters.removeFromLeft(half);meters.removeFromLeft(gap);
+        inputMeterLabel.setBounds(left.removeFromLeft(96));inputMeter.setBounds(left);
+        outputMeterLabel.setBounds(meters.removeFromLeft(96));outputMeter.setBounds(meters);
+    } else {
+    auto gainsText=area.removeFromTop(18);inputGainLabel.setBounds(gainsText.removeFromLeft(half));gainsText.removeFromLeft(gap);outputGainLabel.setBounds(gainsText);
+    auto gains=area.removeFromTop(30);inputGain.setBounds(gains.removeFromLeft(half));gains.removeFromLeft(gap);outputGain.setBounds(gains);
+    auto labels=area.removeFromTop(18);inputMeterLabel.setBounds(labels.removeFromLeft(half));labels.removeFromLeft(gap);outputMeterLabel.setBounds(labels);
+    auto meters=area.removeFromTop(24);inputMeter.setBounds(meters.removeFromLeft(half));meters.removeFromLeft(gap);outputMeter.setBounds(meters);
+    }
+    auto clips=area.removeFromTop(26);resetClips.setBounds(clips.removeFromRight(120));clipLabel.setBounds(clips);
+    configLabel.setBounds(area.removeFromTop(compact?28:42));updateConfigurationLabel();
+    presetBar.setBounds(area.removeFromTop(54));area.removeFromTop(4);rackEditor.setBounds(area);
 }
 }

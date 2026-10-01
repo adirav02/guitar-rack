@@ -1,3 +1,4 @@
+#include "core/CabinetAssets.h"
 #include "state/Assets.h"
 #include "state/PresetSession.h"
 #include "core/MonitorEngine.h"
@@ -32,6 +33,12 @@ void bundles(const std::filesystem::path& root,const EffectRegistry& registry) {
     std::filesystem::remove(external);std::filesystem::remove_all(a.directory);auto restored=b.importPreset(bundle,registry);
     check(restored.rack==tone.rack&&b.bytes(id)==bytes,"portable import works after external and source managed IR disappear");
     b.validateAssets(restored);check(decodeIR(b.bytes(id)).samples==decodeIR(bytes).samples,"bundle preserves unnormalized IR samples");
+    for(const auto& cabinet:builtinCabinets()) {
+        auto original=builtinIRBytes(cabinet.id);auto builtInTone=cabinetTone(registry,cabinet.id);
+        auto portable=root/(cabinet.name+".grbundle");a.exportBundle(portable,builtInTone,registry);
+        auto imported=b.importPreset(portable,registry);b.validateAssets(imported);
+        check(imported.rack==builtInTone.rack&&b.bytes(cabinet.id)==original,"all new embedded cabinet bundles preserve exact portable bytes/identity");
+    }
     auto full=readBytes(bundle);
     auto invalid=[&](auto edit,const char* name){auto bad=full;edit(bad);writeBytes(root/"bad.grbundle",bad);rejects([&]{b.importPreset(root/"bad.grbundle",registry);},name);};
     auto u32=[](const auto& v,std::size_t p){unsigned n=0;for(unsigned i=0;i<4;++i)n|=unsigned(v[p+i])<<(8*i);return n;};auto offset=12+u32(full,8)+4; // first entry name length

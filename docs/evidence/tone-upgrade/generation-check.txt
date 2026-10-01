@@ -1,0 +1,5 @@
+Generated 146 pedal voicings and 64 racks.
+Updated strict effect/version/control cases in schema v1 and v2.
+PASS: all frozen legacy identities, recipes, bytes and control mappings; protected Subterranean
+Deterministic regeneration: PASS checked 81 files
+Changed paths: []

@@ -1,5 +1,6 @@
 #include "RackEditor.h"
 #include "core/SoundLibrary.h"
+#include "core/CabinetAssets.h"
 #include "state/PedalPresets.h"
 #include <cmath>
 
@@ -17,15 +18,24 @@ juce::Colour pedalColour(const std::string& type) {
 }
 class RackEditor::Card final : public juce::Component {
 public:
-    Card(RackEngine& owner, PresetSession& session, const RackInstance& instance, int position, int count, std::uint64_t& revision)
+    Card(RackEngine& owner, PresetSession& session, const RackInstance& instance, int position, int count, std::uint64_t& revision,bool open,std::function<void(bool)> change)
         : rack(owner), presets(session), identity(instance), colour(pedalColour(instance.effectType)),
-          store(userDataDirectory()/"pedals"), libraryRevision(revision) {
+          store(userDataDirectory()/"pedals"),libraryRevision(revision),expanded(open),onExpansion(std::move(change)) {
         descriptor=rack.registry().find(identity.effectType,identity.effectVersion);
         title.setText(juce::String(position+1)+". "+descriptor->displayName,juce::dontSendNotification);
         title.setJustificationType(juce::Justification::centred);
         title.setColour(juce::Label::textColourId,colour.brighter());
         title.setTooltip("Move this pedal to change the signal chain. Settings and identity stay with it.");
-        for(auto* c:std::initializer_list<juce::Component*>{&title,&up,&down,&remove,&bypass,&reset,&voices,&saveVoice}) addAndMakeVisible(c);
+        for(auto* c:std::initializer_list<juce::Component*>{&title,&up,&down,&remove,&bypass,&reset,&voices,&saveVoice,&expand,&tap}) addAndMakeVisible(c);
+        expand.setButtonText(expanded?"Basic controls":"All controls");
+        expand.onClick=[this]{expanded=!expanded;expand.setButtonText(expanded?"Basic controls":"All controls");onExpansion(expanded);};
+        // Include Drive/Gain and Level/Output in every compact pedal.
+        for(std::size_t i=0;i<descriptor->parameters.size();++i) {
+            const auto& p=descriptor->parameters[i];
+            if(i<2 || p.key=="level_db" || p.key=="output_db" || p.key=="drive_db" || p.key=="gain_db" || p.key=="gain_b_db" || p.key=="expression_percent") basic.push_back(i);
+        }
+        tap.setVisible(identity.effectType=="echo");
+        tap.onClick=[this]{const double now=juce::Time::getMillisecondCounterHiRes();if(lastTap>0&&now-lastTap>=250&&now-lastTap<=1500){std::vector<float> values;for(const auto& p:descriptor->parameters){float value=p.denormalize(rack.bank.value(identity.slot,p.bankIndex));if(p.key=="bpm")value=static_cast<float>(60000/(now-lastTap));if(p.key=="clock")value=1;values.push_back(value);}rack.setParameters(identity.id,values);}lastTap=now;};
         up.setEnabled(position>0); down.setEnabled(position+1<count);
         up.onClick=[this]{rack.move(identity.id,-1);}; down.onClick=[this]{rack.move(identity.id,1);};
         remove.onClick=[this]{rack.remove(identity.id);};
@@ -85,7 +95,13 @@ public:
             controls.push_back(std::move(control));
         }
         if(identity.effectType=="cabinet") {
-            addAndMakeVisible(loadIR); addAndMakeVisible(assetStatus);
+            addAndMakeVisible(loadIR); addAndMakeVisible(assetStatus);addAndMakeVisible(cabinetChoices);
+            cabinetChoices.addItem("Original synthetic (legacy)",1);int choice=2;
+            for(const auto& c:builtinCabinets())cabinetChoices.addItem("Synthetic: "+juce::String(c.name),choice++);
+            int selected=identity.irAsset==syntheticIRId()?1:0;
+            for(std::size_t i=0;i<builtinCabinets().size();++i)if(builtinCabinets()[i].id==identity.irAsset)selected=int(i)+2;
+            cabinetChoices.setTextWhenNothingSelected("User IR");cabinetChoices.setSelectedId(selected,juce::dontSendNotification);
+            cabinetChoices.onChange=[this]{const int choice=cabinetChoices.getSelectedId();if(choice>0)presets.selectBuiltinIR(identity.id,choice==1?syntheticIRId():builtinCabinets()[std::size_t(choice-2)].id);};
             loadIR.onClick=[this]{
                 chooser=std::make_unique<juce::FileChooser>("Load mono cabinet IR (up to 500 ms)",juce::File{},"*.wav");
                 chooser->launchAsync(juce::FileBrowserComponent::openMode|juce::FileBrowserComponent::canSelectFiles,
@@ -96,11 +112,13 @@ public:
                     });
             };
             assetStatus.setText(identity.irAsset==syntheticIRId()?"Synthetic cabinet filter":"User IR: "+identity.irAsset.substr(0,12),juce::dontSendNotification);
+            for(const auto& c:builtinCabinets()) if(c.id==identity.irAsset) assetStatus.setText("Synthetic: "+juce::String(c.name),juce::dontSendNotification);
             assetStatus.setTooltip("Cabinet is linear convolution. Choose a measured IR for your preferred cabinet tone.");
         }
         poll();
     }
-    int preferredHeight() const { return 210+static_cast<int>((controls.size()+1)/2)*100+(identity.effectType=="cabinet"?50:0); }
+    const InstanceId& instanceId() const noexcept {return identity.id;}
+    int preferredHeight() const { return 146+static_cast<int>(((expanded?controls.size():basic.size())+1)/2)*64+(identity.effectType=="cabinet"?78:0); }
     void poll() {
         if(seenRevision!=libraryRevision) { refreshVoices(); seenRevision=libraryRevision; }
         const bool engaged=!rack.bank.bypassed(identity.slot);
@@ -120,31 +138,39 @@ public:
                     voices.setSelectedId(0,juce::dontSendNotification); break;
                 }
         }
+        if(voices.getSelectedItemIndex()<0) {
+            for(std::size_t candidate=0;candidate<voicings.size();++candidate) {
+                const auto& voice=voicings[candidate];bool matches=true;
+                for(std::size_t i=0;i<voice.values.size();++i)
+                    if(std::abs(voice.values[i]-descriptor->parameters[i].denormalize(rack.bank.value(identity.slot,descriptor->parameters[i].bankIndex)))>.02f){matches=false;break;}
+                if(matches){voices.setSelectedItemIndex(int(candidate),juce::dontSendNotification);break;}
+            }
+        }
         saveVoice.setEnabled(!presets.busy() && !dialogOpen);
         repaint();
     }
     void resized() override {
-        auto area=getLocalBounds().reduced(12);
-        auto footer=area.removeFromBottom(74);
-        saveVoice.setBounds(footer.removeFromTop(24)); footer.removeFromTop(8);
-        bypass.setBounds(footer.removeFromTop(30).reduced(28,0));
+        auto area=getLocalBounds().reduced(10);
+        auto footer=area.removeFromBottom(26);
+        saveVoice.setBounds(footer.removeFromTop(24));
         title.setBounds(area.removeFromTop(26));
-        auto actions=area.removeFromTop(25); const int width=actions.getWidth()/4;
+        auto actions=area.removeFromTop(22); const int width=actions.getWidth()/4;
         up.setBounds(actions.removeFromLeft(width).reduced(2)); down.setBounds(actions.removeFromLeft(width).reduced(2));
         reset.setBounds(actions.removeFromLeft(width).reduced(2)); remove.setBounds(actions.reduced(2));
-        area.removeFromTop(8); voices.setBounds(area.removeFromTop(26)); area.removeFromTop(8);
-        for(std::size_t i=0;i<controls.size();i+=2) {
-            auto row=area.removeFromTop(100);
-            const int half=row.getWidth()/2;
-            for(unsigned j=0;j<2 && i+j<controls.size();++j) {
-                auto cell=(j==0?row.removeFromLeft(half):row).reduced(3);
-                auto& c=controls[i+j]; c->label.setBounds(cell.removeFromTop(20));
-                if(c->parameter.choices.empty()) c->slider.setBounds(cell);
-                else c->mode.setBounds(cell.removeFromTop(30));
-            }
+        area.removeFromTop(4); voices.setBounds(area.removeFromTop(26));auto detail=area.removeFromTop(22);bypass.setBounds(detail.removeFromRight(90));if(identity.effectType=="echo")tap.setBounds(detail.removeFromRight(75));expand.setBounds(detail);
+        for(auto& c:controls) {c->label.setVisible(false);c->slider.setVisible(false);c->mode.setVisible(false);}
+        std::size_t shown=0;
+        juce::Rectangle<int> row;
+        for(std::size_t i=0;i<controls.size();++i) {
+            if(!expanded && std::find(basic.begin(),basic.end(),i)==basic.end())continue;
+            if(shown%2==0) row=area.removeFromTop(64);
+            auto cell=(shown%2==0?row.removeFromLeft(row.getWidth()/2):row).reduced(3);++shown;
+            auto& c=controls[i];c->label.setVisible(true);c->label.setBounds(cell.removeFromTop(18));
+            if(c->parameter.choices.empty()) {c->slider.setVisible(true);c->slider.setBounds(cell);}
+            else {c->mode.setVisible(true);c->mode.setBounds(cell.removeFromTop(28));}
         }
         if(identity.effectType=="cabinet") {
-            loadIR.setBounds(area.removeFromTop(26)); assetStatus.setBounds(area.removeFromTop(24));
+            cabinetChoices.setBounds(area.removeFromTop(28));loadIR.setBounds(area.removeFromTop(26)); assetStatus.setBounds(area.removeFromTop(24));
         }
 
     }
@@ -157,6 +183,9 @@ public:
         g.fillEllipse(static_cast<float>(getWidth()/2-4),static_cast<float>(getHeight()-14),8,8);
     }
 private:
+    std::vector<std::size_t> basic;
+    juce::TextButton expand,tap{"Tap BPM"};
+    double lastTap=0;
     void refreshVoices() {
         std::string selected;
         const int old=voices.getSelectedItemIndex();
@@ -202,6 +231,9 @@ private:
     PedalPresetStore store;
     std::vector<EffectPreset> voicings;
     std::uint64_t& libraryRevision;
+    bool expanded=false;
+    std::function<void(bool)> onExpansion;
+    juce::ComboBox cabinetChoices;
     std::uint64_t seenRevision=0;
     bool dialogOpen=false;
     juce::ComboBox voices;
@@ -260,12 +292,16 @@ RackEditor::~RackEditor() { viewport.setViewedComponent(nullptr, false); }
 void RackEditor::poll() {
     const auto state = rack.snapshot();
     if (state.requested != displayed) {
+        const int scroll=std::max(restoredScroll,viewport.getViewPositionY());
+        std::string anchor;int offset=0;
+        for(const auto& card:cards)if(card->getY()+card->getHeight()>scroll){anchor=card->instanceId();offset=scroll-card->getY();break;}
         cards.clear(); displayed = state.requested;
         for (std::size_t i = 0; i < displayed.order.size(); ++i) {
-            auto card = std::make_unique<Card>(rack, presets, *displayed.find(displayed.order[i]), static_cast<int>(i), static_cast<int>(displayed.order.size()),voicingRevision);
+            auto card = std::make_unique<Card>(rack, presets, *displayed.find(displayed.order[i]), static_cast<int>(i), static_cast<int>(displayed.order.size()),voicingRevision,expanded.contains(displayed.order[i]),
+                [this,id=displayed.order[i]](bool open){if(open){if(expanded.size()>=512&&!expanded.contains(id))expanded.erase(expanded.begin());expanded.insert(id);}else expanded.erase(id);const int y=viewport.getViewPositionY();layoutCards();viewport.setViewPosition(0,y);});
             content.addAndMakeVisible(*card); cards.push_back(std::move(card));
         }
-        layoutCards();
+        layoutCards();int target=scroll;for(const auto& card:cards)if(card->instanceId()==anchor)target=card->getY()+offset;viewport.setViewPosition(0,target);restoredScroll=0;
     }
     // Full tone controls install at activation; keep the prior visible controls
     // until the matching rack/selection commit acknowledgment is published.
@@ -292,9 +328,11 @@ void RackEditor::layoutCards() {
     }
     content.setSize(available,std::max(1,y)); content.repaint();
 }
+void RackEditor::restoreLocal(const Preferences& p) {expanded={p.expanded.begin(),p.expanded.end()};restoredScroll=p.boardScroll;displayed={};poll();}
+void RackEditor::captureLocal(Preferences& p) const {p.expanded.assign(expanded.begin(),expanded.end());p.boardScroll=viewport.getViewPositionY();}
 void RackEditor::resized() {
     auto area = getLocalBounds(); auto bar = area.removeFromTop(34);
-    picker.setBounds(bar.removeFromLeft(130)); bar.removeFromLeft(6);
+    picker.setBounds(bar.removeFromLeft(230)); bar.removeFromLeft(6);
     addEffect.setBounds(bar.removeFromLeft(110)); bar.removeFromLeft(10);
     bypass.setBounds(bar.removeFromLeft(120)); bar.removeFromLeft(12); status.setBounds(bar);
     area.removeFromTop(6); viewport.setBounds(area); layoutCards();

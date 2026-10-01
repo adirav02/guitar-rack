@@ -1,4 +1,5 @@
 #include "PresetSession.h"
+#include "core/CabinetAssets.h"
 namespace guitarrack {
 PresetSession::PresetSession(RackEngine& r,std::filesystem::path root) : recallFile(root.parent_path()/"last-tone.json"), store(root), assets(root.parent_path()/"ir"), rack(r) {
     rack.setAssetResolver([assetStore=assets](const std::string& id){return assetStore.resolve(id);});
@@ -39,6 +40,14 @@ void PresetSession::loadIR(const InstanceId& id,std::filesystem::path path) {
     if(!cabinet||cabinet->effectType!="cabinet") {error="Select an existing Cabinet instance."; return;}
     request({0,std::move(path),std::move(tone),id});
 }
+void PresetSession::selectBuiltinIR(const InstanceId& id,const std::string& checksum) {
+    if(busy()) {error="Wait for the current transaction before choosing a cabinet.";return;}
+    if(builtinIRBytes(checksum).empty()) {error="Unknown built-in cabinet asset; the current sound is retained.";return;}
+    auto tone=current();bool found=false;
+    for(auto& cabinet:tone.rack.instances)if(cabinet.id==id&&cabinet.effectType=="cabinet"){cabinet.irAsset=checksum;found=true;}
+    if(!found){error="Select an existing Cabinet instance.";return;}
+    tone.schemaVersion=2;request({0,{},std::move(tone),id});
+}
 bool PresetSession::cancelLoad() {
     if(graphGeneration&&!rack.cancelTone(graphGeneration)) return false;
     irTransactions.erase(graphGeneration); ++serial; waitingSerial=graphGeneration=0; { std::lock_guard lock(mutex); queued.reset(); result.reset(); } return true;
@@ -50,8 +59,10 @@ void PresetSession::parserLoop() {
         auto work=std::move(*queued); queued.reset(); lock.unlock(); Result value{work.serial,{}, {}, !work.cabinet.empty()};
         try {
             if(!work.cabinet.empty()) {
-                auto tone=*work.tone; auto id=assets.importIR(work.file);
-                for(auto& i:tone.rack.instances) if(i.id==work.cabinet) i.irAsset=id;
+                auto tone=*work.tone;
+                if(!work.file.empty()) {auto id=assets.importIR(work.file);
+                    for(auto& i:tone.rack.instances) if(i.id==work.cabinet) i.irAsset=id;
+                }
                 tone.schemaVersion=2; assets.validateAssets(tone); value.tone=std::move(tone);
             } else {
                 value.tone=work.tone?parsePreset(serializePreset(*work.tone,rack.registry()),rack.registry()):assets.importPreset(work.file,rack.registry());

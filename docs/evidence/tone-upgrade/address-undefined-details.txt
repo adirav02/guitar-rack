@@ -1,0 +1,291 @@
+Start testing: Oct 01 12:38 IDT
+----------------------------------------------------------
+1/15 Testing: monitoring_and_routing
+1/15 Test: monitoring_and_routing
+Command: "/home/adir/Projects/01_Active/guitar-effects-rack/build/adapter-sanitize/guitarrack_tests"
+Directory: /home/adir/Projects/01_Active/guitar-effects-rack/build/adapter-sanitize
+"monitoring_and_routing" start time: Oct 01 12:38 IDT
+Output:
+----------------------------------------------------------
+PASS: startup silence, routing, impulse timing, gain/mute/stop ramps, meters, protection, variable blocks, allocation audit, callback reclamation
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"monitoring_and_routing" end time: Oct 01 12:38 IDT
+"monitoring_and_routing" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/15 Testing: serial_rack_lifecycle
+2/15 Test: serial_rack_lifecycle
+Command: "/home/adir/Projects/01_Active/guitar-effects-rack/build/adapter-sanitize/guitarrack_rack_tests"
+Directory: /home/adir/Projects/01_Active/guitar-effects-rack/build/adapter-sanitize
+"serial_rack_lifecycle" start time: Oct 01 12:38 IDT
+Output:
+----------------------------------------------------------
+PASS: independent Gains, identities, noncommuting order, smooth bypass, stale/failed requests, saturation, rapid edits, reclamation, RT audit, engine protection
+<end of output>
+Test time =   0.67 sec
+----------------------------------------------------------
+Test Passed.
+"serial_rack_lifecycle" end time: Oct 01 12:38 IDT
+"serial_rack_lifecycle" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/15 Testing: built_in_effect_signals
+3/15 Test: built_in_effect_signals
+Command: "/home/adir/Projects/01_Active/guitar-effects-rack/build/adapter-sanitize/guitarrack_effect_tests"
+Directory: /home/adir/Projects/01_Active/guitar-effects-rack/build/adapter-sanitize
+"built_in_effect_signals" start time: Oct 01 12:38 IDT
+Output:
+----------------------------------------------------------
+PASS: Overdrive dry/mix/level/bounds, measured EQ responses/stability, Delay impulses/decay/time edits/reset/rates, variable blocks, activation heap audit
+<end of output>
+Test time =   1.14 sec
+----------------------------------------------------------
+Test Passed.
+"built_in_effect_signals" end time: Oct 01 12:38 IDT
+"built_in_effect_signals" time elapsed: 00:00:01
+----------------------------------------------------------
+
+4/15 Testing: distortion_signals
+4/15 Test: distortion_signals
+Command: "/home/adir/Projects/01_Active/guitar-effects-rack/build/adapter-sanitize/guitarrack_distortion_tests"
+Directory: /home/adir/Projects/01_Active/guitar-effects-rack/build/adapter-sanitize
+"distortion_signals" start time: Oct 01 12:38 IDT
+Output:
+----------------------------------------------------------
+Distortion coherent 9kHz alias/fundamental: native -11.2151 dB; 4x FIR -29.4823 dB; reduction 18.2672 dB
+Distortion signal and real-time checks passed
+<end of output>
+Test time =   0.29 sec
+----------------------------------------------------------
+Test Passed.
+"distortion_signals" end time: Oct 01 12:38 IDT
+"distortion_signals" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/15 Testing: reverb_signals
+5/15 Test: reverb_signals
+Command: "/home/adir/Projects/01_Active/guitar-effects-rack/build/adapter-sanitize/guitarrack_reverb_tests"
+Directory: /home/adir/Projects/01_Active/guitar-effects-rack/build/adapter-sanitize
+"reverb_signals" start time: Oct 01 12:38 IDT
+Output:
+----------------------------------------------------------
+PASS: Reverb impulse/decay/damping/stereo/mix/reset/rates/independent instances, bounded long render, variable blocks and activation/first-callback heap audit
+<end of output>
+Test time =   2.15 sec
+----------------------------------------------------------
+Test Passed.
+"reverb_signals" end time: Oct 01 12:38 IDT
+"reverb_signals" time elapsed: 00:00:02
+----------------------------------------------------------
+
+6/15 Testing: cabinet_signals
+6/15 Test: cabinet_signals
+Command: "/home/adir/Projects/01_Active/guitar-effects-rack/build/adapter-sanitize/guitarrack_cabinet_tests"
+Directory: /home/adir/Projects/01_Active/guitar-effects-rack/build/adapter-sanitize
+"cabinet_signals" start time: Oct 01 12:38 IDT
+Output:
+----------------------------------------------------------
+Convolution reference maximum error 1.70166e-08
+PASS: Cabinet WAV bounds, convolution, resampling, latency and live graph alignment
+<end of output>
+Test time =   5.51 sec
+----------------------------------------------------------
+Test Passed.
+"cabinet_signals" end time: Oct 01 12:38 IDT
+"cabinet_signals" time elapsed: 00:00:05
+----------------------------------------------------------
+
+7/15 Testing: experimental_signals
+7/15 Test: experimental_signals
+Command: "/home/adir/Projects/01_Active/guitar-effects-rack/build/adapter-sanitize/guitarrack_experimental_tests"
+Directory: /home/adir/Projects/01_Active/guitar-effects-rack/build/adapter-sanitize
+"experimental_signals" start time: Oct 01 12:38 IDT
+Output:
+----------------------------------------------------------
+Pitch peak: 438 Hz, amplitude 0.0922114, input residual 6.42383e-05
+PASS: experimental signals, coherent voicings, compatibility, lifecycle, legacy and upgraded factory voicings/racks
+<end of output>
+Test time =  15.95 sec
+----------------------------------------------------------
+Test Passed.
+"experimental_signals" end time: Oct 01 12:39 IDT
+"experimental_signals" time elapsed: 00:00:15
+----------------------------------------------------------
+
+8/15 Testing: toneupgrade_signals
+8/15 Test: toneupgrade_signals
+Command: "/home/adir/Projects/01_Active/guitar-effects-rack/build/adapter-sanitize/guitarrack_toneupgrade_tests"
+Directory: /home/adir/Projects/01_Active/guitar-effects-rack/build/adapter-sanitize
+"toneupgrade_signals" start time: Oct 01 12:39 IDT
+Output:
+----------------------------------------------------------
+Matched-RMS amp minimum pair waveform difference: 0.0641125
+amp-response,amp_solid_clean,0.221479,0.237714,0.237961,0.00380168,0.248839,0.0470061,4.39331e-25
+amp-response,amp_us_combo,0.143715,0.16349,0.151988,0.00226198,0.227037,0.0205901,0
+amp-response,amp_brit_chime,0.168956,0.318436,0.240805,0.00611901,0.319948,0.0273179,0
+amp-response,amp_brit_crunch,0.116896,0.304829,0.311061,0.00446087,0.316505,0.0575808,0
+amp-response,amp_brit_hotrod,0.0831391,0.655248,0.621717,0.0106751,0.18073,0.0646837,0
+amp-response,amp_mark,0.13197,0.625564,0.600145,0.0138571,0.308757,0.0690181,0
+amp-response,amp_modern_tight,0.163717,1.25476,1.22666,0.0355065,0.2294,0.0954907,8.30227e-25
+amp-response,amp_recto,0.612558,0.737235,0.653258,0.0260072,0.326381,0.0670063,0
+PASS: tone upgrade networks, Output/Master, early EQ, gate and bounded realtime paths
+<end of output>
+Test time =  32.68 sec
+----------------------------------------------------------
+Test Passed.
+"toneupgrade_signals" end time: Oct 01 12:39 IDT
+"toneupgrade_signals" time elapsed: 00:00:32
+----------------------------------------------------------
+
+9/15 Testing: creative_signals
+9/15 Test: creative_signals
+Command: "/home/adir/Projects/01_Active/guitar-effects-rack/build/adapter-sanitize/guitarrack_creative_tests"
+Directory: /home/adir/Projects/01_Active/guitar-effects-rack/build/adapter-sanitize
+"creative_signals" start time: Oct 01 12:39 IDT
+Output:
+----------------------------------------------------------
+pitch,82.4069,-24,20.6017,0,0.0763214
+pitch,82.4069,-12,41.2034,0,0.100083
+pitch,82.4069,12,164.814,0,0.100068
+pitch,82.4069,24,329.628,0,0.100011
+pitch,110,-24,27.5,0,0.0906915
+pitch,110,-12,55,0,0.0999461
+pitch,110,12,220,0,0.0999985
+pitch,110,24,440,0,0.0999985
+pitch,220,-24,55,0,0.0999459
+pitch,220,-12,110,0,0.0999989
+pitch,220,12,440,0,0.0999993
+pitch,220,24,880,0,0.0999982
+pitch,440,-24,110,0,0.0999989
+pitch,440,-12,220,0,0.0999986
+pitch,440,12,880,0,0.0999983
+pitch,440,24,1760,0,0.0999999
+pitch,880,-24,220,0,0.0999985
+pitch,880,-12,440,0,0.0999993
+pitch,880,12,1760,0,0.0999999
+pitch,880,24,3520,0,0.0999995
+pitch,1760,-24,440,0,0.0999993
+pitch,1760,-12,880,0,0.0999983
+pitch,1760,12,3520,0,0.0999995
+pitch,1760,24,7040,0,0.0999986
+pitch-rate,44100,-24,0.0938686
+pitch-rate,44100,24,0.0999982
+pitch-rate,96000,-24,0.0565563
+pitch-rate,96000,24,0.0995116
+Pitch bend peak: 0.100067; chord octave fundamental amplitudes: 0.00201635,0.000765009,0.00206082 (no chord-quality mode claimed)
+Pitch octave impulse onset/peak: 634/2159 samples; declared window/alignment 2048
+PASS: creative timing, networks, capture, pitch cents/alignment and parallel polarity
+<end of output>
+Test time =  32.96 sec
+----------------------------------------------------------
+Test Passed.
+"creative_signals" end time: Oct 01 12:40 IDT
+"creative_signals" time elapsed: 00:00:32
+----------------------------------------------------------
+
+10/15 Testing: ir_assets_and_bundles
+10/15 Test: ir_assets_and_bundles
+Command: "/home/adir/Projects/01_Active/guitar-effects-rack/build/adapter-sanitize/guitarrack_asset_tests"
+Directory: /home/adir/Projects/01_Active/guitar-effects-rack/build/adapter-sanitize
+"ir_assets_and_bundles" start time: Oct 01 12:40 IDT
+Output:
+----------------------------------------------------------
+JUCE v8.0.15
+PASS: managed IR, portable bundles, live load/rollback, deletion and heap audits
+<end of output>
+Test time =   0.74 sec
+----------------------------------------------------------
+Test Passed.
+"ir_assets_and_bundles" end time: Oct 01 12:40 IDT
+"ir_assets_and_bundles" time elapsed: 00:00:00
+----------------------------------------------------------
+
+11/15 Testing: legacy_audio_compatibility
+11/15 Test: legacy_audio_compatibility
+Command: "/usr/bin/python3.14" "/home/adir/Projects/01_Active/guitar-effects-rack/tools/check_legacy_render.py" "/home/adir/Projects/01_Active/guitar-effects-rack/build/adapter-sanitize/guitarrack_legacy_render"
+Directory: /home/adir/Projects/01_Active/guitar-effects-rack/build/adapter-sanitize
+"legacy_audio_compatibility" start time: Oct 01 12:40 IDT
+Output:
+----------------------------------------------------------
+JUCE v8.0.15
+Legacy render metrics: 0 failures; maximum absolute error 4.99981e-11
+<end of output>
+Test time = 566.44 sec
+----------------------------------------------------------
+Test Passed.
+"legacy_audio_compatibility" end time: Oct 01 12:49 IDT
+"legacy_audio_compatibility" time elapsed: 00:09:26
+----------------------------------------------------------
+
+12/15 Testing: legacy_identity_compatibility
+12/15 Test: legacy_identity_compatibility
+Command: "/usr/bin/python3.14" "/home/adir/Projects/01_Active/guitar-effects-rack/tools/check_compatibility.py" "/home/adir/Projects/01_Active/guitar-effects-rack/build/adapter-sanitize/guitarrack_export_sounds"
+Directory: /home/adir/Projects/01_Active/guitar-effects-rack/build/adapter-sanitize
+"legacy_identity_compatibility" start time: Oct 01 12:49 IDT
+Output:
+----------------------------------------------------------
+JUCE v8.0.15
+PASS: all frozen legacy identities, recipes, bytes and control mappings; protected Subterranean
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"legacy_identity_compatibility" end time: Oct 01 12:49 IDT
+"legacy_identity_compatibility" time elapsed: 00:00:00
+----------------------------------------------------------
+
+13/15 Testing: pedal_voicing_persistence
+13/15 Test: pedal_voicing_persistence
+Command: "/home/adir/Projects/01_Active/guitar-effects-rack/build/adapter-sanitize/guitarrack_pedal_tests"
+Directory: /home/adir/Projects/01_Active/guitar-effects-rack/build/adapter-sanitize
+"pedal_voicing_persistence" start time: Oct 01 12:49 IDT
+Output:
+----------------------------------------------------------
+JUCE v8.0.15
+PASS: 146 pedal round trips, Unicode persistence, invalid values/identity/schema and corrupt entry isolation
+<end of output>
+Test time =   0.07 sec
+----------------------------------------------------------
+Test Passed.
+"pedal_voicing_persistence" end time: Oct 01 12:49 IDT
+"pedal_voicing_persistence" time elapsed: 00:00:00
+----------------------------------------------------------
+
+14/15 Testing: presets_and_persistence
+14/15 Test: presets_and_persistence
+Command: "/home/adir/Projects/01_Active/guitar-effects-rack/build/adapter-sanitize/guitarrack_state_tests"
+Directory: /home/adir/Projects/01_Active/guitar-effects-rack/build/adapter-sanitize
+"presets_and_persistence" start time: Oct 01 12:49 IDT
+Output:
+----------------------------------------------------------
+JUCE v8.0.15
+PASS: strict presets, Unicode, files, dirty actions, rollback, stale/cancelled loads, DSP equivalence, RT audit
+<end of output>
+Test time =   3.84 sec
+----------------------------------------------------------
+Test Passed.
+"presets_and_persistence" end time: Oct 01 12:49 IDT
+"presets_and_persistence" time elapsed: 00:00:03
+----------------------------------------------------------
+
+15/15 Testing: device_adapter_lifecycle
+15/15 Test: device_adapter_lifecycle
+Command: "/home/adir/Projects/01_Active/guitar-effects-rack/build/adapter-sanitize/guitarrack_adapter_tests"
+Directory: /home/adir/Projects/01_Active/guitar-effects-rack/build/adapter-sanitize
+"device_adapter_lifecycle" start time: Oct 01 12:49 IDT
+Output:
+----------------------------------------------------------
+JUCE v8.0.15
+PASS: no-auto-start, channel validation, real callback routing, Stop, failure silence, explicit reconnect, rate/buffer changes, processor buses
+<end of output>
+Test time =   0.18 sec
+----------------------------------------------------------
+Test Passed.
+"device_adapter_lifecycle" end time: Oct 01 12:49 IDT
+"device_adapter_lifecycle" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Oct 01 12:49 IDT

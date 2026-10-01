@@ -1,5 +1,5 @@
 {
-  "description": "Original experimental starting points inspired by art rock, including Radiohead. Not measured artist or commercial pedal emulations. All cabinet recipes use the original synthetic filter.",
+  "description": "Original playable inspired sounds and reusable voicings. Legacy identities/recipes are frozen; new models and synthetic cabinet families are separate. Listening approval belongs only to the protected Subterranean sound.",
   "pedals": [
     {
       "effect_type": "gain",
@@ -7,7 +7,8 @@
       "name": "Unity",
       "parameters": {
         "level_db": 0
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000001"
     },
     {
       "effect_type": "gain",
@@ -15,7 +16,8 @@
       "name": "Solo Lift",
       "parameters": {
         "level_db": 3
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000002"
     },
     {
       "effect_type": "gain",
@@ -23,7 +25,8 @@
       "name": "Soft Landing",
       "parameters": {
         "level_db": -6
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000003"
     },
     {
       "effect_type": "overdrive",
@@ -34,7 +37,8 @@
         "tone_hz": 2500,
         "level_db": -6,
         "mix_percent": 70
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000004"
     },
     {
       "effect_type": "overdrive",
@@ -45,7 +49,8 @@
         "tone_hz": 4500,
         "level_db": -3,
         "mix_percent": 85
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000005"
     },
     {
       "effect_type": "overdrive",
@@ -56,7 +61,8 @@
         "tone_hz": 1800,
         "level_db": -9,
         "mix_percent": 100
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000006"
     },
     {
       "effect_type": "overdrive",
@@ -67,7 +73,8 @@
         "tone_hz": 5000,
         "level_db": -8,
         "mix_percent": 75
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000007"
     },
     {
       "effect_type": "overdrive",
@@ -78,7 +85,8 @@
         "tone_hz": 3200,
         "level_db": -12,
         "mix_percent": 30
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000008"
     },
     {
       "effect_type": "distortion",
@@ -89,7 +97,8 @@
         "tone_hz": 2800,
         "level_db": -15,
         "mix_percent": 100
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000009"
     },
     {
       "effect_type": "distortion",
@@ -100,7 +109,8 @@
         "tone_hz": 2200,
         "level_db": -12,
         "mix_percent": 85
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000010"
     },
     {
       "effect_type": "distortion",
@@ -111,7 +121,8 @@
         "tone_hz": 4200,
         "level_db": -16,
         "mix_percent": 100
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000011"
     },
     {
       "effect_type": "distortion",
@@ -122,7 +133,8 @@
         "tone_hz": 1300,
         "level_db": -18,
         "mix_percent": 100
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000012"
     },
     {
       "effect_type": "distortion",
@@ -133,7 +145,8 @@
         "tone_hz": 6500,
         "level_db": -20,
         "mix_percent": 90
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000013"
     },
     {
       "effect_type": "fuzz",
@@ -147,7 +160,8 @@
         "gate_percent": 0,
         "level_db": -12,
         "mix_percent": 100
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000014"
     },
     {
       "effect_type": "fuzz",
@@ -161,7 +175,8 @@
         "gate_percent": 12,
         "level_db": -15,
         "mix_percent": 90
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000015"
     },
     {
       "effect_type": "fuzz",
@@ -175,7 +190,8 @@
         "gate_percent": 45,
         "level_db": -16,
         "mix_percent": 100
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000016"
     },
     {
       "effect_type": "fuzz",
@@ -189,7 +205,8 @@
         "gate_percent": 8,
         "level_db": -14,
         "mix_percent": 85
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000017"
     },
     {
       "effect_type": "fuzz",
@@ -203,7 +220,8 @@
         "gate_percent": 30,
         "level_db": -20,
         "mix_percent": 75
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000018"
     },
     {
       "effect_type": "fuzz",
@@ -217,7 +235,8 @@
         "gate_percent": 70,
         "level_db": -14,
         "mix_percent": 100
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000019"
     },
     {
       "effect_type": "amp",
@@ -232,7 +251,8 @@
         "sag_percent": 10,
         "level_db": -3,
         "mix_percent": 100
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000020"
     },
     {
       "effect_type": "amp",
@@ -247,7 +267,8 @@
         "sag_percent": 35,
         "level_db": -7,
         "mix_percent": 100
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000021"
     },
     {
       "effect_type": "amp",
@@ -262,7 +283,8 @@
         "sag_percent": 25,
         "level_db": -9,
         "mix_percent": 100
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000022"
     },
     {
       "effect_type": "amp",
@@ -277,7 +299,8 @@
         "sag_percent": 75,
         "level_db": -14,
         "mix_percent": 100
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000023"
     },
     {
       "effect_type": "amp",
@@ -292,7 +315,8 @@
         "sag_percent": 10,
         "level_db": -12,
         "mix_percent": 100
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000024"
     },
     {
       "effect_type": "compressor",
@@ -305,7 +329,8 @@
         "release_ms": 180,
         "makeup_db": 3,
         "mix_percent": 75
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000025"
     },
     {
       "effect_type": "compressor",
@@ -318,7 +343,8 @@
         "release_ms": 300,
         "makeup_db": 5,
         "mix_percent": 80
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000026"
     },
     {
       "effect_type": "compressor",
@@ -331,7 +357,8 @@
         "release_ms": 90,
         "makeup_db": 2,
         "mix_percent": 65
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000027"
     },
     {
       "effect_type": "compressor",
@@ -344,7 +371,8 @@
         "release_ms": 220,
         "makeup_db": 6,
         "mix_percent": 35
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000028"
     },
     {
       "effect_type": "chorus",
@@ -355,7 +383,8 @@
         "depth_percent": 25,
         "width_percent": 80,
         "mix_percent": 22
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000029"
     },
     {
       "effect_type": "chorus",
@@ -366,7 +395,8 @@
         "depth_percent": 55,
         "width_percent": 100,
         "mix_percent": 35
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000030"
     },
     {
       "effect_type": "chorus",
@@ -377,7 +407,8 @@
         "depth_percent": 90,
         "width_percent": 75,
         "mix_percent": 50
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000031"
     },
     {
       "effect_type": "chorus",
@@ -388,7 +419,8 @@
         "depth_percent": 45,
         "width_percent": 20,
         "mix_percent": 100
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000032"
     },
     {
       "effect_type": "chorus",
@@ -399,7 +431,8 @@
         "depth_percent": 70,
         "width_percent": 100,
         "mix_percent": 28
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000033"
     },
     {
       "effect_type": "tremolo",
@@ -411,7 +444,8 @@
         "shape_percent": 20,
         "width_percent": 0,
         "mix_percent": 100
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000034"
     },
     {
       "effect_type": "tremolo",
@@ -423,7 +457,8 @@
         "shape_percent": 100,
         "width_percent": 0,
         "mix_percent": 100
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000035"
     },
     {
       "effect_type": "tremolo",
@@ -435,7 +470,8 @@
         "shape_percent": 0,
         "width_percent": 100,
         "mix_percent": 100
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000036"
     },
     {
       "effect_type": "tremolo",
@@ -447,7 +483,8 @@
         "shape_percent": 60,
         "width_percent": 0,
         "mix_percent": 100
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000037"
     },
     {
       "effect_type": "tremolo",
@@ -459,7 +496,8 @@
         "shape_percent": 90,
         "width_percent": 15,
         "mix_percent": 100
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000038"
     },
     {
       "effect_type": "filter",
@@ -471,7 +509,8 @@
         "envelope_percent": 0,
         "depth_percent": 0,
         "mix_percent": 100
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000039"
     },
     {
       "effect_type": "filter",
@@ -484,7 +523,8 @@
         "rate_hz": 1,
         "depth_percent": 0,
         "mix_percent": 75
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000040"
     },
     {
       "effect_type": "filter",
@@ -497,7 +537,8 @@
         "rate_hz": 0.6,
         "depth_percent": 90,
         "mix_percent": 60
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000041"
     },
     {
       "effect_type": "filter",
@@ -509,7 +550,8 @@
         "envelope_percent": 0,
         "depth_percent": 0,
         "mix_percent": 100
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000042"
     },
     {
       "effect_type": "filter",
@@ -522,7 +564,8 @@
         "rate_hz": 3,
         "depth_percent": 70,
         "mix_percent": 45
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000043"
     },
     {
       "effect_type": "filter",
@@ -534,7 +577,8 @@
         "envelope_percent": 100,
         "depth_percent": 0,
         "mix_percent": 80
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000044"
     },
     {
       "effect_type": "pitch",
@@ -545,7 +589,8 @@
         "cents": 0,
         "width_percent": 0,
         "mix_percent": 45
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000045"
     },
     {
       "effect_type": "pitch",
@@ -556,7 +601,8 @@
         "cents": 0,
         "width_percent": 25,
         "mix_percent": 30
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000046"
     },
     {
       "effect_type": "pitch",
@@ -567,7 +613,8 @@
         "cents": 0,
         "width_percent": 35,
         "mix_percent": 22
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000047"
     },
     {
       "effect_type": "pitch",
@@ -578,7 +625,8 @@
         "cents": 12,
         "width_percent": 75,
         "mix_percent": 30
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000048"
     },
     {
       "effect_type": "pitch",
@@ -589,7 +637,8 @@
         "cents": -8,
         "width_percent": 65,
         "mix_percent": 40
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000049"
     },
     {
       "effect_type": "pitch",
@@ -600,7 +649,8 @@
         "cents": -7,
         "width_percent": 40,
         "mix_percent": 100
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000050"
     },
     {
       "effect_type": "ring_mod",
@@ -610,7 +660,8 @@
         "rate_hz": 120,
         "mix_percent": 45,
         "width_percent": 30
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000051"
     },
     {
       "effect_type": "ring_mod",
@@ -620,7 +671,8 @@
         "rate_hz": 440,
         "mix_percent": 40,
         "width_percent": 15
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000052"
     },
     {
       "effect_type": "ring_mod",
@@ -630,7 +682,8 @@
         "rate_hz": 870,
         "mix_percent": 65,
         "width_percent": 75
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000053"
     },
     {
       "effect_type": "ring_mod",
@@ -640,7 +693,8 @@
         "rate_hz": 35,
         "mix_percent": 60,
         "width_percent": 0
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000054"
     },
     {
       "effect_type": "delay",
@@ -653,7 +707,8 @@
         "mode": 0,
         "color_hz": 12000,
         "wow_percent": 0
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000055"
     },
     {
       "effect_type": "delay",
@@ -666,7 +721,8 @@
         "mode": 0,
         "color_hz": 12000,
         "wow_percent": 0
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000056"
     },
     {
       "effect_type": "delay",
@@ -679,7 +735,8 @@
         "mode": 1,
         "color_hz": 2600,
         "wow_percent": 0
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000057"
     },
     {
       "effect_type": "delay",
@@ -692,7 +749,8 @@
         "mode": 2,
         "color_hz": 3500,
         "wow_percent": 35
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000058"
     },
     {
       "effect_type": "delay",
@@ -705,7 +763,8 @@
         "mode": 2,
         "color_hz": 1800,
         "wow_percent": 85
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000059"
     },
     {
       "effect_type": "delay",
@@ -718,7 +777,8 @@
         "mode": 0,
         "color_hz": 12000,
         "wow_percent": 0
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000060"
     },
     {
       "effect_type": "delay",
@@ -731,7 +791,8 @@
         "mode": 1,
         "color_hz": 3000,
         "wow_percent": 0
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000061"
     },
     {
       "effect_type": "delay",
@@ -744,7 +805,8 @@
         "mode": 2,
         "color_hz": 2200,
         "wow_percent": 40
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000062"
     },
     {
       "effect_type": "delay",
@@ -757,7 +819,8 @@
         "mode": 0,
         "color_hz": 12000,
         "wow_percent": 0
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000063"
     },
     {
       "effect_type": "delay",
@@ -767,7 +830,8 @@
         "time_ms": 110,
         "feedback_percent": 12,
         "mix_percent": 18
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000064"
     },
     {
       "effect_type": "delay",
@@ -777,7 +841,8 @@
         "time_ms": 350,
         "feedback_percent": 30,
         "mix_percent": 22
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000065"
     },
     {
       "effect_type": "reverb",
@@ -787,7 +852,8 @@
         "size_percent": 25,
         "damping_percent": 65,
         "mix_percent": 12
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000066"
     },
     {
       "effect_type": "reverb",
@@ -797,7 +863,8 @@
         "size_percent": 70,
         "damping_percent": 60,
         "mix_percent": 25
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000067"
     },
     {
       "effect_type": "reverb",
@@ -807,7 +874,8 @@
         "size_percent": 80,
         "damping_percent": 25,
         "mix_percent": 30
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000068"
     },
     {
       "effect_type": "reverb",
@@ -817,7 +885,8 @@
         "size_percent": 90,
         "damping_percent": 80,
         "mix_percent": 30
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000069"
     },
     {
       "effect_type": "reverb",
@@ -827,7 +896,8 @@
         "size_percent": 95,
         "damping_percent": 45,
         "mix_percent": 55
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000070"
     },
     {
       "effect_type": "reverb",
@@ -837,7 +907,8 @@
         "size_percent": 40,
         "damping_percent": 10,
         "mix_percent": 20
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000071"
     },
     {
       "effect_type": "eq",
@@ -847,7 +918,8 @@
         "low_db": -2,
         "mid_db": 3,
         "high_db": -2
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000072"
     },
     {
       "effect_type": "eq",
@@ -857,7 +929,8 @@
         "low_db": 0,
         "mid_db": 0,
         "high_db": -4
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000073"
     },
     {
       "effect_type": "eq",
@@ -867,7 +940,8 @@
         "low_db": -5,
         "mid_db": 1,
         "high_db": 0
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000074"
     },
     {
       "effect_type": "eq",
@@ -877,7 +951,8 @@
         "low_db": -2,
         "mid_db": 1,
         "high_db": 3
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000075"
     },
     {
       "effect_type": "cabinet",
@@ -885,7 +960,8 @@
       "name": "Cabinet Unity",
       "parameters": {
         "level_db": 0
-      }
+      },
+      "id": "40000000-0000-4000-8000-000000000076"
     },
     {
       "effect_type": "cabinet",
@@ -893,6 +969,1028 @@
       "name": "Cabinet Pad",
       "parameters": {
         "level_db": -3
+      },
+      "id": "40000000-0000-4000-8000-000000000077"
+    },
+    {
+      "id": "414c65f9-f273-52f5-a1bb-15ca72290a89",
+      "key": "amp.solid.clean",
+      "name": "Solid Platform Clean",
+      "effect_type": "amp_solid_clean",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 2,
+        "master_percent": 25,
+        "output_db": -6,
+        "bass_db": -1,
+        "treble_db": 1,
+        "mid_db": 1
+      }
+    },
+    {
+      "id": "b3805330-5cb4-555e-962d-79ed817d5d46",
+      "key": "amp.solid.edge",
+      "name": "Solid Platform Edge",
+      "effect_type": "amp_solid_clean",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 10,
+        "master_percent": 45,
+        "output_db": -10,
+        "bass_db": -1,
+        "treble_db": 1,
+        "mid_db": 1
+      }
+    },
+    {
+      "id": "fb2f0588-27b9-5b0b-8568-0d396e396a60",
+      "key": "amp.solid.rhythm",
+      "name": "Solid Platform Rhythm",
+      "effect_type": "amp_solid_clean",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 18,
+        "master_percent": 35,
+        "output_db": -14,
+        "bass_db": -1,
+        "treble_db": 1,
+        "mid_db": 1
+      }
+    },
+    {
+      "id": "555ca19d-e0ac-574b-b68f-afdacbacdfdb",
+      "key": "amp.solid.lead",
+      "name": "Solid Platform Lead",
+      "effect_type": "amp_solid_clean",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 20,
+        "master_percent": 55,
+        "output_db": -16,
+        "bass_db": 0,
+        "treble_db": 0
+      }
+    },
+    {
+      "id": "ee24f977-6003-510c-9277-b31aa97d4116",
+      "key": "amp.us.clean",
+      "name": "US Combo Clean",
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 2,
+        "master_percent": 25,
+        "output_db": -6,
+        "bass_db": -1,
+        "treble_db": 1,
+        "mid_db": 1
+      }
+    },
+    {
+      "id": "5ebfdc91-acf8-5c2c-a4e2-c2c0dcbd8121",
+      "key": "amp.us.edge",
+      "name": "US Combo Edge",
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 10,
+        "master_percent": 45,
+        "output_db": -10,
+        "bass_db": -1,
+        "treble_db": 1,
+        "mid_db": 1
+      }
+    },
+    {
+      "id": "4ddd99cf-d876-5f52-84e4-a7c9c0867117",
+      "key": "amp.us.rhythm",
+      "name": "US Combo Rhythm",
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 18,
+        "master_percent": 35,
+        "output_db": -14,
+        "bass_db": -1,
+        "treble_db": 1,
+        "mid_db": 1
+      }
+    },
+    {
+      "id": "7287ee71-a722-5946-97be-71b932552f27",
+      "key": "amp.us.lead",
+      "name": "US Combo Lead",
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 20,
+        "master_percent": 55,
+        "output_db": -16,
+        "bass_db": 0,
+        "treble_db": 0
+      }
+    },
+    {
+      "id": "08c5fb51-9344-5d0d-a2f5-042384e43e59",
+      "key": "amp.chime.clean",
+      "name": "British Chime Clean",
+      "effect_type": "amp_brit_chime",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 2,
+        "master_percent": 25,
+        "output_db": -6,
+        "bass_db": -1,
+        "treble_db": 1
+      }
+    },
+    {
+      "id": "2e9722f5-4b3c-5115-ad89-0e5baae4fc31",
+      "key": "amp.chime.edge",
+      "name": "British Chime Edge",
+      "effect_type": "amp_brit_chime",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 10,
+        "master_percent": 45,
+        "output_db": -10,
+        "bass_db": -1,
+        "treble_db": 1
+      }
+    },
+    {
+      "id": "a5142f46-5a28-5288-bd90-eb60a690c8e8",
+      "key": "amp.chime.rhythm",
+      "name": "British Chime Rhythm",
+      "effect_type": "amp_brit_chime",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 22,
+        "master_percent": 35,
+        "output_db": -14,
+        "bass_db": -1,
+        "treble_db": 1
+      }
+    },
+    {
+      "id": "083ce2a6-48da-5748-a23b-cd2199ec4bcb",
+      "key": "amp.chime.lead",
+      "name": "British Chime Lead",
+      "effect_type": "amp_brit_chime",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 30,
+        "master_percent": 55,
+        "output_db": -16,
+        "bass_db": 0,
+        "treble_db": 0
+      }
+    },
+    {
+      "id": "3fe04a69-14bd-5368-974b-b00b63558d07",
+      "key": "amp.crunch.clean",
+      "name": "British Crunch Clean",
+      "effect_type": "amp_brit_crunch",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 2,
+        "master_percent": 25,
+        "output_db": -6,
+        "bass_db": -1,
+        "treble_db": 1,
+        "mid_db": 1
+      }
+    },
+    {
+      "id": "b520b28c-68d1-5892-ba9a-21c39281508f",
+      "key": "amp.crunch.edge",
+      "name": "British Crunch Edge",
+      "effect_type": "amp_brit_crunch",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 10,
+        "master_percent": 45,
+        "output_db": -10,
+        "bass_db": -1,
+        "treble_db": 1,
+        "mid_db": 1
+      }
+    },
+    {
+      "id": "70d344a0-b946-55f7-8193-9dfef0aecc97",
+      "key": "amp.crunch.rhythm",
+      "name": "British Crunch Rhythm",
+      "effect_type": "amp_brit_crunch",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 22,
+        "master_percent": 35,
+        "output_db": -14,
+        "bass_db": -1,
+        "treble_db": 1,
+        "mid_db": 1
+      }
+    },
+    {
+      "id": "da1582c6-5428-5ea7-baa0-ffe9c46b1c3c",
+      "key": "amp.crunch.lead",
+      "name": "British Crunch Lead",
+      "effect_type": "amp_brit_crunch",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 30,
+        "master_percent": 55,
+        "output_db": -16,
+        "bass_db": 0,
+        "treble_db": 0
+      }
+    },
+    {
+      "id": "914f812c-8ee8-5044-80db-49db0d202964",
+      "key": "amp.hotrod.clean",
+      "name": "British Hot-Rod Clean",
+      "effect_type": "amp_brit_hotrod",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 2,
+        "master_percent": 25,
+        "output_db": -6,
+        "bass_db": -1,
+        "treble_db": 1,
+        "mid_db": 1
+      }
+    },
+    {
+      "id": "a365c385-6a3c-58fd-b4f4-073502039258",
+      "key": "amp.hotrod.edge",
+      "name": "British Hot-Rod Edge",
+      "effect_type": "amp_brit_hotrod",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 10,
+        "master_percent": 45,
+        "output_db": -10,
+        "bass_db": -1,
+        "treble_db": 1,
+        "mid_db": 1
+      }
+    },
+    {
+      "id": "0fd9ef30-fcfa-5bbc-b2d6-a56c80463eff",
+      "key": "amp.hotrod.rhythm",
+      "name": "British Hot-Rod Rhythm",
+      "effect_type": "amp_brit_hotrod",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 22,
+        "master_percent": 35,
+        "output_db": -14,
+        "bass_db": -1,
+        "treble_db": 1,
+        "mid_db": 1
+      }
+    },
+    {
+      "id": "c9825f2a-13e4-5e5d-a15a-59f6cf0d4984",
+      "key": "amp.hotrod.lead",
+      "name": "British Hot-Rod Lead",
+      "effect_type": "amp_brit_hotrod",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 30,
+        "master_percent": 55,
+        "output_db": -16,
+        "bass_db": 0,
+        "treble_db": 0
+      }
+    },
+    {
+      "id": "83662cc8-c8bf-50f6-904a-9ffa697904b4",
+      "key": "amp.mark.clean",
+      "name": "Mark Clean",
+      "effect_type": "amp_mark",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 2,
+        "master_percent": 25,
+        "output_db": -6,
+        "bass_db": -4,
+        "treble_db": 1,
+        "mid_db": 1,
+        "lead_gain_db": 14
+      }
+    },
+    {
+      "id": "fd414a8c-791c-559b-b097-30a399a5b94d",
+      "key": "amp.mark.edge",
+      "name": "Mark Edge",
+      "effect_type": "amp_mark",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 10,
+        "master_percent": 45,
+        "output_db": -10,
+        "bass_db": -4,
+        "treble_db": 1,
+        "mid_db": 1,
+        "lead_gain_db": 22
+      }
+    },
+    {
+      "id": "7e43d4e4-9f47-5644-9a74-ad3a3dcb0832",
+      "key": "amp.mark.rhythm",
+      "name": "Mark Rhythm",
+      "effect_type": "amp_mark",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 22,
+        "master_percent": 35,
+        "output_db": -14,
+        "bass_db": -4,
+        "treble_db": 1,
+        "mid_db": 1,
+        "lead_gain_db": 22
+      }
+    },
+    {
+      "id": "193a3fbb-8b7e-53d4-9e62-b8615171f3a9",
+      "key": "amp.mark.lead",
+      "name": "Mark Lead",
+      "effect_type": "amp_mark",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 30,
+        "master_percent": 55,
+        "output_db": -16,
+        "bass_db": -4,
+        "treble_db": 0
+      }
+    },
+    {
+      "id": "0c6546f2-db3a-5b7c-9c5f-a7bbc84e4a80",
+      "key": "amp.modern.clean",
+      "name": "Modern Tight Clean",
+      "effect_type": "amp_modern_tight",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 2,
+        "master_percent": 25,
+        "output_db": -6,
+        "bass_db": -1,
+        "treble_db": 1,
+        "mid_db": 1,
+        "sag_percent": 5,
+        "low_cut_hz": 140,
+        "resonance_percent": 20
+      }
+    },
+    {
+      "id": "d4bed330-97ca-576c-b2ff-f7060f562ea2",
+      "key": "amp.modern.edge",
+      "name": "Modern Tight Edge",
+      "effect_type": "amp_modern_tight",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 10,
+        "master_percent": 45,
+        "output_db": -10,
+        "bass_db": -1,
+        "treble_db": 1,
+        "mid_db": 1,
+        "sag_percent": 5,
+        "low_cut_hz": 140,
+        "resonance_percent": 20
+      }
+    },
+    {
+      "id": "b5ddb360-b4e4-5886-8c75-f59bb08ef834",
+      "key": "amp.modern.rhythm",
+      "name": "Modern Tight Rhythm",
+      "effect_type": "amp_modern_tight",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 22,
+        "master_percent": 35,
+        "output_db": -14,
+        "bass_db": -1,
+        "treble_db": 1,
+        "mid_db": 1,
+        "sag_percent": 5,
+        "low_cut_hz": 140,
+        "resonance_percent": 20
+      }
+    },
+    {
+      "id": "ffae2f98-23a6-567b-bd91-648c851b88c7",
+      "key": "amp.modern.lead",
+      "name": "Modern Tight Lead",
+      "effect_type": "amp_modern_tight",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 30,
+        "master_percent": 55,
+        "output_db": -16,
+        "bass_db": 0,
+        "treble_db": 0
+      }
+    },
+    {
+      "id": "91d28f16-74bd-5cdb-8caf-5d0ecc3020a4",
+      "key": "amp.recto.clean",
+      "name": "Recto Heavy Clean",
+      "effect_type": "amp_recto",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 2,
+        "master_percent": 25,
+        "output_db": -6,
+        "bass_db": -1,
+        "treble_db": 1,
+        "mid_db": 1,
+        "sag_percent": 40,
+        "resonance_percent": 35
+      }
+    },
+    {
+      "id": "3cf10551-43fc-5f12-a52c-aec1fe549b7a",
+      "key": "amp.recto.edge",
+      "name": "Recto Heavy Edge",
+      "effect_type": "amp_recto",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 10,
+        "master_percent": 45,
+        "output_db": -10,
+        "bass_db": -1,
+        "treble_db": 1,
+        "mid_db": 1,
+        "sag_percent": 40,
+        "resonance_percent": 35
+      }
+    },
+    {
+      "id": "edf5fbe5-93a2-5401-bdeb-d0a9d639ebbf",
+      "key": "amp.recto.rhythm",
+      "name": "Recto Heavy Rhythm",
+      "effect_type": "amp_recto",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 22,
+        "master_percent": 35,
+        "output_db": -14,
+        "bass_db": -1,
+        "treble_db": 1,
+        "mid_db": 1,
+        "sag_percent": 40,
+        "resonance_percent": 35
+      }
+    },
+    {
+      "id": "413b6124-8be9-5379-ae99-41e2e54ba4f3",
+      "key": "amp.recto.lead",
+      "name": "Recto Heavy Lead",
+      "effect_type": "amp_recto",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 30,
+        "master_percent": 55,
+        "output_db": -16,
+        "bass_db": 0,
+        "treble_db": 0
+      }
+    },
+    {
+      "id": "65e3ce34-45a1-563c-8944-7fe3c47b8fda",
+      "key": "drive.oxford.punch",
+      "name": "Oxford Punch",
+      "effect_type": "oxford_distortion",
+      "effect_version": 1,
+      "parameters": {
+        "drive_db": 18,
+        "bass_db": 1,
+        "contour_percent": 25,
+        "treble_db": 2,
+        "output_db": -14
+      }
+    },
+    {
+      "id": "a3a75742-3637-58b2-b0f1-714055271862",
+      "key": "drive.oxford.grind",
+      "name": "Contour Grind",
+      "effect_type": "oxford_distortion",
+      "effect_version": 1,
+      "parameters": {
+        "drive_db": 28,
+        "bass_db": 0,
+        "contour_percent": 60,
+        "treble_db": 0,
+        "output_db": -16
+      }
+    },
+    {
+      "id": "cce65584-21b9-594b-b95b-bb573142f019",
+      "key": "drive.oxford.open",
+      "name": "Open Contour Crunch",
+      "effect_type": "oxford_distortion",
+      "effect_version": 1,
+      "parameters": {
+        "drive_db": 8,
+        "bass_db": -1,
+        "contour_percent": 15,
+        "treble_db": 1,
+        "output_db": -8
+      }
+    },
+    {
+      "id": "acdef365-5128-5691-946a-1a717a1a80b9",
+      "key": "drive.asym.tight",
+      "name": "Tight Mid Boost",
+      "effect_type": "asymmetric_drive",
+      "effect_version": 1,
+      "parameters": {
+        "drive_db": 3,
+        "low_cut_hz": 170,
+        "tone_hz": 6500,
+        "output_db": 3
+      }
+    },
+    {
+      "id": "696ddf7c-b0fd-549f-90c4-e5b35c9d4119",
+      "key": "drive.asym.warm",
+      "name": "Warm Asymmetric Drive",
+      "effect_type": "asymmetric_drive",
+      "effect_version": 1,
+      "parameters": {
+        "drive_db": 14,
+        "low_cut_hz": 90,
+        "tone_hz": 4000,
+        "output_db": -10
+      }
+    },
+    {
+      "id": "65e5bc3d-676b-587d-b845-2bf5e9a59d7d",
+      "key": "drive.hard.alternative",
+      "name": "Hard Alternative",
+      "effect_type": "hard_distortion",
+      "effect_version": 1,
+      "parameters": {
+        "drive_db": 21,
+        "low_cut_hz": 80,
+        "filter_hz": 3900,
+        "output_db": -14
+      }
+    },
+    {
+      "id": "8cfa6fb1-018e-53d8-bc56-e090108c3c14",
+      "key": "drive.sustain.sing",
+      "name": "Singing Sustain Fuzz",
+      "effect_type": "sustain_fuzz",
+      "effect_version": 1,
+      "parameters": {
+        "drive_db": 24,
+        "compression_percent": 45,
+        "tone_hz": 3100,
+        "output_db": -16
+      }
+    },
+    {
+      "id": "7fabffb8-ee08-529d-887e-71f45ed6b71a",
+      "key": "drive.sustain.doom",
+      "name": "Doom Sustain Fuzz",
+      "effect_type": "sustain_fuzz",
+      "effect_version": 1,
+      "parameters": {
+        "drive_db": 30,
+        "compression_percent": 65,
+        "tone_hz": 1800,
+        "output_db": -17
+      }
+    },
+    {
+      "id": "79694fc7-dafc-561f-b8db-c096c97f14fe",
+      "key": "drive.bias.stable",
+      "name": "Singing Stable Bias Fuzz",
+      "effect_type": "bias_fuzz",
+      "effect_version": 1,
+      "parameters": {
+        "drive_db": 25,
+        "gate_db": -72,
+        "compression_percent": 30,
+        "bias_percent": 8,
+        "stability_percent": 100,
+        "output_db": -16
+      }
+    },
+    {
+      "id": "af09cb83-eb97-594b-94f5-6e6b72023a62",
+      "key": "drive.bias.velcro",
+      "name": "Velcro Bias Fuzz",
+      "effect_type": "bias_fuzz",
+      "effect_version": 1,
+      "parameters": {
+        "drive_db": 30,
+        "gate_db": -42,
+        "compression_percent": 70,
+        "bias_percent": -45,
+        "stability_percent": 60,
+        "output_db": -16
+      }
+    },
+    {
+      "id": "cf393ec3-c509-557e-b70e-771efa0f3e98",
+      "key": "drive.bias.control",
+      "name": "Controlled Bias Fuzz",
+      "effect_type": "bias_fuzz",
+      "effect_version": 1,
+      "parameters": {
+        "drive_db": 24,
+        "gate_db": -55,
+        "compression_percent": 45,
+        "bias_percent": 30,
+        "stability_percent": 75,
+        "output_db": -15
+      }
+    },
+    {
+      "id": "0711b147-09a8-5836-9f22-5ff36750a189",
+      "key": "boost.tight",
+      "name": "Metal Tight Boost",
+      "effect_type": "tight_boost",
+      "effect_version": 1,
+      "parameters": {
+        "drive_db": 1,
+        "low_cut_hz": 140,
+        "attack_percent": 30,
+        "output_db": 6
+      }
+    },
+    {
+      "id": "9562fefa-bd0e-5173-a6a4-89a64fea90c6",
+      "key": "gate.tight",
+      "name": "Tight Gate",
+      "effect_type": "noise_gate",
+      "effect_version": 1,
+      "parameters": {
+        "threshold_db": -54,
+        "range_db": 65,
+        "attack_ms": 1,
+        "hold_ms": 35,
+        "release_ms": 130,
+        "hysteresis_db": 7
+      }
+    },
+    {
+      "id": "1531bb69-45a7-5112-993d-ada461e7a808",
+      "key": "gate.lead",
+      "name": "Lead Decay Gate",
+      "effect_type": "noise_gate",
+      "effect_version": 1,
+      "parameters": {
+        "threshold_db": -64,
+        "range_db": 45,
+        "attack_ms": 2,
+        "hold_ms": 90,
+        "release_ms": 350,
+        "hysteresis_db": 8
+      }
+    },
+    {
+      "id": "a36b4121-b6ae-5562-b218-6e000b398018",
+      "key": "eq.thrash",
+      "name": "Thrash Graphic",
+      "effect_type": "graphic_eq",
+      "effect_version": 1,
+      "parameters": {
+        "80_hz_db": 3,
+        "240_hz_db": -1,
+        "750_hz_db": -6,
+        "2200_hz_db": 2,
+        "6600_hz_db": 1,
+        "output_db": -1
+      }
+    },
+    {
+      "id": "c8b8a536-0786-5ed2-8e7f-2bd5936ab966",
+      "key": "eq.stadium",
+      "name": "Stadium Graphic",
+      "effect_type": "graphic_eq",
+      "effect_version": 1,
+      "parameters": {
+        "80_hz_db": 2,
+        "240_hz_db": -1,
+        "750_hz_db": -4,
+        "2200_hz_db": 1,
+        "6600_hz_db": 0,
+        "output_db": -1
+      }
+    },
+    {
+      "id": "8d2b09db-b4a8-51f2-983c-aee9df0a8d3e",
+      "key": "eq.post.tight",
+      "name": "Post-Cab Tight",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 80,
+        "low_pass_hz": 8000,
+        "band1_hz": 180,
+        "band1_db": -1,
+        "band2_hz": 850,
+        "band2_db": 1,
+        "band3_hz": 3800,
+        "band3_db": -2
+      }
+    },
+    {
+      "id": "08c5bad8-1eb9-5611-9c9f-ecbd5ec92f60",
+      "key": "eq.post.full",
+      "name": "Post-Cab Full",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 70,
+        "low_pass_hz": 7200,
+        "band1_hz": 150,
+        "band1_db": 0,
+        "band2_hz": 900,
+        "band2_db": 1,
+        "band3_hz": 3500,
+        "band3_db": -1
+      }
+    },
+    {
+      "id": "e45835f6-4628-512e-a1d3-dbdc13183193",
+      "key": "eq.nasal",
+      "name": "Nasal Mid Fuzz",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 100,
+        "low_pass_hz": 6200,
+        "band2_hz": 1100,
+        "band2_db": 5,
+        "band2_q": 1.2
+      }
+    },
+    {
+      "id": "34ee0011-0aa6-54c5-a8d2-acf51c6e9686",
+      "key": "mod.phaser.subtle",
+      "name": "Subtle Four-Stage",
+      "effect_type": "phaser",
+      "effect_version": 1,
+      "parameters": {
+        "rate_hz": 0.7,
+        "depth_percent": 55,
+        "feedback_percent": 10,
+        "mix_percent": 18,
+        "stages": 0
+      }
+    },
+    {
+      "id": "93e3cacb-5d2f-5d62-a170-752efd011081",
+      "key": "mod.flanger.slow",
+      "name": "Slow Flange",
+      "effect_type": "flanger",
+      "effect_version": 1,
+      "parameters": {
+        "rate_hz": 0.2,
+        "depth_percent": 35,
+        "manual_ms": 3.5,
+        "feedback_percent": 25,
+        "mix_percent": 20
+      }
+    },
+    {
+      "id": "06251879-8138-5d76-87c3-07811a0e6e6b",
+      "key": "wah.singing",
+      "name": "Singing Manual Wah",
+      "effect_type": "wah",
+      "effect_version": 1,
+      "parameters": {
+        "position_percent": 65,
+        "heel_hz": 300,
+        "toe_hz": 2400,
+        "q": 2.4,
+        "output_db": 0,
+        "mix_percent": 70
+      }
+    },
+    {
+      "id": "186a1c80-f8a9-59a1-b08e-b69c4cb44bb3",
+      "key": "wah.resonant",
+      "name": "Art Envelope Wah",
+      "effect_type": "envelope_wah",
+      "effect_version": 1,
+      "parameters": {
+        "sensitivity_db": 18,
+        "attack_ms": 10,
+        "release_ms": 220,
+        "q": 2.5,
+        "mix_percent": 65
+      }
+    },
+    {
+      "id": "a751176b-6938-57a5-bc4e-e31d9b633672",
+      "key": "echo.lead",
+      "name": "Modest Tape Lead",
+      "effect_type": "echo",
+      "effect_version": 1,
+      "parameters": {
+        "time_ms": 320,
+        "feedback_percent": 25,
+        "mode": 2,
+        "color_hz": 4200,
+        "mix_percent": 15
+      }
+    },
+    {
+      "id": "b0678277-44dd-586b-bbfb-2e995d667876",
+      "key": "echo.rhythmic",
+      "name": "Rhythmic Tape Echo",
+      "effect_type": "echo",
+      "effect_version": 1,
+      "parameters": {
+        "bpm": 110,
+        "clock": 1,
+        "subdivision": 2,
+        "feedback_percent": 35,
+        "mode": 2,
+        "color_hz": 3800,
+        "wow_percent": 5,
+        "mix_percent": 24
+      }
+    },
+    {
+      "id": "90228d49-8545-5722-b8c0-7a2c01d5384c",
+      "key": "echo.western",
+      "name": "Western Echo",
+      "effect_type": "echo",
+      "effect_version": 1,
+      "parameters": {
+        "time_ms": 180,
+        "feedback_percent": 28,
+        "mode": 1,
+        "color_hz": 4500,
+        "mix_percent": 20
+      }
+    },
+    {
+      "id": "5aca3f18-a941-52a3-91ea-3a526ae24758",
+      "key": "echo.long",
+      "name": "Long Stereo Echo",
+      "effect_type": "echo",
+      "effect_version": 1,
+      "parameters": {
+        "time_ms": 700,
+        "feedback_percent": 55,
+        "mode": 1,
+        "color_hz": 4800,
+        "stereo": 1,
+        "mix_percent": 38
+      }
+    },
+    {
+      "id": "2dfcccc9-76fe-5044-8ff2-6ee24bd4a6fb",
+      "key": "space.room",
+      "name": "Gentle Room",
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "parameters": {
+        "mode": 0,
+        "decay_seconds": 0.8,
+        "pre_delay_ms": 8,
+        "damping_hz": 6500,
+        "mix_percent": 10
+      }
+    },
+    {
+      "id": "caa0d445-963a-545a-a87d-baa69d5e69ca",
+      "key": "space.plate",
+      "name": "Lead Plate",
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "parameters": {
+        "mode": 1,
+        "decay_seconds": 1.8,
+        "pre_delay_ms": 18,
+        "damping_hz": 5500,
+        "mix_percent": 14
+      }
+    },
+    {
+      "id": "88b83098-37df-5ef8-b4f2-791f64f200cc",
+      "key": "space.hall",
+      "name": "Ambient Hall",
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "parameters": {
+        "mode": 2,
+        "decay_seconds": 7,
+        "pre_delay_ms": 35,
+        "damping_hz": 4200,
+        "mix_percent": 40
+      }
+    },
+    {
+      "id": "c6bbd218-8f94-564c-b94d-8aa416f0d3f0",
+      "key": "swell.bloom",
+      "name": "Ambient Swell",
+      "effect_type": "swell",
+      "effect_version": 1,
+      "parameters": {
+        "attack_ms": 550,
+        "release_ms": 150,
+        "threshold_db": -65,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "60325c16-5154-52b2-a365-277929652b55",
+      "key": "hold.layer",
+      "name": "Layer Hold",
+      "effect_type": "audio_hold",
+      "effect_version": 1,
+      "parameters": {
+        "hold": 0,
+        "mix_percent": 65,
+        "output_db": -6
+      }
+    },
+    {
+      "id": "670fa5b8-2a1b-5f61-a65b-1c863c968dc9",
+      "key": "pitch.octave",
+      "name": "Expressive Octave",
+      "effect_type": "expression_pitch",
+      "effect_version": 1,
+      "parameters": {
+        "heel_semitones": 0,
+        "toe_semitones": 12,
+        "expression_percent": 0,
+        "detune_cents": 0,
+        "mix_percent": 100,
+        "output_db": -3
+      }
+    },
+    {
+      "id": "9fee8a3a-4cc3-5725-8e3f-31f7aa0a0aad",
+      "key": "pitch.detune",
+      "name": "Spectral Detune Layer",
+      "effect_type": "expression_pitch",
+      "effect_version": 1,
+      "parameters": {
+        "heel_semitones": 0,
+        "toe_semitones": 12,
+        "expression_percent": 0,
+        "detune_cents": 9,
+        "mix_percent": 30,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "ee5251bf-b6dc-5ac6-92d2-07678eea2f3c",
+      "key": "dual.muse",
+      "name": "Tight / Chime 70-30",
+      "effect_type": "dual_amp",
+      "effect_version": 1,
+      "parameters": {
+        "model_a": 6,
+        "gain_a_db": 20,
+        "model_b": 2,
+        "gain_b_db": 8,
+        "blend_percent": 30,
+        "level_a_db": -2,
+        "level_b_db": 0,
+        "output_db": -14
+      }
+    },
+    {
+      "id": "43aa0de1-a674-5811-a52c-184d6c73b2e9",
+      "key": "amp.recto.lowstrings",
+      "name": "Recto Low String Dynamics",
+      "effect_type": "amp_recto",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 18,
+        "bass_db": -4,
+        "mid_db": 2,
+        "treble_db": 0,
+        "master_percent": 50,
+        "sag_percent": 55,
+        "resonance_percent": 25,
+        "output_db": -14
+      }
+    },
+    {
+      "id": "fa58740b-2341-5b67-a906-3a5b0a398624",
+      "key": "chorus.clear",
+      "name": "Clear Slow Chorus",
+      "effect_type": "chorus",
+      "effect_version": 1,
+      "parameters": {
+        "rate_hz": 0.35,
+        "depth_percent": 22,
+        "width_percent": 60,
+        "mix_percent": 18
       }
     }
   ],
@@ -906,6 +2004,21 @@
         "Cabinet Unity",
         "Arpeggio Air",
         "Small Space"
+      ],
+      "id": "50000000-0000-4000-8000-000000000001",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000001",
+        "60000000-0000-4000-8000-000000000002",
+        "60000000-0000-4000-8000-000000000003",
+        "60000000-0000-4000-8000-000000000004",
+        "60000000-0000-4000-8000-000000000005"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000025",
+        "40000000-0000-4000-8000-000000000020",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000029",
+        "40000000-0000-4000-8000-000000000066"
       ]
     },
     {
@@ -917,6 +2030,21 @@
         "Cabinet Unity",
         "Digital Slap",
         "Small Space"
+      ],
+      "id": "50000000-0000-4000-8000-000000000002",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000017",
+        "60000000-0000-4000-8000-000000000018",
+        "60000000-0000-4000-8000-000000000019",
+        "60000000-0000-4000-8000-000000000020",
+        "60000000-0000-4000-8000-000000000021"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000027",
+        "40000000-0000-4000-8000-000000000022",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000055",
+        "40000000-0000-4000-8000-000000000066"
       ]
     },
     {
@@ -927,6 +2055,19 @@
         "Cabinet Unity",
         "Detuned Double",
         "Small Space"
+      ],
+      "id": "50000000-0000-4000-8000-000000000003",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000033",
+        "60000000-0000-4000-8000-000000000034",
+        "60000000-0000-4000-8000-000000000035",
+        "60000000-0000-4000-8000-000000000036"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000020",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000048",
+        "40000000-0000-4000-8000-000000000066"
       ]
     },
     {
@@ -938,6 +2079,21 @@
         "Cabinet Unity",
         "Analog Trail",
         "Small Space"
+      ],
+      "id": "50000000-0000-4000-8000-000000000004",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000049",
+        "60000000-0000-4000-8000-000000000050",
+        "60000000-0000-4000-8000-000000000051",
+        "60000000-0000-4000-8000-000000000052",
+        "60000000-0000-4000-8000-000000000053"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000026",
+        "40000000-0000-4000-8000-000000000021",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000057",
+        "40000000-0000-4000-8000-000000000066"
       ]
     },
     {
@@ -949,6 +2105,21 @@
         "Clean Glass",
         "Cabinet Unity",
         "Small Space"
+      ],
+      "id": "50000000-0000-4000-8000-000000000005",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000065",
+        "60000000-0000-4000-8000-000000000066",
+        "60000000-0000-4000-8000-000000000067",
+        "60000000-0000-4000-8000-000000000068",
+        "60000000-0000-4000-8000-000000000069"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000027",
+        "40000000-0000-4000-8000-000000000040",
+        "40000000-0000-4000-8000-000000000020",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000066"
       ]
     },
     {
@@ -961,6 +2132,23 @@
         "Arpeggio Air",
         "Dotted Pulse",
         "Long Decay"
+      ],
+      "id": "50000000-0000-4000-8000-000000000006",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000081",
+        "60000000-0000-4000-8000-000000000082",
+        "60000000-0000-4000-8000-000000000083",
+        "60000000-0000-4000-8000-000000000084",
+        "60000000-0000-4000-8000-000000000085",
+        "60000000-0000-4000-8000-000000000086"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000025",
+        "40000000-0000-4000-8000-000000000020",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000029",
+        "40000000-0000-4000-8000-000000000060",
+        "40000000-0000-4000-8000-000000000067"
       ]
     },
     {
@@ -972,6 +2160,21 @@
         "Cabinet Unity",
         "Mid Focus",
         "Small Space"
+      ],
+      "id": "50000000-0000-4000-8000-000000000007",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000097",
+        "60000000-0000-4000-8000-000000000098",
+        "60000000-0000-4000-8000-000000000099",
+        "60000000-0000-4000-8000-000000000100",
+        "60000000-0000-4000-8000-000000000101"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000010",
+        "40000000-0000-4000-8000-000000000024",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000072",
+        "40000000-0000-4000-8000-000000000066"
       ]
     },
     {
@@ -983,6 +2186,21 @@
         "Subterranean Pulse",
         "Analog Trail",
         "Long Decay"
+      ],
+      "id": "50000000-0000-4000-8000-000000000008",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000113",
+        "60000000-0000-4000-8000-000000000114",
+        "60000000-0000-4000-8000-000000000115",
+        "60000000-0000-4000-8000-000000000116",
+        "60000000-0000-4000-8000-000000000117"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000020",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000034",
+        "40000000-0000-4000-8000-000000000057",
+        "40000000-0000-4000-8000-000000000067"
       ]
     },
     {
@@ -994,6 +2212,21 @@
         "Cabinet Unity",
         "Lead Echo",
         "Long Decay"
+      ],
+      "id": "50000000-0000-4000-8000-000000000009",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000129",
+        "60000000-0000-4000-8000-000000000130",
+        "60000000-0000-4000-8000-000000000131",
+        "60000000-0000-4000-8000-000000000132",
+        "60000000-0000-4000-8000-000000000133"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000004",
+        "40000000-0000-4000-8000-000000000022",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000056",
+        "40000000-0000-4000-8000-000000000067"
       ]
     },
     {
@@ -1005,6 +2238,21 @@
         "Liquid Motion",
         "Dotted Pulse",
         "Bright Cloud"
+      ],
+      "id": "50000000-0000-4000-8000-000000000010",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000145",
+        "60000000-0000-4000-8000-000000000146",
+        "60000000-0000-4000-8000-000000000147",
+        "60000000-0000-4000-8000-000000000148",
+        "60000000-0000-4000-8000-000000000149"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000020",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000030",
+        "40000000-0000-4000-8000-000000000060",
+        "40000000-0000-4000-8000-000000000068"
       ]
     },
     {
@@ -1016,6 +2264,21 @@
         "Telephone",
         "Short Comb",
         "Short Metallic"
+      ],
+      "id": "50000000-0000-4000-8000-000000000011",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000161",
+        "60000000-0000-4000-8000-000000000162",
+        "60000000-0000-4000-8000-000000000163",
+        "60000000-0000-4000-8000-000000000164",
+        "60000000-0000-4000-8000-000000000165"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000016",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000039",
+        "40000000-0000-4000-8000-000000000063",
+        "40000000-0000-4000-8000-000000000071"
       ]
     },
     {
@@ -1027,6 +2290,21 @@
         "Slow Bloom",
         "Tape Orbit",
         "Long Decay"
+      ],
+      "id": "50000000-0000-4000-8000-000000000012",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000177",
+        "60000000-0000-4000-8000-000000000178",
+        "60000000-0000-4000-8000-000000000179",
+        "60000000-0000-4000-8000-000000000180",
+        "60000000-0000-4000-8000-000000000181"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000022",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000033",
+        "40000000-0000-4000-8000-000000000058",
+        "40000000-0000-4000-8000-000000000067"
       ]
     },
     {
@@ -1038,6 +2316,21 @@
         "Cabinet Unity",
         "Lean Bass",
         "Small Space"
+      ],
+      "id": "50000000-0000-4000-8000-000000000013",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000193",
+        "60000000-0000-4000-8000-000000000194",
+        "60000000-0000-4000-8000-000000000195",
+        "60000000-0000-4000-8000-000000000196",
+        "60000000-0000-4000-8000-000000000197"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000011",
+        "40000000-0000-4000-8000-000000000024",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000074",
+        "40000000-0000-4000-8000-000000000066"
       ]
     },
     {
@@ -1049,6 +2342,21 @@
         "Cabinet Unity",
         "Soft Highs",
         "Small Space"
+      ],
+      "id": "50000000-0000-4000-8000-000000000014",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000209",
+        "60000000-0000-4000-8000-000000000210",
+        "60000000-0000-4000-8000-000000000211",
+        "60000000-0000-4000-8000-000000000212",
+        "60000000-0000-4000-8000-000000000213"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000012",
+        "40000000-0000-4000-8000-000000000023",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000073",
+        "40000000-0000-4000-8000-000000000066"
       ]
     },
     {
@@ -1060,6 +2368,21 @@
         "Cabinet Unity",
         "Lead Echo",
         "Long Decay"
+      ],
+      "id": "50000000-0000-4000-8000-000000000015",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000225",
+        "60000000-0000-4000-8000-000000000226",
+        "60000000-0000-4000-8000-000000000227",
+        "60000000-0000-4000-8000-000000000228",
+        "60000000-0000-4000-8000-000000000229"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000014",
+        "40000000-0000-4000-8000-000000000021",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000056",
+        "40000000-0000-4000-8000-000000000067"
       ]
     },
     {
@@ -1072,6 +2395,23 @@
         "Mid Focus",
         "Lead Echo",
         "Small Space"
+      ],
+      "id": "50000000-0000-4000-8000-000000000016",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000241",
+        "60000000-0000-4000-8000-000000000242",
+        "60000000-0000-4000-8000-000000000243",
+        "60000000-0000-4000-8000-000000000244",
+        "60000000-0000-4000-8000-000000000245",
+        "60000000-0000-4000-8000-000000000246"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000046",
+        "40000000-0000-4000-8000-000000000010",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000072",
+        "40000000-0000-4000-8000-000000000056",
+        "40000000-0000-4000-8000-000000000066"
       ]
     },
     {
@@ -1083,6 +2423,21 @@
         "Cabinet Unity",
         "Soft Highs",
         "Small Space"
+      ],
+      "id": "50000000-0000-4000-8000-000000000017",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000257",
+        "60000000-0000-4000-8000-000000000258",
+        "60000000-0000-4000-8000-000000000259",
+        "60000000-0000-4000-8000-000000000260",
+        "60000000-0000-4000-8000-000000000261"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000045",
+        "40000000-0000-4000-8000-000000000017",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000073",
+        "40000000-0000-4000-8000-000000000066"
       ]
     },
     {
@@ -1094,6 +2449,21 @@
         "Cabinet Unity",
         "Hard Chop",
         "Small Space"
+      ],
+      "id": "50000000-0000-4000-8000-000000000018",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000273",
+        "60000000-0000-4000-8000-000000000274",
+        "60000000-0000-4000-8000-000000000275",
+        "60000000-0000-4000-8000-000000000276",
+        "60000000-0000-4000-8000-000000000277"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000019",
+        "40000000-0000-4000-8000-000000000024",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000035",
+        "40000000-0000-4000-8000-000000000066"
       ]
     },
     {
@@ -1106,6 +2476,23 @@
         "Slow Bloom",
         "Long Memory",
         "Bright Cloud"
+      ],
+      "id": "50000000-0000-4000-8000-000000000019",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000289",
+        "60000000-0000-4000-8000-000000000290",
+        "60000000-0000-4000-8000-000000000291",
+        "60000000-0000-4000-8000-000000000292",
+        "60000000-0000-4000-8000-000000000293",
+        "60000000-0000-4000-8000-000000000294"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000020",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000047",
+        "40000000-0000-4000-8000-000000000033",
+        "40000000-0000-4000-8000-000000000061",
+        "40000000-0000-4000-8000-000000000068"
       ]
     },
     {
@@ -1117,6 +2504,21 @@
         "Octave Above",
         "Tape Orbit",
         "Wet Horizon"
+      ],
+      "id": "50000000-0000-4000-8000-000000000020",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000305",
+        "60000000-0000-4000-8000-000000000306",
+        "60000000-0000-4000-8000-000000000307",
+        "60000000-0000-4000-8000-000000000308",
+        "60000000-0000-4000-8000-000000000309"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000020",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000046",
+        "40000000-0000-4000-8000-000000000058",
+        "40000000-0000-4000-8000-000000000070"
       ]
     },
     {
@@ -1129,6 +2531,23 @@
         "Dark Underwater",
         "Long Memory",
         "Dark Cathedral"
+      ],
+      "id": "50000000-0000-4000-8000-000000000021",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000321",
+        "60000000-0000-4000-8000-000000000322",
+        "60000000-0000-4000-8000-000000000323",
+        "60000000-0000-4000-8000-000000000324",
+        "60000000-0000-4000-8000-000000000325",
+        "60000000-0000-4000-8000-000000000326"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000050",
+        "40000000-0000-4000-8000-000000000021",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000042",
+        "40000000-0000-4000-8000-000000000061",
+        "40000000-0000-4000-8000-000000000069"
       ]
     },
     {
@@ -1140,6 +2559,21 @@
         "Stereo Orbit",
         "Tape Orbit",
         "Long Decay"
+      ],
+      "id": "50000000-0000-4000-8000-000000000022",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000337",
+        "60000000-0000-4000-8000-000000000338",
+        "60000000-0000-4000-8000-000000000339",
+        "60000000-0000-4000-8000-000000000340",
+        "60000000-0000-4000-8000-000000000341"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000020",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000036",
+        "40000000-0000-4000-8000-000000000058",
+        "40000000-0000-4000-8000-000000000067"
       ]
     },
     {
@@ -1151,6 +2585,21 @@
         "Seasick",
         "Broken Tape",
         "Wet Horizon"
+      ],
+      "id": "50000000-0000-4000-8000-000000000023",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000353",
+        "60000000-0000-4000-8000-000000000354",
+        "60000000-0000-4000-8000-000000000355",
+        "60000000-0000-4000-8000-000000000356",
+        "60000000-0000-4000-8000-000000000357"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000020",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000031",
+        "40000000-0000-4000-8000-000000000059",
+        "40000000-0000-4000-8000-000000000070"
       ]
     },
     {
@@ -1163,6 +2612,23 @@
         "Cabinet Unity",
         "Analog Trail",
         "Bright Cloud"
+      ],
+      "id": "50000000-0000-4000-8000-000000000024",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000369",
+        "60000000-0000-4000-8000-000000000370",
+        "60000000-0000-4000-8000-000000000371",
+        "60000000-0000-4000-8000-000000000372",
+        "60000000-0000-4000-8000-000000000373",
+        "60000000-0000-4000-8000-000000000374"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000026",
+        "40000000-0000-4000-8000-000000000044",
+        "40000000-0000-4000-8000-000000000020",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000057",
+        "40000000-0000-4000-8000-000000000068"
       ]
     },
     {
@@ -1174,6 +2640,21 @@
         "Detuned Double",
         "Digital Slap",
         "Long Decay"
+      ],
+      "id": "50000000-0000-4000-8000-000000000025",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000385",
+        "60000000-0000-4000-8000-000000000386",
+        "60000000-0000-4000-8000-000000000387",
+        "60000000-0000-4000-8000-000000000388",
+        "60000000-0000-4000-8000-000000000389"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000020",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000048",
+        "40000000-0000-4000-8000-000000000055",
+        "40000000-0000-4000-8000-000000000067"
       ]
     },
     {
@@ -1186,6 +2667,23 @@
         "Telephone",
         "Broken Tape",
         "Short Metallic"
+      ],
+      "id": "50000000-0000-4000-8000-000000000026",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000401",
+        "60000000-0000-4000-8000-000000000402",
+        "60000000-0000-4000-8000-000000000403",
+        "60000000-0000-4000-8000-000000000404",
+        "60000000-0000-4000-8000-000000000405",
+        "60000000-0000-4000-8000-000000000406"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000018",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000053",
+        "40000000-0000-4000-8000-000000000039",
+        "40000000-0000-4000-8000-000000000059",
+        "40000000-0000-4000-8000-000000000071"
       ]
     },
     {
@@ -1197,6 +2695,21 @@
         "Resonant Sweep",
         "Tape Orbit",
         "Long Decay"
+      ],
+      "id": "50000000-0000-4000-8000-000000000027",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000417",
+        "60000000-0000-4000-8000-000000000418",
+        "60000000-0000-4000-8000-000000000419",
+        "60000000-0000-4000-8000-000000000420",
+        "60000000-0000-4000-8000-000000000421"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000015",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000041",
+        "40000000-0000-4000-8000-000000000058",
+        "40000000-0000-4000-8000-000000000067"
       ]
     },
     {
@@ -1209,6 +2722,23 @@
         "Alien Mouth",
         "Lead Echo",
         "Short Metallic"
+      ],
+      "id": "50000000-0000-4000-8000-000000000028",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000433",
+        "60000000-0000-4000-8000-000000000434",
+        "60000000-0000-4000-8000-000000000435",
+        "60000000-0000-4000-8000-000000000436",
+        "60000000-0000-4000-8000-000000000437",
+        "60000000-0000-4000-8000-000000000438"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000049",
+        "40000000-0000-4000-8000-000000000016",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000043",
+        "40000000-0000-4000-8000-000000000056",
+        "40000000-0000-4000-8000-000000000071"
       ]
     },
     {
@@ -1220,6 +2750,21 @@
         "Metallic Bell",
         "Digital Slap",
         "Bright Cloud"
+      ],
+      "id": "50000000-0000-4000-8000-000000000029",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000449",
+        "60000000-0000-4000-8000-000000000450",
+        "60000000-0000-4000-8000-000000000451",
+        "60000000-0000-4000-8000-000000000452",
+        "60000000-0000-4000-8000-000000000453"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000020",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000052",
+        "40000000-0000-4000-8000-000000000055",
+        "40000000-0000-4000-8000-000000000068"
       ]
     },
     {
@@ -1231,6 +2776,21 @@
         "Machine Gun",
         "Short Comb",
         "Small Space"
+      ],
+      "id": "50000000-0000-4000-8000-000000000030",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000465",
+        "60000000-0000-4000-8000-000000000466",
+        "60000000-0000-4000-8000-000000000467",
+        "60000000-0000-4000-8000-000000000468",
+        "60000000-0000-4000-8000-000000000469"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000013",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000038",
+        "40000000-0000-4000-8000-000000000063",
+        "40000000-0000-4000-8000-000000000066"
       ]
     },
     {
@@ -1242,6 +2802,21 @@
         "Low Mechanical",
         "Dark Underwater",
         "Analog Trail"
+      ],
+      "id": "50000000-0000-4000-8000-000000000031",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000481",
+        "60000000-0000-4000-8000-000000000482",
+        "60000000-0000-4000-8000-000000000483",
+        "60000000-0000-4000-8000-000000000484",
+        "60000000-0000-4000-8000-000000000485"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000017",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000054",
+        "40000000-0000-4000-8000-000000000042",
+        "40000000-0000-4000-8000-000000000057"
       ]
     },
     {
@@ -1253,6 +2828,21 @@
         "Cabinet Unity",
         "Tape Orbit",
         "Bright Cloud"
+      ],
+      "id": "50000000-0000-4000-8000-000000000032",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000497",
+        "60000000-0000-4000-8000-000000000498",
+        "60000000-0000-4000-8000-000000000499",
+        "60000000-0000-4000-8000-000000000500",
+        "60000000-0000-4000-8000-000000000501"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000032",
+        "40000000-0000-4000-8000-000000000051",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000058",
+        "40000000-0000-4000-8000-000000000068"
       ]
     },
     {
@@ -1264,6 +2854,21 @@
         "Radio Interference",
         "Broken Tape",
         "Dark Cathedral"
+      ],
+      "id": "50000000-0000-4000-8000-000000000033",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000513",
+        "60000000-0000-4000-8000-000000000514",
+        "60000000-0000-4000-8000-000000000515",
+        "60000000-0000-4000-8000-000000000516",
+        "60000000-0000-4000-8000-000000000517"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000019",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000053",
+        "40000000-0000-4000-8000-000000000059",
+        "40000000-0000-4000-8000-000000000069"
       ]
     },
     {
@@ -1275,6 +2880,21 @@
         "Resonant Sweep",
         "Dub Feedback",
         "Small Space"
+      ],
+      "id": "50000000-0000-4000-8000-000000000034",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000529",
+        "60000000-0000-4000-8000-000000000530",
+        "60000000-0000-4000-8000-000000000531",
+        "60000000-0000-4000-8000-000000000532",
+        "60000000-0000-4000-8000-000000000533"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000021",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000041",
+        "40000000-0000-4000-8000-000000000062",
+        "40000000-0000-4000-8000-000000000066"
       ]
     },
     {
@@ -1286,6 +2906,21 @@
         "Heartbeat",
         "Analog Trail",
         "Long Decay"
+      ],
+      "id": "50000000-0000-4000-8000-000000000035",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000545",
+        "60000000-0000-4000-8000-000000000546",
+        "60000000-0000-4000-8000-000000000547",
+        "60000000-0000-4000-8000-000000000548",
+        "60000000-0000-4000-8000-000000000549"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000021",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000037",
+        "40000000-0000-4000-8000-000000000057",
+        "40000000-0000-4000-8000-000000000067"
       ]
     },
     {
@@ -1297,6 +2932,21 @@
         "Dark Underwater",
         "Stereo Orbit",
         "Bright Cloud"
+      ],
+      "id": "50000000-0000-4000-8000-000000000036",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000561",
+        "60000000-0000-4000-8000-000000000562",
+        "60000000-0000-4000-8000-000000000563",
+        "60000000-0000-4000-8000-000000000564",
+        "60000000-0000-4000-8000-000000000565"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000020",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000042",
+        "40000000-0000-4000-8000-000000000036",
+        "40000000-0000-4000-8000-000000000068"
       ]
     },
     {
@@ -1308,6 +2958,21 @@
         "Digital Slap",
         "Tape Orbit",
         "Long Decay"
+      ],
+      "id": "50000000-0000-4000-8000-000000000037",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000577",
+        "60000000-0000-4000-8000-000000000578",
+        "60000000-0000-4000-8000-000000000579",
+        "60000000-0000-4000-8000-000000000580",
+        "60000000-0000-4000-8000-000000000581"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000020",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000055",
+        "40000000-0000-4000-8000-000000000058",
+        "40000000-0000-4000-8000-000000000067"
       ]
     },
     {
@@ -1320,6 +2985,23 @@
         "Liquid Motion",
         "Analog Trail",
         "Long Decay"
+      ],
+      "id": "50000000-0000-4000-8000-000000000038",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000593",
+        "60000000-0000-4000-8000-000000000594",
+        "60000000-0000-4000-8000-000000000595",
+        "60000000-0000-4000-8000-000000000596",
+        "60000000-0000-4000-8000-000000000597",
+        "60000000-0000-4000-8000-000000000598"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000047",
+        "40000000-0000-4000-8000-000000000022",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000030",
+        "40000000-0000-4000-8000-000000000057",
+        "40000000-0000-4000-8000-000000000067"
       ]
     },
     {
@@ -1331,6 +3013,21 @@
         "Telephone",
         "Dotted Pulse",
         "Short Metallic"
+      ],
+      "id": "50000000-0000-4000-8000-000000000039",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000609",
+        "60000000-0000-4000-8000-000000000610",
+        "60000000-0000-4000-8000-000000000611",
+        "60000000-0000-4000-8000-000000000612",
+        "60000000-0000-4000-8000-000000000613"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000014",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000039",
+        "40000000-0000-4000-8000-000000000060",
+        "40000000-0000-4000-8000-000000000071"
       ]
     },
     {
@@ -1343,7 +3040,753 @@
         "Slow Bloom",
         "Long Memory",
         "Wet Horizon"
+      ],
+      "id": "50000000-0000-4000-8000-000000000040",
+      "instance_ids": [
+        "60000000-0000-4000-8000-000000000625",
+        "60000000-0000-4000-8000-000000000626",
+        "60000000-0000-4000-8000-000000000627",
+        "60000000-0000-4000-8000-000000000628",
+        "60000000-0000-4000-8000-000000000629",
+        "60000000-0000-4000-8000-000000000630"
+      ],
+      "pedal_ids": [
+        "40000000-0000-4000-8000-000000000008",
+        "40000000-0000-4000-8000-000000000020",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000033",
+        "40000000-0000-4000-8000-000000000061",
+        "40000000-0000-4000-8000-000000000070"
       ]
+    },
+    {
+      "id": "2f3c4aba-3a6a-5880-959c-244cde7fa96d",
+      "key": "oxford.punch",
+      "name": "Radiohead / Oxford Contour Drive",
+      "output_db": -3.84,
+      "pedals": [
+        "Oxford Punch",
+        "Solid Platform Clean",
+        "Cabinet Unity",
+        "Post-Cab Tight",
+        "Gentle Room"
+      ],
+      "pedal_ids": [
+        "65e3ce34-45a1-563c-8944-7fe3c47b8fda",
+        "414c65f9-f273-52f5-a1bb-15ca72290a89",
+        "40000000-0000-4000-8000-000000000076",
+        "8d2b09db-b4a8-51f2-983c-aee9df0a8d3e",
+        "2dfcccc9-76fe-5044-8ff2-6ee24bd4a6fb"
+      ],
+      "instance_ids": [
+        "774fceed-d0f0-5aab-b88b-0e1c44959a37",
+        "2e445567-b3a1-5a8a-a044-d26e0640f66e",
+        "799c7f9c-af26-54a6-b15b-265bc2f5a653",
+        "c2b5b2de-c72f-5dfe-87dd-dd1e77a8d15f",
+        "503be7a4-0274-59d5-869b-1720b51d2394"
+      ],
+      "cabinet_assets": {
+        "2": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "f456f94c-c65f-5634-9869-338fbc8906ab",
+      "key": "oxford.lead",
+      "name": "Radiohead / Oxford Filter Echo",
+      "output_db": 5.1,
+      "pedals": [
+        "Contour Grind",
+        "Art Envelope Wah",
+        "Solid Platform Clean",
+        "Cabinet Unity",
+        "Modest Tape Lead",
+        "Lead Plate"
+      ],
+      "pedal_ids": [
+        "a3a75742-3637-58b2-b0f1-714055271862",
+        "186a1c80-f8a9-59a1-b08e-b69c4cb44bb3",
+        "414c65f9-f273-52f5-a1bb-15ca72290a89",
+        "40000000-0000-4000-8000-000000000076",
+        "a751176b-6938-57a5-bc4e-e31d9b633672",
+        "caa0d445-963a-545a-a87d-baa69d5e69ca"
+      ],
+      "instance_ids": [
+        "b1febb8b-0482-5092-87de-93e16f10930f",
+        "7ec44970-9a7d-5c4c-9d88-17c8da275fdf",
+        "976803ea-95ab-5ee7-ba21-59f0d6b8b0c5",
+        "630c9d4c-0f15-5534-ae15-df204067b624",
+        "d0fedda0-eb66-5630-b038-ee6df7594e9a",
+        "7b8ee964-e7de-5517-95fa-66135e2fea22"
+      ],
+      "cabinet_assets": {
+        "3": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "0b7f40ab-537f-5984-846f-076d23cc6366",
+      "key": "art.open",
+      "name": "Radiohead / Open Art-Rock Crunch",
+      "output_db": -6.19,
+      "pedals": [
+        "Open Contour Crunch",
+        "US Combo Edge",
+        "Cabinet Unity",
+        "Gentle Room"
+      ],
+      "pedal_ids": [
+        "cce65584-21b9-594b-b95b-bb573142f019",
+        "5ebfdc91-acf8-5c2c-a4e2-c2c0dcbd8121",
+        "40000000-0000-4000-8000-000000000076",
+        "2dfcccc9-76fe-5044-8ff2-6ee24bd4a6fb"
+      ],
+      "instance_ids": [
+        "c4380636-863d-5d26-93dd-65b0e99426f8",
+        "c8086742-83b0-5479-87f2-b03490fad613",
+        "316498f0-e4d0-54fb-be73-e7525b95e590",
+        "26facff0-cb59-5e57-830f-f6d4a9027f2a"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "00794376-e035-5648-91f7-475852490f31",
+      "key": "art.glass",
+      "name": "Radiohead / Glass and Echo",
+      "output_db": 4.0,
+      "pedals": [
+        "Solid Platform Clean",
+        "Cabinet Unity",
+        "Arpeggio Air",
+        "Western Echo",
+        "Gentle Room"
+      ],
+      "pedal_ids": [
+        "414c65f9-f273-52f5-a1bb-15ca72290a89",
+        "40000000-0000-4000-8000-000000000076",
+        "40000000-0000-4000-8000-000000000029",
+        "90228d49-8545-5722-b8c0-7a2c01d5384c",
+        "2dfcccc9-76fe-5044-8ff2-6ee24bd4a6fb"
+      ],
+      "instance_ids": [
+        "88e327a1-2e5d-507d-a174-5a279661e385",
+        "c42ed0a0-27fd-5489-b3dc-176d0572c199",
+        "3a054232-e23d-5310-baaf-cc921e142849",
+        "39a9455b-055a-5320-b28c-b99fcf8e24bd",
+        "d5e9014d-0bcb-5282-a7d2-79e616fad013"
+      ],
+      "cabinet_assets": {
+        "1": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "d3259f8b-c933-597b-b019-5dac83c25522",
+      "key": "art.filter",
+      "name": "Radiohead / Resonant Filter Drive",
+      "output_db": -0.03,
+      "pedals": [
+        "Art Envelope Wah",
+        "Warm Asymmetric Drive",
+        "US Combo Edge",
+        "Cabinet Unity",
+        "Gentle Room"
+      ],
+      "pedal_ids": [
+        "186a1c80-f8a9-59a1-b08e-b69c4cb44bb3",
+        "696ddf7c-b0fd-549f-90c4-e5b35c9d4119",
+        "5ebfdc91-acf8-5c2c-a4e2-c2c0dcbd8121",
+        "40000000-0000-4000-8000-000000000076",
+        "2dfcccc9-76fe-5044-8ff2-6ee24bd4a6fb"
+      ],
+      "instance_ids": [
+        "a0ee0e4b-3459-5d7f-8712-9a1d5473f307",
+        "ab99148d-6e7b-53c2-81e6-6db37b987501",
+        "b8cc82a9-bcd2-509e-b1ff-0ceede1843bd",
+        "bd52f372-c762-5e9a-8e30-292a64e7a55c",
+        "4c9cf7e4-cc67-58d5-ac5a-54df4d73b525"
+      ],
+      "cabinet_assets": {
+        "3": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "976bd634-09ad-5cae-a80a-c130886ab7f5",
+      "key": "art.bloom",
+      "name": "Radiohead / Ambient Bloom",
+      "output_db": 5.07,
+      "pedals": [
+        "British Chime Clean",
+        "Cabinet Unity",
+        "Ambient Swell",
+        "Spectral Detune Layer",
+        "Long Stereo Echo",
+        "Ambient Hall",
+        "Layer Hold"
+      ],
+      "pedal_ids": [
+        "08c5fb51-9344-5d0d-a2f5-042384e43e59",
+        "40000000-0000-4000-8000-000000000076",
+        "c6bbd218-8f94-564c-b94d-8aa416f0d3f0",
+        "9fee8a3a-4cc3-5725-8e3f-31f7aa0a0aad",
+        "5aca3f18-a941-52a3-91ea-3a526ae24758",
+        "88b83098-37df-5ef8-b4f2-791f64f200cc",
+        "60325c16-5154-52b2-a365-277929652b55"
+      ],
+      "instance_ids": [
+        "3ea58926-4544-56fd-8096-3d6483102e75",
+        "072c7c0f-8c63-5a8b-bc3c-6eb0f69460b7",
+        "c09590d7-1f46-56db-a354-9c92ca0be0fe",
+        "5b8db089-b2d5-54f7-bd10-5015368b89b9",
+        "f94f9b14-01db-58ba-b9be-b82e261d1256",
+        "5f7278f7-ae2b-5249-8b50-53845c3d2e35",
+        "e244036b-1c34-5b7c-968c-be1e3319d489"
+      ],
+      "cabinet_assets": {
+        "1": "e69b28f563f39599f8882d80bb0e56ae336d51cc16b7a273eb7b916511c51da6"
+      }
+    },
+    {
+      "id": "30940621-ecad-5efe-97a4-3aaa62404643",
+      "key": "art.rhythm",
+      "name": "Radiohead / Rhythmic Tape Echo",
+      "output_db": 0.82,
+      "pedals": [
+        "British Chime Edge",
+        "Cabinet Unity",
+        "Rhythmic Tape Echo",
+        "Gentle Room"
+      ],
+      "pedal_ids": [
+        "2e9722f5-4b3c-5115-ad89-0e5baae4fc31",
+        "40000000-0000-4000-8000-000000000076",
+        "b0678277-44dd-586b-bbfb-2e995d667876",
+        "2dfcccc9-76fe-5044-8ff2-6ee24bd4a6fb"
+      ],
+      "instance_ids": [
+        "82d0d0c0-cdff-53c9-b579-439f7634194b",
+        "41535bc0-0c52-5df4-bebe-83794bf9eeaa",
+        "ef6b905f-0e7c-5a14-bb85-0bbb7bd0c454",
+        "bffa05a3-4950-597a-bc33-0827ff699a93"
+      ],
+      "cabinet_assets": {
+        "1": "e69b28f563f39599f8882d80bb0e56ae336d51cc16b7a273eb7b916511c51da6"
+      }
+    },
+    {
+      "id": "acbf0d5e-1fa8-5662-a5b6-8604f532e53b",
+      "key": "muse.stable",
+      "name": "Muse / Singing Stable Fuzz",
+      "output_db": -6.52,
+      "pedals": [
+        "Singing Stable Bias Fuzz",
+        "Subtle Four-Stage",
+        "British Chime Edge",
+        "Cabinet Unity",
+        "Lead Plate"
+      ],
+      "pedal_ids": [
+        "79694fc7-dafc-561f-b8db-c096c97f14fe",
+        "34ee0011-0aa6-54c5-a8d2-acf51c6e9686",
+        "2e9722f5-4b3c-5115-ad89-0e5baae4fc31",
+        "40000000-0000-4000-8000-000000000076",
+        "caa0d445-963a-545a-a87d-baa69d5e69ca"
+      ],
+      "instance_ids": [
+        "95893577-c2d6-5e92-8ee0-deb7cb38f77e",
+        "0d5f7af2-b453-5c18-ba81-cc45b42c7fb0",
+        "6909a5cb-40b3-50ad-8175-1d3ddbb815cc",
+        "cf236acf-7591-50e5-87e5-4ff4bf119d9b",
+        "e8985002-790d-5337-a1e9-85cbf2cc1c38"
+      ],
+      "cabinet_assets": {
+        "3": "e69b28f563f39599f8882d80bb0e56ae336d51cc16b7a273eb7b916511c51da6"
+      }
+    },
+    {
+      "id": "bf3e5415-acf7-52f6-b193-e29808e15467",
+      "key": "muse.chaos",
+      "name": "Muse / Gated Chaos Fuzz",
+      "output_db": -10.46,
+      "pedals": [
+        "Velcro Bias Fuzz",
+        "British Crunch Edge",
+        "Cabinet Unity",
+        "Gentle Room"
+      ],
+      "pedal_ids": [
+        "af09cb83-eb97-594b-94f5-6e6b72023a62",
+        "b520b28c-68d1-5892-ba9a-21c39281508f",
+        "40000000-0000-4000-8000-000000000076",
+        "2dfcccc9-76fe-5044-8ff2-6ee24bd4a6fb"
+      ],
+      "instance_ids": [
+        "bb2eb344-e47d-5ec6-9dd0-947d93e74dd0",
+        "5d539000-72eb-5347-8694-a3edc1486fdc",
+        "1a6d674b-4d25-5c62-a750-8ccca9b08552",
+        "e24abdde-799f-5578-ae8f-5d7c8c2f0c0f"
+      ],
+      "cabinet_assets": {
+        "2": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "ef1075f4-cdc4-51d2-8372-1113d4a98eff",
+      "key": "muse.blend",
+      "name": "Muse / Saturated Chime Blend",
+      "output_db": -4.16,
+      "pedals": [
+        "Tight Gate",
+        "Tight / Chime 70-30",
+        "Cabinet Unity",
+        "Post-Cab Tight",
+        "Gentle Room"
+      ],
+      "pedal_ids": [
+        "9562fefa-bd0e-5173-a6a4-89a64fea90c6",
+        "ee5251bf-b6dc-5ac6-92d2-07678eea2f3c",
+        "40000000-0000-4000-8000-000000000076",
+        "8d2b09db-b4a8-51f2-983c-aee9df0a8d3e",
+        "2dfcccc9-76fe-5044-8ff2-6ee24bd4a6fb"
+      ],
+      "instance_ids": [
+        "8b1c9f98-f85b-55fb-abbc-2ef45270af20",
+        "287d601a-7438-5206-8a8f-244cca68020b",
+        "3a95950d-7893-5871-845c-e0fd7726c594",
+        "1b033d7c-e501-50fa-9e8b-b10997b08c19",
+        "667962ef-fd19-5f8e-989c-49a9f053a0b4"
+      ],
+      "cabinet_assets": {
+        "2": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "add2d269-42a8-5d46-b603-04235bc239f1",
+      "key": "muse.tight",
+      "name": "Muse / Tight Modern Drive",
+      "output_db": -8.38,
+      "pedals": [
+        "Tight Gate",
+        "Metal Tight Boost",
+        "Modern Tight Rhythm",
+        "Cabinet Unity",
+        "Post-Cab Tight",
+        "Gentle Room"
+      ],
+      "pedal_ids": [
+        "9562fefa-bd0e-5173-a6a4-89a64fea90c6",
+        "0711b147-09a8-5836-9f22-5ff36750a189",
+        "b5ddb360-b4e4-5886-8c75-f59bb08ef834",
+        "40000000-0000-4000-8000-000000000076",
+        "8d2b09db-b4a8-51f2-983c-aee9df0a8d3e",
+        "2dfcccc9-76fe-5044-8ff2-6ee24bd4a6fb"
+      ],
+      "instance_ids": [
+        "9dad00da-c612-5c76-b358-2b01d7cfa913",
+        "2dfad6cf-70c1-5ae7-a42d-6ef839a6fc12",
+        "86ed5d1a-c2c5-5e9e-9f21-93a711440522",
+        "c7900dff-08ba-5e66-8074-96d2bb23bc32",
+        "c59a0234-3455-52a7-bc0d-a521b511ab48",
+        "7bbbff48-f414-5225-b679-439b5eed3ca4"
+      ],
+      "cabinet_assets": {
+        "3": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d"
+      }
+    },
+    {
+      "id": "918cd84f-ff72-5797-b215-da37b1f7b25e",
+      "key": "muse.nasal",
+      "name": "Muse / Nasal Fuzz",
+      "output_db": -10.15,
+      "pedals": [
+        "Singing Sustain Fuzz",
+        "British Crunch Edge",
+        "Cabinet Unity",
+        "Nasal Mid Fuzz",
+        "Lead Plate"
+      ],
+      "pedal_ids": [
+        "8cfa6fb1-018e-53d8-bc56-e090108c3c14",
+        "b520b28c-68d1-5892-ba9a-21c39281508f",
+        "40000000-0000-4000-8000-000000000076",
+        "e45835f6-4628-512e-a1d3-dbdc13183193",
+        "caa0d445-963a-545a-a87d-baa69d5e69ca"
+      ],
+      "instance_ids": [
+        "9af6adb8-eba6-53e1-b52c-e4b7191ad648",
+        "f107ae94-abb7-5014-b749-eb9ee0c39757",
+        "8ae827b4-cee1-587f-a904-e247e4a6f014",
+        "112bc59e-2fe8-56c3-aa9f-d783f4133edf",
+        "0b59b94e-c99c-509d-9f63-309262b12131"
+      ],
+      "cabinet_assets": {
+        "2": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "207c65ce-f4a1-50a5-953f-3b8edb25c7aa",
+      "key": "muse.western",
+      "name": "Muse / Western Echo",
+      "output_db": -4.65,
+      "pedals": [
+        "British Crunch Rhythm",
+        "Cabinet Unity",
+        "Western Echo",
+        "Gentle Room"
+      ],
+      "pedal_ids": [
+        "70d344a0-b946-55f7-8193-9dfef0aecc97",
+        "40000000-0000-4000-8000-000000000076",
+        "90228d49-8545-5722-b8c0-7a2c01d5384c",
+        "2dfcccc9-76fe-5044-8ff2-6ee24bd4a6fb"
+      ],
+      "instance_ids": [
+        "c248fd75-51dc-5d96-99bd-154e11507034",
+        "04066efa-f75f-510b-b0e9-cf2cf25a381b",
+        "ad45b023-bf9e-5642-8419-07e5f57bb83b",
+        "dd79182e-2f4b-5077-8cd7-d59b24d6de1c"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "3c429643-1d47-5b14-b13a-63b0428edde1",
+      "key": "muse.pitch",
+      "name": "Muse / Expressive Pitch Fuzz",
+      "output_db": -5.86,
+      "pedals": [
+        "Singing Stable Bias Fuzz",
+        "Expressive Octave",
+        "British Chime Edge",
+        "Cabinet Unity",
+        "Modest Tape Lead"
+      ],
+      "pedal_ids": [
+        "79694fc7-dafc-561f-b8db-c096c97f14fe",
+        "670fa5b8-2a1b-5f61-a65b-1c863c968dc9",
+        "2e9722f5-4b3c-5115-ad89-0e5baae4fc31",
+        "40000000-0000-4000-8000-000000000076",
+        "a751176b-6938-57a5-bc4e-e31d9b633672"
+      ],
+      "instance_ids": [
+        "28d7cd98-feda-5aea-9076-c8037f0dbd8c",
+        "9ff1483e-34ac-5cb6-9b47-fbd8dea3ddc4",
+        "f7235e53-b3f4-5320-871b-08d125068d06",
+        "db910c79-8876-54fe-8b15-49d75307db07",
+        "27900584-9d2d-5bae-8a5e-0c36ad0486e6"
+      ],
+      "cabinet_assets": {
+        "3": "e69b28f563f39599f8882d80bb0e56ae336d51cc16b7a273eb7b916511c51da6"
+      }
+    },
+    {
+      "id": "2d0c5bd7-dca5-5e5c-afcc-b401f3456605",
+      "key": "metal.thrash86",
+      "name": "Metallica / Thrash '86",
+      "output_db": -3.72,
+      "pedals": [
+        "Tight Gate",
+        "Mark Rhythm",
+        "Thrash Graphic",
+        "Cabinet Unity",
+        "Post-Cab Tight",
+        "Gentle Room"
+      ],
+      "pedal_ids": [
+        "9562fefa-bd0e-5173-a6a4-89a64fea90c6",
+        "7e43d4e4-9f47-5644-9a74-ad3a3dcb0832",
+        "a36b4121-b6ae-5562-b218-6e000b398018",
+        "40000000-0000-4000-8000-000000000076",
+        "8d2b09db-b4a8-51f2-983c-aee9df0a8d3e",
+        "2dfcccc9-76fe-5044-8ff2-6ee24bd4a6fb"
+      ],
+      "instance_ids": [
+        "84bebded-ebe4-5514-af68-1f2f185a7f0d",
+        "67507120-3bc9-52ed-b1c1-a9a24ca12163",
+        "f9564c7c-6b50-57ea-ac52-2af444dcb677",
+        "13e39d76-23ac-5488-b2e4-bdcc0ba9e1ce",
+        "f038e938-4ff3-54b4-b954-adcf74e0df6e",
+        "6cbebbcb-8555-5512-89d9-9657e7afaed7"
+      ],
+      "cabinet_assets": {
+        "3": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d"
+      }
+    },
+    {
+      "id": "242f4a75-3ebc-545b-8314-08421caa6426",
+      "key": "metal.stadium",
+      "name": "Metallica / Black Stadium",
+      "output_db": -9.06,
+      "pedals": [
+        "Tight Gate",
+        "Mark Rhythm",
+        "Stadium Graphic",
+        "Cabinet Unity",
+        "Post-Cab Full",
+        "Gentle Room"
+      ],
+      "pedal_ids": [
+        "9562fefa-bd0e-5173-a6a4-89a64fea90c6",
+        "7e43d4e4-9f47-5644-9a74-ad3a3dcb0832",
+        "c8b8a536-0786-5ed2-8e7f-2bd5936ab966",
+        "40000000-0000-4000-8000-000000000076",
+        "08c5bad8-1eb9-5611-9c9f-ecbd5ec92f60",
+        "2dfcccc9-76fe-5044-8ff2-6ee24bd4a6fb"
+      ],
+      "instance_ids": [
+        "d80ac7ed-bed7-538b-ae5f-961037ef0d20",
+        "6a4cddf6-3a0d-5fba-b2c9-a524b65d7266",
+        "19444798-d376-51e1-a9aa-5e59641d829f",
+        "5314e8d2-cc86-5585-beb4-83de9c4f84ae",
+        "b8ac70a4-9248-5c6b-acd0-06d99615503e",
+        "bf0ddd06-eddb-5222-bded-6e3f122927b7"
+      ],
+      "cabinet_assets": {
+        "3": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+      }
+    },
+    {
+      "id": "e8f28cc1-ef0b-520f-8af1-27e1d4830445",
+      "key": "metal.d",
+      "name": "Metallica / Slow Heavy D-standard",
+      "output_db": -11.69,
+      "pedals": [
+        "Tight Gate",
+        "Recto Low String Dynamics",
+        "Cabinet Unity",
+        "Post-Cab Full",
+        "Gentle Room"
+      ],
+      "pedal_ids": [
+        "9562fefa-bd0e-5173-a6a4-89a64fea90c6",
+        "43aa0de1-a674-5811-a52c-184d6c73b2e9",
+        "40000000-0000-4000-8000-000000000076",
+        "08c5bad8-1eb9-5611-9c9f-ecbd5ec92f60",
+        "2dfcccc9-76fe-5044-8ff2-6ee24bd4a6fb"
+      ],
+      "instance_ids": [
+        "14ee8bd2-71ef-57f0-a5d0-59c988452b81",
+        "afd39edc-2b24-5102-b0b8-b8c63e9be373",
+        "b027ef27-2992-5c68-b79e-27c565cc743a",
+        "e294e314-e710-5ffd-8879-3eb5a89115d3",
+        "5aa62dfe-6e4d-5112-a311-da66a4cf3df1"
+      ],
+      "cabinet_assets": {
+        "2": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+      }
+    },
+    {
+      "id": "e23b3b52-92f1-5204-9def-16db30e1e6c3",
+      "key": "metal.wah",
+      "name": "Metallica / Singing Wah Drive",
+      "output_db": -1.01,
+      "pedals": [
+        "Lead Decay Gate",
+        "Singing Manual Wah",
+        "Mark Lead",
+        "Cabinet Unity",
+        "Post-Cab Tight",
+        "Modest Tape Lead",
+        "Lead Plate"
+      ],
+      "pedal_ids": [
+        "1531bb69-45a7-5112-993d-ada461e7a808",
+        "06251879-8138-5d76-87c3-07811a0e6e6b",
+        "193a3fbb-8b7e-53d4-9e62-b8615171f3a9",
+        "40000000-0000-4000-8000-000000000076",
+        "8d2b09db-b4a8-51f2-983c-aee9df0a8d3e",
+        "a751176b-6938-57a5-bc4e-e31d9b633672",
+        "caa0d445-963a-545a-a87d-baa69d5e69ca"
+      ],
+      "instance_ids": [
+        "93d11a72-b613-5521-b6e4-959ee2b882d2",
+        "ffe36e92-a99a-5ccb-af0e-720c63778c63",
+        "cb86434d-3efc-5df0-bd68-9518ac7fdd09",
+        "15ab8875-77f9-57ad-bdc5-9b297f7b05f9",
+        "fe2d4c7e-f9ae-53de-b3fc-c774980580fa",
+        "7a27622c-fcd8-5171-ac5a-c625c21e70b3",
+        "0972e0fb-ccde-55c5-b027-bcd898615a9b"
+      ],
+      "cabinet_assets": {
+        "3": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d"
+      }
+    },
+    {
+      "id": "ad23cde1-bdfc-545b-88bc-c0d482148edc",
+      "key": "metal.clean",
+      "name": "Metallica / Glass Chorus Clean",
+      "output_db": 4.0,
+      "pedals": [
+        "US Combo Clean",
+        "Cabinet Unity",
+        "Clear Slow Chorus",
+        "Western Echo",
+        "Gentle Room"
+      ],
+      "pedal_ids": [
+        "ee24f977-6003-510c-9277-b31aa97d4116",
+        "40000000-0000-4000-8000-000000000076",
+        "fa58740b-2341-5b67-a906-3a5b0a398624",
+        "90228d49-8545-5722-b8c0-7a2c01d5384c",
+        "2dfcccc9-76fe-5044-8ff2-6ee24bd4a6fb"
+      ],
+      "instance_ids": [
+        "491891cf-7b46-5bc4-b824-b2fccd9fdeb9",
+        "51d9e5fc-d948-5e76-bb3b-e11223427e24",
+        "421901c1-04b1-55be-a9d8-82a5defe0330",
+        "8e469b22-114b-5865-8681-b0734fa521ee",
+        "8da517d6-2d26-5e95-9c81-3288adbba59f"
+      ],
+      "cabinet_assets": {
+        "1": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "50424a8f-dcf1-51d5-b993-f20d1b4323d8",
+      "key": "rock.crunch",
+      "name": "Rock / Classic British Crunch",
+      "output_db": -6.45,
+      "pedals": [
+        "British Crunch Rhythm",
+        "Cabinet Unity",
+        "Gentle Room"
+      ],
+      "pedal_ids": [
+        "70d344a0-b946-55f7-8193-9dfef0aecc97",
+        "40000000-0000-4000-8000-000000000076",
+        "2dfcccc9-76fe-5044-8ff2-6ee24bd4a6fb"
+      ],
+      "instance_ids": [
+        "96f96db0-9fde-5f84-8c29-2cd40e51bf5e",
+        "85eff225-40e6-5b84-8755-b56f97aab57e",
+        "987ef431-c390-5e83-8d82-3941eb25ea4d"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "2399768f-1630-50cf-84dc-5854386b7de4",
+      "key": "rock.hotrod",
+      "name": "Rock / Hot-Rod Lead",
+      "output_db": -5.05,
+      "pedals": [
+        "Lead Decay Gate",
+        "British Hot-Rod Lead",
+        "Cabinet Unity",
+        "Post-Cab Tight",
+        "Modest Tape Lead",
+        "Lead Plate"
+      ],
+      "pedal_ids": [
+        "1531bb69-45a7-5112-993d-ada461e7a808",
+        "c9825f2a-13e4-5e5d-a15a-59f6cf0d4984",
+        "40000000-0000-4000-8000-000000000076",
+        "8d2b09db-b4a8-51f2-983c-aee9df0a8d3e",
+        "a751176b-6938-57a5-bc4e-e31d9b633672",
+        "caa0d445-963a-545a-a87d-baa69d5e69ca"
+      ],
+      "instance_ids": [
+        "de59ddbe-d76d-50b4-80a2-195c572ca77d",
+        "4e566ab7-5f36-5f9f-9551-d85bac49ed35",
+        "3bf029c6-6ca5-5a25-80c9-c2e06013fbc4",
+        "01899136-5ba6-5906-9d51-15974900037c",
+        "08831f94-cfd2-5e33-803a-73295fbde5f9",
+        "24a2a824-4588-5999-835b-6b91bbc2c055"
+      ],
+      "cabinet_assets": {
+        "2": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "02f87861-0451-5667-a9f4-2caa3f09771e",
+      "key": "metal.modern",
+      "name": "Metal / Modern Tight Rhythm",
+      "output_db": -9.29,
+      "pedals": [
+        "Tight Gate",
+        "Metal Tight Boost",
+        "Modern Tight Rhythm",
+        "Cabinet Unity",
+        "Post-Cab Tight"
+      ],
+      "pedal_ids": [
+        "9562fefa-bd0e-5173-a6a4-89a64fea90c6",
+        "0711b147-09a8-5836-9f22-5ff36750a189",
+        "b5ddb360-b4e4-5886-8c75-f59bb08ef834",
+        "40000000-0000-4000-8000-000000000076",
+        "8d2b09db-b4a8-51f2-983c-aee9df0a8d3e"
+      ],
+      "instance_ids": [
+        "48c2581d-ccc6-5412-aca3-2114f2a2f5b8",
+        "c350f52b-1ca1-5937-985f-f769737cb812",
+        "7797f1ed-63d6-58b5-9976-d0c6e1760122",
+        "87f0d851-7052-56b2-9097-63c3aeb2ad5f",
+        "8f1564a8-e930-5009-b114-5b791222904f"
+      ],
+      "cabinet_assets": {
+        "3": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d"
+      }
+    },
+    {
+      "id": "64fff0d9-4cbf-5619-bf31-70c13b0a1a04",
+      "key": "rock.recto",
+      "name": "Rock / Recto Heavy Rock",
+      "output_db": -11.69,
+      "pedals": [
+        "Tight Gate",
+        "Recto Heavy Rhythm",
+        "Cabinet Unity",
+        "Post-Cab Full",
+        "Gentle Room"
+      ],
+      "pedal_ids": [
+        "9562fefa-bd0e-5173-a6a4-89a64fea90c6",
+        "edf5fbe5-93a2-5401-bdeb-d0a9d639ebbf",
+        "40000000-0000-4000-8000-000000000076",
+        "08c5bad8-1eb9-5611-9c9f-ecbd5ec92f60",
+        "2dfcccc9-76fe-5044-8ff2-6ee24bd4a6fb"
+      ],
+      "instance_ids": [
+        "c992ca69-0c99-5dc7-a469-3b0f532705fb",
+        "bd3ae2d0-aa42-5dce-959a-6bc23e653923",
+        "7b0a336f-5061-50d0-b89f-b27135a5dd8c",
+        "97150b17-c517-58b1-8fb7-6129d2ea9422",
+        "071769df-f73b-5a35-8f9c-a910b2c7f529"
+      ],
+      "cabinet_assets": {
+        "2": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+      }
+    },
+    {
+      "id": "712dcf09-9157-5c95-8342-bed87a6f269d",
+      "key": "metal.doom",
+      "name": "Metal / Doom Fuzz Wall",
+      "output_db": -11.84,
+      "pedals": [
+        "Doom Sustain Fuzz",
+        "US Combo Edge",
+        "Cabinet Unity",
+        "Post-Cab Full",
+        "Lead Plate"
+      ],
+      "pedal_ids": [
+        "7fabffb8-ee08-529d-887e-71f45ed6b71a",
+        "5ebfdc91-acf8-5c2c-a4e2-c2c0dcbd8121",
+        "40000000-0000-4000-8000-000000000076",
+        "08c5bad8-1eb9-5611-9c9f-ecbd5ec92f60",
+        "caa0d445-963a-545a-a87d-baa69d5e69ca"
+      ],
+      "instance_ids": [
+        "6e8a590f-7d0e-5951-a6dd-9e03f5260c22",
+        "0698dff0-0dbc-5863-8f1b-fed2680bc3ad",
+        "43903f33-eca5-5979-86ce-a4563093c40c",
+        "86503b03-00eb-574e-8009-e76d3718133b",
+        "98729681-7b78-5a15-9088-f0d528b85db8"
+      ],
+      "cabinet_assets": {
+        "2": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+      }
     }
   ]
 }

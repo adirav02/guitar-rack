@@ -1,0 +1,71 @@
+{
+  "schema_version": 2,
+  "preset_id": "50424a8f-dcf1-51d5-b993-f20d1b4323d8",
+  "name": "Rock / Classic British Crunch",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -6.449999809265137,
+    "rack_bypass": false
+  },
+  "order": [
+    "96f96db0-9fde-5f84-8c29-2cd40e51bf5e",
+    "85eff225-40e6-5b84-8755-b56f97aab57e",
+    "987ef431-c390-5e83-8d82-3941eb25ea4d"
+  ],
+  "instances": [
+    {
+      "instance_id": "96f96db0-9fde-5f84-8c29-2cd40e51bf5e",
+      "slot_id": 0,
+      "effect_type": "amp_brit_crunch",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 22.0,
+        "bass_db": -1.0,
+        "mid_db": 1.0,
+        "treble_db": 1.0,
+        "master_percent": 35.0,
+        "presence_percent": 40.0,
+        "output_db": -13.999998092651367,
+        "sag_percent": 20.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "85eff225-40e6-5b84-8755-b56f97aab57e",
+      "slot_id": 1,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+    },
+    {
+      "instance_id": "987ef431-c390-5e83-8d82-3941eb25ea4d",
+      "slot_id": 2,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.800000011920929,
+        "pre_delay_ms": 8.0,
+        "damping_hz": 6500.0,
+        "tone_hz": 9000.0,
+        "mix_percent": 10.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "sha256": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "relative_path": "ir/e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac.wav",
+      "format": "wav"
+    }
+  ]
+}

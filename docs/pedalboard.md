@@ -1,13 +1,18 @@
 # Experimental pedalboard and sound library
 
-The native board has 15 effect types, 77 factory pedal voicings and 45 complete
-rack presets. Forty complete racks are new. These are original starting points
+Current tone-upgrade behavior is documented in [tone-upgrade.md](tone-upgrade.md);
+exact new type/version/index/range/default mappings are in [tone-controls.md](tone-controls.md).
+The legacy implementation descriptions below remain compatibility references.
+They do not supersede the new profile/UI/catalog contracts.
+
+The native board now has 42 effect types, 146 factory pedal voicings and 69
+complete sounds. The original extension described below contributed 40 legacy racks. These are original starting points
 for art rock, clean playing, heavy sounds, ambience and experimental noise.
 Radiohead is a listening reference, not a promise to reproduce a recording.
 
 ## Playing and saving
 
-Choose a full preset in the top bar or add a pedal. The signal follows numbered
+Open Choose Preset... and explicitly Load a full sound, or add a pedal. Basic/All controls, Audio Setup collapse and browser navigation are local layout actions. The signal follows numbered
 pedals from left to right, then the next row; cables show the connections.
 Earlier/Later changes that order while keeping the pedal's identity and settings.
 The LED and ENGAGED/BYPASSED footswitch show whether it contributes to the sound.
@@ -27,7 +32,7 @@ preset/bundle to save its selected IR. Full rack Save/Save As still preserves
 all effects, order, controls, bypass and IR assets. Changing a pedal voice marks
 the full working rack dirty. Saving a voice does not save the full rack.
 
-## New controls (effect version 1)
+## Legacy experimental controls (effect version 1)
 
 | Effect | Controls in bank-index order |
 |---|---|
@@ -58,7 +63,8 @@ of 0–0.05 linear amplitude with a 5 ms gate smoother.
 Basic Amp supplies sag-dependent soft clipping, a presence low-pass and the
 existing three-band EQ. Neither processor is a measured tube/transistor model.
 They run at native rate and can alias at aggressive settings. Cabinet remains
-separate; every shipped rack cabinet uses the clearly labeled synthetic filter.
+separate; every legacy rack cabinet uses the unchanged original synthetic filter.
+Upgraded racks select one of five additional original synthetic responses.
 User mono cabinet IRs remain supported through the existing loader/bundle system.
 
 Compressor links stereo peak detection, applies the physical threshold/ratio,
@@ -70,12 +76,15 @@ and LFO cutoff modulation; Auto Wah is an envelope-driven filter voice.
 Ring modulation multiplies by a sine carrier, producing sum/difference tones.
 
 Pitch uses two complementary windowed fractional read heads, a fixed 110 ms
-grain window, and 8–118 ms intentional wet delay. It suits octave layers,
+grain window, and 8–118 ms texture-window wet delay. This is an algorithmic
+wet-path delay, separate from intentional Delay echoes. It suits octave layers,
 drones and textures. Grain sidebands, pitch error, flutter and transients
 remain, especially for low notes/chords; it is not a transparent harmonizer.
 The 220 Hz octave test has a dominant peak near 438 Hz, not an exact 440 Hz
-claim. All zero-Mix paths remain exact dry; musical wet delay is separate from
-the rack's unchanged fixed 128-sample transport latency.
+claim. All zero-Mix paths remain exact dry. Legacy compatibility retains the
+original unaligned granular wet texture alongside the fixed 128-sample graph
+transport; that transport declaration does not include or hide its window delay.
+The separate new spectral processor declares 2048 samples and requires Creative.
 
 New temporal resources allocate in preparation. Activation inherits only small
 fixed state; fresh rings start empty and input fades in. Bypass hides tails while
@@ -130,9 +139,10 @@ sizes, tab/numeric/double-click interactions, LED footswitches and signal order.
 While sustaining notes, switch a pedal voice and confirm another pedal's controls
 and existing echoes stay. Save a Hebrew-named pedal voice, add another matching
 pedal, apply it, restart, and verify it remains in the menu. Full Save As and
-export/import should restore all 15 effect types and Delay versions.
+export/import should restore all 42 effect types and exact registered versions.
 
 Play the suggested racks with the M-Track Solo and report clipping, loudness
 jumps, pitch artifacts, aliasing and xruns at the actual rate/buffer. Adjust the
-new voices after listening. Native GUI display/link, live listening and hardware
-deadline/latency checks have not been performed for this branch in the cloud.
+new voices after listening. Native Linux linking and software checks now pass;
+see the current verification record. Native display, live listening and hardware
+deadline/latency checks remain pending.

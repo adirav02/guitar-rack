@@ -1,0 +1,112 @@
+{
+  "schema_version": 2,
+  "preset_id": "64fff0d9-4cbf-5619-bf31-70c13b0a1a04",
+  "name": "Rock / Recto Heavy Rock",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -11.689999580383301,
+    "rack_bypass": false
+  },
+  "order": [
+    "c992ca69-0c99-5dc7-a469-3b0f532705fb",
+    "bd3ae2d0-aa42-5dce-959a-6bc23e653923",
+    "7b0a336f-5061-50d0-b89f-b27135a5dd8c",
+    "97150b17-c517-58b1-8fb7-6129d2ea9422",
+    "071769df-f73b-5a35-8f9c-a910b2c7f529"
+  ],
+  "instances": [
+    {
+      "instance_id": "c992ca69-0c99-5dc7-a469-3b0f532705fb",
+      "slot_id": 0,
+      "effect_type": "noise_gate",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "threshold_db": -54.0,
+        "range_db": 65.0,
+        "attack_ms": 1.0,
+        "hold_ms": 35.0,
+        "release_ms": 130.0,
+        "hysteresis_db": 7.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "bd3ae2d0-aa42-5dce-959a-6bc23e653923",
+      "slot_id": 1,
+      "effect_type": "amp_recto",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 22.0,
+        "bass_db": -1.0,
+        "mid_db": 1.0,
+        "treble_db": 1.0,
+        "master_percent": 35.0,
+        "presence_percent": 40.0,
+        "output_db": -13.999998092651367,
+        "sag_percent": 40.0,
+        "resonance_percent": 35.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "7b0a336f-5061-50d0-b89f-b27135a5dd8c",
+      "slot_id": 2,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+    },
+    {
+      "instance_id": "97150b17-c517-58b1-8fb7-6129d2ea9422",
+      "slot_id": 3,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 150.0,
+        "band1_db": 0.0,
+        "band1_q": 0.699999988079071,
+        "band2_hz": 900.0,
+        "band2_db": 1.0,
+        "band2_q": 0.699999988079071,
+        "band3_hz": 3500.0,
+        "band3_db": -1.0,
+        "band3_q": 0.699999988079071,
+        "high_pass_hz": 70.0,
+        "low_pass_hz": 7200.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "071769df-f73b-5a35-8f9c-a910b2c7f529",
+      "slot_id": 4,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.800000011920929,
+        "pre_delay_ms": 8.0,
+        "damping_hz": 6500.0,
+        "tone_hz": 9000.0,
+        "mix_percent": 10.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b",
+      "sha256": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b",
+      "relative_path": "ir/0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b.wav",
+      "format": "wav"
+    }
+  ]
+}

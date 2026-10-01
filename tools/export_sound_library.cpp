@@ -4,22 +4,32 @@
 #include "core/SoundLibrary.h"
 #include "core/Impulse.h"
 #include <fstream>
+#include <algorithm>
 #include <iomanip>
 #include <iostream>
 
 using namespace guitarrack;
 int main(int argc,char** argv) {
-    if(argc!=2) {std::cerr<<"Usage: export_sound_library <repository-root>\n";return 1;}
-    const auto root=std::filesystem::path(argv[1]);
+    if(argc!=1&&argc!=2) {std::cerr<<"Usage: export_sound_library <repository-root>\n";return 1;}
+    const auto root=argc==2?std::filesystem::path(argv[1]):std::filesystem::path{};
     const auto registry=EffectRegistry::builtIns();
+    if(argc==2) {
     const auto bytes=syntheticIRBytes();
     std::ofstream asset(root/"assets/ir/synthetic-filter.wav",std::ios::binary);
     asset.write(reinterpret_cast<const char*>(bytes.data()),static_cast<std::streamsize>(bytes.size()));
     if(!asset) return 1;
     auto directory=root/"assets/presets/experimental";std::filesystem::create_directories(directory);
     for(const auto& tone:experimentalFactoryPresets(registry)) {
-        std::ofstream file(directory/(tone.id+".json"));file<<serializePreset(tone,registry);
+        const auto destination=directory/(tone.id+".json");
+        if(tone.id.starts_with("50000000-")&&std::filesystem::exists(destination)) {
+            if(parsePreset(readBounded(destination),registry)!=tone) {std::cerr<<"Refusing to change frozen legacy factory: "<<tone.id<<"\n";return 1;}
+            continue;
+        }
+        auto text=serializePreset(tone,registry);
+        text.erase(std::remove(text.begin(),text.end(),'\r'),text.end());
+        std::ofstream file(destination);file<<text;
         if(!file) return 1;
+    }
     }
     std::cout<<"[";
     bool firstEffect=true;

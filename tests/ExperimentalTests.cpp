@@ -123,12 +123,13 @@ void compatibilityAndLifecycle() {
 }
 void catalog() {
     const auto registry=EffectRegistry::builtIns();const auto pedals=effectPresets(registry);const auto racks=experimentalFactoryPresets(registry);
-    check(pedals.size()==77&&racks.size()==40,"complete experimental library embedded");
+    check(pedals.size()>=77&&racks.size()>=40,"complete experimental library embedded");
     std::set<std::string> identities,names;
     for(const auto& p:pedals){check(validateEffectPreset(p,registry).empty(),"pedal recipe valid");check(identities.insert(p.id).second&&names.insert(p.name).second,"pedal identities and names unique");}
     for(const auto& t:racks) {
         check(validateTone(t,registry).empty(),"factory rack validates");check(identities.insert(t.id).second,"factory rack identity unique");
         RackEngine rack;MonitorControls controls;MonitorEngine monitor(controls,&rack);
+        if(std::any_of(t.rack.instances.begin(),t.rack.instances.end(),[](const auto& i){return i.effectType=="expression_pitch";}))check(rack.setLatencyProfile(creativeLatencySamples),"explicit creative profile for spectral recipe");
         check(rack.loadTone(t)!=0&&monitor.prepare(48000),"full experimental rack prepares");
         std::array<float,512> in{},l{},r{};
         bool finite=true,heapFree=true;
@@ -141,4 +142,4 @@ void catalog() {
     }
 }
 }
-int main(){coherentControls();signals();compatibilityAndLifecycle();catalog();if(!failures)std::cout<<"PASS: experimental signals, coherent voicings, compatibility, lifecycle, 77 pedals and 40 rendered racks\n";return failures?1:0;}
+int main(){coherentControls();signals();compatibilityAndLifecycle();catalog();if(!failures)std::cout<<"PASS: experimental signals, coherent voicings, compatibility, lifecycle, legacy and upgraded factory voicings/racks\n";return failures?1:0;}

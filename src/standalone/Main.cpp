@@ -22,8 +22,13 @@ private:
         Window() : DocumentWindow("GuitarRack", juce::Colour(0xff202b3a), allButtons) {
             setUsingNativeTitleBar(true);
             setContentOwned(new MainComponent(), true);
-            setResizable(true, false); setResizeLimits(850, 1030, 1600, 1400);
-            centreWithSize(getWidth(), getHeight()); setVisible(true);
+            setResizable(true, false); setResizeLimits(700, 450, 7680, 4320);
+            centreWithSize(getWidth(), getHeight());
+            if(auto* display=juce::Desktop::getInstance().getDisplays().getPrimaryDisplay()) {
+                auto available=display->userBounds.toNearestInt();
+                setBounds(getBounds().withSizeKeepingCentre(std::min(getWidth(),available.getWidth()),std::min(getHeight(),available.getHeight())).constrainedWithin(available));
+            }
+            setVisible(true);
         }
         void closeButtonPressed() override { juce::JUCEApplication::getInstance()->systemRequestedQuit(); }
     };

@@ -29,6 +29,6 @@ int main() {
     atomicWrite(folder/"broken.json","{}");errors.clear();loaded=store.list(registry,errors);
     check(loaded.size()==1&&!errors.empty(),"corrupt personal entry does not hide valid voicings");
     std::filesystem::remove_all(folder);
-    if(!failures)std::cout<<"PASS: 77 pedal round trips, Unicode persistence, invalid values/identity/schema and corrupt entry isolation\n";
+    if(!failures)std::cout<<"PASS: "<<pedals.size()<<" pedal round trips, Unicode persistence, invalid values/identity/schema and corrupt entry isolation\n";
     return failures?1:0;
 }

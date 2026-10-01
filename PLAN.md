@@ -1,8 +1,59 @@
 # GuitarRack — Product and implementation plan
 
-Created: 2026-09-30. Working name: GuitarRack. Status: M0/M1 through M4 software implemented. Owner reports the M3 GUI opens on Fedora and Overdrive, EQ and Delay work with a real guitar, individually and together; this is user-reported desktop/listening evidence. The owner also reports that the M4 desktop preset workflow works well (user-reported acceptance). The new M4 Delete desktop checklist, unreported keyboard/live-transition details, detailed live-edit acceptance, dry-recording/gain-staging appraisal, the 10-minute soak and unreported physical checks remain pending. The focused first M5 software subset is implemented before VST3: Distortion, Reverb and Cabinet/IR, including assets/bundles, latency alignment and verification. New subjective/live-hardware acceptance remains pending. Remaining M5 effects, VST3 and Windows stay pending.
+Created: 2026-09-30. Working name: GuitarRack. Status: M0/M1 through M4 software implemented. Owner reports the M3 GUI opens on Fedora and Overdrive, EQ and Delay work with a real guitar, individually and together; this is user-reported desktop/listening evidence. The owner also reports that the M4 desktop preset workflow works well (user-reported acceptance). The new M4 Delete desktop checklist, unreported keyboard/live-transition details, detailed live-edit acceptance, dry-recording/gain-staging appraisal, the 10-minute soak and unreported physical checks remain pending. The focused first M5 software subset is implemented before VST3: Distortion, Reverb and Cabinet/IR, including assets/bundles, latency alignment and verification. New subjective/live-hardware acceptance remains pending. The later tone upgrade software adds the processors and UI described below; physical/listening acceptance, M5 as a whole, VST3 and Windows remain pending.
 
 This is an implementation contract for Codex. Complete one milestone at a time. Treat unchecked items as unfinished. Update this document with evidence as implementation progresses.
+
+
+## Authorized tone upgrade A–D — current software contract (2026-10-01)
+
+The owner's active brief supersedes the old later-backlog placement of amps,
+gate, modulation, pitch, native browsing and bounded dual blending. Extend the
+existing serial rack; do not restart M0. See [implementation/limitations](docs/tone-upgrade.md),
+[verification](docs/testing.md#tone-upgrade-current-verification-2026-10-01),
+[control mappings](docs/tone-controls.md) and [owner checklist](docs/listening.md).
+Baseline checkout was clean and exactly 3511ab1ea2a49be8a3de6c107b0e07831bb63bdf.
+No remote writes, package installation, purchase, deployment or replacement
+architecture was authorized or performed.
+
+- [x] A: Freeze all legacy identities/recipes/control contracts, original IR bytes
+  and deterministic render metrics at 44.1/48/96 kHz before new DSP; registry,
+  byte/identity and numerical regression checks pass.
+- [x] A: Explicit factory/pedal/instance IDs and UUID references replace positional
+  identity generation. Native browser, dirty transactional Load, search/filters/
+  favorites, compact toolbar/audio collapse, UUID expansion/scroll, strict v1→v2
+  local migration and reduced logical window constraints are implemented/built.
+- [ ] A: Actual native keyboard/Escape/focus/open-window shutdown, 1280×720,
+  1366×768, wide-screen and 150% visual acceptance. No display connection here.
+- [x] B: Eight distinct original amp networks, six separate drives, five-band and
+  parametric EQ, gate and five checksum-managed CC0 synthetic cab voices.
+  New control maps/versions, matched-RMS difference/early EQ/Master/Output tests,
+  small-signal response/gain harmonics/transient cleanup and alias factor/reference
+  matrix are implemented and pass.
+- [ ] B: Matched perceived-level guitar appraisal and measured-cab realism/rights
+  acceptance. Synthetic cabs are not measured speaker reproductions.
+- [x] C: Explicit stopped-state 128/4096 profile with aligned bounded graphs and
+  transactional incompatibility; wah/envelope, phaser/flanger, BPM/tap/multihead
+  echo, distinct room/plate/hall, swell/120-s hold, ±24 spectral expression pitch,
+  bounded parallel Dual Amp with one shared downstream cab. Signal/lifetime
+  tests pass; legacy algorithms remain untouched.
+- [x] C: Separate strict metadata, 24 complete new standalone sounds and 69 new
+  voicings alongside legacy originals; no scenes/song-part requirements.
+- [ ] C: Pitch attack/chord listening acceptance; close chords and low shifted
+  notes have reported artifacts. No chord-quality mode or low-latency claim.
+- [x] D: Linux integration, compatibility/behavior suites, offline DI render/
+  headroom/alias/benchmark tools and acceptance worksheet are implemented.
+  The 60-row release matrix is complete; cached model math reduces representative
+  mean costs, but dense racks and combined Dual model/graph fades can exceed
+  device periods. See current verification for results and practical limits.
+- [ ] D: New physical routing/round trip/soak and artist-character/listening
+  acceptance. Only unchanged Subterranean Pulse is explicitly owner approved.
+
+Current inventory: 42 types, 43 exact descriptors, 69 complete sounds, 146 pedal
+voices. Optional chainsaw, reverse/granular delay and stutter remain deferred.
+VST3/Windows/cloud/mobile/plugin hosting/general routing remain outside this
+request. Checkboxes refer to software behavior with recorded evidence, not the
+unfinished M5 physical or subjective acceptance.
 
 ## 1. Product goal
 
@@ -18,7 +69,7 @@ Product priorities, in order:
 4. A maintainable effect architecture that supports adding more effects.
 5. VST3 integration and Windows support.
 
-Use English for application labels and technical documentation. Support user-selected preset names in UTF-8, including Hebrew. The owner communicates in Hebrew; explain progress to them in Hebrew unless asked otherwise.
+Use English for application labels and technical documentation. Support user-selected preset names in UTF-8, including Hebrew. The owner communicates in Hebrew; communicate progress in concise English for the active tone upgrade, as instructed by the owner.
 
 ## 2. Confirmed setup and initial assumptions
 

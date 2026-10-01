@@ -31,9 +31,13 @@ private:
     void devicesChanged();
     void startAudio();
     void updateEnabled();
+    void updateConfigurationLabel();
     void restorePreferences();
     std::optional<Preferences> remembered;
     void label(juce::Label&, const juce::String&);
+    bool audioCollapsed=true;
+    juce::ComboBox latencyProfile;
+    juce::TextButton audioSetup{"Audio Setup"};
     AudioSession session;
     PresetBar presetBar{session.processor.rack};
     RackEditor rackEditor{session.processor.rack,presetBar.presets};

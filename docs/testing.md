@@ -1,6 +1,237 @@
-# Verification record — 2026-09-30
+# Verification record
 
-## Environment
+## Tone upgrade current verification 2026-10-01
+
+This is fresh local Linux verification of the additive A–D implementation on
+baseline `3511ab1ea2a49be8a3de6c107b0e07831bb63bdf`. Earlier dated records below
+are historical. All owner changes are retained; no commit/push, package install,
+asset purchase, deployment or global audio-policy change was performed.
+Only the exact legacy Art Rock / Subterranean Pulse has explicit owner listening
+approval. New catalog, native display and physical acceptance remain pending.
+
+### Environment and reproducible checks
+
+Fedora 44 x86-64; GCC 16.2.1 (Red Hat 16.2.1-2), C++20, CMake 4.3.0,
+Ninja 1.13.2, Python 3.14.7. Intel Core i7-9700F, eight cores, 3 GHz nominal
+(dynamic frequency/scheduling). Local JUCE 8.0.15 commit
+`91ad83ae34a81e0833b1a2b0866f54846370ae53`, with the existing checked callback
+patch; browser/curl/OpenGL remain disabled. No missing linked release libraries.
+Optional GL/WebKit/GTK configure probes do not require installing those packages.
+
+```bash
+cmake --build --preset linux-release
+ctest --preset linux-release --output-on-failure
+cmake --build --preset linux-debug
+ctest --preset linux-debug --output-on-failure
+
+# Diagnostic optimization retains assertions (no NDEBUG), and avoids the
+# prohibitively slow unoptimized, instrumented full legacy-render matrix.
+cmake -S . -B build/adapter-sanitize -G Ninja \
+  -DCMAKE_BUILD_TYPE=Debug '-DCMAKE_CXX_FLAGS_DEBUG=-O1 -g' \
+  -DGUITARRACK_SANITIZERS=ON
+cmake --build build/adapter-sanitize -j 2
+ASAN_OPTIONS=detect_leaks=0 ctest --test-dir build/adapter-sanitize --output-on-failure
+```
+
+Completion results: release native build and **15/15 PASS, 88.77 s**; debug
+native build and **15/15 PASS, 591.44 s**; optimized ASan/UBSan native build
+and **15/15 PASS, 662.69 s**. Address/undefined checks report no findings.
+The final responsive device-header/UI-only edits subsequently compiled in all
+three configurations; native visual execution remains unavailable.
+Final full-suite logs and signal output are retained in
+[evidence](evidence/tone-upgrade). The pedal persistence test also passed after
+its console report was corrected to show the actual 146 voices tested.
+
+Selected TSan checks were rebuilt with the final DSP sources and passed **4/4,
+20.93 s**: monitoring/routing, serial rack lifecycle, preset persistence and actual
+adapter callback lifecycle. Configuration: Debug, `-fsanitize=thread
+-fno-omit-frame-pointer` compile and `-fsanitize=thread` link. This is selected
+race/lifetime coverage, not every DSP/UI suite under TSan.
+
+Initial debug/ASan runs exposed a new fractional predelay read wrap: adding ring
+size to a tiny negative floating position rounded to exactly size. New Space,
+Echo and Flanger readers now check that upper boundary; an 18-ms predelay
+regression passes. Temporary backtrace/abort logging was removed. No legacy DSP
+or frozen fixture was changed to fix it. Earlier ASan `-O0` full legacy render
+then timed out at 1200 seconds (14/15 other tests passed); it was a timeout,
+not a completed numerical comparison. The diagnostic `-O1` run supersedes that
+result only where its completed results are stated. Leak detection remains
+unverified (`detect_leaks=0`); sanitizer wall times are not performance evidence.
+
+### Compatibility, identity, assets and state
+
+Before expansion, fixtures froze all 45 legacy rack IDs/recipes/slots/instances/
+orders, 77 pedal recipes, 16 exact registry descriptors (15 types, Delay v1/v2),
+all original control ranges/defaults/enums and original cabinet bytes. The
+portable numerical fixture covers 44.1/48/96 kHz × all legacy racks × impulse,
+decaying pluck, chord multitone, silence and parameter/effect/rack bypass
+transitions, 1.5 seconds each. It compares each 256-sample stereo block's mean,
+RMS, fixed projection and peak in deterministic direct DSP chains. Actual
+RackEngine acceptance, fades, state and lifetime have separate tests.
+
+Tolerance per metric is `2e-6 + 2e-5 * abs(reference)`, allowing portable
+float/libm/compiler rounding below ordinary audible changes. Release comparison:
+**zero failures; maximum absolute error 4.99981e-11**. Metrics are not a stored
+sample-for-sample WAV or listening certificate. Original cabinet SHA-256 remains
+`4a9ac650b2983ca0c49c138d11beccd2d0c8607ac9fccf47c537fbbf7bb7adae`.
+No fixture recapture occurred. Subterranean identity/output/chain/all controls
+remain exact; approval was not transferred to upgraded entries.
+
+Deterministic regeneration checks **81 generated source/schema/doc/preset/WAV
+files byte-for-byte unchanged**; the separate identity/control/byte check passes.
+Use the commands in [tone-upgrade.md](tone-upgrade.md). All 69 complete racks and
+146 voices round-trip through strict runtime validation. Preferences v1→v2,
+unknown fields/schema, UTF-8, factory protection/delete, dirty Save/Discard/Cancel,
+failed/stale/cancelled loads, stopped startup and incompatible latency profiles
+are covered. Required assets fail without fallback; all five new builtin bundles
+round-trip exact bytes. IR invalid/missing/checksum/resampling/resource bounds
+remain covered. The new 1-kHz-normalized synthetic responses have distinct
+frequency shapes and sub-bass/high-frequency rejection; CC0 provenance is in
+assets/ir/catalog.json. This establishes no measured speaker realism.
+
+### Signal and callback findings
+
+Eight amp families are separately ordered/filtered nonlinear networks. Tests
+measure small-signal responses at 82/750/4500 Hz, gain-dependent third harmonics,
+impulse settling/DC, independent Output scaling, Master harmonics, early Mark
+Bass versus late EQ, and US Combo input-volume cleanup. See
+[amp measurements](evidence/tone-upgrade/amp-response.csv). Minimum pairwise
+waveform difference after matching RMS is **0.0641125** at the tested 211-Hz
+signal; that is demonstrable signal difference, not perceived character approval.
+Gate tests cover opening, hold/release decay, attenuation and hysteresis; its
+linked detector precedes normal amp/ambience paths. Graphic EQ center gain and
+cabinet responses are measured. New DSP is checked without Monitor protection
+at default silence, extremes and 44.1/48/96 kHz.
+
+Wah changes band-pass resonance; Echo dotted-eighth timing at 120 BPM and stereo
+ping-pong impulses pass; Flanger's 2-ms impulse timing passes. Room/plate/hall
+excite distinct networks, decay changes late energy, and predelay onset is tested.
+Hold repeats captured audio, releases and expires by its declared 120 s without
+retriggering while held On. Identical Dual Amp branch endpoints and 50/50 blend
+match exactly in timing/polarity/level. These are behavior checks; musical
+appraisal of feedback, damping, phasing and changing controls remains listening
+work.
+
+HeapAudit reports zero C++ heap operations in first callbacks, zero/variable/
+oversized blocks, activation, extreme controls and actual adapter callback tests.
+Source inspection covers all new `process`/model/FFT paths and bounded graph
+activation/reclamation: no direct C allocator, lock, I/O, GUI, construction,
+lazy static preparation or final shared-pointer release there. Coefficients,
+tables, rings and graph resources prepare off audio; only small fixed histories
+copy at activation. Four graphs maximum owned, two processing, one coalesced
+request/mailbox, bounded retirement and worker destruction remain. No huge ring
+copy preserves old tails: structural edits may shorten tails/lose held captures.
+This does not instrument driver/server internals or prove physical deadlines.
+
+### Aliasing, pitch and render limits
+
+Three 168-case 48-kHz coherent matrices are retained: earlier 4×/65-tap,
+selected 8×/129-tap, and final cached-math 8×/129-tap. Eight amps and six drives
+use ~304.6875/3000/9000 Hz × input peaks 0.03/0.3 × default/max Gain/Drive.
+References run the same model at 8× and 16× base rate with internal oversampling
+still active. Final worst reference magnitude convergence is **−53.2611 dB**.
+Intended below-Nyquist harmonics are excluded with ±3-bin neighborhoods;
+nonstationary/filter settling energy remains, so nonharmonic energy is not a
+pure alias measurement or complete converged circuit reference.
+
+Worst candidate→selected ratios to fundamental: Hard Distortion −17.83→−25.14 dB,
+Sustaining Fuzz −17.56→−29.38, Chime −20.40→−26.45, Modern Tight −23.61→−32.52.
+Residual aliases remain. Final caching preserves these results; the largest
+reported dB difference (0.289 dB) is reference energy near −177 dB, a numerical
+noise-floor effect. No alias-free claim, ADAA solver or measured-circuit claim.
+
+Pitch's 24 held-note cases at 48 kHz (82.4069–1760 Hz × ±12/24 st) measure
+**0 cents at 1-cent search resolution**, with useful fundamentals. Other-rate
+endpoints pass, but 96-kHz 110→27.5 Hz loses level (0.0565563 from 0.1 input).
+A bend stays finite/peak 0.100067; no moving-note cents guarantee is derived
+from that bound. Close-chord octave component amplitudes are only
+0.00201635/0.000765009/0.00206082 from 0.035 inputs: poor separation. Octave
+impulse onset/peak are **634/2159 samples at 48 kHz**, versus exact neutral/dry
+2048-sample alignment. Attacks smear. There is no chord-quality mode, Whammy
+identity or transparent low-latency claim. Legacy granular window artifacts and
+8–118-ms algorithmic wet delay remain unchanged, separate from intentional echoes.
+
+Processor latency remains Legacy **128 samples** or explicit stopped-state
+Creative **4096**, never increased automatically by a load. At 48 kHz these
+are 2.667/85.333 ms; a 256-frame device period is 5.333 ms. Neither is measured
+total I/O. Serial sums, parallel maximum, per-effect/rack bypass alignment,
+profile rejection/retention and bounded warm/fade transitions are tested.
+
+Final catalog render covers all 69 racks × three input strengths at 48 kHz,
+207 cases, no nonfinite output or callback heap error. Measured input peaks are
+0.028879/0.096263/0.288790 (bounds 0.0426/0.142/0.426), not calibrated pickups.
+Maximum output peak is **0.21192639**; final peak/RMS metrics are unchanged
+from the pre-optimization audit at stored precision. Details are in [headroom CSV](evidence/tone-upgrade/catalog-headroom.csv).
+New output calibration toward phrase RMS 0.015 (Bloom 0.003) is technical level
+matching, not perceived loudness approval; all legacy gains remain unchanged.
+The offline DI/synthetic/render commands passed, with an eight-second tail,
+float32 stereo, retained processor delay and no Monitor clamp. A synthetic DI
+is original mathematical audio, not a recorded guitar.
+
+### Synthetic performance matrix and practical limits
+
+Release benchmark ran alone, before diagnostic/build/render CPU work, 60 rows:
+44.1/48/96 kHz × 64/128/256/512 frames × five scenarios. Each uses 200 warm
+blocks, 1000 timed blocks and a bounded warm-up/20-ms two-graph transition probe.
+These are default processor chains, not calibrated artist patches. Dense 16
+uses four 500-ms IRs. Dual fade also changes both branch models: up to four
+models per graph while two graphs overlap. Input generation is included; no
+physical device, Monitor clamp or GUI. CSV retains mean/p99/max and fade
+mean/p99/max; fade p99 often equals max because the probe has few blocks.
+
+| 48 kHz / 256 frames | Mean µs | p99 µs | Max µs | Fade mean / max µs |
+|---|---:|---:|---:|---:|
+| Empty Legacy | 3.90 | 4.18 | 36.73 | — |
+| Modern Rhythm | 1398.34 | 1576.12 | 1801.61 | 2467.01 / 3012.22 |
+| Dual Amp, shared cab | 1649.15 | 1868.02 | 1927.87 | 4167.16 / 5736.21 |
+| Spectral Ambient, Creative | 1499.88 | 1641.08 | 1800.80 | 2821.99 / 3050.67 |
+| Dense 16 / four long IRs | 5658.20 | 6122.43 | 6394.90 | 9800.97 / 11718.96 |
+
+Caching unchanged pole/rate coefficients and sharing amp derived controls per
+base sample reduced 48-kHz/256 means from 1614.01→1398.34 µs for Modern and
+2132.39→1649.15 for Dual. Topologies/control maps/taps/latency stay unchanged.
+[Before](evidence/tone-upgrade/benchmark-before-optimization.csv) and
+[final matrix](evidence/tone-upgrade/benchmark-matrix.csv) are retained.
+
+**Some racks and transitions exceed block periods.** Dense's worst mean is
+260.14% of a period at 96 kHz/256; p99 reaches 447.52% at 96 kHz/64. Even at
+48 kHz/256 Dense exceeds the 5.333-ms period, and simultaneous Dual model changes
+plus structural fade peak at 5.736 ms. Scheduling outliers include a 45.846-ms
+Dual steady block and 65.282-ms Dense fade at 96 kHz. These are measured wall
+times, including scheduling effects, not CPU-cycle certificates. The 16-slot
+ceiling is not a playable worst-case guarantee. Avoid dense oversampled/long-IR
+chains; for heavy Dual reconfiguration, Stop first and verify actual hardware
+with the chosen buffer. Increasing a buffer cannot fix mean workload that
+already exceeds its period proportionally. Physical deadline/xrun acceptance
+remains pending; no synthetic result guarantees it.
+
+### Native/physical/listening acceptance
+
+A fresh `DISPLAY=:0` XOpenDisplay probe fails; no usable display/Xvfb, and
+`/dev/snd` is absent. Native release/debug/diagnostic builds do not establish
+rendered layout, keyboard/Escape/focus, HiDPI/150%, browser reopen/shutdown or
+real-guitar behavior. Source review confirms owned hide/reopen browser,
+asynchronous safe callbacks, local-only collapse and UUID expansion/scroll.
+Below 600 logical pixels high, gains/meters stay in compact rows even when Audio
+Setup is open, retaining space for the rack bypass toolbar; details stay in
+tooltips. This source/layout review does not substitute for rendered acceptance.
+Actual 1280×720, 1366×768, wide/HiDPI visual checks and dialogs remain pending.
+Use [listening/desktop worksheet](listening.md) and record the actual guitar,
+pickups/input calibration, backend/rate/buffer, output device, perceived-level
+A/B and round trip/soak/reconnect. Evaluate CUBE AUX/speaker separately.
+
+Only exact Subterranean listening approval is recorded. All upgrades, measured
+cab realism, new hardware/UI acceptance, leak detection, full DSP TSan, real
+host/VST3 and Windows remain unverified. M5 as a whole and artist matches are
+not complete. The software phases and explicit limits are reflected in PLAN.md.
+
+
+## Initial M0/M1 record — 2026-09-30
+
+The following environment and acceptance entries describe their original stage.
+The current tone-upgrade record above supersedes its software inventory/results.
+
+### Environment
 
 - Fedora Linux 44, KDE Plasma edition, x86-64.
 - GCC/G++ 16.2.1 (Red Hat 16.2.1-2), CMake 4.3.0, Ninja 1.13.2.

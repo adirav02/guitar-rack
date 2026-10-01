@@ -1,0 +1,109 @@
+{
+  "schema_version": 2,
+  "preset_id": "00794376-e035-5648-91f7-475852490f31",
+  "name": "Radiohead / Glass and Echo",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": 4.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "88e327a1-2e5d-507d-a174-5a279661e385",
+    "c42ed0a0-27fd-5489-b3dc-176d0572c199",
+    "3a054232-e23d-5310-baaf-cc921e142849",
+    "39a9455b-055a-5320-b28c-b99fcf8e24bd",
+    "d5e9014d-0bcb-5282-a7d2-79e616fad013"
+  ],
+  "instances": [
+    {
+      "instance_id": "88e327a1-2e5d-507d-a174-5a279661e385",
+      "slot_id": 0,
+      "effect_type": "amp_solid_clean",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 2.0,
+        "bass_db": -1.0,
+        "mid_db": 1.0,
+        "treble_db": 1.0,
+        "master_percent": 25.0,
+        "presence_percent": 40.0,
+        "output_db": -6.0,
+        "bright_percent": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "c42ed0a0-27fd-5489-b3dc-176d0572c199",
+      "slot_id": 1,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+    },
+    {
+      "instance_id": "3a054232-e23d-5310-baaf-cc921e142849",
+      "slot_id": 2,
+      "effect_type": "chorus",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "rate_hz": 0.449999988079071,
+        "depth_percent": 25.0,
+        "width_percent": 80.0,
+        "mix_percent": 22.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "39a9455b-055a-5320-b28c-b99fcf8e24bd",
+      "slot_id": 3,
+      "effect_type": "echo",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "time_ms": 180.0,
+        "bpm": 120.0,
+        "subdivision": 0.0,
+        "clock": 0.0,
+        "mode": 1.0,
+        "feedback_percent": 28.0,
+        "color_hz": 4500.0,
+        "wow_percent": 0.0,
+        "stereo": 0.0,
+        "heads": 0.0,
+        "mix_percent": 20.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "d5e9014d-0bcb-5282-a7d2-79e616fad013",
+      "slot_id": 4,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.800000011920929,
+        "pre_delay_ms": 8.0,
+        "damping_hz": 6500.0,
+        "tone_hz": 9000.0,
+        "mix_percent": 10.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "sha256": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "relative_path": "ir/43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d.wav",
+      "format": "wav"
+    }
+  ]
+}
