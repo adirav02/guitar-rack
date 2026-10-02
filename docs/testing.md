@@ -1385,3 +1385,50 @@ acceptance, actual adapter checks for this branch, guitar listening/voicing
 tuning, real-time deadline measurements, hardware stability and round trip
 remain pending. Existing Fedora dependency commands are in dependencies.md.
 No new live listening, device, plugin-host, Windows or performance result is claimed.
+
+# 2026-10-02 — Preset browser and PipeWire JACK period follow-up
+
+Owner reported absent modern rock artists in the new browser, pauses/cuts during
+guitar play, some Muse sounds failing, confusing latency settings and a possible
+JUCE/font defect. The browser had a fixed artist list; the 168 factory sounds
+were compiled, but Foo Fighters, Shinedown and Alter Bridge were missing filter
+choices. Artist choices now include catalog names. The previous Release binary
+predated the latest UI source; rebuilding refreshes that local executable.
+
+Pinned JUCE 8.0.15 JACK reports only the current buffer and ignores the block
+argument to `open()`. On stopped Start, the standalone now recreates its JACK
+client with a per-process `PIPEWIRE_LATENCY=frames/rate` request and rejects an
+actual rate or period larger than requested. This does not change system-wide
+PipeWire settings. The Audio Setup buffer picker includes 128/256/512/1024 for
+JACK, defaults to 256, and still shows requested versus actual values and a
+collapsed-view xrun count. ALSA
+keeps its supported-device choices. The Legacy/Creative DSP budgets are
+unchanged. The documented Creative pitch sound still needs 4096 samples and is
+not a low-latency live option; other added Muse song templates fit Legacy 128.
+
+Fedora 44, GCC 16.2.1, CMake 4.3.0, Ninja 1.13.2, JUCE pin
+`91ad83ae34a81e0833b1a2b0866f54846370ae53`. Release `GuitarRack` links.
+`ctest --test-dir build/linux-release --output-on-failure -j4` passed 15/15
+(58.61 s). Physical audio and native
+visual/font checks remain pending: `/dev/snd` is absent and `xdpyinfo -display :0`
+cannot open the display. The Release GUI smoke launch exited 139; Debug printed
+JUCE XWindowSystem assertions before the same exit. These are display-session
+failures, not evidence of a font defect. The previous 60-row synthetic
+benchmark already records 5.658 ms mean for a dense rack and 5.736 ms maximum
+for a Dual model/graph fade at 48 kHz/256 frames (5.333 ms period). This is a
+credible dropout risk, not an explanation proven for the owner's exact rack.
+Record the failing sound IDs, actual period, backend xrun count and whether
+interruptions occur with an empty rack in the owner's physical follow-up.
+
+Owner follow-up: the Audio Setup button displays missing arrow glyphs. Its
+Unicode arrow characters and the remaining UI-only Unicode ornaments were
+changed to ASCII. The owner reports silence after loading Citizen Erased while
+the output meter moves, possibly both Dense Distortion and Clean Ending. The
+current Release `guitarrack_render` was rebuilt and both exact factory UUIDs
+rendered from the same 48-kHz synthetic DI at Legacy 128: Dense peak 0.0310956,
+phrase RMS 0.0099944; Clean Ending peak 0.0455299, RMS 0.0102352. These are
+nonzero stereo files and match the previously recorded headroom evidence. The
+standalone meter measures samples before JACK's external port connections, so
+meter motion cannot establish headphone/speaker playback. A comparison with a
+known audible preset on the same live stream, actual xrun count and device
+routing are still needed to distinguish low sound level from downstream silence.

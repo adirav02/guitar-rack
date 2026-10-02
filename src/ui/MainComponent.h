@@ -6,7 +6,7 @@
 #include "state/Preferences.h"
 
 namespace guitarrack {
-class PeakMeter final : public juce::Component {
+class PeakMeter final : public juce::Component, public juce::SettableTooltipClient {
 public:
     void update(float peak, bool clipped);
     void paint(juce::Graphics&) override;

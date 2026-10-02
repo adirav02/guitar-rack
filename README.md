@@ -94,17 +94,25 @@ ctest --preset linux-release --output-on-failure
 ./build/linux-release/GuitarRack_artefacts/Release/GuitarRack
 ```
 
-Preferred PipeWire launch (from the project directory):
+For the current locally built application, launch directly (from the project directory):
 
 ```bash
-PIPEWIRE_LATENCY=256/48000 pw-jack ./build/linux-release/GuitarRack_artefacts/Release/GuitarRack
+./build/linux-release/GuitarRack_artefacts/Release/GuitarRack
 ```
 
 Choose JACK, the interface, mono physical Input 2 and outputs 1/2, then Start.
-This is a client latency request; confirm the application's **actual** rate/buffer.
-GuitarRack does not change global audio settings. The GUI prefers 256 when that
-buffer is supported. The reported 512/48000 launch also sounded acceptable;
-256 is the current preference.
+Choose **256 frames** in Audio Setup to request a PipeWire JACK client period
+when pressing Start; 128, 512 and 1024 are also available. The app recreates its
+JACK client for this request, then displays requested and actual rate/buffer
+and the backend xrun count. The count stays visible with Audio Setup collapsed.
+PipeWire may choose a smaller period; a larger one produces a visible Start
+error. This follows [PipeWire's documented JACK client latency request](https://docs.pipewire.org/page_man_pipewire-jack_conf_5.html).
+The app does not change the system-wide PipeWire/JACK quantum. ALSA uses
+the device's advertised sizes. The top Legacy/Creative selector controls a
+separate DSP latency budget (128 or 4096 samples); Creative pitch sounds add
+about 85 ms at 48 kHz before device latency and are unsuitable for tight live
+monitoring. The reported 512/48000 launch also sounded acceptable; 256 remains
+the initial request.
 
 Normally CMake fetches the exact pinned JUCE commit. To fetch it manually or use
 the local checkout already provided by the owner:

@@ -29,7 +29,12 @@ PresetBrowser::PresetBrowser(PresetSession& s,const EffectRegistry& r,std::funct
     search.setTextToShowWhenEmpty("Search sounds, artists, tags...",studio::muted);
     search.onTextChange=[this]{filter();}; search.onReturnKey=[this]{load();}; search.onEscapeKey=[this]{closeButtonPressed();};
     source.addItemList({"All","Factory","User","Favorites"},1);
-    artist.addItemList({"All","Radiohead","Muse","Metallica","Rock","Metal","Original"},1);
+    juce::StringArray artistOptions{"All","Radiohead","Muse","Metallica","Rock","Metal","Original"};
+    for(const auto& metadata:soundCatalog()) {
+        const auto name=u(metadata.artist);
+        if(name.isNotEmpty()&&!artistOptions.contains(name)) artistOptions.add(name);
+    }
+    artist.addItemList(artistOptions,1);
     category.addItemList({"All","Clean","Crunch","Distortion","Fuzz","High Gain","Ambient","Experimental"},1);
     for(auto* combo:{&source,&artist,&category}) {combo->setSelectedId(1,juce::dontSendNotification); combo->onChange=[this]{filter();};}
     source.setTooltip("Factory/User source, or your UUID-based favorites."); artist.setTooltip("Artist inspiration or style."); category.setTooltip("Sound gain/character category.");
@@ -80,10 +85,10 @@ void PresetBrowser::paintListBoxItem(int row,juce::Graphics& g,int width,int hei
     g.setColour(selected?studio::accent:studio::border);g.fillRoundedRectangle(12,16,3,float(height-32),1.5f);
     const bool isFavorite=hasId(favorites,tone.id);
     g.setColour(studio::text);g.setFont(juce::FontOptions(15.0f,juce::Font::bold));
-    g.drawText((isFavorite?"★ ":"")+u(tone.name),24,10,width-38,23,juce::Justification::centredLeft);
+    g.drawText((isFavorite?"* ":"")+u(tone.name),24,10,width-38,23,juce::Justification::centredLeft);
     const auto detail=metadata?u(metadata->artist)+"  /  "+u(metadata->gain):juce::String("User sound");
     g.setColour(selected?studio::accent:studio::muted);g.setFont(12.0f);
-    g.drawText(detail+"  ·  "+juce::String(int(tone.rack.order.size()))+" pedals",24,36,width-38,20,juce::Justification::centredLeft);
+    g.drawText(detail+"  /  "+juce::String(int(tone.rack.order.size()))+" pedals",24,36,width-38,20,juce::Justification::centredLeft);
 }
 void PresetBrowser::filter() {
     filtered.clear(); const auto query=search.getText().trim();

@@ -80,9 +80,10 @@ MainComponent::MainComponent() {
     inputGain.onValueChange = [this] { session.processor.controls.setInputDb(static_cast<float>(inputGain.getValue())); };
     outputGain.onValueChange = [this] { session.processor.controls.setOutputDb(static_cast<float>(outputGain.getValue())); };
     addAndMakeVisible(inputMeter); addAndMakeVisible(outputMeter);
+    outputMeter.setTooltip("GuitarRack output before JACK/device connections. A moving meter does not confirm sound at the interface.");
     inputChannel.setTooltip("Choose one physical input. For M-Track Solo guitar, choose channel 2.");
     rateBox.setTooltip("JACK uses the existing server rate; GuitarRack does not change global audio policy.");
-    bufferBox.setTooltip("JACK uses the existing server buffer. ALSA exposes the device's supported choices.");
+    bufferBox.setTooltip("PipeWire JACK: requested per-client period, applied on Start. ALSA: device-supported sizes. Check Actual after Start.");
     outputGain.setTooltip("Defaults to -12 dB. Output protection clamps peaks at 0.98; clipping changes tone.");
     addAndMakeVisible(rackEditor); addAndMakeVisible(presetBar);
     addAndMakeVisible(latencyProfile);latencyProfile.addItem("Legacy: 128 DSP samples",1);latencyProfile.addItem("Creative: 4096 DSP samples",2);latencyProfile.setSelectedId(1,juce::dontSendNotification);
@@ -142,6 +143,12 @@ void MainComponent::devicesChanged() {
             rightChannel.setSelectedId(2, juce::dontSendNotification);
         }
         rates = device->getAvailableSampleRates(); buffers = device->getAvailableBufferSizes();
+        if (auto* type=session.backend(backendBox.getSelectedItemIndex()); type && type->getTypeName()=="JACK") {
+            // JUCE JACK advertises only the current period. PipeWire accepts a
+            // per-client request when AudioSession creates the Start client.
+            for (int frames : {128,256,512,1024}) if (!buffers.contains(frames)) buffers.add(frames);
+            buffers.sort();
+        }
         for (int i = 0; i < rates.size(); ++i) rateBox.addItem(juce::String(rates[i], 0) + " Hz", i + 1);
         for (int i = 0; i < buffers.size(); ++i) bufferBox.addItem(juce::String(buffers[i]) + " frames", i + 1);
         rateBox.setSelectedItemIndex(rates.contains(48000) ? rates.indexOf(48000) : (rates.isEmpty() ? -1 : 0), juce::dontSendNotification);
@@ -172,10 +179,12 @@ void MainComponent::updateEnabled() {
 void MainComponent::updateConfigurationLabel() {
     const auto diagnostics=session.configuration();
     auto selection=backendBox.getText()+" | "+(inputDevice.getText().isEmpty()?juce::String("Select audio device"):inputDevice.getText());
-    if(outputDevice.getText().isNotEmpty()&&outputDevice.getText()!=inputDevice.getText())selection+=" → "+outputDevice.getText();
+    if(outputDevice.getText().isNotEmpty()&&outputDevice.getText()!=inputDevice.getText())selection+=" -> "+outputDevice.getText();
     auto channel=[](const juce::ComboBox& box){return box.getSelectedItemIndex()<0?juce::String("?"):juce::String(box.getSelectedItemIndex()+1);};
     selection+=" | In "+channel(inputChannel)+" / Out "+channel(leftChannel)+"+"+channel(rightChannel);
-    configLabel.setText(audioCollapsed?selection+" | "+diagnostics.upToFirstOccurrenceOf("\n",false,false):diagnostics,juce::dontSendNotification);
+    auto brief=selection+" | "+diagnostics.upToFirstOccurrenceOf("\n",false,false);
+    if(session.isBusy()) brief=diagnostics.fromLastOccurrenceOf("Backend xruns: ",true,false)+" | "+brief;
+    configLabel.setText(audioCollapsed?brief:diagnostics,juce::dontSendNotification);
     configLabel.setTooltip(selection+"\n"+diagnostics);
 }
 void MainComponent::timerCallback() {
@@ -260,7 +269,7 @@ void MainComponent::resized() {
     auto area=getLocalBounds().reduced(20,16);
     const bool compact=audioCollapsed||getHeight()<600;
     auto header=area.removeFromTop(38);audioSetup.setBounds(header.removeFromRight(150));latencyProfile.setBounds(header.removeFromRight(220).reduced(4));title.setBounds(header.withTrimmedLeft(10));
-    audioSetup.setButtonText(audioCollapsed?"Audio Setup ▸":"Audio Setup ▾");
+    audioSetup.setButtonText(audioCollapsed?"Audio Setup +":"Audio Setup -");
     for(auto* c:std::initializer_list<juce::Component*>{&hint,&backendLabel,&inputDeviceLabel,&outputDeviceLabel,&inputLabel,&leftLabel,&rightLabel,&rateLabel,&bufferLabel,&backendBox,&inputDevice,&outputDevice,&inputChannel,&leftChannel,&rightChannel,&rateBox,&bufferBox}) c->setVisible(!audioCollapsed);
     auto buttons=area.removeFromTop(36);
     for(auto* button:{&startButton,&stopButton,&muteButton}){button->setBounds(buttons.removeFromLeft(100).reduced(2));}

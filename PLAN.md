@@ -25,6 +25,26 @@ authorized for this task. Existing audio and preset action contracts remain.
   in this environment. No display is available. See [verification](docs/testing.md)
   and [visual acceptance checklist](docs/ui-refresh.md).
 
+### Owner-reported preset visibility and audio interruption follow-up — 2026-10-02
+
+The artist browser choices were hard coded before the modern rock catalog and
+omitted Foo Fighters, Shinedown and Alter Bridge. They now include catalog
+artists, retaining existing style choices and saved string filters. The stale
+Release executable was rebuilt locally. PipeWire JACK buffer choice is now a
+per-client Start request from Audio Setup, with requested/actual verification;
+the Legacy 128 / Creative 4096 DSP latency contract remains unchanged. See the
+new [testing record](docs/testing.md). Synthetic 48-kHz/256-frame evidence
+already shows some dense racks and Dual graph fades can miss the period. Physical
+xruns/cuts, exact Muse trouble cases, font/HiDPI appearance, and round-trip
+latency still require owner desktop/audio inspection; no acceptance is inferred.
+
+The owner narrowed the missing glyphs to the Audio Setup button; its Unicode
+triangles and the other non-ASCII UI adornments were replaced with ASCII labels.
+Both Citizen Erased factory chains render nonzero at 48 kHz/Legacy 128 from the
+synthetic DI, but this does not resolve the owner's reported silent hardware
+output after Load. Compare another preset without changing the stream and check
+the actual xrun count/output routing before altering calibrated factory recipes.
+
 
 ## Authorized tone upgrade A–D — current software contract (2026-10-01)
 
