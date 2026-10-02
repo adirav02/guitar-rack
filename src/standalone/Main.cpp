@@ -1,5 +1,6 @@
 #include <juce_gui_basics/juce_gui_basics.h>
 #include "ui/MainComponent.h"
+#include "ui/StudioTheme.h"
 
 namespace guitarrack {
 class Application final : public juce::JUCEApplication, private juce::Timer {
@@ -8,11 +9,12 @@ public:
     const juce::String getApplicationVersion() override { return "0.1.0"; }
     bool moreThanOneInstanceAllowed() override { return false; }
     void initialise(const juce::String& commandLine) override {
+        juce::LookAndFeel::setDefaultLookAndFeel(&theme);
         window = std::make_unique<Window>();
         // Launch/close smoke check, with the exact same no-monitoring startup.
         if (commandLine.contains("--smoke-test")) startTimer(1200);
     }
-    void shutdown() override { stopTimer(); window.reset(); }
+    void shutdown() override { stopTimer(); window.reset(); juce::LookAndFeel::setDefaultLookAndFeel(nullptr); }
     void systemRequestedQuit() override { if (window) static_cast<MainComponent*>(window->getContentComponent())->requestClose([this] { quit(); }); else quit(); }
     void anotherInstanceStarted(const juce::String&) override { if (window) window->toFront(true); }
 private:
@@ -32,6 +34,7 @@ private:
         }
         void closeButtonPressed() override { juce::JUCEApplication::getInstance()->systemRequestedQuit(); }
     };
+    StudioTheme theme;
     std::unique_ptr<Window> window;
 };
 }

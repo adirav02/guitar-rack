@@ -19,7 +19,7 @@ private:
     public:
         explicit Content(PresetBrowser& b):browser(b) {}
         void resized() override;
-        void paint(juce::Graphics& g) override {g.fillAll(juce::Colour(0xff202b3a));}
+        void paint(juce::Graphics&) override;
         PresetBrowser& browser;
     } content{*this};
     int getNumRows() override;
@@ -37,7 +37,7 @@ private:
     juce::ComboBox source,artist,category;
     juce::ListBox list{"Sounds",this};
     juce::TextButton loadButton{"Load"},favorite{"Favorite"},cancel{"Cancel load"},importButton{"Import"},exportButton{"Export"},deleteButton{"Delete user preset"};
-    juce::Label status;
+    juce::Label status, heading, subtitle, sourceLabel, artistLabel, categoryLabel, resultsLabel, detailLabel;
     std::vector<ToneState> catalog,filtered;
     std::vector<std::string> favorites,factoryIds;
     std::string highlighted;

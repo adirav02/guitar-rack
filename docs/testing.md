@@ -1,5 +1,53 @@
 # Verification record
 
+## Studio UI refresh — 2026-10-02
+
+Baseline: clean local checkout and matching GitHub branch at `0d4cab0`.
+Presentation changes only; DSP, state implementation, factory recipes, IRs,
+parameter mapping, callbacks and persistence schemas are not changed.
+
+Validation performed on Ubuntu 24.04, GCC 13.3.0, pinned JUCE 8.0.15
+`91ad83ae34a81e0833b1a2b0866f54846370ae53`:
+
+- All five affected translation units compile to **object files**, with no
+  diagnostics under `-std=c++20 -Wall -Wextra -Wpedantic`: MainComponent,
+  RackEditor, PresetBar, PresetBrowser and standalone Main (including StudioTheme).
+  This is not a linked or rendered native application.
+- Existing headless CTest checks **4/4 pass**, 1.85 seconds: StateTests,
+  AssetTests, PedalPresetTests and legacy_identity_compatibility. These exercise
+  the unchanged underlying preset/state contracts, not GUI input or rendering.
+- Diff review and exact callback-assignment-line comparison retain every
+  existing onClick/onChange/onValueChange/search/keyboard callback assignment.
+  DSP/state/assets/test sources are unchanged. `git diff --check` is clean.
+- Layout arithmetic checked positive board viewport space at 700×450,
+  1280×720, 1366×768 and 1920×1080 in both audio-panel modes. Card height includes
+  control rows, cabinet selectors and footer without overlapping allocations.
+  This is a source/geometry check, not screenshot or HiDPI validation.
+- Fresh native Release CMake configuration stops at missing
+  `PKG_CONFIG_EXECUTABLE`. Native X11/ALSA/font development headers and a display
+  are also unavailable; no system packages were installed. Exact Fedora
+  dependency command remains in [dependencies.md](dependencies.md).
+
+Reproduce object compilation from the repository root:
+
+```bash
+mkdir -p build/ui-refresh-objects
+for f in src/ui/MainComponent.cpp src/ui/PresetBar.cpp src/ui/PresetBrowser.cpp src/ui/RackEditor.cpp src/standalone/Main.cpp; do
+  g++ -std=c++20 -Wall -Wextra -Wpedantic -c -Isrc -Ibuild/vendor/JUCE/modules \
+    -DJUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1 -DJUCE_STANDALONE_APPLICATION=1 \
+    -DJUCE_USE_CURL=0 -DJUCE_WEB_BROWSER=0 "$f" \
+    -o "build/ui-refresh-objects/$(basename "$f" .cpp).o" || exit
+ done
+ctest --test-dir build/headless -E legacy_audio_compatibility --output-on-failure
+```
+
+The headless directory is the existing pinned-JUCE verification setup described
+in earlier entries. The original unavailable frozen audio fixture remains
+excluded, not regenerated or reported as passing. No new audio DSP tests,
+hardware, live listening, GUI rendering, sanitizer or performance claims.
+[Desktop checklist](ui-refresh.md) remains pending.
+
+
 ## Modern rock template expansion 2026-10-01
 
 Local and remote `feat/radiohead-muse-song-tones` were clean at

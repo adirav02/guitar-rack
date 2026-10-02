@@ -1,4 +1,5 @@
 #include "RackEditor.h"
+#include "StudioTheme.h"
 #include "core/SoundLibrary.h"
 #include "core/CabinetAssets.h"
 #include "state/PedalPresets.h"
@@ -7,13 +8,14 @@
 namespace guitarrack {
 namespace {
 juce::Colour pedalColour(const std::string& type) {
-    if(type=="overdrive") return juce::Colour(0xff3ea66d);
-    if(type=="distortion" || type=="fuzz") return juce::Colour(0xffdc7848);
-    if(type=="delay") return juce::Colour(0xff438dcc);
-    if(type=="reverb" || type=="pitch") return juce::Colour(0xff966fcd);
-    if(type=="chorus" || type=="tremolo" || type=="ring_mod") return juce::Colour(0xff35aaa7);
-    if(type=="filter" || type=="eq") return juce::Colour(0xffd2ad52);
-    return juce::Colour(0xff8998ac);
+    if(type=="overdrive" || type=="tight_boost") return juce::Colour(0xff9ce8c3);
+    if(type.find("amp")!=std::string::npos) return juce::Colour(0xffffcb80);
+    if(type.find("distortion")!=std::string::npos || type=="fuzz" || type.find("drive")!=std::string::npos || type.find("fuzz")!=std::string::npos) return juce::Colour(0xffffa18b);
+    if(type=="delay" || type=="echo") return juce::Colour(0xff8dcfff);
+    if(type.find("reverb")!=std::string::npos || type.find("pitch")!=std::string::npos || type=="swell" || type=="audio_hold") return juce::Colour(0xffc9b0ff);
+    if(type=="chorus" || type=="tremolo" || type=="ring_mod" || type=="phaser" || type=="flanger") return juce::Colour(0xff85e0e2);
+    if(type=="filter" || type.find("eq")!=std::string::npos || type.find("wah")!=std::string::npos) return juce::Colour(0xffe6dc8d);
+    return juce::Colour(0xffb8c6dd);
 }
 }
 class RackEditor::Card final : public juce::Component {
@@ -23,8 +25,9 @@ public:
           store(userDataDirectory()/"pedals"),libraryRevision(revision),expanded(open),onExpansion(std::move(change)) {
         descriptor=rack.registry().find(identity.effectType,identity.effectVersion);
         title.setText(juce::String(position+1)+". "+descriptor->displayName,juce::dontSendNotification);
-        title.setJustificationType(juce::Justification::centred);
-        title.setColour(juce::Label::textColourId,colour.brighter());
+        title.setJustificationType(juce::Justification::centredLeft);
+        title.setFont(juce::FontOptions(17.0f,juce::Font::bold));
+        title.setColour(juce::Label::textColourId,colour);
         title.setTooltip("Move this pedal to change the signal chain. Settings and identity stay with it.");
         for(auto* c:std::initializer_list<juce::Component*>{&title,&up,&down,&remove,&bypass,&reset,&voices,&saveVoice,&expand,&tap}) addAndMakeVisible(c);
         expand.setButtonText(expanded?"Basic controls":"All controls");
@@ -40,6 +43,7 @@ public:
         up.onClick=[this]{rack.move(identity.id,-1);}; down.onClick=[this]{rack.move(identity.id,1);};
         remove.onClick=[this]{rack.remove(identity.id);};
         up.setTooltip("Move earlier in the chain."); down.setTooltip("Move later in the chain.");
+        remove.setColour(juce::TextButton::textColourOffId,studio::danger);
         remove.setTooltip("Remove this pedal. Structural edits can shorten temporal tails.");
         bypass.setClickingTogglesState(true);
         bypass.setTooltip("Footswitch: engage or bypass this pedal with a smooth fade. Bypass hides tails while processing continues.");
@@ -118,13 +122,13 @@ public:
         poll();
     }
     const InstanceId& instanceId() const noexcept {return identity.id;}
-    int preferredHeight() const { return 146+static_cast<int>(((expanded?controls.size():basic.size())+1)/2)*64+(identity.effectType=="cabinet"?78:0); }
+    int preferredHeight() const { return 214+static_cast<int>(((expanded?controls.size():basic.size())+1)/2)*96+(identity.effectType=="cabinet"?84:0); }
     void poll() {
         if(seenRevision!=libraryRevision) { refreshVoices(); seenRevision=libraryRevision; }
         const bool engaged=!rack.bank.bypassed(identity.slot);
         bypass.setToggleState(engaged,juce::dontSendNotification);
         bypass.setButtonText(engaged?"ENGAGED":"BYPASSED");
-        bypass.setColour(juce::TextButton::buttonOnColourId,colour.darker(.3f));
+        bypass.setColour(juce::TextButton::buttonOnColourId,colour.darker(.75f));
         for(auto& c:controls) {
             const float value=c->parameter.denormalize(rack.bank.value(identity.slot,c->parameter.bankIndex));
             if(!c->parameter.choices.empty()) c->mode.setSelectedItemIndex(static_cast<int>(std::round(value)),juce::dontSendNotification);
@@ -150,22 +154,28 @@ public:
         repaint();
     }
     void resized() override {
-        auto area=getLocalBounds().reduced(10);
-        auto footer=area.removeFromBottom(26);
-        saveVoice.setBounds(footer.removeFromTop(24));
-        title.setBounds(area.removeFromTop(26));
-        auto actions=area.removeFromTop(22); const int width=actions.getWidth()/4;
-        up.setBounds(actions.removeFromLeft(width).reduced(2)); down.setBounds(actions.removeFromLeft(width).reduced(2));
-        reset.setBounds(actions.removeFromLeft(width).reduced(2)); remove.setBounds(actions.reduced(2));
-        area.removeFromTop(4); voices.setBounds(area.removeFromTop(26));auto detail=area.removeFromTop(22);bypass.setBounds(detail.removeFromRight(90));if(identity.effectType=="echo")tap.setBounds(detail.removeFromRight(75));expand.setBounds(detail);
+        auto area=getLocalBounds().reduced(14);
+        auto footer=area.removeFromBottom(30);
+        bypass.setBounds(footer.removeFromRight(106)); footer.removeFromRight(8);
+        saveVoice.setBounds(footer);
+        area.removeFromBottom(10);
+        title.setBounds(area.removeFromTop(32));
+        auto actions=area.removeFromTop(28); const int width=actions.getWidth()/4;
+        up.setBounds(actions.removeFromLeft(width).reduced(1)); down.setBounds(actions.removeFromLeft(width).reduced(1));
+        reset.setBounds(actions.removeFromLeft(width).reduced(1)); remove.setBounds(actions.reduced(1));
+        area.removeFromTop(8); voices.setBounds(area.removeFromTop(30));
+        area.removeFromTop(6); auto detail=area.removeFromTop(26);
+        if(identity.effectType=="echo") {tap.setBounds(detail.removeFromRight(80));detail.removeFromRight(6);}
+        expand.setBounds(detail);
+        area.removeFromTop(6);
         for(auto& c:controls) {c->label.setVisible(false);c->slider.setVisible(false);c->mode.setVisible(false);}
         std::size_t shown=0;
         juce::Rectangle<int> row;
         for(std::size_t i=0;i<controls.size();++i) {
             if(!expanded && std::find(basic.begin(),basic.end(),i)==basic.end())continue;
-            if(shown%2==0) row=area.removeFromTop(64);
+            if(shown%2==0) row=area.removeFromTop(96);
             auto cell=(shown%2==0?row.removeFromLeft(row.getWidth()/2):row).reduced(3);++shown;
-            auto& c=controls[i];c->label.setVisible(true);c->label.setBounds(cell.removeFromTop(18));
+            auto& c=controls[i];c->label.setVisible(true);c->label.setBounds(cell.removeFromTop(20));
             if(c->parameter.choices.empty()) {c->slider.setVisible(true);c->slider.setBounds(cell);}
             else {c->mode.setVisible(true);c->mode.setBounds(cell.removeFromTop(28));}
         }
@@ -175,12 +185,24 @@ public:
 
     }
     void paint(juce::Graphics& g) override {
-        const auto bounds=getLocalBounds().toFloat().reduced(1);
-        g.setColour(juce::Colour(0xff17212d)); g.fillRoundedRectangle(bounds,12);
-        g.setColour(colour.withAlpha(.65f)); g.drawRoundedRectangle(bounds,12,2);
-        const auto engaged=!rack.bank.bypassed(identity.slot);
-        g.setColour(engaged?colour.brighter():juce::Colour(0xff394552));
-        g.fillEllipse(static_cast<float>(getWidth()/2-4),static_cast<float>(getHeight()-14),8,8);
+        const auto bounds=getLocalBounds().toFloat().reduced(2);
+        const bool engaged=!rack.bank.bypassed(identity.slot);
+        g.setColour(juce::Colours::black.withAlpha(.35f));
+        g.fillRoundedRectangle(bounds.translated(0,2),14);
+        const auto finish=studio::panel.interpolatedWith(colour,engaged?.14f:.04f);
+        g.setGradientFill(juce::ColourGradient(finish,bounds.getTopLeft(),studio::panel,bounds.getBottomRight(),false));
+        g.fillRoundedRectangle(bounds,14);
+        g.setColour(colour.withAlpha(engaged?.6f:.2f)); g.drawRoundedRectangle(bounds,14,1);
+        // Enclosure stripe, screws and LED are decorative, never hit targets.
+        g.setColour(colour.withAlpha(engaged?.9f:.25f));
+        g.fillRoundedRectangle(bounds.getX()+16,bounds.getY()+7,bounds.getWidth()-32,3,1.5f);
+        for(float x:{bounds.getX()+7,bounds.getRight()-7}) {
+            g.setColour(studio::border);g.fillEllipse(x-2,bounds.getBottom()-10,4,4);
+        }
+        const float ledX=float(bypass.getX())-6,ledY=float(bypass.getBounds().getCentreY());
+        if(engaged) {g.setColour(colour.withAlpha(.15f));g.fillEllipse(ledX-6,ledY-6,12,12);}
+        g.setColour(engaged?colour:studio::border);g.fillEllipse(ledX-2.5f,ledY-2.5f,5,5);
+
     }
 private:
     std::vector<std::size_t> basic;
@@ -244,7 +266,11 @@ private:
     std::vector<std::unique_ptr<Control>> controls;
 };
 void RackEditor::Board::paint(juce::Graphics& g) {
-    g.setColour(juce::Colour(0xff718299));
+    g.fillAll(studio::background);
+    g.setColour(studio::border.withAlpha(.25f));
+    for(int y=12;y<getHeight();y+=20)
+        for(int x=12;x<getWidth();x+=20) g.fillRect(x,y,1,1);
+    g.setColour(studio::muted.withAlpha(.6f));
     for(int i=1;i<getNumChildComponents();++i) {
         const auto a=getChildComponent(i-1)->getBounds(), b=getChildComponent(i)->getBounds();
         juce::Path wire;
@@ -264,13 +290,18 @@ void RackEditor::Board::paint(juce::Graphics& g) {
         }
     }
     if(getNumChildComponents()==0) {
-        g.setColour(juce::Colour(0xff9aa8ba));
-        g.drawFittedText("Your pedalboard is empty. Add an effect or choose a complete rack preset.",getLocalBounds().reduced(16),juce::Justification::centredTop,2);
+        auto area=getLocalBounds().reduced(24);
+        g.setColour(studio::accent);g.setFont(juce::FontOptions(24.0f,juce::Font::bold));
+        g.drawText("Your next sound starts here.",area.removeFromTop(42),juce::Justification::centred);
+        g.setColour(studio::muted);g.setFont(15.0f);
+        g.drawFittedText("Add your first pedal above, or explore a complete rack in Choose Preset.",area.removeFromTop(48),juce::Justification::centred,2);
     }
 }
 RackEditor::RackEditor(RackEngine& owner,PresetSession& session) : rack(owner),presets(session) {
     for (auto* button : {&addEffect, &bypass}) addAndMakeVisible(button);
     addAndMakeVisible(picker); addAndMakeVisible(status); addAndMakeVisible(viewport);
+    studio::primary(addEffect);
+    status.setColour(juce::Label::textColourId,studio::muted);
     viewport.setViewedComponent(&content, false);
     viewport.setScrollBarsShown(true, false);
     int id = 1;
@@ -316,8 +347,8 @@ void RackEditor::poll() {
 }
 void RackEditor::layoutCards() {
     const int available=std::max(1,viewport.getWidth()-viewport.getScrollBarThickness());
-    const int columns=std::max(1,available/250), gap=14, width=(available-gap*(columns-1))/columns;
-    int y=0;
+    const int columns=std::max(1,available/280), gap=20, width=(available-gap*(columns-1))/columns;
+    int y=8;
     for(std::size_t start=0;start<cards.size();start+=static_cast<std::size_t>(columns)) {
         int height=0;
         for(int column=0;column<columns && start+column<cards.size();++column)
@@ -326,7 +357,7 @@ void RackEditor::layoutCards() {
             cards[start+column]->setBounds(column*(width+gap),y,width,height);
         y+=height+24;
     }
-    content.setSize(available,std::max(1,y)); content.repaint();
+    content.setSize(available,std::max(viewport.getHeight(),y)); content.repaint();
 }
 void RackEditor::restoreLocal(const Preferences& p) {expanded={p.expanded.begin(),p.expanded.end()};restoredScroll=p.boardScroll;displayed={};poll();}
 void RackEditor::captureLocal(Preferences& p) const {p.expanded.assign(expanded.begin(),expanded.end());p.boardScroll=viewport.getViewPositionY();}
@@ -334,7 +365,8 @@ void RackEditor::resized() {
     auto area = getLocalBounds(); auto bar = area.removeFromTop(34);
     picker.setBounds(bar.removeFromLeft(230)); bar.removeFromLeft(6);
     addEffect.setBounds(bar.removeFromLeft(110)); bar.removeFromLeft(10);
-    bypass.setBounds(bar.removeFromLeft(120)); bar.removeFromLeft(12); status.setBounds(bar);
+    bypass.setBounds(bar.removeFromLeft(120)); bar.removeFromLeft(12);
+    status.setBounds(area.removeFromTop(24));
     area.removeFromTop(6); viewport.setBounds(area); layoutCards();
 }
 }

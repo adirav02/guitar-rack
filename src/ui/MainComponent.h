@@ -36,6 +36,8 @@ private:
     std::optional<Preferences> remembered;
     void label(juce::Label&, const juce::String&);
     bool audioCollapsed=true;
+    juce::Component console;
+    juce::Viewport consoleViewport;
     juce::ComboBox latencyProfile;
     juce::TextButton audioSetup{"Audio Setup"};
     AudioSession session;

@@ -5,6 +5,27 @@ Created: 2026-09-30. Working name: GuitarRack. Status: M0/M1 through M4 software
 This is an implementation contract for Codex. Complete one milestone at a time. Treat unchecked items as unfinished. Update this document with evidence as implementation progresses.
 
 
+## Presentation refresh — 2026-10-02
+
+Owner-authorized UI-only work on `feat/radiohead-muse-song-tones`, based on clean
+`0d4cab02b49ead5d4c09a74ee11d24ca816d06d0`. Commit to the same branch is explicitly
+authorized for this task. Existing audio and preset action contracts remain.
+
+- [x] Add an application-owned native studio theme, tactile rotary controls,
+  pedal-family enclosure colours, readable control spacing, segmented meters,
+  consistent menus/dialogs and visible keyboard focus styling.
+- [x] Refresh preset browsing with labelled filters, two-line sound rows,
+  result counts and an empty-result message; retain existing filtering/loading.
+- [x] Keep transport visible while audio settings can scroll on short windows;
+  preserve the existing separate preset window and board scrolling.
+- [x] Compile all five affected translation units to objects with pinned JUCE;
+  rerun the four existing headless state/asset/voicing/identity checks.
+- [ ] Native standalone link, rendered desktop/HiDPI and keyboard acceptance:
+  configuration is blocked by missing PkgConfig and native development headers
+  in this environment. No display is available. See [verification](docs/testing.md)
+  and [visual acceptance checklist](docs/ui-refresh.md).
+
+
 ## Authorized tone upgrade A–D — current software contract (2026-10-01)
 
 The owner's active brief supersedes the old later-backlog placement of amps,
