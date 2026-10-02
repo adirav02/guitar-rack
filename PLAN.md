@@ -5,6 +5,47 @@ Created: 2026-09-30. Working name: GuitarRack. Status: M0/M1 through M4 software
 This is an implementation contract for Codex. Complete one milestone at a time. Treat unchecked items as unfinished. Update this document with evidence as implementation progresses.
 
 
+## Presentation refresh — 2026-10-02
+
+Owner-authorized UI-only work on `feat/radiohead-muse-song-tones`, based on clean
+`0d4cab02b49ead5d4c09a74ee11d24ca816d06d0`. Commit to the same branch is explicitly
+authorized for this task. Existing audio and preset action contracts remain.
+
+- [x] Add an application-owned native studio theme, tactile rotary controls,
+  pedal-family enclosure colours, readable control spacing, segmented meters,
+  consistent menus/dialogs and visible keyboard focus styling.
+- [x] Refresh preset browsing with labelled filters, two-line sound rows,
+  result counts and an empty-result message; retain existing filtering/loading.
+- [x] Keep transport visible while audio settings can scroll on short windows;
+  preserve the existing separate preset window and board scrolling.
+- [x] Compile all five affected translation units to objects with pinned JUCE;
+  rerun the four existing headless state/asset/voicing/identity checks.
+- [ ] Native standalone link, rendered desktop/HiDPI and keyboard acceptance:
+  configuration is blocked by missing PkgConfig and native development headers
+  in this environment. No display is available. See [verification](docs/testing.md)
+  and [visual acceptance checklist](docs/ui-refresh.md).
+
+### Owner-reported preset visibility and audio interruption follow-up — 2026-10-02
+
+The artist browser choices were hard coded before the modern rock catalog and
+omitted Foo Fighters, Shinedown and Alter Bridge. They now include catalog
+artists, retaining existing style choices and saved string filters. The stale
+Release executable was rebuilt locally. PipeWire JACK buffer choice is now a
+per-client Start request from Audio Setup, with requested/actual verification;
+the Legacy 128 / Creative 4096 DSP latency contract remains unchanged. See the
+new [testing record](docs/testing.md). Synthetic 48-kHz/256-frame evidence
+already shows some dense racks and Dual graph fades can miss the period. Physical
+xruns/cuts, exact Muse trouble cases, font/HiDPI appearance, and round-trip
+latency still require owner desktop/audio inspection; no acceptance is inferred.
+
+The owner narrowed the missing glyphs to the Audio Setup button; its Unicode
+triangles and the other non-ASCII UI adornments were replaced with ASCII labels.
+Both Citizen Erased factory chains render nonzero at 48 kHz/Legacy 128 from the
+synthetic DI, but this does not resolve the owner's reported silent hardware
+output after Load. Compare another preset without changing the stream and check
+the actual xrun count/output routing before altering calibrated factory recipes.
+
+
 ## Authorized tone upgrade A–D — current software contract (2026-10-01)
 
 The owner's active brief supersedes the old later-backlog placement of amps,
@@ -49,11 +90,114 @@ architecture was authorized or performed.
 - [ ] D: New physical routing/round trip/soak and artist-character/listening
   acceptance. Only unchanged Subterranean Pulse is explicitly owner approved.
 
-Current inventory: 42 types, 43 exact descriptors, 69 complete sounds, 146 pedal
+Current inventory: 42 types, 44 exact descriptors, 168 complete sounds, 305 pedal
 voices. Optional chainsaw, reverse/granular delay and stutter remain deferred.
 VST3/Windows/cloud/mobile/plugin hosting/general routing remain outside this
 request. Checkboxes refer to software behavior with recorded evidence, not the
 unfinished M5 physical or subjective acceptance.
+
+### Research-led song templates — 2026-10-01
+
+The owner's new request is implemented on `feat/radiohead-muse-song-tones`.
+[Research](docs/song-tone-research.md) was completed before project inspection
+and branch creation; network policy blocked YouTube and specialist gear sites.
+Primary DSP sources were read successfully. Song-specific settings are inferred
+starting points, with source/listening limitations visible in catalog details.
+
+- [x] Add 12 complete Radiohead/Muse templates and 28 reusable voicings, including
+  separate Let Down clean/space and Subterranean clean/floating-lead sounds,
+  No Surprises clean guitar, and Muse fuzz/heavy/chime/lead sounds.
+- [x] Version Echo v2 with wet/feedback low cut, adjustable tape wow rate and
+  stereo phase; retain Echo v1 and all earlier recipes/mappings/identities.
+- [x] Regenerate embedded recipes/catalog, portable fixtures, strict schemas
+  and control documentation. All song templates fit Legacy 128.
+- [ ] Complete owner reference listening, guitar/pickup calibration, native
+  Fedora display/audio build and physical acceptance for this branch.
+
+Software verification and environment limits are recorded in
+[testing](docs/testing.md#song-template-verification-2026-10-01);
+[usage and chains](docs/song-templates.md) describe the final behavior. Existing
+graph/lifetime/16-control/latency/asset contracts remain. No commits, pushes,
+system packages, new external audio assets or global audio settings were added.
+
+### Additional Muse templates — 2026-10-01
+
+The owner requested more templates for Citizen Erased (distortion and clean
+ending), New Born, Hysteria, Psycho, Reapers, Defector and The Globalist.
+Added 12 separate sounds and 22 reusable voicings on the existing song-tone
+branch, using existing processors. New Born/Reapers include rhythm/tapping and
+lead alternatives; The Globalist includes clean intro, heavy middle and clean
+outro guitar. All fit Legacy 128. No new DSP, routing, scene automation or latency
+profile is introduced. All prior 81 sounds / 174 voices remain unchanged.
+The owner subsequently confirmed all seven album versions as the target and
+requested fresh tone research. MuseWiki/artist interview access is blocked by
+HTTP policy; the [research/matching guide](docs/muse-tone-research.md) distinguishes
+that pending verification from inferred settings. Outputs are calibrated using
+the existing synthetic phrase; physical/reference listening remains pending.
+See [template roles](docs/song-templates.md#more-muse-song-templates)
+and [verification](docs/testing.md#muse-template-expansion-verification-2026-10-01).
+
+The owner's follow-up requests usable application chains. These are already
+embedded in the factory/session/browser loading path. The exporter now supports
+`--song-pack <directory>` to deliver individual cabinet-inclusive portable
+bundles, verified through the application's importer. Native release build was
+attempted here but is blocked by missing X11/audio/font development headers;
+the owner must rebuild the executable on the configured Fedora desktop.
+See [handoff verification](docs/testing.md#application-chain-handoff-2026-10-01).
+
+### Green Day / Soundgarden / Nirvana / SOAD expansion — 2026-10-01
+
+Work continues on `feat/radiohead-muse-song-tones`. The remote branch matched
+`8800341a6b78b0aa7063cb0a8811b59bf7b77016`; checkpoint
+`15870b779998c5d056fec53212b2669e332dacd8` preserves its exact tree before edits.
+The available workspace contained no Git checkout or additional uncommitted state;
+this task reconstructed the remote snapshot without claiming access to other
+computer worktrees. The owner authorizes additive changes and branch commits.
+
+- [x] Research all 14 requested recordings, artist/engineer accounts, physical
+  tunings and era/role distinctions; label transcription-only and unresolved facts.
+- [x] Add 42 independent racks and 60 reusable voices with stable explicit UUIDs;
+  no new DSP or pitch processing. Preserve all earlier 93 sounds / 196 voices,
+  catalog records, portable files and legacy fixture identities.
+- [x] Regenerate embedded library/catalog and 42 portable presets; verify loading,
+  round trips, callback behavior, additive edit retention and synthetic headroom.
+- [ ] Actual reference listening, pickup calibration, native display/audio and
+  target-hardware CPU/round-trip acceptance; Toxicity Dual Amp especially.
+
+See [research](docs/alternative-tone-research.md),
+[recipes and use](docs/alternative-templates.md) and
+[verification](docs/testing.md#alternative-template-expansion-2026-10-01).
+
+### Foo Fighters / Shinedown / Alter Bridge expansion — 2026-10-01
+
+Continue on `feat/radiohead-muse-song-tones`. Local and remote HEAD were clean
+at `c159e512932d6d95372c71779e91724f93f22104`. Before edits, checkpoint
+`b8e7dc6a42ff086470c7187a3a405c1af2d01a6e` preserved the exact tree. The
+owner requests the same research/template/verification and branch-commit workflow.
+
+- [x] Research all nine album targets, distinguish three Foo Fighters eras and
+  Shinedown periods, separate both Blackbird players/solos, and label tuning
+  evidence strength, unreviewed embedded video and unresolved studio settings.
+- [x] Add 33 separate racks and 49 voices with stable UUIDs using existing DSP;
+  no pitch shift. Preserve all earlier 135 sounds / 256 voices and assets.
+- [x] Regenerate presets; verify loading, callbacks, 99 synthetic headroom
+  renders, full checkpoint preservation and repeatable edit retention.
+  Commit and push the verified changes to the existing branch.
+- [ ] Reference listening, pickup calibration, native display/audio and
+  target-hardware acceptance. Only unchanged Subterranean Pulse is approved.
+
+See [research](docs/modern-rock-tone-research.md),
+[recipes/use](docs/modern-rock-templates.md) and
+[verification](docs/testing.md#modern-rock-template-expansion-2026-10-01).
+
+### GitHub review handoff — 2026-10-01
+
+The owner now explicitly authorizes committing and uploading this song-tone
+worktree to the existing GitHub repository and opening a pull request against
+`main`. This supersedes the earlier local-only scope for these changes. Publish
+the source, factory presets, research and verification records on
+`feat/radiohead-muse-song-tones`; native build/audio/listening limitations remain
+visible for review. No merge or release publication is requested.
 
 ## 1. Product goal
 

@@ -1,7 +1,12 @@
 #include "PresetBar.h"
+#include "StudioTheme.h"
 namespace guitarrack {
 PresetBar::PresetBar(RackEngine& rack) : presets(rack,userDataDirectory()/"presets"),registry(rack.registry()) {
     for(auto* c: std::initializer_list<juce::Component*>{&chooseButton,&currentName,&saveButton,&saveAsButton,&indicator,&status}) addAndMakeVisible(c);
+    studio::primary(chooseButton);
+    currentName.setFont(juce::FontOptions(18.0f,juce::Font::bold));
+    indicator.setFont(juce::FontOptions(12.0f));
+    status.setColour(juce::Label::textColourId,studio::danger);
     chooseButton.onClick=[this]{openBrowser();};
     saveButton.onClick=[this] { if(presets.selectedIsFactory()) saveAs(); else presets.save(); };
     saveAsButton.onClick=[this] { saveAs(); };
@@ -34,7 +39,9 @@ void PresetBar::poll() {
     presets.poll();
     auto selected=presets.selected();
     currentName.setText(selected?juce::String::fromUTF8(selected->name.c_str()):presets.dirty()?"Untitled rack":"Clean",juce::dontSendNotification);
+    currentName.setTooltip(currentName.getText());
     const bool busy=presets.busy();
+    indicator.setColour(juce::Label::textColourId,presets.dirty()?studio::amber:studio::muted);
     indicator.setText(busy?(presets.loading()?"Loading preset...":"Applying edits..."):presets.dirty()?"* Unsaved changes":"Saved / unchanged",juce::dontSendNotification);
     status.setText(juce::String::fromUTF8(presets.error.c_str()),juce::dontSendNotification);
     status.setTooltip(juce::String::fromUTF8(presets.error.c_str()));
@@ -112,8 +119,11 @@ void PresetBar::fileDialog(bool importing) {
         if(importing) safe->presets.importFile(file.getFullPathName().toStdString()); else safe->presets.exportFile(file.getFullPathName().toStdString());
     });
 }
+void PresetBar::paint(juce::Graphics& g) {
+    studio::surface(g,getLocalBounds().toFloat());
+}
 void PresetBar::resized() {
-    auto area=getLocalBounds();auto row=area.removeFromTop(30);
+    auto area=getLocalBounds().reduced(12,8);auto row=area.removeFromTop(32);
     chooseButton.setBounds(row.removeFromLeft(150));row.removeFromLeft(8);
     saveAsButton.setBounds(row.removeFromRight(80));row.removeFromRight(6);saveButton.setBounds(row.removeFromRight(65));
     currentName.setBounds(row);

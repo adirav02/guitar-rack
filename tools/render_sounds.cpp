@@ -61,13 +61,16 @@ Render render(const ToneState& tone,const Wave& input,float strength=1,bool crea
 int main(int argc,char** argv){try{
  if(argc==3&&std::string(argv[1])=="--synthetic"){auto w=synthetic();writeWave(argv[2],w.rate,w.mono,{});std::cout<<"Original synthetic DI, amplitude bound not pickup calibration: "<<argv[2]<<'\n';return 0;}
  auto registry=EffectRegistry::builtIns();auto catalog=factoryPresets(registry);
- if(argc==3&&std::string(argv[1])=="--catalog-audit"){
+ if((argc==3||argc==4)&&std::string(argv[1])=="--catalog-audit"){
   std::ofstream csv(argv[2]);csv<<"id,name,rate,input_scale,input_peak,input_bound,processor_latency,peak,rms,suggested_output_db\n"<<std::setprecision(8);auto input=synthetic();double inputPeak=0;for(float x:input.mono)inputPeak=std::max(inputPeak,std::abs(double(x)));
-  for(const auto& tone:catalog){bool creative=std::any_of(tone.rack.instances.begin(),tone.rack.instances.end(),[](const auto& i){return i.effectType=="expression_pitch";});
+  unsigned audited=0;
+  for(const auto& tone:catalog){
+   if(argc==4){const auto* metadata=soundMetadata(tone.id);if(!metadata||std::find(metadata->tags.begin(),metadata->tags.end(),argv[3])==metadata->tags.end())continue;}
+   ++audited;bool creative=std::any_of(tone.rack.instances.begin(),tone.rack.instances.end(),[](const auto& i){return i.effectType=="expression_pitch";});
    for(float strength:{.3f,1.f,3.f}){auto result=render(tone,input,strength,creative);double change=20*std::log10(.015/std::max(result.rms,1e-12));double limit=20*std::log10(.6/std::max(result.peak,1e-12));double suggested=std::clamp(tone.controls.outputDb+std::min(change,limit),-60.,6.);csv<<tone.id<<','<<std::quoted(tone.name)<<','<<input.rate<<','<<strength<<','<<inputPeak*strength<<','<<.142*strength<<','<<(creative?4096:128)<<','<<result.peak<<','<<result.rms<<','<<suggested<<'\n';}
-  }return csv?0:2;
+  }if(!audited)throw std::runtime_error("No factory sounds match the audit tag");return csv?0:2;
  }
- if(argc<4){std::cerr<<"Usage: guitarrack_render <factory UUID or full name> mono-DI.wav new-output.wav [--creative]\n       guitarrack_render --synthetic new-DI.wav\n       guitarrack_render --catalog-audit output.csv\n";return 2;}
+ if(argc<4){std::cerr<<"Usage: guitarrack_render <factory UUID or full name> mono-DI.wav new-output.wav [--creative]\n       guitarrack_render --synthetic new-DI.wav\n       guitarrack_render --catalog-audit output.csv [exact metadata tag]\n";return 2;}
  auto at=std::find_if(catalog.begin(),catalog.end(),[&](const auto& t){return t.id==argv[1]||t.name==argv[1];});if(at==catalog.end())throw std::runtime_error("Unknown factory sound UUID/name");
  const bool creative=argc==5&&std::string(argv[4])=="--creative";auto input=readWave(argv[2]);auto result=render(*at,input,1,creative);writeWave(argv[3],input.rate,result.l,result.r);
  std::cout<<"Rendered "<<at->name<<", "<<input.rate<<" Hz; DSP profile "<<(creative?4096:128)<<" samples, peak "<<result.peak<<", phrase RMS "<<result.rms<<"; 8-second tail. No MonitorEngine clamp or device used.\n";return 0;

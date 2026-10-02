@@ -1,0 +1,125 @@
+{
+  "schema_version": 2,
+  "preset_id": "fa83f6d6-b7da-5055-a867-b6d4ec5f2ec7",
+  "name": "Nirvana / Come as You Are - Watery Lead",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -9.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "f7968f96-5dc1-5170-a667-0b5a2c55094d",
+    "8f4a752e-8bec-54ee-a232-f44b8baa9237",
+    "0e793abb-8c83-5cb7-bd25-ae83d5cdf515",
+    "dd5cf0d7-867f-5e9e-a648-ddda290edf7b",
+    "984d2ed4-2a39-5a7b-9dc6-0b8f35fbef2f",
+    "26338570-adb5-50bb-ac58-b26e5ddf7c4f"
+  ],
+  "instances": [
+    {
+      "instance_id": "f7968f96-5dc1-5170-a667-0b5a2c55094d",
+      "slot_id": 0,
+      "effect_type": "hard_distortion",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "drive_db": 30.0,
+        "low_cut_hz": 80.0,
+        "filter_hz": 3700.000244140625,
+        "output_db": -10.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "8f4a752e-8bec-54ee-a232-f44b8baa9237",
+      "slot_id": 1,
+      "effect_type": "chorus",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "rate_hz": 0.800000011920929,
+        "depth_percent": 70.0,
+        "width_percent": 0.0,
+        "mix_percent": 42.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "0e793abb-8c83-5cb7-bd25-ae83d5cdf515",
+      "slot_id": 2,
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 4.0,
+        "bass_db": 0.0,
+        "mid_db": 1.0,
+        "treble_db": -1.0,
+        "master_percent": 28.0,
+        "presence_percent": 40.0,
+        "output_db": -6.0,
+        "sag_percent": 20.0,
+        "bright_percent": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "dd5cf0d7-867f-5e9e-a648-ddda290edf7b",
+      "slot_id": 3,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+    },
+    {
+      "instance_id": "984d2ed4-2a39-5a7b-9dc6-0b8f35fbef2f",
+      "slot_id": 4,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 240.0,
+        "band1_db": -1.5,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 1300.0,
+        "band2_db": 2.0,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 3900.0,
+        "band3_db": -1.5,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 95.0,
+        "low_pass_hz": 6500.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "26338570-adb5-50bb-ac58-b26e5ddf7c4f",
+      "slot_id": 5,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 1.0,
+        "decay_seconds": 1.350000023841858,
+        "pre_delay_ms": 18.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 8.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "sha256": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "relative_path": "ir/43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d.wav",
+      "format": "wav"
+    }
+  ]
+}

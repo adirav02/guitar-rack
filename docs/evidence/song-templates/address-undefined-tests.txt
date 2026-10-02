@@ -1,0 +1,66 @@
+Start testing: Oct 01 11:23 UTC
+----------------------------------------------------------
+7/9 Testing: experimental_signals
+7/9 Test: experimental_signals
+Command: "/workspace/guitar-rack/build/core-sanitize/guitarrack_experimental_tests"
+Directory: /workspace/guitar-rack/build/core-sanitize
+"experimental_signals" start time: Oct 01 11:23 UTC
+Output:
+----------------------------------------------------------
+Pitch peak: 438 Hz, amplitude 0.0922114, input residual 6.42383e-05
+PASS: experimental signals, coherent voicings, compatibility, lifecycle, legacy and upgraded factory voicings/racks
+<end of output>
+Test time =  19.75 sec
+----------------------------------------------------------
+Test Passed.
+"experimental_signals" end time: Oct 01 11:24 UTC
+"experimental_signals" time elapsed: 00:00:19
+----------------------------------------------------------
+
+9/9 Testing: creative_signals
+9/9 Test: creative_signals
+Command: "/workspace/guitar-rack/build/core-sanitize/guitarrack_creative_tests"
+Directory: /workspace/guitar-rack/build/core-sanitize
+"creative_signals" start time: Oct 01 11:23 UTC
+Output:
+----------------------------------------------------------
+pitch,82.4069,-24,20.6017,0,0.0763214
+pitch,82.4069,-12,41.2034,0,0.100083
+pitch,82.4069,12,164.814,0,0.100068
+pitch,82.4069,24,329.628,0,0.100011
+pitch,110,-24,27.5,0,0.0906915
+pitch,110,-12,55,0,0.0999461
+pitch,110,12,220,0,0.0999985
+pitch,110,24,440,0,0.0999985
+pitch,220,-24,55,0,0.0999459
+pitch,220,-12,110,0,0.0999989
+pitch,220,12,440,0,0.0999993
+pitch,220,24,880,0,0.0999982
+pitch,440,-24,110,0,0.0999989
+pitch,440,-12,220,0,0.0999986
+pitch,440,12,880,0,0.0999983
+pitch,440,24,1760,0,0.0999999
+pitch,880,-24,220,0,0.0999985
+pitch,880,-12,440,0,0.0999993
+pitch,880,12,1760,0,0.0999999
+pitch,880,24,3520,0,0.0999995
+pitch,1760,-24,440,0,0.0999993
+pitch,1760,-12,880,0,0.0999983
+pitch,1760,12,3520,0,0.0999995
+pitch,1760,24,7040,0,0.0999986
+pitch-rate,44100,-24,0.0938686
+pitch-rate,44100,24,0.0999982
+pitch-rate,96000,-24,0.0565563
+pitch-rate,96000,24,0.0995116
+Pitch bend peak: 0.100067; chord octave fundamental amplitudes: 0.00201635,0.000765009,0.00206082 (no chord-quality mode claimed)
+Pitch octave impulse onset/peak: 634/2159 samples; declared window/alignment 2048
+PASS: creative timing, stereo echo filtering/compatibility, networks, capture, pitch cents/alignment and parallel polarity
+<end of output>
+Test time =  28.86 sec
+----------------------------------------------------------
+Test Passed.
+"creative_signals" end time: Oct 01 11:24 UTC
+"creative_signals" time elapsed: 00:00:28
+----------------------------------------------------------
+
+End testing: Oct 01 11:24 UTC

@@ -12,6 +12,7 @@ public:
     void captureLocal(Preferences&) const;
     void openBrowser();
     void resized() override;
+    void paint(juce::Graphics&) override;
     void guard(std::function<void()> action);
     void saveAs(std::function<void()> after = {});
     PresetSession presets;

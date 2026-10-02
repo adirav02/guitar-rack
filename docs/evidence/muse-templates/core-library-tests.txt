@@ -1,0 +1,7 @@
+Test project /workspace/guitar-rack/build/core-debug
+    Start 7: experimental_signals
+1/1 Test #7: experimental_signals .............   Passed    5.28 sec
+
+100% tests passed out of 1
+
+Total Test time (real) =   5.28 sec

@@ -1,0 +1,152 @@
+{
+  "schema_version": 2,
+  "preset_id": "ec51b92c-693c-5dab-8979-567058a8f7e1",
+  "name": "Muse / The Globalist - Spacious Clean Intro",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": 3.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "891f6e83-974d-5b83-bde9-890b9d252f0e",
+    "36ad4302-5f56-5d56-95a4-3b4da84677a7",
+    "77d9aa71-a81f-545a-9101-81478d3c06b2",
+    "00581a2b-936f-57bd-903d-2662b4a15a49",
+    "d50b955e-8aac-5a63-8d46-c9c95b6ac090",
+    "061cf86c-af64-5f84-b14f-59c80222a31a",
+    "ce1075d2-c955-5a5f-8ee5-c725f892ea31"
+  ],
+  "instances": [
+    {
+      "instance_id": "891f6e83-974d-5b83-bde9-890b9d252f0e",
+      "slot_id": 0,
+      "effect_type": "compressor",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "threshold_db": -24.0,
+        "ratio": 2.200000047683716,
+        "attack_ms": 25.0,
+        "release_ms": 160.0,
+        "makeup_db": 2.0,
+        "mix_percent": 70.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "36ad4302-5f56-5d56-95a4-3b4da84677a7",
+      "slot_id": 1,
+      "effect_type": "amp_solid_clean",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 0.0,
+        "bass_db": -2.0,
+        "mid_db": 0.0,
+        "treble_db": 1.0,
+        "master_percent": 18.0,
+        "presence_percent": 40.0,
+        "output_db": -3.0,
+        "bright_percent": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "77d9aa71-a81f-545a-9101-81478d3c06b2",
+      "slot_id": 2,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+    },
+    {
+      "instance_id": "00581a2b-936f-57bd-903d-2662b4a15a49",
+      "slot_id": 3,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 240.0,
+        "band1_db": -1.5,
+        "band1_q": 0.699999988079071,
+        "band2_hz": 1100.0,
+        "band2_db": 1.0,
+        "band2_q": 0.699999988079071,
+        "band3_hz": 3600.0,
+        "band3_db": -1.0,
+        "band3_q": 0.699999988079071,
+        "high_pass_hz": 100.0,
+        "low_pass_hz": 7200.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "d50b955e-8aac-5a63-8d46-c9c95b6ac090",
+      "slot_id": 4,
+      "effect_type": "chorus",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "rate_hz": 0.180000007152557,
+        "depth_percent": 38.0,
+        "width_percent": 90.0,
+        "mix_percent": 20.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "061cf86c-af64-5f84-b14f-59c80222a31a",
+      "slot_id": 5,
+      "effect_type": "echo",
+      "effect_version": 2,
+      "bypassed": false,
+      "parameters": {
+        "time_ms": 460.0,
+        "bpm": 120.0,
+        "subdivision": 0.0,
+        "clock": 0.0,
+        "mode": 2.0,
+        "feedback_percent": 36.000003814697266,
+        "color_hz": 3900.0,
+        "wow_percent": 25.0,
+        "stereo": 0.0,
+        "heads": 0.0,
+        "mix_percent": 26.0,
+        "output_db": 0.0,
+        "wet_low_cut_hz": 180.0,
+        "wow_rate_hz": 0.200000002980232,
+        "wow_width_percent": 90.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "ce1075d2-c955-5a5f-8ee5-c725f892ea31",
+      "slot_id": 6,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 2.0,
+        "decay_seconds": 4.800000190734863,
+        "pre_delay_ms": 32.0,
+        "damping_hz": 4000.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 28.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "sha256": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "relative_path": "ir/43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d.wav",
+      "format": "wav"
+    }
+  ]
+}

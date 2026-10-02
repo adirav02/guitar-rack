@@ -1,0 +1,93 @@
+{
+  "schema_version": 2,
+  "preset_id": "aac3779e-09bb-52d3-a716-7649d61b2963",
+  "name": "Foo Fighters / Walk - Upper Chime Support",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -8.5,
+    "rack_bypass": false
+  },
+  "order": [
+    "ea6f0c5f-4a0b-53d7-a519-755d579043a1",
+    "a7610ccc-d98e-5e3f-87c2-1a9f03e68e55",
+    "acc55f36-0be2-590f-8ebe-cc98612a5a87",
+    "dd2f8c58-0d69-55f6-9569-03f3e9c00d57"
+  ],
+  "instances": [
+    {
+      "instance_id": "ea6f0c5f-4a0b-53d7-a519-755d579043a1",
+      "slot_id": 0,
+      "effect_type": "amp_brit_chime",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 16.0,
+        "bass_db": -2.0,
+        "treble_db": 1.0,
+        "master_percent": 28.0,
+        "output_db": -9.0,
+        "sag_percent": 18.0,
+        "cut_percent": 34.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "a7610ccc-d98e-5e3f-87c2-1a9f03e68e55",
+      "slot_id": 1,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+    },
+    {
+      "instance_id": "acc55f36-0be2-590f-8ebe-cc98612a5a87",
+      "slot_id": 2,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 260.0,
+        "band1_db": -2.0,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 1800.0,
+        "band2_db": 2.0,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 4300.0,
+        "band3_db": -1.5,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 120.0,
+        "low_pass_hz": 6800.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "dd2f8c58-0d69-55f6-9569-03f3e9c00d57",
+      "slot_id": 3,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.550000011920929,
+        "pre_delay_ms": 12.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 5.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "sha256": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "relative_path": "ir/43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d.wav",
+      "format": "wav"
+    }
+  ]
+}

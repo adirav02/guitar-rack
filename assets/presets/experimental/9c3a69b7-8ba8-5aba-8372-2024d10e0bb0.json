@@ -1,0 +1,136 @@
+{
+  "schema_version": 2,
+  "preset_id": "9c3a69b7-8ba8-5aba-8372-2024d10e0bb0",
+  "name": "Muse / Starlight - Chiming Guitar",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -1.5,
+    "rack_bypass": false
+  },
+  "order": [
+    "f0710a92-5c87-57d3-aa86-ca077e1eb39b",
+    "432d7ee9-04fd-50a8-87df-bc352f0c9344",
+    "3c2a5df3-49e7-5752-a21d-c21262591a52",
+    "7aeea3c5-cf47-5a47-9980-22e8d4d3035b",
+    "ad101605-e95f-5d55-9ffc-777179d4dabb",
+    "0f439e46-6147-5cff-bf61-9763eabbe3b4"
+  ],
+  "instances": [
+    {
+      "instance_id": "f0710a92-5c87-57d3-aa86-ca077e1eb39b",
+      "slot_id": 0,
+      "effect_type": "compressor",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "threshold_db": -24.0,
+        "ratio": 2.200000047683716,
+        "attack_ms": 25.0,
+        "release_ms": 160.0,
+        "makeup_db": 2.0,
+        "mix_percent": 70.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "432d7ee9-04fd-50a8-87df-bc352f0c9344",
+      "slot_id": 1,
+      "effect_type": "amp_brit_chime",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 6.0,
+        "bass_db": -2.0,
+        "treble_db": 2.0,
+        "master_percent": 28.0,
+        "output_db": -6.0,
+        "sag_percent": 20.0,
+        "cut_percent": 35.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "3c2a5df3-49e7-5752-a21d-c21262591a52",
+      "slot_id": 2,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "e69b28f563f39599f8882d80bb0e56ae336d51cc16b7a273eb7b916511c51da6"
+    },
+    {
+      "instance_id": "7aeea3c5-cf47-5a47-9980-22e8d4d3035b",
+      "slot_id": 3,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 220.0,
+        "band1_db": -1.5,
+        "band1_q": 0.699999988079071,
+        "band2_hz": 1800.0,
+        "band2_db": 1.0,
+        "band2_q": 0.699999988079071,
+        "band3_hz": 4200.0,
+        "band3_db": -1.0,
+        "band3_q": 0.699999988079071,
+        "high_pass_hz": 85.0,
+        "low_pass_hz": 8500.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "ad101605-e95f-5d55-9ffc-777179d4dabb",
+      "slot_id": 4,
+      "effect_type": "echo",
+      "effect_version": 2,
+      "bypassed": false,
+      "parameters": {
+        "time_ms": 250.0,
+        "bpm": 120.0,
+        "subdivision": 1.0,
+        "clock": 1.0,
+        "mode": 2.0,
+        "feedback_percent": 22.0,
+        "color_hz": 5000.0,
+        "wow_percent": 8.0,
+        "stereo": 0.0,
+        "heads": 0.0,
+        "mix_percent": 14.0,
+        "output_db": 0.0,
+        "wet_low_cut_hz": 150.0,
+        "wow_rate_hz": 0.400000035762787,
+        "wow_width_percent": 50.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "0f439e46-6147-5cff-bf61-9763eabbe3b4",
+      "slot_id": 5,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 1.0,
+        "decay_seconds": 1.799999952316284,
+        "pre_delay_ms": 22.0,
+        "damping_hz": 5800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 14.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "e69b28f563f39599f8882d80bb0e56ae336d51cc16b7a273eb7b916511c51da6",
+      "sha256": "e69b28f563f39599f8882d80bb0e56ae336d51cc16b7a273eb7b916511c51da6",
+      "relative_path": "ir/e69b28f563f39599f8882d80bb0e56ae336d51cc16b7a273eb7b916511c51da6.wav",
+      "format": "wav"
+    }
+  ]
+}

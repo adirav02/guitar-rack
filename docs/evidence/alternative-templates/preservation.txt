@@ -1,0 +1,2 @@
+Not locally readable; unchanged Git object: tests/fixtures/legacy/render.txt.gz
+PASS: 42 racks / 14 songs, Legacy-compatible recipes, full checkpoint preservation, idempotence and edited-entry retention

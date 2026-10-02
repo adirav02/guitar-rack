@@ -1,0 +1,95 @@
+{
+  "schema_version": 2,
+  "preset_id": "4784f12e-043f-5b21-ba17-f0a8fedca916",
+  "name": "Soundgarden / Outshined - Thayil Role Rhythm",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -12.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "e4bf3b89-5783-55a6-8352-f94f053ba1a0",
+    "918a43c4-4841-5d57-abaa-c441b5ec254f",
+    "750ab2f2-8439-5a5f-b37d-e85cb87da550",
+    "b92973a5-3594-532e-b7a1-b206daeefc8b"
+  ],
+  "instances": [
+    {
+      "instance_id": "e4bf3b89-5783-55a6-8352-f94f053ba1a0",
+      "slot_id": 0,
+      "effect_type": "amp_brit_hotrod",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 19.0,
+        "bass_db": -1.0,
+        "mid_db": 3.0,
+        "treble_db": -1.0,
+        "master_percent": 36.0,
+        "presence_percent": 28.0,
+        "output_db": -9.0,
+        "sag_percent": 20.0,
+        "low_cut_hz": 65.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "918a43c4-4841-5d57-abaa-c441b5ec254f",
+      "slot_id": 1,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+    },
+    {
+      "instance_id": "750ab2f2-8439-5a5f-b37d-e85cb87da550",
+      "slot_id": 2,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 220.0,
+        "band1_db": -1.0,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 1600.0,
+        "band2_db": 2.0,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 3600.0,
+        "band3_db": -2.0,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 65.0,
+        "low_pass_hz": 6000.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "b92973a5-3594-532e-b7a1-b206daeefc8b",
+      "slot_id": 3,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.550000011920929,
+        "pre_delay_ms": 12.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 5.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "sha256": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "relative_path": "ir/e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac.wav",
+      "format": "wav"
+    }
+  ]
+}

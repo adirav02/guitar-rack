@@ -1,0 +1,100 @@
+{
+  "schema_version": 2,
+  "preset_id": "1b09ce14-7209-5e47-afd4-56d680481633",
+  "name": "Alter Bridge / Blackbird - Tremonti Role Rhythm",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -12.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "ab9c37d2-aa36-5411-b055-db59fa882575",
+    "e884bba5-1287-5fc2-8d3e-784b3a6030ae",
+    "3d4bc424-f3bd-54e6-8ca7-880a2400be89",
+    "7d20e8c5-3fea-5328-bfc6-65ea09fc91d2"
+  ],
+  "instances": [
+    {
+      "instance_id": "ab9c37d2-aa36-5411-b055-db59fa882575",
+      "slot_id": 0,
+      "effect_type": "dual_amp",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "model_a": 7.0,
+        "gain_a_db": 18.0,
+        "master_a_percent": 33.0,
+        "level_a_db": 0.0,
+        "model_b": 6.0,
+        "gain_b_db": 16.0,
+        "master_b_percent": 31.0,
+        "level_b_db": -2.0,
+        "blend_percent": 38.0,
+        "bass_db": 0.0,
+        "mid_db": 2.0,
+        "treble_db": -1.0,
+        "presence_percent": 28.0,
+        "output_db": -10.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "e884bba5-1287-5fc2-8d3e-784b3a6030ae",
+      "slot_id": 1,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+    },
+    {
+      "instance_id": "3d4bc424-f3bd-54e6-8ca7-880a2400be89",
+      "slot_id": 2,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 150.0,
+        "band1_db": -1.0,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 950.0,
+        "band2_db": 1.0,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 3300.0,
+        "band3_db": -2.0,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 60.0,
+        "low_pass_hz": 5900.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "7d20e8c5-3fea-5328-bfc6-65ea09fc91d2",
+      "slot_id": 3,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.550000011920929,
+        "pre_delay_ms": 12.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 5.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b",
+      "sha256": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b",
+      "relative_path": "ir/0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b.wav",
+      "format": "wav"
+    }
+  ]
+}

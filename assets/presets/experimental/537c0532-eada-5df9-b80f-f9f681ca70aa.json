@@ -1,0 +1,125 @@
+{
+  "schema_version": 2,
+  "preset_id": "537c0532-eada-5df9-b80f-f9f681ca70aa",
+  "name": "Nirvana / Come as You Are - Chorus Drive",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -9.5,
+    "rack_bypass": false
+  },
+  "order": [
+    "aa50ddea-74cc-5d10-8b40-8af43f27c59e",
+    "dcf628bd-75a5-50e6-8277-2b9ccfa206aa",
+    "523765cf-b5fc-57da-81ca-84a3f66b7e00",
+    "0fc6309f-fe67-5542-90eb-416c85b819da",
+    "8d04a1ec-809f-55d3-810d-dfb8ad84b2c5",
+    "9de54b5d-f525-5e3e-b489-115b9799204f"
+  ],
+  "instances": [
+    {
+      "instance_id": "aa50ddea-74cc-5d10-8b40-8af43f27c59e",
+      "slot_id": 0,
+      "effect_type": "hard_distortion",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "drive_db": 23.0,
+        "low_cut_hz": 50.0,
+        "filter_hz": 3500.0,
+        "output_db": -9.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "dcf628bd-75a5-50e6-8277-2b9ccfa206aa",
+      "slot_id": 1,
+      "effect_type": "chorus",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "rate_hz": 0.75,
+        "depth_percent": 80.0,
+        "width_percent": 0.0,
+        "mix_percent": 50.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "523765cf-b5fc-57da-81ca-84a3f66b7e00",
+      "slot_id": 2,
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 4.0,
+        "bass_db": 0.0,
+        "mid_db": 1.0,
+        "treble_db": -1.0,
+        "master_percent": 28.0,
+        "presence_percent": 40.0,
+        "output_db": -6.0,
+        "sag_percent": 20.0,
+        "bright_percent": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "0fc6309f-fe67-5542-90eb-416c85b819da",
+      "slot_id": 3,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+    },
+    {
+      "instance_id": "8d04a1ec-809f-55d3-810d-dfb8ad84b2c5",
+      "slot_id": 4,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 180.0,
+        "band1_db": 0.5,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 1200.0,
+        "band2_db": 0.5,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 3400.0,
+        "band3_db": -2.0,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 55.0,
+        "low_pass_hz": 6300.00048828125,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "9de54b5d-f525-5e3e-b489-115b9799204f",
+      "slot_id": 5,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.550000011920929,
+        "pre_delay_ms": 12.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 5.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "sha256": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "relative_path": "ir/43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d.wav",
+      "format": "wav"
+    }
+  ]
+}

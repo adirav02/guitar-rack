@@ -6,7 +6,7 @@
 #include "state/Preferences.h"
 
 namespace guitarrack {
-class PeakMeter final : public juce::Component {
+class PeakMeter final : public juce::Component, public juce::SettableTooltipClient {
 public:
     void update(float peak, bool clipped);
     void paint(juce::Graphics&) override;
@@ -36,6 +36,8 @@ private:
     std::optional<Preferences> remembered;
     void label(juce::Label&, const juce::String&);
     bool audioCollapsed=true;
+    juce::Component console;
+    juce::Viewport consoleViewport;
     juce::ComboBox latencyProfile;
     juce::TextButton audioSetup{"Audio Setup"};
     AudioSession session;

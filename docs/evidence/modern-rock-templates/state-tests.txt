@@ -1,0 +1,13 @@
+Test project /workspace/scratch/db1a83f598f4/guitar-rack/build/headless
+    Start 1: StateTests
+1/4 Test #1: StateTests .......................   Passed    1.90 sec
+    Start 2: AssetTests
+2/4 Test #2: AssetTests .......................   Passed    0.13 sec
+    Start 3: PedalPresetTests
+3/4 Test #3: PedalPresetTests .................   Passed    0.01 sec
+    Start 4: legacy_identity_compatibility
+4/4 Test #4: legacy_identity_compatibility ....   Passed    0.04 sec
+
+100% tests passed out of 4
+
+Total Test time (real) =   2.09 sec

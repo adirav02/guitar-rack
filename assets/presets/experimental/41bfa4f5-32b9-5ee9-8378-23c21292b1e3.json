@@ -1,0 +1,112 @@
+{
+  "schema_version": 2,
+  "preset_id": "41bfa4f5-32b9-5ee9-8378-23c21292b1e3",
+  "name": "Green Day / Wake Me Up When September Ends - Electric Clean Adaptation",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": 4.5,
+    "rack_bypass": false
+  },
+  "order": [
+    "5dc02bbe-ce3a-50cd-b7be-238452df558d",
+    "6d7a54b0-ccfd-502f-9a98-4262e51d6793",
+    "0cb22715-d727-57ee-9ec7-3cde7764a6c5",
+    "f741f48d-da61-59c6-aaf3-8f75f792e811",
+    "2a5a59fd-04e7-5a08-80b7-5d17b886d1e5"
+  ],
+  "instances": [
+    {
+      "instance_id": "5dc02bbe-ce3a-50cd-b7be-238452df558d",
+      "slot_id": 0,
+      "effect_type": "compressor",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "threshold_db": -25.0,
+        "ratio": 2.0,
+        "attack_ms": 24.0,
+        "release_ms": 170.0,
+        "makeup_db": 2.0,
+        "mix_percent": 60.000003814697266
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "6d7a54b0-ccfd-502f-9a98-4262e51d6793",
+      "slot_id": 1,
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 0.0,
+        "bass_db": -1.0,
+        "mid_db": 0.0,
+        "treble_db": 1.0,
+        "master_percent": 18.0,
+        "presence_percent": 40.0,
+        "output_db": -3.0,
+        "sag_percent": 20.0,
+        "bright_percent": 10.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "0cb22715-d727-57ee-9ec7-3cde7764a6c5",
+      "slot_id": 2,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+    },
+    {
+      "instance_id": "f741f48d-da61-59c6-aaf3-8f75f792e811",
+      "slot_id": 3,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 220.0,
+        "band1_db": -2.0,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 1700.0,
+        "band2_db": 1.0,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 4000.0,
+        "band3_db": -2.0,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 90.0,
+        "low_pass_hz": 9000.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "2a5a59fd-04e7-5a08-80b7-5d17b886d1e5",
+      "slot_id": 4,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.899999976158142,
+        "pre_delay_ms": 12.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 8.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "sha256": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "relative_path": "ir/43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d.wav",
+      "format": "wav"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+Start testing: Oct 01 11:26 UTC
+----------------------------------------------------------
+2/5 Testing: AssetTests
+2/5 Test: AssetTests
+Command: "/workspace/guitar-rack/build/song-tones/headless/AssetTests"
+Directory: /workspace/guitar-rack/build/song-tones/headless
+"AssetTests" start time: Oct 01 11:26 UTC
+Output:
+----------------------------------------------------------
+PASS: managed IR, portable bundles, live load/rollback, deletion and heap audits
+<end of output>
+Test time =   0.13 sec
+----------------------------------------------------------
+Test Passed.
+"AssetTests" end time: Oct 01 11:26 UTC
+"AssetTests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/5 Testing: legacy_identity_compatibility
+4/5 Test: legacy_identity_compatibility
+Command: "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12" "/workspace/guitar-rack/tools/check_compatibility.py" "/workspace/guitar-rack/build/song-tones/headless/export_sound_library"
+Directory: /workspace/guitar-rack/build/song-tones/headless
+"legacy_identity_compatibility" start time: Oct 01 11:26 UTC
+Output:
+----------------------------------------------------------
+PASS: all frozen legacy identities, recipes, bytes and control mappings; protected Subterranean
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Passed.
+"legacy_identity_compatibility" end time: Oct 01 11:26 UTC
+"legacy_identity_compatibility" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/5 Testing: PedalPresetTests
+3/5 Test: PedalPresetTests
+Command: "/workspace/guitar-rack/build/song-tones/headless/PedalPresetTests"
+Directory: /workspace/guitar-rack/build/song-tones/headless
+"PedalPresetTests" start time: Oct 01 11:26 UTC
+Output:
+----------------------------------------------------------
+PASS: 174 pedal round trips, Unicode persistence, invalid values/identity/schema and corrupt entry isolation
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"PedalPresetTests" end time: Oct 01 11:26 UTC
+"PedalPresetTests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+1/5 Testing: StateTests
+1/5 Test: StateTests
+Command: "/workspace/guitar-rack/build/song-tones/headless/StateTests"
+Directory: /workspace/guitar-rack/build/song-tones/headless
+"StateTests" start time: Oct 01 11:26 UTC
+Output:
+----------------------------------------------------------
+PASS: strict presets, Unicode, files, dirty actions, rollback, stale/cancelled loads, DSP equivalence, RT audit
+<end of output>
+Test time =   0.65 sec
+----------------------------------------------------------
+Test Passed.
+"StateTests" end time: Oct 01 11:26 UTC
+"StateTests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Oct 01 11:26 UTC

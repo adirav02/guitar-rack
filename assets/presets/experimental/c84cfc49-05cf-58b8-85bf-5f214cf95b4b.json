@@ -1,0 +1,112 @@
+{
+  "schema_version": 2,
+  "preset_id": "c84cfc49-05cf-58b8-85bf-5f214cf95b4b",
+  "name": "Foo Fighters / Walk - Picked Intro Clean",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": 2.5,
+    "rack_bypass": false
+  },
+  "order": [
+    "249b6005-ed88-5753-bc91-a0823cc1649b",
+    "00b8e439-5ef6-5a36-b22e-3973c66998ca",
+    "f565ec9c-7739-50c2-8f83-6d64f09a2c76",
+    "1831c204-cf76-50ce-8890-d4a6b05d2a60",
+    "feabd53f-9c90-56f0-9447-f5679ea2fb41"
+  ],
+  "instances": [
+    {
+      "instance_id": "249b6005-ed88-5753-bc91-a0823cc1649b",
+      "slot_id": 0,
+      "effect_type": "compressor",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "threshold_db": -25.0,
+        "ratio": 2.0,
+        "attack_ms": 24.0,
+        "release_ms": 170.0,
+        "makeup_db": 2.0,
+        "mix_percent": 60.000003814697266
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "00b8e439-5ef6-5a36-b22e-3973c66998ca",
+      "slot_id": 1,
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 1.0,
+        "bass_db": -1.0,
+        "mid_db": 1.0,
+        "treble_db": 0.0,
+        "master_percent": 19.0,
+        "presence_percent": 40.0,
+        "output_db": -3.0,
+        "sag_percent": 20.0,
+        "bright_percent": 12.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "f565ec9c-7739-50c2-8f83-6d64f09a2c76",
+      "slot_id": 2,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+    },
+    {
+      "instance_id": "1831c204-cf76-50ce-8890-d4a6b05d2a60",
+      "slot_id": 3,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 240.0,
+        "band1_db": -1.5,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 1500.0,
+        "band2_db": 0.5,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 4200.0,
+        "band3_db": -1.0,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 80.0,
+        "low_pass_hz": 8099.99951171875,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "feabd53f-9c90-56f0-9447-f5679ea2fb41",
+      "slot_id": 4,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.899999976158142,
+        "pre_delay_ms": 12.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 8.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "sha256": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "relative_path": "ir/43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d.wav",
+      "format": "wav"
+    }
+  ]
+}

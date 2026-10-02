@@ -1,0 +1,155 @@
+{
+  "schema_version": 2,
+  "preset_id": "2c375f80-9051-57d3-9950-c94c32185bfd",
+  "name": "Muse / Reapers - Singing Lead",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -8.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "ab3b4105-7a60-5486-970d-670a7a625e4a",
+    "8c98d96d-b7f6-505c-8865-7f2047177cb0",
+    "d9041e24-f8d0-545a-99dc-2196e285590a",
+    "2eb475fe-d778-55b9-87d2-9baae8e2b923",
+    "c250d51f-a984-50f3-bcc0-187403d2bf8c",
+    "51f7aa36-d0b3-55d1-b74d-3bc384b01094",
+    "257bd56f-ff3c-50a7-afef-bf371c00e9a6"
+  ],
+  "instances": [
+    {
+      "instance_id": "ab3b4105-7a60-5486-970d-670a7a625e4a",
+      "slot_id": 0,
+      "effect_type": "noise_gate",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "threshold_db": -64.0,
+        "range_db": 45.0,
+        "attack_ms": 2.0,
+        "hold_ms": 90.0,
+        "release_ms": 350.0,
+        "hysteresis_db": 8.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "8c98d96d-b7f6-505c-8865-7f2047177cb0",
+      "slot_id": 1,
+      "effect_type": "wah",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "position_percent": 62.0,
+        "heel_hz": 300.0,
+        "toe_hz": 2600.0,
+        "q": 2.0,
+        "output_db": 0.0,
+        "mix_percent": 55.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "d9041e24-f8d0-545a-99dc-2196e285590a",
+      "slot_id": 2,
+      "effect_type": "amp_brit_hotrod",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 30.0,
+        "bass_db": 0.0,
+        "mid_db": 0.0,
+        "treble_db": 0.0,
+        "master_percent": 55.0,
+        "presence_percent": 40.0,
+        "output_db": -16.0,
+        "sag_percent": 20.0,
+        "low_cut_hz": 120.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "2eb475fe-d778-55b9-87d2-9baae8e2b923",
+      "slot_id": 3,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+    },
+    {
+      "instance_id": "c250d51f-a984-50f3-bcc0-187403d2bf8c",
+      "slot_id": 4,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 180.0,
+        "band1_db": -1.0,
+        "band1_q": 0.699999988079071,
+        "band2_hz": 850.0,
+        "band2_db": 1.0,
+        "band2_q": 0.699999988079071,
+        "band3_hz": 3800.0,
+        "band3_db": -2.0,
+        "band3_q": 0.699999988079071,
+        "high_pass_hz": 80.0,
+        "low_pass_hz": 8000.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "51f7aa36-d0b3-55d1-b74d-3bc384b01094",
+      "slot_id": 5,
+      "effect_type": "echo",
+      "effect_version": 2,
+      "bypassed": false,
+      "parameters": {
+        "time_ms": 300.0,
+        "bpm": 120.0,
+        "subdivision": 0.0,
+        "clock": 0.0,
+        "mode": 2.0,
+        "feedback_percent": 28.0,
+        "color_hz": 4200.0,
+        "wow_percent": 8.0,
+        "stereo": 0.0,
+        "heads": 0.0,
+        "mix_percent": 18.0,
+        "output_db": 0.0,
+        "wet_low_cut_hz": 180.0,
+        "wow_rate_hz": 0.449999988079071,
+        "wow_width_percent": 70.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "257bd56f-ff3c-50a7-afef-bf371c00e9a6",
+      "slot_id": 6,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 1.0,
+        "decay_seconds": 1.600000023841858,
+        "pre_delay_ms": 18.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 12.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "sha256": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "relative_path": "ir/e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac.wav",
+      "format": "wav"
+    }
+  ]
+}

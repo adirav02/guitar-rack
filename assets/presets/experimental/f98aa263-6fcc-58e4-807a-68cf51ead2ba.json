@@ -1,0 +1,110 @@
+{
+  "schema_version": 2,
+  "preset_id": "f98aa263-6fcc-58e4-807a-68cf51ead2ba",
+  "name": "Nirvana / Come as You Are - Deep Mono Chorus",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": 5.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "a47c3a57-8b1f-59f3-b4b7-dd530212cb08",
+    "51eb9889-a384-584c-bab3-6f3e09efd638",
+    "99ec5cb8-6a3b-5bc3-8829-5c3b636f4578",
+    "a474a26f-5a74-5f3f-9105-1b736ef2c3c9",
+    "4c635416-7687-581e-a78e-8f1d46ae232c"
+  ],
+  "instances": [
+    {
+      "instance_id": "a47c3a57-8b1f-59f3-b4b7-dd530212cb08",
+      "slot_id": 0,
+      "effect_type": "chorus",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "rate_hz": 0.75,
+        "depth_percent": 80.0,
+        "width_percent": 0.0,
+        "mix_percent": 50.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "51eb9889-a384-584c-bab3-6f3e09efd638",
+      "slot_id": 1,
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 0.0,
+        "bass_db": 0.0,
+        "mid_db": 1.0,
+        "treble_db": 0.0,
+        "master_percent": 19.0,
+        "presence_percent": 40.0,
+        "output_db": -3.0,
+        "sag_percent": 20.0,
+        "bright_percent": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "99ec5cb8-6a3b-5bc3-8829-5c3b636f4578",
+      "slot_id": 2,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+    },
+    {
+      "instance_id": "a474a26f-5a74-5f3f-9105-1b736ef2c3c9",
+      "slot_id": 3,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 180.0,
+        "band1_db": 0.5,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 1200.0,
+        "band2_db": 0.5,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 3400.0,
+        "band3_db": -2.0,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 55.0,
+        "low_pass_hz": 6300.00048828125,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "4c635416-7687-581e-a78e-8f1d46ae232c",
+      "slot_id": 4,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.550000011920929,
+        "pre_delay_ms": 12.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 5.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "sha256": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "relative_path": "ir/43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d.wav",
+      "format": "wav"
+    }
+  ]
+}

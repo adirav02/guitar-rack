@@ -1,0 +1,94 @@
+{
+  "schema_version": 2,
+  "preset_id": "0c906d91-ba61-572d-a80d-27223d31eb00",
+  "name": "Foo Fighters / The Pretender - Open Chorus Rhythm",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -11.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "dc1233f4-b608-5247-a5a1-277a02f68a7b",
+    "9718262a-3bd4-5307-a411-d8bbf6668aea",
+    "349e3e8b-754a-5dd2-ae85-ae51f68f6fdf",
+    "4ff93e67-57d8-5e23-a33f-0b8c0a191952"
+  ],
+  "instances": [
+    {
+      "instance_id": "dc1233f4-b608-5247-a5a1-277a02f68a7b",
+      "slot_id": 0,
+      "effect_type": "amp_brit_crunch",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 21.0,
+        "bass_db": -1.0,
+        "mid_db": 2.0,
+        "treble_db": 0.0,
+        "master_percent": 36.0,
+        "presence_percent": 32.0,
+        "output_db": -9.0,
+        "sag_percent": 24.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "9718262a-3bd4-5307-a411-d8bbf6668aea",
+      "slot_id": 1,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+    },
+    {
+      "instance_id": "349e3e8b-754a-5dd2-ae85-ae51f68f6fdf",
+      "slot_id": 2,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 200.0,
+        "band1_db": -0.5,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 1100.0,
+        "band2_db": 1.0,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 3600.0,
+        "band3_db": -1.5,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 75.0,
+        "low_pass_hz": 6300.00048828125,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "4ff93e67-57d8-5e23-a33f-0b8c0a191952",
+      "slot_id": 3,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.550000011920929,
+        "pre_delay_ms": 12.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 5.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "sha256": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "relative_path": "ir/e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac.wav",
+      "format": "wav"
+    }
+  ]
+}

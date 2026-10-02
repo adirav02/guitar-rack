@@ -1,5 +1,6 @@
 #include "AudioSession.h"
 #include <cmath>
+#include <cstdlib>
 
 namespace guitarrack {
 AudioSession::AudioSession() : AudioSession(nullptr) { refresh(); }
@@ -7,6 +8,8 @@ AudioSession::~AudioSession() { stopNow(); }
 void AudioSession::refresh() {
     if (started) return;
     device.reset();
+    selectedBackend = -1;
+    selectedInputDevice.clear(); selectedOutputDevice.clear();
     types.clear();
     if (auto* type = juce::AudioIODeviceType::createAudioIODeviceType_JACK()) types.emplace_back(type);
     if (auto* type = juce::AudioIODeviceType::createAudioIODeviceType_ALSA()) types.emplace_back(type);
@@ -23,10 +26,13 @@ juce::AudioIODeviceType* AudioSession::backend(int index) const {
 juce::String AudioSession::probe(int typeIndex, const juce::String& input, const juce::String& output) {
     if (started) return "Stop before changing devices.";
     device.reset();
+    selectedBackend = -1;
     auto* type = backend(typeIndex);
     if (!type || input.isEmpty() || output.isEmpty()) return "Choose an input and an output device.";
     device.reset(type->createDevice(output, input));
     if (!device) return "Cannot create this device pair. Choose devices from the same backend.";
+    selectedBackend = typeIndex;
+    selectedInputDevice = input; selectedOutputDevice = output;
     return {};
 }
 juce::String AudioSession::start(int in, StereoRoute out, double rate, int block) {
@@ -39,6 +45,23 @@ juce::String AudioSession::start(int in, StereoRoute out, double rate, int block
     if (!std::isfinite(rate) || rate < 8000 || rate > 768000 || block <= 0)
         return "Select a supported sample rate and buffer size.";
 
+#if JUCE_LINUX
+    if (auto* type = backend(selectedBackend); type && type->getTypeName() == "JACK") {
+        // PipeWire reads this per-client hint when jack_client_open runs. JUCE's
+        // JACK device has already opened a preview client, so recreate it here.
+        const auto inputNames = device->getInputChannelNames();
+        const auto outputNames = device->getOutputChannelNames();
+        device.reset();
+        const auto request = juce::String(block) + "/" + juce::String(static_cast<int>(rate));
+        if (setenv("PIPEWIRE_LATENCY", request.toRawUTF8(), 1) != 0)
+            return "Could not set the PipeWire JACK client latency request.";
+        device.reset(type->createDevice(selectedOutputDevice, selectedInputDevice));
+        if (!device || device->getInputChannelNames() != inputNames
+                    || device->getOutputChannelNames() != outputNames)
+            return "JACK channels changed. Refresh / Reconnect and reselect before starting.";
+    }
+#endif
+
     physicalInput = in; route = out; requestedRate = rate; requestedBlock = block;
     packedLeft = route.packedLeft(); packedRight = route.packedRight();
     juce::BigInteger inputs, outputs;
@@ -48,6 +71,13 @@ juce::String AudioSession::start(int in, StereoRoute out, double rate, int block
     if (error.isNotEmpty()) { device->close(); return "Open failed: " + error; }
     actualRate = device->getCurrentSampleRate();
     actualBlock = device->getCurrentBufferSizeSamples();
+    // PipeWire's client request is a maximum; a smaller actual period is valid.
+    if (actualRate != rate || actualBlock > block) {
+        device->close();
+        return "Backend did not honor the requested rate/buffer (actual "
+            + juce::String(actualRate, 0) + " Hz / " + juce::String(actualBlock)
+            + " frames). Select the actual setting or adjust PipeWire/JACK.";
+    }
     if (device->getActiveInputChannels() != inputs || device->getActiveOutputChannels() != outputs
         || !std::isfinite(actualRate) || actualRate < 8000 || actualBlock <= 0) {
         device->close();

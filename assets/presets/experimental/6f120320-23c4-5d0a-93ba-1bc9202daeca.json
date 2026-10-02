@@ -1,0 +1,95 @@
+{
+  "schema_version": 2,
+  "preset_id": "6f120320-23c4-5d0a-93ba-1bc9202daeca",
+  "name": "Foo Fighters / Walk - Driving Rhythm",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -7.5,
+    "rack_bypass": false
+  },
+  "order": [
+    "a228e7ca-9c22-5845-ad13-4670a4f3ac31",
+    "1bf41a66-d595-5a0b-a31e-04fc7175bf5f",
+    "c067b6d5-af62-580e-8118-5225d324aab4",
+    "24e4e5bf-b5e4-5266-a38e-b68d995ecf04"
+  ],
+  "instances": [
+    {
+      "instance_id": "a228e7ca-9c22-5845-ad13-4670a4f3ac31",
+      "slot_id": 0,
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 17.0,
+        "bass_db": -1.0,
+        "mid_db": 2.0,
+        "treble_db": 1.0,
+        "master_percent": 37.0,
+        "presence_percent": 36.0,
+        "output_db": -9.0,
+        "sag_percent": 22.0,
+        "bright_percent": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "1bf41a66-d595-5a0b-a31e-04fc7175bf5f",
+      "slot_id": 1,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+    },
+    {
+      "instance_id": "c067b6d5-af62-580e-8118-5225d324aab4",
+      "slot_id": 2,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 220.0,
+        "band1_db": -1.0,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 950.0,
+        "band2_db": 1.5,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 3600.0,
+        "band3_db": -1.5,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 85.0,
+        "low_pass_hz": 6400.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "24e4e5bf-b5e4-5266-a38e-b68d995ecf04",
+      "slot_id": 3,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.550000011920929,
+        "pre_delay_ms": 12.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 5.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "sha256": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "relative_path": "ir/e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac.wav",
+      "format": "wav"
+    }
+  ]
+}

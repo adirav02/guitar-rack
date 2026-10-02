@@ -1,0 +1,120 @@
+{
+  "schema_version": 2,
+  "preset_id": "b2700a25-ec15-5e3f-9cbf-923e0ff49fe2",
+  "name": "Muse / Knights of Cydonia - Western Guitar",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -8.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "273a2f0b-ea10-5935-84ce-602a4e3560fa",
+    "d431b371-cd23-5403-9017-4ed7ca12a1e8",
+    "e7ccd9d7-58d0-5274-b650-c4db1820531c",
+    "b6ea4522-99e6-5182-8124-d08239ebaa2e",
+    "45a639e5-3d23-5c0f-822f-e960b679531d"
+  ],
+  "instances": [
+    {
+      "instance_id": "273a2f0b-ea10-5935-84ce-602a4e3560fa",
+      "slot_id": 0,
+      "effect_type": "amp_brit_crunch",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 22.0,
+        "bass_db": -1.0,
+        "mid_db": 1.0,
+        "treble_db": 1.0,
+        "master_percent": 35.0,
+        "presence_percent": 40.0,
+        "output_db": -13.999998092651367,
+        "sag_percent": 20.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "d431b371-cd23-5403-9017-4ed7ca12a1e8",
+      "slot_id": 1,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+    },
+    {
+      "instance_id": "e7ccd9d7-58d0-5274-b650-c4db1820531c",
+      "slot_id": 2,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 180.0,
+        "band1_db": -1.0,
+        "band1_q": 0.699999988079071,
+        "band2_hz": 850.0,
+        "band2_db": 1.0,
+        "band2_q": 0.699999988079071,
+        "band3_hz": 3800.0,
+        "band3_db": -2.0,
+        "band3_q": 0.699999988079071,
+        "high_pass_hz": 80.0,
+        "low_pass_hz": 8000.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "b6ea4522-99e6-5182-8124-d08239ebaa2e",
+      "slot_id": 3,
+      "effect_type": "echo",
+      "effect_version": 2,
+      "bypassed": false,
+      "parameters": {
+        "time_ms": 175.0,
+        "bpm": 120.0,
+        "subdivision": 0.0,
+        "clock": 0.0,
+        "mode": 2.0,
+        "feedback_percent": 23.0,
+        "color_hz": 4200.0,
+        "wow_percent": 10.0,
+        "stereo": 0.0,
+        "heads": 0.0,
+        "mix_percent": 16.0,
+        "output_db": 0.0,
+        "wet_low_cut_hz": 150.0,
+        "wow_rate_hz": 0.5,
+        "wow_width_percent": 55.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "45a639e5-3d23-5c0f-822f-e960b679531d",
+      "slot_id": 4,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.800000011920929,
+        "pre_delay_ms": 8.0,
+        "damping_hz": 6500.0,
+        "tone_hz": 9000.0,
+        "mix_percent": 10.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "sha256": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "relative_path": "ir/e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac.wav",
+      "format": "wav"
+    }
+  ]
+}

@@ -1992,6 +1992,2864 @@
         "width_percent": 60,
         "mix_percent": 18
       }
+    },
+    {
+      "id": "2568c58e-71df-5e72-b09e-ce838f5a94b0",
+      "key": "song.comp.transient",
+      "name": "Song / Gentle Pick Compression",
+      "effect_type": "compressor",
+      "effect_version": 1,
+      "parameters": {
+        "threshold_db": -24,
+        "ratio": 2.2,
+        "attack_ms": 25,
+        "release_ms": 160,
+        "makeup_db": 2,
+        "mix_percent": 70
+      }
+    },
+    {
+      "id": "90b5ff42-5f9e-5e1a-89a9-fc041db2d5c6",
+      "key": "song.comp.bell",
+      "name": "Song / Bell Compression",
+      "effect_type": "compressor",
+      "effect_version": 1,
+      "parameters": {
+        "threshold_db": -27,
+        "ratio": 2.5,
+        "attack_ms": 18,
+        "release_ms": 180,
+        "makeup_db": 2,
+        "mix_percent": 75
+      }
+    },
+    {
+      "id": "c1858a4e-f8d1-568d-962d-3460436b1bd7",
+      "key": "song.amp.chime",
+      "name": "Song / Clear Chime",
+      "effect_type": "amp_brit_chime",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 1,
+        "bass_db": -2,
+        "treble_db": 2,
+        "cut_percent": 30,
+        "master_percent": 20,
+        "output_db": -3
+      }
+    },
+    {
+      "id": "e243a2d5-eb36-59c1-938e-c6dac540d6f4",
+      "key": "song.amp.round",
+      "name": "Song / Rounded Clean Combo",
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 0,
+        "bass_db": -2,
+        "mid_db": 0,
+        "treble_db": 0,
+        "master_percent": 20,
+        "output_db": -3
+      }
+    },
+    {
+      "id": "6b9a94ba-342c-55a2-b49c-ac2dd514b39b",
+      "key": "song.amp.alien",
+      "name": "Song / Warm Alien Clean",
+      "effect_type": "amp_solid_clean",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 2,
+        "bass_db": -2,
+        "mid_db": 1,
+        "treble_db": 0,
+        "master_percent": 20,
+        "output_db": -3
+      }
+    },
+    {
+      "id": "67174aea-4a2d-51be-b2cf-9b4d1ec826bc",
+      "key": "song.amp.starlight",
+      "name": "Song / Starlight Edge",
+      "effect_type": "amp_brit_chime",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 6,
+        "bass_db": -2,
+        "treble_db": 2,
+        "cut_percent": 35,
+        "master_percent": 28,
+        "output_db": -6
+      }
+    },
+    {
+      "id": "0b8a98d8-55e5-52f2-87f4-ddeadb13053f",
+      "key": "song.eq.chime",
+      "name": "Song / Chime Focus",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 85,
+        "low_pass_hz": 8500,
+        "band1_hz": 220,
+        "band1_db": -1.5,
+        "band2_hz": 1800,
+        "band2_db": 1,
+        "band3_hz": 4200,
+        "band3_db": -1
+      }
+    },
+    {
+      "id": "c8611094-c631-508d-b495-6dccd72934ff",
+      "key": "song.eq.bell",
+      "name": "Song / Rounded Bell Focus",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 90,
+        "low_pass_hz": 6500,
+        "band1_hz": 240,
+        "band1_db": -1,
+        "band2_hz": 1500,
+        "band2_db": 0.5,
+        "band3_hz": 3800,
+        "band3_db": -1.5
+      }
+    },
+    {
+      "id": "06aedd3e-1bbe-5cab-b33f-3b282f9b9f29",
+      "key": "song.eq.alien",
+      "name": "Song / Alien Lead Focus",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 100,
+        "low_pass_hz": 7200,
+        "band1_hz": 240,
+        "band1_db": -1.5,
+        "band2_hz": 1100,
+        "band2_db": 1,
+        "band3_hz": 3600,
+        "band3_db": -1
+      }
+    },
+    {
+      "id": "a0df5d25-3e0c-50c1-924b-2fe534eb1487",
+      "key": "song.mod.arpeggio",
+      "name": "Song / Arpeggio Halo",
+      "effect_type": "chorus",
+      "effect_version": 1,
+      "parameters": {
+        "rate_hz": 0.28,
+        "depth_percent": 16,
+        "width_percent": 65,
+        "mix_percent": 12
+      }
+    },
+    {
+      "id": "ec48c6f6-5ab0-56bb-b2ea-9bba3a7e2949",
+      "key": "song.mod.alien",
+      "name": "Song / Alien Slow Motion",
+      "effect_type": "chorus",
+      "effect_version": 1,
+      "parameters": {
+        "rate_hz": 0.32,
+        "depth_percent": 32,
+        "width_percent": 85,
+        "mix_percent": 23
+      }
+    },
+    {
+      "id": "2b310928-00e4-56a9-af6d-be37bcc9f256",
+      "key": "song.mod.space",
+      "name": "Song / Slow Space Chorus",
+      "effect_type": "chorus",
+      "effect_version": 1,
+      "parameters": {
+        "rate_hz": 0.18,
+        "depth_percent": 38,
+        "width_percent": 90,
+        "mix_percent": 20
+      }
+    },
+    {
+      "id": "0d0cfab2-ce94-5df1-bc73-1ca5ba14253c",
+      "key": "song.echo.letdown",
+      "name": "Song / Let Down Picking Echo",
+      "effect_type": "echo",
+      "effect_version": 2,
+      "parameters": {
+        "time_ms": 205,
+        "bpm": 120,
+        "clock": 0,
+        "subdivision": 0,
+        "mode": 2,
+        "feedback_percent": 22,
+        "color_hz": 5200,
+        "wow_percent": 4,
+        "stereo": 0,
+        "heads": 0,
+        "mix_percent": 16,
+        "output_db": 0,
+        "wet_low_cut_hz": 150,
+        "wow_rate_hz": 0.4,
+        "wow_width_percent": 35
+      }
+    },
+    {
+      "id": "ac979655-df2e-5701-8f0d-f3b43b4072a8",
+      "key": "song.echo.letdown.space",
+      "name": "Song / Let Down Space Echo",
+      "effect_type": "echo",
+      "effect_version": 2,
+      "parameters": {
+        "time_ms": 410,
+        "bpm": 120,
+        "clock": 0,
+        "subdivision": 0,
+        "mode": 2,
+        "feedback_percent": 34,
+        "color_hz": 4200,
+        "wow_percent": 28,
+        "stereo": 0,
+        "heads": 0,
+        "mix_percent": 25,
+        "output_db": 0,
+        "wet_low_cut_hz": 180,
+        "wow_rate_hz": 0.24,
+        "wow_width_percent": 90
+      }
+    },
+    {
+      "id": "79337e4b-066e-558d-8291-9dd8ea3b4da6",
+      "key": "song.echo.alien.rhythm",
+      "name": "Song / Alien Foundation Echo",
+      "effect_type": "echo",
+      "effect_version": 2,
+      "parameters": {
+        "time_ms": 400,
+        "bpm": 120,
+        "clock": 0,
+        "subdivision": 0,
+        "mode": 2,
+        "feedback_percent": 24,
+        "color_hz": 4200,
+        "wow_percent": 18,
+        "stereo": 0,
+        "heads": 0,
+        "mix_percent": 15,
+        "output_db": 0,
+        "wet_low_cut_hz": 150,
+        "wow_rate_hz": 0.3,
+        "wow_width_percent": 60
+      }
+    },
+    {
+      "id": "5604463b-b866-53ff-8497-5dc7998faf48",
+      "key": "song.echo.alien.lead",
+      "name": "Song / Alien Floating Echo",
+      "effect_type": "echo",
+      "effect_version": 2,
+      "parameters": {
+        "time_ms": 400,
+        "bpm": 120,
+        "clock": 0,
+        "subdivision": 0,
+        "mode": 2,
+        "feedback_percent": 42,
+        "color_hz": 3600,
+        "wow_percent": 45,
+        "stereo": 0,
+        "heads": 0,
+        "mix_percent": 30,
+        "output_db": 0,
+        "wet_low_cut_hz": 200,
+        "wow_rate_hz": 0.22,
+        "wow_width_percent": 100
+      }
+    },
+    {
+      "id": "1d898cba-ea5a-5f1b-9414-03c2e6ae70bf",
+      "key": "song.echo.weird",
+      "name": "Song / Interlocking Arpeggio Echo",
+      "effect_type": "echo",
+      "effect_version": 2,
+      "parameters": {
+        "time_ms": 200,
+        "bpm": 120,
+        "clock": 0,
+        "subdivision": 0,
+        "mode": 2,
+        "feedback_percent": 22,
+        "color_hz": 5200,
+        "wow_percent": 8,
+        "stereo": 0,
+        "heads": 0,
+        "mix_percent": 16,
+        "output_db": 0,
+        "wet_low_cut_hz": 150,
+        "wow_rate_hz": 0.4,
+        "wow_width_percent": 65
+      }
+    },
+    {
+      "id": "b5c8ea61-f94e-5780-aea2-1f3768b24d7d",
+      "key": "song.echo.starlight",
+      "name": "Song / Chiming Eighth Echo",
+      "effect_type": "echo",
+      "effect_version": 2,
+      "parameters": {
+        "time_ms": 250,
+        "bpm": 120,
+        "clock": 1,
+        "subdivision": 1,
+        "mode": 2,
+        "feedback_percent": 22,
+        "color_hz": 5000,
+        "wow_percent": 8,
+        "stereo": 0,
+        "heads": 0,
+        "mix_percent": 14,
+        "output_db": 0,
+        "wet_low_cut_hz": 150,
+        "wow_rate_hz": 0.4,
+        "wow_width_percent": 50
+      }
+    },
+    {
+      "id": "2ec4cd59-b0b3-5a40-a61a-59d41620af16",
+      "key": "song.echo.western",
+      "name": "Song / Western Gallop Echo",
+      "effect_type": "echo",
+      "effect_version": 2,
+      "parameters": {
+        "time_ms": 175,
+        "bpm": 120,
+        "clock": 0,
+        "subdivision": 0,
+        "mode": 2,
+        "feedback_percent": 23,
+        "color_hz": 4200,
+        "wow_percent": 10,
+        "stereo": 0,
+        "heads": 0,
+        "mix_percent": 16,
+        "output_db": 0,
+        "wet_low_cut_hz": 150,
+        "wow_rate_hz": 0.5,
+        "wow_width_percent": 55
+      }
+    },
+    {
+      "id": "0f781ffc-81e7-5e7b-9e40-881a550a2c69",
+      "key": "song.echo.lead",
+      "name": "Song / Stadium Lead Echo",
+      "effect_type": "echo",
+      "effect_version": 2,
+      "parameters": {
+        "time_ms": 360,
+        "bpm": 120,
+        "clock": 0,
+        "subdivision": 0,
+        "mode": 2,
+        "feedback_percent": 30,
+        "color_hz": 3800,
+        "wow_percent": 20,
+        "stereo": 0,
+        "heads": 0,
+        "mix_percent": 19,
+        "output_db": 0,
+        "wet_low_cut_hz": 200,
+        "wow_rate_hz": 0.3,
+        "wow_width_percent": 80
+      }
+    },
+    {
+      "id": "0d44b86e-eb9b-5e6c-9be2-4c6882e812d4",
+      "key": "song.space.pick",
+      "name": "Song / Picking Plate",
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "parameters": {
+        "mode": 1,
+        "decay_seconds": 1.8,
+        "pre_delay_ms": 22,
+        "damping_hz": 5800,
+        "tone_hz": 6500,
+        "mix_percent": 14,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "102fa882-f305-5568-8171-b3709757b116",
+      "key": "song.space.bell",
+      "name": "Song / Bell Room",
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "parameters": {
+        "mode": 0,
+        "decay_seconds": 1.2,
+        "pre_delay_ms": 12,
+        "damping_hz": 5200,
+        "tone_hz": 6500,
+        "mix_percent": 11,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "319b8bb8-070a-5e1e-b7ea-d3afbac5a4b9",
+      "key": "song.space.letdown",
+      "name": "Song / Let Down Hall",
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "parameters": {
+        "mode": 2,
+        "decay_seconds": 3.6,
+        "pre_delay_ms": 28,
+        "damping_hz": 4500,
+        "tone_hz": 6500,
+        "mix_percent": 24,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "70fd023c-966c-5a79-b3a1-23f21265afdd",
+      "key": "song.space.alien",
+      "name": "Song / Alien Floating Hall",
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "parameters": {
+        "mode": 2,
+        "decay_seconds": 4.2,
+        "pre_delay_ms": 30,
+        "damping_hz": 3800,
+        "tone_hz": 6500,
+        "mix_percent": 27,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "07e21c31-6aa4-5e53-82b1-92bf96937fd3",
+      "key": "song.space.muse",
+      "name": "Song / Muse Lead Plate",
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "parameters": {
+        "mode": 1,
+        "decay_seconds": 1.6,
+        "pre_delay_ms": 18,
+        "damping_hz": 4800,
+        "tone_hz": 6500,
+        "mix_percent": 12,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "20239536-ec8e-583d-9608-6748494fdf9c",
+      "key": "song.fuzz.plug",
+      "name": "Song / Plug In Singing Fuzz",
+      "effect_type": "bias_fuzz",
+      "effect_version": 1,
+      "parameters": {
+        "drive_db": 25,
+        "gate_db": -70,
+        "compression_percent": 35,
+        "bias_percent": 10,
+        "stability_percent": 100,
+        "output_db": -15
+      }
+    },
+    {
+      "id": "2ddd5815-10a4-57cd-9422-45092e2df363",
+      "key": "song.fuzz.time",
+      "name": "Song / Focused Sustain Fuzz",
+      "effect_type": "sustain_fuzz",
+      "effect_version": 1,
+      "parameters": {
+        "drive_db": 22,
+        "compression_percent": 40,
+        "tone_hz": 3300,
+        "output_db": -14
+      }
+    },
+    {
+      "id": "ed0d58bb-b62e-5a7b-ae21-260a3c838d32",
+      "key": "song.amp.stockholm",
+      "name": "Song / Stockholm Tight Rhythm",
+      "effect_type": "amp_modern_tight",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 23,
+        "bass_db": -3,
+        "mid_db": 2,
+        "treble_db": 0,
+        "master_percent": 35,
+        "presence_percent": 35,
+        "sag_percent": 5,
+        "low_cut_hz": 150,
+        "resonance_percent": 18,
+        "output_db": -14
+      }
+    },
+    {
+      "id": "dd8400d1-f87a-5076-93c8-c5420ea2554f",
+      "key": "muse.citizen.fuzz",
+      "name": "Muse / Citizen Dense Sustain",
+      "effect_type": "sustain_fuzz",
+      "effect_version": 1,
+      "parameters": {
+        "drive_db": 21,
+        "compression_percent": 30,
+        "tone_hz": 3600,
+        "output_db": -14
+      }
+    },
+    {
+      "id": "9e5ceec2-06e9-5bc8-8ea6-f9453de4ee3c",
+      "key": "muse.citizen.amp",
+      "name": "Muse / Citizen Low-String Amp",
+      "effect_type": "amp_brit_hotrod",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 16,
+        "bass_db": -2,
+        "mid_db": 2,
+        "treble_db": 0,
+        "master_percent": 38,
+        "presence_percent": 30,
+        "low_cut_hz": 70,
+        "output_db": -11
+      }
+    },
+    {
+      "id": "5392e1f3-d116-555f-a1c4-6d03853a8831",
+      "key": "muse.citizen.clean",
+      "name": "Muse / Citizen Ending Clean Amp",
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 0,
+        "bass_db": -1,
+        "mid_db": 0,
+        "treble_db": 1,
+        "master_percent": 18,
+        "output_db": -3
+      }
+    },
+    {
+      "id": "ef3d9187-9f6b-5cef-948a-9082aaf97f71",
+      "key": "muse.citizen.eq",
+      "name": "Muse / Citizen Low-String Focus",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 50,
+        "low_pass_hz": 6800,
+        "band1_hz": 180,
+        "band1_db": -2,
+        "band2_hz": 950,
+        "band2_db": 2,
+        "band3_hz": 3800,
+        "band3_db": -1
+      }
+    },
+    {
+      "id": "814cf7d0-1d2c-5a7c-8e57-199f5ccc352b",
+      "key": "muse.newborn.fuzz",
+      "name": "Muse / New Born Tight Bias Fuzz",
+      "effect_type": "bias_fuzz",
+      "effect_version": 1,
+      "parameters": {
+        "drive_db": 27,
+        "gate_db": -68,
+        "compression_percent": 40,
+        "bias_percent": 15,
+        "stability_percent": 95,
+        "output_db": -15
+      }
+    },
+    {
+      "id": "653dfce3-b58c-5e53-87a0-281e9a919bbf",
+      "key": "muse.newborn.amp",
+      "name": "Muse / New Born Forward Chime",
+      "effect_type": "amp_brit_chime",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 7,
+        "bass_db": -3,
+        "treble_db": 1,
+        "cut_percent": 38,
+        "master_percent": 30,
+        "output_db": -9
+      }
+    },
+    {
+      "id": "9fd92f46-72bf-5944-aef0-3c45fe181ae6",
+      "key": "muse.hysteria.drive",
+      "name": "Muse / Hysteria Guitar Saturation",
+      "effect_type": "hard_distortion",
+      "effect_version": 1,
+      "parameters": {
+        "drive_db": 19,
+        "low_cut_hz": 100,
+        "filter_hz": 4400,
+        "output_db": -13
+      }
+    },
+    {
+      "id": "8da6513d-4c57-5004-9981-efc2c57641ec",
+      "key": "muse.hysteria.eq",
+      "name": "Muse / Hysteria Guitar Mid Focus",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 90,
+        "low_pass_hz": 6500,
+        "band1_hz": 200,
+        "band1_db": -1,
+        "band2_hz": 1200,
+        "band2_db": 2.5,
+        "band2_q": 0.9,
+        "band3_hz": 3800,
+        "band3_db": -1
+      }
+    },
+    {
+      "id": "c818dc18-9824-5fca-9f01-d9ccf6f17bd0",
+      "key": "muse.psycho.amp",
+      "name": "Muse / Psycho Dry Riff Amp",
+      "effect_type": "amp_modern_tight",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 21,
+        "bass_db": -2,
+        "mid_db": 2.5,
+        "treble_db": -1,
+        "master_percent": 36,
+        "presence_percent": 30,
+        "sag_percent": 8,
+        "low_cut_hz": 120,
+        "resonance_percent": 25,
+        "output_db": -13
+      }
+    },
+    {
+      "id": "af35b5b2-2a2d-5de4-bebe-e6219641e40a",
+      "key": "muse.reapers.tap",
+      "name": "Muse / Reapers Tapping Amp",
+      "effect_type": "amp_brit_hotrod",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 18,
+        "bass_db": -3,
+        "mid_db": 2,
+        "treble_db": 1,
+        "master_percent": 35,
+        "presence_percent": 38,
+        "low_cut_hz": 140,
+        "output_db": -12
+      }
+    },
+    {
+      "id": "f22fb627-2fd8-5db4-a451-25e89dc8a11a",
+      "key": "muse.reapers.wah",
+      "name": "Muse / Reapers Lead Wah",
+      "effect_type": "wah",
+      "effect_version": 1,
+      "parameters": {
+        "position_percent": 62,
+        "heel_hz": 300,
+        "toe_hz": 2600,
+        "q": 2.0,
+        "output_db": 0,
+        "mix_percent": 55
+      }
+    },
+    {
+      "id": "5aa5fef6-b0fb-58cd-8bd5-b286dbee236c",
+      "key": "muse.defector.amp",
+      "name": "Muse / Defector Broad Rhythm Amp",
+      "effect_type": "amp_brit_hotrod",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 22,
+        "bass_db": 0,
+        "mid_db": 1,
+        "treble_db": 0,
+        "master_percent": 40,
+        "presence_percent": 32,
+        "low_cut_hz": 100,
+        "output_db": -14
+      }
+    },
+    {
+      "id": "984e9dbf-2433-57af-a75e-59a90d6467d1",
+      "key": "muse.globalist.intro",
+      "name": "Muse / Globalist Intro Clean Amp",
+      "effect_type": "amp_solid_clean",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 0,
+        "bass_db": -2,
+        "mid_db": 0,
+        "treble_db": 1,
+        "master_percent": 18,
+        "output_db": -3
+      }
+    },
+    {
+      "id": "e03b58d5-0e74-54cf-9784-d511535af253",
+      "key": "muse.globalist.heavy",
+      "name": "Muse / Globalist Heavy Amp",
+      "effect_type": "amp_recto",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 22,
+        "bass_db": -3,
+        "mid_db": 1.5,
+        "treble_db": -1,
+        "master_percent": 42,
+        "presence_percent": 28,
+        "sag_percent": 35,
+        "resonance_percent": 25,
+        "output_db": -14
+      }
+    },
+    {
+      "id": "bfae22bc-091c-5f2e-a505-e7f34a86edbd",
+      "key": "muse.globalist.outro",
+      "name": "Muse / Globalist Outro Clean Amp",
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 0,
+        "bass_db": -2,
+        "mid_db": 1,
+        "treble_db": -1,
+        "master_percent": 20,
+        "output_db": -3
+      }
+    },
+    {
+      "id": "cb6c8b25-dfb3-516b-8f25-3bb9d08799ff",
+      "key": "muse.clean.chorus",
+      "name": "Muse / Gentle Ending Chorus",
+      "effect_type": "chorus",
+      "effect_version": 1,
+      "parameters": {
+        "rate_hz": 0.25,
+        "depth_percent": 18,
+        "width_percent": 70,
+        "mix_percent": 13
+      }
+    },
+    {
+      "id": "3ae27bb9-30ab-5d6e-a4b8-d00975d9729e",
+      "key": "muse.citizen.echo",
+      "name": "Muse / Citizen Ending Echo",
+      "effect_type": "echo",
+      "effect_version": 2,
+      "parameters": {
+        "time_ms": 380,
+        "bpm": 120,
+        "clock": 0,
+        "subdivision": 0,
+        "mode": 2,
+        "feedback_percent": 29,
+        "color_hz": 4500,
+        "wow_percent": 15,
+        "stereo": 0,
+        "heads": 0,
+        "mix_percent": 20,
+        "output_db": 0,
+        "wet_low_cut_hz": 160,
+        "wow_rate_hz": 0.25,
+        "wow_width_percent": 75
+      }
+    },
+    {
+      "id": "d867f05f-9891-5017-b7f6-450301cb265e",
+      "key": "muse.reapers.echo",
+      "name": "Muse / Reapers Lead Echo",
+      "effect_type": "echo",
+      "effect_version": 2,
+      "parameters": {
+        "time_ms": 300,
+        "bpm": 120,
+        "clock": 0,
+        "subdivision": 0,
+        "mode": 2,
+        "feedback_percent": 28,
+        "color_hz": 4200,
+        "wow_percent": 8,
+        "stereo": 0,
+        "heads": 0,
+        "mix_percent": 18,
+        "output_db": 0,
+        "wet_low_cut_hz": 180,
+        "wow_rate_hz": 0.45,
+        "wow_width_percent": 70
+      }
+    },
+    {
+      "id": "a3792a62-24a3-5830-a3be-1fb96ed5dcc3",
+      "key": "muse.globalist.echo",
+      "name": "Muse / Globalist Intro Echo",
+      "effect_type": "echo",
+      "effect_version": 2,
+      "parameters": {
+        "time_ms": 460,
+        "bpm": 120,
+        "clock": 0,
+        "subdivision": 0,
+        "mode": 2,
+        "feedback_percent": 36,
+        "color_hz": 3900,
+        "wow_percent": 25,
+        "stereo": 0,
+        "heads": 0,
+        "mix_percent": 26,
+        "output_db": 0,
+        "wet_low_cut_hz": 180,
+        "wow_rate_hz": 0.2,
+        "wow_width_percent": 90
+      }
+    },
+    {
+      "id": "e9f10b88-5075-587f-ad66-229e52782bd4",
+      "key": "muse.citizen.space",
+      "name": "Muse / Citizen Ending Plate",
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "parameters": {
+        "mode": 1,
+        "decay_seconds": 2.4,
+        "pre_delay_ms": 24,
+        "damping_hz": 4800,
+        "tone_hz": 6500,
+        "mix_percent": 19,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "b67dd53d-157e-5360-9242-41ded8142cff",
+      "key": "muse.globalist.space",
+      "name": "Muse / Globalist Intro Hall",
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "parameters": {
+        "mode": 2,
+        "decay_seconds": 4.8,
+        "pre_delay_ms": 32,
+        "damping_hz": 4000,
+        "tone_hz": 6500,
+        "mix_percent": 28,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "0f4aeb91-d606-52d1-a1dc-fbc5ffc6dd1d",
+      "key": "muse.globalist.outro.space",
+      "name": "Muse / Globalist Outro Room",
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "parameters": {
+        "mode": 0,
+        "decay_seconds": 1.5,
+        "pre_delay_ms": 16,
+        "damping_hz": 4500,
+        "tone_hz": 6500,
+        "mix_percent": 13,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "261ac95d-f4de-54cb-b01a-898dc1ed500e",
+      "key": "alternative.comp.pick",
+      "name": "Research / Natural Pick Compression",
+      "effect_type": "compressor",
+      "effect_version": 1,
+      "parameters": {
+        "threshold_db": -25,
+        "ratio": 2,
+        "attack_ms": 24,
+        "release_ms": 170,
+        "makeup_db": 2,
+        "mix_percent": 60
+      }
+    },
+    {
+      "id": "d5c53273-e582-5e0e-87b0-f456bca9b2d6",
+      "key": "alternative.gate.rhythm",
+      "name": "Research / Rhythm Noise Control",
+      "effect_type": "noise_gate",
+      "effect_version": 1,
+      "parameters": {
+        "threshold_db": -58,
+        "range_db": 45,
+        "attack_ms": 1,
+        "hold_ms": 45,
+        "release_ms": 140,
+        "hysteresis_db": 5
+      }
+    },
+    {
+      "id": "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9",
+      "key": "alternative.room.small",
+      "name": "Research / Dry Tracking Room",
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "parameters": {
+        "mode": 0,
+        "decay_seconds": 0.55,
+        "pre_delay_ms": 12,
+        "damping_hz": 4800,
+        "tone_hz": 6500,
+        "mix_percent": 5,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "2d897bdc-bef5-5542-b546-6cc97da4a5ea",
+      "key": "alternative.room.acoustic",
+      "name": "Research / Acoustic Air",
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "parameters": {
+        "mode": 0,
+        "decay_seconds": 0.9,
+        "pre_delay_ms": 12,
+        "damping_hz": 4800,
+        "tone_hz": 6500,
+        "mix_percent": 8,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "5e74de2a-e468-57fb-8464-1ee927e0e24f",
+      "key": "alternative.room.lead",
+      "name": "Research / Restrained Lead Plate",
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "parameters": {
+        "mode": 1,
+        "decay_seconds": 1.35,
+        "pre_delay_ms": 18,
+        "damping_hz": 4800,
+        "tone_hz": 6500,
+        "mix_percent": 8,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "7fd78427-7751-597b-b388-360eb916d381",
+      "key": "alternative.room.halo",
+      "name": "Research / Bowed Layer Hall",
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "parameters": {
+        "mode": 2,
+        "decay_seconds": 3.2,
+        "pre_delay_ms": 28,
+        "damping_hz": 4800,
+        "tone_hz": 6500,
+        "mix_percent": 22,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "2ad8583e-fbbe-52af-9578-11217db88bf2",
+      "key": "alternative.echo.lead",
+      "name": "Research / Quiet Lead Echo",
+      "effect_type": "echo",
+      "effect_version": 2,
+      "parameters": {
+        "time_ms": 280,
+        "feedback_percent": 20,
+        "mix_percent": 8,
+        "mode": 1,
+        "color_hz": 3500,
+        "wet_low_cut_hz": 220,
+        "wow_percent": 0,
+        "stereo": 0,
+        "heads": 0,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "836a4c06-b7ae-58e8-90b8-e92081c36fcf",
+      "key": "alternative.echo.halo",
+      "name": "Research / Layered Halo Echo",
+      "effect_type": "echo",
+      "effect_version": 2,
+      "parameters": {
+        "time_ms": 410,
+        "feedback_percent": 20,
+        "mix_percent": 17,
+        "mode": 1,
+        "color_hz": 3500,
+        "wet_low_cut_hz": 220,
+        "wow_percent": 0,
+        "stereo": 0,
+        "heads": 0,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "358f069c-5d49-5b9d-9f9c-bdff1de08d0a",
+      "key": "alternative.echo.short",
+      "name": "Research / Short Melodic Echo",
+      "effect_type": "echo",
+      "effect_version": 2,
+      "parameters": {
+        "time_ms": 190,
+        "feedback_percent": 20,
+        "mix_percent": 7,
+        "mode": 1,
+        "color_hz": 3500,
+        "wet_low_cut_hz": 220,
+        "wow_percent": 0,
+        "stereo": 0,
+        "heads": 0,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "2473f6c0-0d83-5ccd-8be5-146569f9ecf6",
+      "key": "alternative.chorus.caya",
+      "name": "Nirvana / Deep Mono Water",
+      "effect_type": "chorus",
+      "effect_version": 1,
+      "parameters": {
+        "rate_hz": 0.75,
+        "depth_percent": 80,
+        "width_percent": 0,
+        "mix_percent": 50
+      }
+    },
+    {
+      "id": "91a42480-c1fa-55c1-92d4-0fe7cc22d3bc",
+      "key": "alternative.chorus.teen",
+      "name": "Nirvana / Watery Clean Motion",
+      "effect_type": "chorus",
+      "effect_version": 1,
+      "parameters": {
+        "rate_hz": 0.85,
+        "depth_percent": 65,
+        "width_percent": 0,
+        "mix_percent": 45
+      }
+    },
+    {
+      "id": "8b2c2f18-15bd-51f8-9ad7-2a5802be699b",
+      "key": "alternative.chorus.lead",
+      "name": "Nirvana / Distorted Mono Water",
+      "effect_type": "chorus",
+      "effect_version": 1,
+      "parameters": {
+        "rate_hz": 0.8,
+        "depth_percent": 70,
+        "width_percent": 0,
+        "mix_percent": 42
+      }
+    },
+    {
+      "id": "f4a69831-7436-55d6-a7d9-d59716ed014b",
+      "key": "alternative.chorus.mtv",
+      "name": "Nirvana / Electro-Acoustic Mono Color",
+      "effect_type": "chorus",
+      "effect_version": 1,
+      "parameters": {
+        "rate_hz": 0.65,
+        "depth_percent": 42,
+        "width_percent": 0,
+        "mix_percent": 28
+      }
+    },
+    {
+      "id": "ff6dcdd1-d776-55ab-8aa8-efa0d6238805",
+      "key": "alternative.eq.acoustic",
+      "name": "Research / Acoustic Source Balance",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 65,
+        "low_pass_hz": 11500,
+        "band1_hz": 230,
+        "band1_db": -2,
+        "band1_q": 0.8,
+        "band2_hz": 1300,
+        "band2_db": 0,
+        "band2_q": 0.8,
+        "band3_hz": 4200,
+        "band3_db": -1,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "0518d098-f189-5bca-88ec-ae5846d1588f",
+      "key": "alternative.eq.adaptation",
+      "name": "Research / Electric Acoustic Adaptation",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 90,
+        "low_pass_hz": 9000,
+        "band1_hz": 220,
+        "band1_db": -2,
+        "band1_q": 0.8,
+        "band2_hz": 1700,
+        "band2_db": 1,
+        "band2_q": 0.8,
+        "band3_hz": 4000,
+        "band3_db": -2,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "6c0ee164-7541-5597-b11f-60fd1f5c4b63",
+      "key": "alternative.eq.gd.clean",
+      "name": "Green Day / Picked Clarity",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 85,
+        "low_pass_hz": 7800,
+        "band1_hz": 250,
+        "band1_db": -1.5,
+        "band1_q": 0.8,
+        "band2_hz": 1800,
+        "band2_db": 1,
+        "band2_q": 0.8,
+        "band3_hz": 4200,
+        "band3_db": -1,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "2a0bee9b-a63b-5883-b10b-829af784db8b",
+      "key": "alternative.eq.gd.outlaws",
+      "name": "Green Day / Broad Outlaws Body",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 75,
+        "low_pass_hz": 6200,
+        "band1_hz": 190,
+        "band1_db": 0.5,
+        "band1_q": 0.8,
+        "band2_hz": 950,
+        "band2_db": 1,
+        "band2_q": 0.8,
+        "band3_hz": 3400,
+        "band3_db": -1.5,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "7a20cc42-2cb0-512b-858d-5fff45fd2a1f",
+      "key": "alternative.eq.gd.punch",
+      "name": "Green Day / Revolution Chord Bite",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 85,
+        "low_pass_hz": 6700,
+        "band1_hz": 240,
+        "band1_db": -1.5,
+        "band1_q": 0.8,
+        "band2_hz": 1500,
+        "band2_db": 1.5,
+        "band2_q": 0.8,
+        "band3_hz": 3900,
+        "band3_db": -1,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "f862b9d3-4ec5-5063-b535-e0c9eaac6658",
+      "key": "alternative.eq.gd.september",
+      "name": "Green Day / September Electric Weight",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 80,
+        "low_pass_hz": 6000,
+        "band1_hz": 200,
+        "band1_db": -0.5,
+        "band1_q": 0.8,
+        "band2_hz": 1000,
+        "band2_db": 1,
+        "band2_q": 0.8,
+        "band3_hz": 3500,
+        "band3_db": -2,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "b114d71f-4a68-5812-b498-9dc8f31256b8",
+      "key": "alternative.eq.lead",
+      "name": "Research / Singing Mid Focus",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 95,
+        "low_pass_hz": 6500,
+        "band1_hz": 240,
+        "band1_db": -1.5,
+        "band1_q": 0.8,
+        "band2_hz": 1300,
+        "band2_db": 2,
+        "band2_q": 0.8,
+        "band3_hz": 3900,
+        "band3_db": -1.5,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "ec0381be-14c8-51b9-99f6-9e3054a1a76c",
+      "key": "alternative.eq.sg.weight",
+      "name": "Soundgarden / Warm Low-D Weight",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 55,
+        "low_pass_hz": 5400,
+        "band1_hz": 140,
+        "band1_db": 1,
+        "band1_q": 0.8,
+        "band2_hz": 700,
+        "band2_db": 1.5,
+        "band2_q": 0.8,
+        "band3_hz": 3100,
+        "band3_db": -2,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "fb2f9fc9-177a-529b-ab3c-aa57f24c6e34",
+      "key": "alternative.eq.sg.bite",
+      "name": "Soundgarden / Complementary Guitar Bite",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 65,
+        "low_pass_hz": 6000,
+        "band1_hz": 220,
+        "band1_db": -1,
+        "band1_q": 0.8,
+        "band2_hz": 1600,
+        "band2_db": 2,
+        "band2_q": 0.8,
+        "band3_hz": 3600,
+        "band3_db": -2,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "84615223-2aef-526a-b0f8-02f08e5faed5",
+      "key": "alternative.eq.sg.slaves",
+      "name": "Soundgarden / Bulldozer Low-Mid Body",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 50,
+        "low_pass_hz": 5000,
+        "band1_hz": 140,
+        "band1_db": 1.5,
+        "band1_q": 0.8,
+        "band2_hz": 650,
+        "band2_db": 2,
+        "band2_q": 0.8,
+        "band3_hz": 2800,
+        "band3_db": -1.5,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "a5a7e91b-98b6-54e0-b8f6-48fce8582c91",
+      "key": "alternative.eq.nv.clean",
+      "name": "Nirvana / Dry Clean Body",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 65,
+        "low_pass_hz": 7600,
+        "band1_hz": 210,
+        "band1_db": -1,
+        "band1_q": 0.8,
+        "band2_hz": 1100,
+        "band2_db": 0.5,
+        "band2_q": 0.8,
+        "band3_hz": 3800,
+        "band3_db": -1.5,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "52b298c0-1606-5003-b656-24667a76e083",
+      "key": "alternative.eq.nv.water",
+      "name": "Nirvana / Low-String Water Balance",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 55,
+        "low_pass_hz": 6300,
+        "band1_hz": 180,
+        "band1_db": 0.5,
+        "band1_q": 0.8,
+        "band2_hz": 1200,
+        "band2_db": 0.5,
+        "band2_q": 0.8,
+        "band3_hz": 3400,
+        "band3_db": -2,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "35ee6b55-ec56-5666-9be5-5ea01acaf44c",
+      "key": "alternative.eq.nv.heavy",
+      "name": "Nirvana / Nevermind Hard-Chord Focus",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 70,
+        "low_pass_hz": 6400,
+        "band1_hz": 230,
+        "band1_db": -1.5,
+        "band1_q": 0.8,
+        "band2_hz": 2400,
+        "band2_db": 1.5,
+        "band2_q": 0.8,
+        "band3_hz": 4300,
+        "band3_db": -2,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "b63efd5e-9e9c-5588-82bf-70782d07296f",
+      "key": "alternative.eq.nv.lithium",
+      "name": "Nirvana / Dark Lithium Weight",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 50,
+        "low_pass_hz": 5000,
+        "band1_hz": 150,
+        "band1_db": 1,
+        "band1_q": 0.8,
+        "band2_hz": 850,
+        "band2_db": -0.5,
+        "band2_q": 0.8,
+        "band3_hz": 2900,
+        "band3_db": -1,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "38bb235c-eb42-5751-849d-9948e9760796",
+      "key": "alternative.eq.nv.hsb",
+      "name": "Nirvana / In Utero Abrasive Mids",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 60,
+        "low_pass_hz": 6900,
+        "band1_hz": 230,
+        "band1_db": -1,
+        "band1_q": 0.8,
+        "band2_hz": 1700,
+        "band2_db": 2,
+        "band2_q": 0.8,
+        "band3_hz": 4100,
+        "band3_db": -1.5,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "620f7636-9be9-5568-8abc-510754f22c92",
+      "key": "alternative.eq.nv.hsb.clean",
+      "name": "Nirvana / Dark Drop-Csharp Picking",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 55,
+        "low_pass_hz": 6000,
+        "band1_hz": 180,
+        "band1_db": 0.5,
+        "band1_q": 0.8,
+        "band2_hz": 1000,
+        "band2_db": 0.5,
+        "band2_q": 0.8,
+        "band3_hz": 3500,
+        "band3_db": -2,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "493a953d-9586-58a7-82a7-97c11695c1f1",
+      "key": "alternative.eq.soad.clean",
+      "name": "System Of A Down / Defined Picking",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 65,
+        "low_pass_hz": 8000,
+        "band1_hz": 230,
+        "band1_db": -2,
+        "band1_q": 0.8,
+        "band2_hz": 1600,
+        "band2_db": 1,
+        "band2_q": 0.8,
+        "band3_hz": 4300,
+        "band3_db": -1.5,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "7affbbda-76a4-5ce7-a915-b0d3a19778e3",
+      "key": "alternative.eq.soad.chop",
+      "name": "System Of A Down / Chop Low-C Stops",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 60,
+        "low_pass_hz": 6400,
+        "band1_hz": 170,
+        "band1_db": -2,
+        "band1_q": 0.8,
+        "band2_hz": 1250,
+        "band2_db": 1.5,
+        "band2_q": 0.8,
+        "band3_hz": 3600,
+        "band3_db": -2,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "c3fb26d5-edd8-583b-938d-c52cb336c276",
+      "key": "alternative.eq.soad.tox",
+      "name": "System Of A Down / Toxicity Weight And Bite",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 55,
+        "low_pass_hz": 6000,
+        "band1_hz": 150,
+        "band1_db": -1,
+        "band1_q": 0.8,
+        "band2_hz": 1100,
+        "band2_db": 1,
+        "band2_q": 0.8,
+        "band3_hz": 3200,
+        "band3_db": -1.5,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "e254bc2c-b21f-5684-960c-b2c8b95789ab",
+      "key": "alternative.eq.soad.soldier",
+      "name": "System Of A Down / Hypnotize String Attack",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 65,
+        "low_pass_hz": 6800,
+        "band1_hz": 230,
+        "band1_db": -1.5,
+        "band1_q": 0.8,
+        "band2_hz": 1600,
+        "band2_db": 2,
+        "band2_q": 0.8,
+        "band3_hz": 4000,
+        "band3_db": -2,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "801fd615-0cfa-523f-a0bd-fedb8bf40552",
+      "key": "alternative.amp.gd.clean",
+      "name": "Green Day / Clear Picked Combo",
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 0,
+        "bass_db": -1,
+        "mid_db": 0,
+        "treble_db": 1,
+        "master_percent": 18,
+        "output_db": -3,
+        "bright_percent": 10
+      }
+    },
+    {
+      "id": "92a4e2ac-599b-51bc-beb2-33758690e6e5",
+      "key": "alternative.amp.gd.outlaws",
+      "name": "Green Day / Broad British Crunch",
+      "effect_type": "amp_brit_crunch",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 18,
+        "bass_db": 0,
+        "mid_db": 2,
+        "treble_db": -1,
+        "master_percent": 36,
+        "output_db": -9,
+        "presence_percent": 30,
+        "sag_percent": 24
+      }
+    },
+    {
+      "id": "ab69e79f-6f99-5a62-8003-5c016a20fbf4",
+      "key": "alternative.amp.gd.revolution",
+      "name": "Green Day / Punchy British Rhythm",
+      "effect_type": "amp_brit_crunch",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 21,
+        "bass_db": -2,
+        "mid_db": 2,
+        "treble_db": 1,
+        "master_percent": 38,
+        "output_db": -9,
+        "presence_percent": 42,
+        "sag_percent": 18
+      }
+    },
+    {
+      "id": "e105c82b-3f35-55ef-af0f-d78a0c3f6572",
+      "key": "alternative.amp.gd.heavy",
+      "name": "Green Day / American Heavy Support",
+      "effect_type": "amp_brit_hotrod",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 17,
+        "bass_db": -1,
+        "mid_db": 2,
+        "treble_db": 0,
+        "master_percent": 38,
+        "output_db": -9,
+        "presence_percent": 30,
+        "sag_percent": 20,
+        "low_cut_hz": 85
+      }
+    },
+    {
+      "id": "dc443701-f778-5854-82a1-6d6fae138925",
+      "key": "alternative.amp.gd.lead",
+      "name": "Green Day / Singing British Lead",
+      "effect_type": "amp_brit_hotrod",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 20,
+        "bass_db": -2,
+        "mid_db": 3,
+        "treble_db": 0,
+        "master_percent": 36,
+        "output_db": -9,
+        "presence_percent": 33,
+        "sag_percent": 22,
+        "low_cut_hz": 100
+      }
+    },
+    {
+      "id": "e2ab7069-812c-51f8-ad77-7b8964af4a04",
+      "key": "alternative.amp.sg.cornell",
+      "name": "Soundgarden / Cornell Role Warm Rhythm",
+      "effect_type": "amp_brit_crunch",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 21,
+        "bass_db": 1,
+        "mid_db": 2,
+        "treble_db": -3,
+        "master_percent": 40,
+        "output_db": -9,
+        "presence_percent": 20,
+        "sag_percent": 30
+      }
+    },
+    {
+      "id": "189740ff-a69a-5ca2-a325-7ee83397af1a",
+      "key": "alternative.amp.sg.thayil",
+      "name": "Soundgarden / Thayil Role Cutting Rhythm",
+      "effect_type": "amp_brit_hotrod",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 19,
+        "bass_db": -1,
+        "mid_db": 3,
+        "treble_db": -1,
+        "master_percent": 36,
+        "output_db": -9,
+        "presence_percent": 28,
+        "sag_percent": 20,
+        "low_cut_hz": 65
+      }
+    },
+    {
+      "id": "33fd9e58-8329-5da2-be1c-5e7a3e681062",
+      "key": "alternative.amp.sg.slaves",
+      "name": "Soundgarden / Cornell Role Bulldozer Body",
+      "effect_type": "amp_recto",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 19,
+        "bass_db": 1,
+        "mid_db": 2,
+        "treble_db": -3,
+        "master_percent": 38,
+        "output_db": -9,
+        "presence_percent": 20,
+        "sag_percent": 42,
+        "resonance_percent": 36
+      }
+    },
+    {
+      "id": "e72ed0f2-7f16-5f93-8a23-d43190661ea7",
+      "key": "alternative.amp.sg.lead",
+      "name": "Soundgarden / Thayil Role Raw Lead",
+      "effect_type": "amp_brit_hotrod",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 23,
+        "bass_db": -1,
+        "mid_db": 3,
+        "treble_db": -1,
+        "master_percent": 40,
+        "output_db": -9,
+        "presence_percent": 27,
+        "sag_percent": 26,
+        "low_cut_hz": 70
+      }
+    },
+    {
+      "id": "9ef951b0-e590-537c-be22-6d685f5684ff",
+      "key": "alternative.amp.nv.clean",
+      "name": "Nirvana / Open Clean Combo",
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 0,
+        "bass_db": 0,
+        "mid_db": 1,
+        "treble_db": 0,
+        "master_percent": 19,
+        "output_db": -3
+      }
+    },
+    {
+      "id": "ee9a4b9e-fe13-5d0b-9626-9278deeded99",
+      "key": "alternative.amp.nv.support",
+      "name": "Nirvana / Pedal Driven Combo",
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 4,
+        "bass_db": 0,
+        "mid_db": 1,
+        "treble_db": -1,
+        "master_percent": 28,
+        "output_db": -6
+      }
+    },
+    {
+      "id": "7feacad6-a843-5ab1-a6b4-0571eb23cabf",
+      "key": "alternative.amp.nv.mark",
+      "name": "Nirvana / Controlled Nevermind Support",
+      "effect_type": "amp_mark",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 5,
+        "bass_db": -3,
+        "mid_db": 2,
+        "treble_db": 1,
+        "master_percent": 27,
+        "output_db": -8,
+        "lead_gain_db": 5,
+        "presence_percent": 30,
+        "sag_percent": 16
+      }
+    },
+    {
+      "id": "4326b61d-8129-57d3-bc87-a439e4c8fa15",
+      "key": "alternative.amp.nv.hsb.clean",
+      "name": "Nirvana / Dark In Utero Clean",
+      "effect_type": "amp_solid_clean",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 2,
+        "bass_db": 0,
+        "mid_db": 1,
+        "treble_db": -1,
+        "master_percent": 20,
+        "output_db": -3,
+        "presence_percent": 25
+      }
+    },
+    {
+      "id": "ef7ae891-fd58-5754-a0be-cccfff399c3c",
+      "key": "alternative.amp.nv.hsb.drive",
+      "name": "Nirvana / In Utero Drive Support",
+      "effect_type": "amp_solid_clean",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 5,
+        "bass_db": -1,
+        "mid_db": 2,
+        "treble_db": 0,
+        "master_percent": 25,
+        "output_db": -6,
+        "presence_percent": 30
+      }
+    },
+    {
+      "id": "14666cd6-eb08-5606-88f7-ad7aac8d8c00",
+      "key": "alternative.amp.nv.mtv",
+      "name": "Nirvana / Electro-Acoustic Clean Support",
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 0,
+        "bass_db": -2,
+        "mid_db": 0,
+        "treble_db": -1,
+        "master_percent": 16,
+        "output_db": -3
+      }
+    },
+    {
+      "id": "e66c0d1e-668c-59ba-a07c-099d12524434",
+      "key": "alternative.amp.soad.clean",
+      "name": "System Of A Down / Clear Picked Amp",
+      "effect_type": "amp_solid_clean",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 0,
+        "bass_db": -1,
+        "mid_db": 0,
+        "treble_db": 1,
+        "master_percent": 20,
+        "output_db": -3,
+        "presence_percent": 30
+      }
+    },
+    {
+      "id": "b24ec661-8a8d-5533-b8f0-84a39bb4741c",
+      "key": "alternative.amp.soad.tox",
+      "name": "System Of A Down / Toxicity Body And Teeth",
+      "effect_type": "dual_amp",
+      "effect_version": 1,
+      "parameters": {
+        "model_a": 7,
+        "gain_a_db": 22,
+        "master_a_percent": 34,
+        "level_a_db": -2,
+        "model_b": 3,
+        "gain_b_db": 19,
+        "master_b_percent": 35,
+        "level_b_db": 0,
+        "blend_percent": 40,
+        "bass_db": -1,
+        "mid_db": 2,
+        "treble_db": 0,
+        "presence_percent": 33,
+        "output_db": -10
+      }
+    },
+    {
+      "id": "7ee94821-6a13-53f1-922c-b9bfee111624",
+      "key": "alternative.amp.soad.chop",
+      "name": "System Of A Down / Chop Tight Attack",
+      "effect_type": "amp_modern_tight",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 23,
+        "bass_db": -2,
+        "mid_db": 2,
+        "treble_db": 0,
+        "master_percent": 32,
+        "output_db": -10,
+        "presence_percent": 35,
+        "sag_percent": 7,
+        "low_cut_hz": 75,
+        "resonance_percent": 24
+      }
+    },
+    {
+      "id": "76330550-d999-5361-8d8e-5e4da903f4d9",
+      "key": "alternative.amp.soad.open",
+      "name": "System Of A Down / Open Toxicity Chords",
+      "effect_type": "amp_recto",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 22,
+        "bass_db": 0,
+        "mid_db": 2,
+        "treble_db": -1,
+        "master_percent": 36,
+        "output_db": -10,
+        "presence_percent": 28,
+        "sag_percent": 38,
+        "resonance_percent": 32
+      }
+    },
+    {
+      "id": "f3c4690c-3508-55bf-9dfa-4fe1fa859843",
+      "key": "alternative.amp.soad.soldier",
+      "name": "System Of A Down / Hypnotize British Drive",
+      "effect_type": "amp_brit_hotrod",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 22,
+        "bass_db": -2,
+        "mid_db": 2,
+        "treble_db": 1,
+        "master_percent": 36,
+        "output_db": -10,
+        "presence_percent": 38,
+        "sag_percent": 18,
+        "low_cut_hz": 75
+      }
+    },
+    {
+      "id": "54c128ae-1fd4-5e4d-87e7-eed84c1590ce",
+      "key": "alternative.amp.soad.lead",
+      "name": "System Of A Down / Melodic British Lead",
+      "effect_type": "amp_brit_hotrod",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 24,
+        "bass_db": -2,
+        "mid_db": 3,
+        "treble_db": 0,
+        "master_percent": 34,
+        "output_db": -10,
+        "presence_percent": 32,
+        "sag_percent": 20,
+        "low_cut_hz": 90
+      }
+    },
+    {
+      "id": "216547e9-4586-56c2-998b-29115ef52e1b",
+      "key": "alternative.drive.nv.hard",
+      "name": "Nirvana / Hard Chord Distortion",
+      "effect_type": "hard_distortion",
+      "effect_version": 1,
+      "parameters": {
+        "drive_db": 27,
+        "low_cut_hz": 65,
+        "filter_hz": 4100,
+        "output_db": -10
+      }
+    },
+    {
+      "id": "99b04959-0538-58c6-bd32-4382e98a18ba",
+      "key": "alternative.drive.nv.lead",
+      "name": "Nirvana / Rough Melodic Distortion",
+      "effect_type": "hard_distortion",
+      "effect_version": 1,
+      "parameters": {
+        "drive_db": 30,
+        "low_cut_hz": 80,
+        "filter_hz": 3700,
+        "output_db": -10
+      }
+    },
+    {
+      "id": "3c165234-859a-5285-9cb7-2c920776086a",
+      "key": "alternative.drive.nv.caya",
+      "name": "Nirvana / Low-String Chorus Drive",
+      "effect_type": "hard_distortion",
+      "effect_version": 1,
+      "parameters": {
+        "drive_db": 23,
+        "low_cut_hz": 50,
+        "filter_hz": 3500,
+        "output_db": -9
+      }
+    },
+    {
+      "id": "5ed6d215-bd26-5c20-b7bd-6c7e3169485d",
+      "key": "alternative.drive.nv.lithium",
+      "name": "Nirvana / Dark Lithium Sustain Fuzz",
+      "effect_type": "sustain_fuzz",
+      "effect_version": 1,
+      "parameters": {
+        "drive_db": 24,
+        "compression_percent": 48,
+        "tone_hz": 2800,
+        "output_db": -13
+      }
+    },
+    {
+      "id": "b8810661-c396-520b-8f58-a3d3a13ab184",
+      "key": "alternative.drive.nv.hsb",
+      "name": "Nirvana / Abrasive In Utero Drive",
+      "effect_type": "oxford_distortion",
+      "effect_version": 1,
+      "parameters": {
+        "drive_db": 23,
+        "bass_db": -1,
+        "contour_percent": 22,
+        "treble_db": 1,
+        "output_db": -10
+      }
+    },
+    {
+      "id": "e66c2946-4ee1-5a68-a791-91f109a068d7",
+      "key": "alternative.drive.nv.mtv",
+      "name": "Nirvana / Restrained Unplugged Color",
+      "effect_type": "hard_distortion",
+      "effect_version": 1,
+      "parameters": {
+        "drive_db": 12,
+        "low_cut_hz": 100,
+        "filter_hz": 3400,
+        "output_db": -5
+      }
+    },
+    {
+      "id": "83669def-0a59-5fa4-ba8d-ce92c6d0d666",
+      "key": "modernrock.echo.short",
+      "name": "Modern Rock / Short Melodic Repeat",
+      "effect_type": "echo",
+      "effect_version": 2,
+      "parameters": {
+        "time_ms": 210,
+        "feedback_percent": 22,
+        "mix_percent": 7,
+        "mode": 1,
+        "color_hz": 3800,
+        "wet_low_cut_hz": 240,
+        "wow_percent": 0,
+        "stereo": 0,
+        "heads": 0,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "809ace52-0551-55a0-aa90-5cdd13a0aaec",
+      "key": "modernrock.echo.kennedy",
+      "name": "Alter Bridge / Expressive Lead Repeat",
+      "effect_type": "echo",
+      "effect_version": 2,
+      "parameters": {
+        "time_ms": 390,
+        "feedback_percent": 24,
+        "mix_percent": 12,
+        "mode": 1,
+        "color_hz": 3800,
+        "wet_low_cut_hz": 240,
+        "wow_percent": 0,
+        "stereo": 0,
+        "heads": 0,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "38bcd533-681a-5c8b-9cd4-f8a46ce5a495",
+      "key": "modernrock.echo.tremonti",
+      "name": "Alter Bridge / Articulate Lead Repeat",
+      "effect_type": "echo",
+      "effect_version": 2,
+      "parameters": {
+        "time_ms": 260,
+        "feedback_percent": 22,
+        "mix_percent": 8,
+        "mode": 1,
+        "color_hz": 3800,
+        "wet_low_cut_hz": 240,
+        "wow_percent": 0,
+        "stereo": 0,
+        "heads": 0,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "eb23f6a5-2c06-58ca-8611-aa4206013ba5",
+      "key": "modernrock.comp.mix",
+      "name": "Foo Fighters / Light Mix Punch",
+      "effect_type": "compressor",
+      "effect_version": 1,
+      "parameters": {
+        "threshold_db": -19,
+        "ratio": 1.6,
+        "attack_ms": 28,
+        "release_ms": 125,
+        "makeup_db": 0,
+        "mix_percent": 40
+      }
+    },
+    {
+      "id": "92991402-3259-5b0c-a3ed-8593a63d8b9a",
+      "key": "modernrock.amp.ff.ring",
+      "name": "Foo Fighters / Ringing American Crunch",
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 12,
+        "bass_db": -1,
+        "mid_db": 2,
+        "treble_db": 0,
+        "master_percent": 30,
+        "output_db": -7,
+        "presence_percent": 30,
+        "sag_percent": 22
+      }
+    },
+    {
+      "id": "d24dfab2-a479-5a97-acb1-b8d906e4198b",
+      "key": "modernrock.amp.ff.pair",
+      "name": "Foo Fighters / Complementary Body And Edge",
+      "effect_type": "dual_amp",
+      "effect_version": 1,
+      "parameters": {
+        "model_a": 1,
+        "gain_a_db": 9,
+        "master_a_percent": 28,
+        "level_a_db": 0,
+        "model_b": 7,
+        "gain_b_db": 16,
+        "master_b_percent": 30,
+        "level_b_db": -3,
+        "blend_percent": 44,
+        "bass_db": -1,
+        "mid_db": 2,
+        "treble_db": 0,
+        "presence_percent": 32,
+        "output_db": -10
+      }
+    },
+    {
+      "id": "06dce4dd-4d91-527b-8ed2-138edaa64f5d",
+      "key": "modernrock.amp.ff.clean",
+      "name": "Foo Fighters / Clear American Picking",
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 1,
+        "bass_db": -1,
+        "mid_db": 1,
+        "treble_db": 0,
+        "master_percent": 19,
+        "output_db": -3,
+        "bright_percent": 12
+      }
+    },
+    {
+      "id": "a362dbd5-e467-5838-a3f9-0eb67661947c",
+      "key": "modernrock.amp.ff.break",
+      "name": "Foo Fighters / Reduced Drive Detail",
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 6,
+        "bass_db": -2,
+        "mid_db": 1,
+        "treble_db": -1,
+        "master_percent": 24,
+        "output_db": -6,
+        "presence_percent": 25
+      }
+    },
+    {
+      "id": "c2da5f9f-a6c1-5dd5-9bb8-17e7bdebd149",
+      "key": "modernrock.amp.ff.walk",
+      "name": "Foo Fighters / Garage American Drive",
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 17,
+        "bass_db": -1,
+        "mid_db": 2,
+        "treble_db": 1,
+        "master_percent": 37,
+        "output_db": -9,
+        "presence_percent": 36,
+        "sag_percent": 22
+      }
+    },
+    {
+      "id": "0229219d-5900-51db-82a9-326043e309a5",
+      "key": "modernrock.amp.ff.chime",
+      "name": "Foo Fighters / Upper Chime Support",
+      "effect_type": "amp_brit_chime",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 16,
+        "bass_db": -2,
+        "treble_db": 1,
+        "master_percent": 28,
+        "cut_percent": 34,
+        "sag_percent": 18,
+        "output_db": -9
+      }
+    },
+    {
+      "id": "66b9f109-90c4-5ced-b82c-0c6eb4f664f4",
+      "key": "modernrock.amp.ff.accent",
+      "name": "Foo Fighters / Cutting Melodic Drive",
+      "effect_type": "amp_brit_crunch",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 19,
+        "bass_db": -3,
+        "mid_db": 3,
+        "treble_db": 0,
+        "master_percent": 30,
+        "output_db": -9,
+        "presence_percent": 34,
+        "sag_percent": 15
+      }
+    },
+    {
+      "id": "ff384d71-1d58-576c-8f51-a42419a8a63b",
+      "key": "modernrock.amp.ff.pretender",
+      "name": "Foo Fighters / Dry British Attack",
+      "effect_type": "amp_brit_hotrod",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 18,
+        "bass_db": -2,
+        "mid_db": 2,
+        "treble_db": 1,
+        "master_percent": 32,
+        "output_db": -9,
+        "low_cut_hz": 85,
+        "presence_percent": 36,
+        "sag_percent": 15
+      }
+    },
+    {
+      "id": "59439b9b-8f79-5990-891d-6704e7309371",
+      "key": "modernrock.amp.ff.open",
+      "name": "Foo Fighters / Open British Chords",
+      "effect_type": "amp_brit_crunch",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 21,
+        "bass_db": -1,
+        "mid_db": 2,
+        "treble_db": 0,
+        "master_percent": 36,
+        "output_db": -9,
+        "presence_percent": 32,
+        "sag_percent": 24
+      }
+    },
+    {
+      "id": "24309a60-2073-5b25-8a52-1c8c3487f2b5",
+      "key": "modernrock.eq.ff.ring",
+      "name": "Foo Fighters / Low-D Chord Separation",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 65,
+        "low_pass_hz": 6800,
+        "band1_hz": 210,
+        "band1_db": -1.5,
+        "band1_q": 0.8,
+        "band2_hz": 1400,
+        "band2_db": 1,
+        "band2_q": 0.8,
+        "band3_hz": 3900,
+        "band3_db": -1.5,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "3243b7a3-dcaf-5ad7-802b-8b14311e0438",
+      "key": "modernrock.eq.ff.body",
+      "name": "Foo Fighters / Firm Chord Body",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 75,
+        "low_pass_hz": 6300,
+        "band1_hz": 200,
+        "band1_db": -0.5,
+        "band1_q": 0.8,
+        "band2_hz": 1100,
+        "band2_db": 1,
+        "band2_q": 0.8,
+        "band3_hz": 3600,
+        "band3_db": -1.5,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "3545bba6-ad66-5ad6-bf3f-0e85f9f0a9f1",
+      "key": "modernrock.eq.ff.upper",
+      "name": "Foo Fighters / Upper Part Definition",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 120,
+        "low_pass_hz": 6800,
+        "band1_hz": 260,
+        "band1_db": -2,
+        "band1_q": 0.8,
+        "band2_hz": 1800,
+        "band2_db": 2,
+        "band2_q": 0.8,
+        "band3_hz": 4300,
+        "band3_db": -1.5,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "34bc6ae2-40a6-5e57-a3e4-c974ea78d798",
+      "key": "modernrock.eq.ff.clean",
+      "name": "Foo Fighters / Picked Clean Balance",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 80,
+        "low_pass_hz": 8100,
+        "band1_hz": 240,
+        "band1_db": -1.5,
+        "band1_q": 0.8,
+        "band2_hz": 1500,
+        "band2_db": 0.5,
+        "band2_q": 0.8,
+        "band3_hz": 4200,
+        "band3_db": -1,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "1685eb06-6bcb-54bd-8dbd-02f68a6095a4",
+      "key": "modernrock.eq.ff.dark",
+      "name": "Foo Fighters / Dark Intro Balance",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 70,
+        "low_pass_hz": 6500,
+        "band1_hz": 220,
+        "band1_db": -0.5,
+        "band1_q": 0.8,
+        "band2_hz": 1300,
+        "band2_db": 0.5,
+        "band2_q": 0.8,
+        "band3_hz": 3900,
+        "band3_db": -2,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "9640de1c-78ab-5c59-b1e4-75df488b2985",
+      "key": "modernrock.eq.ff.walk",
+      "name": "Foo Fighters / Garage Mid Body",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 85,
+        "low_pass_hz": 6400,
+        "band1_hz": 220,
+        "band1_db": -1,
+        "band1_q": 0.8,
+        "band2_hz": 950,
+        "band2_db": 1.5,
+        "band2_q": 0.8,
+        "band3_hz": 3600,
+        "band3_db": -1.5,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "df4bcc3e-1e85-52d3-b130-a962ea041716",
+      "key": "modernrock.eq.ff.stop",
+      "name": "Foo Fighters / Staccato Low-End Control",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 90,
+        "low_pass_hz": 6500,
+        "band1_hz": 180,
+        "band1_db": -2,
+        "band1_q": 0.8,
+        "band2_hz": 1700,
+        "band2_db": 1.5,
+        "band2_q": 0.8,
+        "band3_hz": 4100,
+        "band3_db": -1.5,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "c89c379c-19d2-5bbc-802f-6105ce47f853",
+      "key": "modernrock.amp.sd.madness",
+      "name": "Shinedown / Madness Riff Definition",
+      "effect_type": "amp_modern_tight",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 21,
+        "bass_db": -1,
+        "mid_db": 2,
+        "treble_db": 0,
+        "master_percent": 33,
+        "output_db": -10,
+        "low_cut_hz": 70,
+        "presence_percent": 32,
+        "sag_percent": 10,
+        "resonance_percent": 25
+      }
+    },
+    {
+      "id": "9e09fa42-3961-5639-9a88-c01882544a82",
+      "key": "modernrock.amp.sd.madopen",
+      "name": "Shinedown / Madness Open Chords",
+      "effect_type": "amp_recto",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 20,
+        "bass_db": 0,
+        "mid_db": 2,
+        "treble_db": -1,
+        "master_percent": 36,
+        "output_db": -10,
+        "presence_percent": 27,
+        "sag_percent": 30,
+        "resonance_percent": 30
+      }
+    },
+    {
+      "id": "935d9c82-0052-5285-8926-b07e7f88184d",
+      "key": "modernrock.amp.sd.lead",
+      "name": "Shinedown / Forward Melodic Sustain",
+      "effect_type": "amp_brit_hotrod",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 23,
+        "bass_db": -2,
+        "mid_db": 3,
+        "treble_db": 0,
+        "master_percent": 34,
+        "output_db": -10,
+        "low_cut_hz": 95,
+        "presence_percent": 30,
+        "sag_percent": 20
+      }
+    },
+    {
+      "id": "48e7a475-e8fd-5cb3-93dc-ebbe0aa7e4df",
+      "key": "modernrock.amp.sd.clean",
+      "name": "Shinedown / Sparse Verse Clarity",
+      "effect_type": "amp_solid_clean",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 2,
+        "bass_db": -1,
+        "mid_db": 1,
+        "treble_db": 0,
+        "master_percent": 20,
+        "output_db": -4,
+        "presence_percent": 28
+      }
+    },
+    {
+      "id": "bf06cb3e-a7ce-5ed6-a6c1-0c88c782b7c0",
+      "key": "modernrock.amp.sd.monster",
+      "name": "Shinedown / Wiry D-Standard Riff",
+      "effect_type": "amp_brit_hotrod",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 20,
+        "bass_db": -2,
+        "mid_db": 2,
+        "treble_db": 1,
+        "master_percent": 32,
+        "output_db": -10,
+        "low_cut_hz": 65,
+        "presence_percent": 37,
+        "sag_percent": 14
+      }
+    },
+    {
+      "id": "ec3b3494-7904-5047-9f84-64236f88b58b",
+      "key": "modernrock.amp.sd.monsteropen",
+      "name": "Shinedown / Monsters Full Chords",
+      "effect_type": "amp_modern_tight",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 22,
+        "bass_db": -1,
+        "mid_db": 2,
+        "treble_db": 0,
+        "master_percent": 34,
+        "output_db": -10,
+        "low_cut_hz": 60,
+        "presence_percent": 32,
+        "sag_percent": 12,
+        "resonance_percent": 28
+      }
+    },
+    {
+      "id": "31050108-62fe-5c14-af64-27c2c34e55a1",
+      "key": "modernrock.amp.sd.combo",
+      "name": "Shinedown / Rough Small-Combo Support",
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 5,
+        "bass_db": -2,
+        "mid_db": 2,
+        "treble_db": -1,
+        "master_percent": 28,
+        "output_db": -8,
+        "presence_percent": 24,
+        "sag_percent": 25
+      }
+    },
+    {
+      "id": "fd8f3a69-b20b-55ab-96db-b709218aaa05",
+      "key": "modernrock.amp.sd.cordopen",
+      "name": "Shinedown / Open Combo Drive",
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 18,
+        "bass_db": -1,
+        "mid_db": 2,
+        "treble_db": 0,
+        "master_percent": 38,
+        "output_db": -9,
+        "presence_percent": 30,
+        "sag_percent": 30
+      }
+    },
+    {
+      "id": "cbb298ee-9a38-5bf6-ae40-35420812a2a1",
+      "key": "modernrock.drive.sd.cord",
+      "name": "Shinedown / Rough Combo Fuzz Adaptation",
+      "effect_type": "sustain_fuzz",
+      "effect_version": 1,
+      "parameters": {
+        "drive_db": 20,
+        "compression_percent": 32,
+        "tone_hz": 3500,
+        "output_db": -12
+      }
+    },
+    {
+      "id": "57f632e8-e87e-5981-b231-188436c55cc2",
+      "key": "modernrock.amp.sd.devil",
+      "name": "Shinedown / Devil Dry Stop Attack",
+      "effect_type": "amp_modern_tight",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 22,
+        "bass_db": -2,
+        "mid_db": 2,
+        "treble_db": 0,
+        "master_percent": 32,
+        "output_db": -10,
+        "low_cut_hz": 75,
+        "presence_percent": 36,
+        "sag_percent": 8,
+        "resonance_percent": 24
+      }
+    },
+    {
+      "id": "8b517257-348f-5a5f-bf0c-a07ee756d6e4",
+      "key": "modernrock.amp.sd.devilopen",
+      "name": "Shinedown / Devil Broad Chords",
+      "effect_type": "amp_recto",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 21,
+        "bass_db": -1,
+        "mid_db": 2,
+        "treble_db": -1,
+        "master_percent": 35,
+        "output_db": -10,
+        "presence_percent": 28,
+        "sag_percent": 28,
+        "resonance_percent": 30
+      }
+    },
+    {
+      "id": "539a7782-fb94-5061-a379-886f635447e9",
+      "key": "modernrock.drive.sd.texture",
+      "name": "Shinedown / Filtered Texture Drive",
+      "effect_type": "oxford_distortion",
+      "effect_version": 1,
+      "parameters": {
+        "drive_db": 19,
+        "bass_db": -2,
+        "contour_percent": 18,
+        "treble_db": -1,
+        "output_db": -10
+      }
+    },
+    {
+      "id": "c36555aa-1efd-50e1-a044-28c237c7d0fe",
+      "key": "modernrock.wah.sd.color",
+      "name": "Shinedown / Stationary Lead Color Adaptation",
+      "effect_type": "wah",
+      "effect_version": 1,
+      "parameters": {
+        "position_percent": 48,
+        "heel_hz": 350,
+        "toe_hz": 1900,
+        "q": 1.2,
+        "mix_percent": 58,
+        "output_db": -1
+      }
+    },
+    {
+      "id": "281ea4c8-0e88-5712-a547-0b81be0464c3",
+      "key": "modernrock.eq.sd.madness",
+      "name": "Shinedown / Madness Low-D Control",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 60,
+        "low_pass_hz": 6400,
+        "band1_hz": 180,
+        "band1_db": -1.5,
+        "band1_q": 0.8,
+        "band2_hz": 1200,
+        "band2_db": 1.5,
+        "band2_q": 0.8,
+        "band3_hz": 3700,
+        "band3_db": -2,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "70f51303-5b46-5934-8e12-b6d88814ab32",
+      "key": "modernrock.eq.sd.monster",
+      "name": "Shinedown / Monsters Low-String Balance",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 55,
+        "low_pass_hz": 6700,
+        "band1_hz": 170,
+        "band1_db": -1.5,
+        "band1_q": 0.8,
+        "band2_hz": 1600,
+        "band2_db": 1.5,
+        "band2_q": 0.8,
+        "band3_hz": 4200,
+        "band3_db": -1.5,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "779e037a-8e13-5cb8-b7df-7363d3007ea7",
+      "key": "modernrock.eq.sd.cord",
+      "name": "Shinedown / Combo Fuzz Definition",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 75,
+        "low_pass_hz": 5800,
+        "band1_hz": 200,
+        "band1_db": -2,
+        "band1_q": 0.8,
+        "band2_hz": 1150,
+        "band2_db": 1.5,
+        "band2_q": 0.8,
+        "band3_hz": 3400,
+        "band3_db": -1.5,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "61150646-1868-5514-9279-440a3c082bb3",
+      "key": "modernrock.eq.sd.devil",
+      "name": "Shinedown / Devil Riff Space",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 65,
+        "low_pass_hz": 6200,
+        "band1_hz": 160,
+        "band1_db": -2,
+        "band1_q": 0.8,
+        "band2_hz": 1200,
+        "band2_db": 2,
+        "band2_q": 0.8,
+        "band3_hz": 3800,
+        "band3_db": -2,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "2ecbcd73-78b8-5488-9c23-48e017edb602",
+      "key": "modernrock.eq.sd.texture",
+      "name": "Shinedown / Narrow Texture Adaptation",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 220,
+        "low_pass_hz": 4200,
+        "band1_hz": 280,
+        "band1_db": -2,
+        "band1_q": 0.8,
+        "band2_hz": 1100,
+        "band2_db": 3,
+        "band2_q": 0.8,
+        "band3_hz": 3400,
+        "band3_db": -2,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "82002971-ee61-56cc-a22b-61b19da110e3",
+      "key": "modernrock.eq.lead",
+      "name": "Modern Rock / Lead Mid Separation",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 95,
+        "low_pass_hz": 6500,
+        "band1_hz": 240,
+        "band1_db": -1.5,
+        "band1_q": 0.8,
+        "band2_hz": 1500,
+        "band2_db": 2,
+        "band2_q": 0.8,
+        "band3_hz": 3900,
+        "band3_db": -1.5,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "8e746b92-d065-5fe2-b790-fba94f319571",
+      "key": "modernrock.amp.ab.clean",
+      "name": "Alter Bridge / Fingerpicked Clean Body",
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 0,
+        "bass_db": -1,
+        "mid_db": 1,
+        "treble_db": -1,
+        "master_percent": 19,
+        "output_db": -3,
+        "bright_percent": 5
+      }
+    },
+    {
+      "id": "13506165-f760-5e8b-b832-b64090e5df25",
+      "key": "modernrock.amp.ab.rhythm",
+      "name": "Alter Bridge / Complementary Heavy Body",
+      "effect_type": "dual_amp",
+      "effect_version": 1,
+      "parameters": {
+        "model_a": 7,
+        "gain_a_db": 18,
+        "master_a_percent": 33,
+        "level_a_db": 0,
+        "model_b": 6,
+        "gain_b_db": 16,
+        "master_b_percent": 31,
+        "level_b_db": -2,
+        "blend_percent": 38,
+        "bass_db": 0,
+        "mid_db": 2,
+        "treble_db": -1,
+        "presence_percent": 28,
+        "output_db": -10
+      }
+    },
+    {
+      "id": "b20f5ebc-8fec-5029-bff7-6ae605e68ec1",
+      "key": "modernrock.amp.ab.support",
+      "name": "Alter Bridge / Supporting Mark-Family Rhythm",
+      "effect_type": "amp_mark",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 13,
+        "bass_db": -2,
+        "mid_db": 2,
+        "treble_db": 0,
+        "master_percent": 30,
+        "output_db": -10,
+        "lead_gain_db": 4,
+        "presence_percent": 30,
+        "sag_percent": 16
+      }
+    },
+    {
+      "id": "c2fc92ca-862c-5e9b-a07c-9b3e792022ec",
+      "key": "modernrock.amp.ab.kennedy",
+      "name": "Alter Bridge / Expressive Mark-Family Lead",
+      "effect_type": "amp_mark",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 18,
+        "bass_db": -3,
+        "mid_db": 3,
+        "treble_db": -1,
+        "master_percent": 32,
+        "output_db": -10,
+        "lead_gain_db": 8,
+        "presence_percent": 27,
+        "sag_percent": 20
+      }
+    },
+    {
+      "id": "d35cc275-f9eb-57a0-b15e-e1e435814f73",
+      "key": "modernrock.amp.ab.tremonti",
+      "name": "Alter Bridge / Articulate Hot-Rod Lead",
+      "effect_type": "amp_brit_hotrod",
+      "effect_version": 1,
+      "parameters": {
+        "gain_db": 22,
+        "bass_db": -2,
+        "mid_db": 3,
+        "treble_db": 0,
+        "master_percent": 33,
+        "output_db": -10,
+        "low_cut_hz": 100,
+        "presence_percent": 33,
+        "sag_percent": 18
+      }
+    },
+    {
+      "id": "24ed4796-71fe-5df7-a25d-4cf781cb10d2",
+      "key": "modernrock.eq.ab.clean",
+      "name": "Alter Bridge / Fingerstyle String Balance",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 70,
+        "low_pass_hz": 7800,
+        "band1_hz": 220,
+        "band1_db": -1,
+        "band1_q": 0.8,
+        "band2_hz": 1400,
+        "band2_db": 0.5,
+        "band2_q": 0.8,
+        "band3_hz": 4300,
+        "band3_db": -1.5,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "25c534d5-85b0-53b3-8e5d-acf42742ce69",
+      "key": "modernrock.eq.ab.body",
+      "name": "Alter Bridge / Heavy Chord Separation",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 60,
+        "low_pass_hz": 5900,
+        "band1_hz": 150,
+        "band1_db": -1,
+        "band1_q": 0.8,
+        "band2_hz": 950,
+        "band2_db": 1,
+        "band2_q": 0.8,
+        "band3_hz": 3300,
+        "band3_db": -2,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "d20df3b0-74c2-5d27-bcfb-3426da360627",
+      "key": "modernrock.eq.ab.support",
+      "name": "Alter Bridge / Complementary Upper Weight",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 85,
+        "low_pass_hz": 6500,
+        "band1_hz": 220,
+        "band1_db": -2,
+        "band1_q": 0.8,
+        "band2_hz": 1700,
+        "band2_db": 1.5,
+        "band2_q": 0.8,
+        "band3_hz": 4000,
+        "band3_db": -1.5,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "62e9760a-3ec1-54f1-a3e4-85347ffd6b0f",
+      "key": "modernrock.eq.ab.kennedy",
+      "name": "Alter Bridge / Warm Expressive Lead Mids",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 95,
+        "low_pass_hz": 5800,
+        "band1_hz": 250,
+        "band1_db": -1,
+        "band1_q": 0.8,
+        "band2_hz": 1100,
+        "band2_db": 2,
+        "band2_q": 0.8,
+        "band3_hz": 3600,
+        "band3_db": -2,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
+    },
+    {
+      "id": "4235a93c-9d40-5d95-ab7a-b9ef6f4ef16b",
+      "key": "modernrock.eq.ab.tremonti",
+      "name": "Alter Bridge / Fast Lead Note Definition",
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "parameters": {
+        "high_pass_hz": 110,
+        "low_pass_hz": 6500,
+        "band1_hz": 240,
+        "band1_db": -2,
+        "band1_q": 0.8,
+        "band2_hz": 1900,
+        "band2_db": 2,
+        "band2_q": 0.8,
+        "band3_hz": 4300,
+        "band3_db": -1.5,
+        "band3_q": 0.9,
+        "output_db": 0
+      }
     }
   ],
   "racks": [
@@ -3786,6 +6644,2921 @@
       ],
       "cabinet_assets": {
         "2": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+      }
+    },
+    {
+      "id": "b068f603-5fe9-53d3-9301-7597a171c1d8",
+      "key": "radiohead.letdown.clean",
+      "name": "Radiohead / Let Down - Clean Arpeggio",
+      "output_db": 1.5,
+      "pedals": [
+        "Song / Gentle Pick Compression",
+        "Song / Clear Chime",
+        "Cabinet Unity",
+        "Song / Chime Focus",
+        "Song / Let Down Picking Echo",
+        "Song / Picking Plate"
+      ],
+      "pedal_ids": [
+        "2568c58e-71df-5e72-b09e-ce838f5a94b0",
+        "c1858a4e-f8d1-568d-962d-3460436b1bd7",
+        "40000000-0000-4000-8000-000000000076",
+        "0b8a98d8-55e5-52f2-87f4-ddeadb13053f",
+        "0d0cfab2-ce94-5df1-bc73-1ca5ba14253c",
+        "0d44b86e-eb9b-5e6c-9be2-4c6882e812d4"
+      ],
+      "instance_ids": [
+        "97495ea4-3a16-5239-8acb-1265339567d0",
+        "5c422d4f-9874-5e6d-a5bf-ccd21c4a1cb7",
+        "4a16b66e-1e68-5671-9f45-2465f9775e3b",
+        "1d373b08-a84b-5d42-91e3-15c00b1f69d7",
+        "f6fc56d0-2882-56a5-a45f-61a017850409",
+        "8b19aed7-437b-5aaa-99a6-f75bdc90ca55"
+      ],
+      "cabinet_assets": {
+        "2": "e69b28f563f39599f8882d80bb0e56ae336d51cc16b7a273eb7b916511c51da6"
+      }
+    },
+    {
+      "id": "2150ed2f-8498-543b-bfcc-d9ee5df94698",
+      "key": "radiohead.letdown.space",
+      "name": "Radiohead / Let Down - Space Layer",
+      "output_db": 4.5,
+      "pedals": [
+        "Song / Gentle Pick Compression",
+        "Song / Clear Chime",
+        "Cabinet Unity",
+        "Song / Chime Focus",
+        "Song / Slow Space Chorus",
+        "Song / Let Down Space Echo",
+        "Song / Let Down Hall"
+      ],
+      "pedal_ids": [
+        "2568c58e-71df-5e72-b09e-ce838f5a94b0",
+        "c1858a4e-f8d1-568d-962d-3460436b1bd7",
+        "40000000-0000-4000-8000-000000000076",
+        "0b8a98d8-55e5-52f2-87f4-ddeadb13053f",
+        "2b310928-00e4-56a9-af6d-be37bcc9f256",
+        "ac979655-df2e-5701-8f0d-f3b43b4072a8",
+        "319b8bb8-070a-5e1e-b7ea-d3afbac5a4b9"
+      ],
+      "instance_ids": [
+        "9e39bd30-ac12-584c-a3cb-43b7680750df",
+        "5faa4b8d-6aea-5ab2-9adc-aa5555b97594",
+        "a6d7b12a-3cf3-5dcc-b6af-8178adffddb2",
+        "e9a10337-b776-5654-aab9-e9fed71c8c85",
+        "0fe45fe0-8588-5e78-b6f7-618f8b99331c",
+        "ac8c7abd-8988-56dd-b4e5-555d24f0786f",
+        "564f3dc7-2865-5241-a7cd-088c501d738e"
+      ],
+      "cabinet_assets": {
+        "2": "e69b28f563f39599f8882d80bb0e56ae336d51cc16b7a273eb7b916511c51da6"
+      }
+    },
+    {
+      "id": "b435cacd-3086-597b-92a4-732ce6c7bfa9",
+      "key": "radiohead.nosurprises.clean",
+      "name": "Radiohead / No Surprises - Bell Clean",
+      "output_db": 1.0,
+      "pedals": [
+        "Song / Bell Compression",
+        "Song / Rounded Clean Combo",
+        "Cabinet Unity",
+        "Song / Rounded Bell Focus",
+        "Song / Bell Room"
+      ],
+      "pedal_ids": [
+        "90b5ff42-5f9e-5e1a-89a9-fc041db2d5c6",
+        "e243a2d5-eb36-59c1-938e-c6dac540d6f4",
+        "40000000-0000-4000-8000-000000000076",
+        "c8611094-c631-508d-b495-6dccd72934ff",
+        "102fa882-f305-5568-8171-b3709757b116"
+      ],
+      "instance_ids": [
+        "f0265983-30f5-5a70-992b-42295abe9a81",
+        "d0077471-cc2b-502e-a754-41ae63eda629",
+        "fdf5976a-82fc-536d-9c5f-88321afe9e30",
+        "865603af-1314-5437-b223-5a3acff7740c",
+        "69453e3a-e6e9-5eed-a860-59f1df85e9d6"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "b6f24fbd-8f25-5823-be45-6a7dbc07a7c9",
+      "key": "radiohead.alien.foundation",
+      "name": "Radiohead / Subterranean Homesick Alien - Clean Foundation",
+      "output_db": -2.5,
+      "pedals": [
+        "Song / Gentle Pick Compression",
+        "Song / Warm Alien Clean",
+        "Cabinet Unity",
+        "Song / Rounded Bell Focus",
+        "Song / Arpeggio Halo",
+        "Song / Alien Foundation Echo",
+        "Song / Picking Plate"
+      ],
+      "pedal_ids": [
+        "2568c58e-71df-5e72-b09e-ce838f5a94b0",
+        "6b9a94ba-342c-55a2-b49c-ac2dd514b39b",
+        "40000000-0000-4000-8000-000000000076",
+        "c8611094-c631-508d-b495-6dccd72934ff",
+        "a0df5d25-3e0c-50c1-924b-2fe534eb1487",
+        "79337e4b-066e-558d-8291-9dd8ea3b4da6",
+        "0d44b86e-eb9b-5e6c-9be2-4c6882e812d4"
+      ],
+      "instance_ids": [
+        "c992744c-ebe9-5b16-85ba-660d5125e0ad",
+        "ea4d479f-5fec-519e-9602-33b4b194870e",
+        "29f258b2-5c39-5480-b6e7-d8c9104c0726",
+        "608ccea3-22d1-5865-a7f2-3f8cbb91398e",
+        "c03fb197-f662-5229-9ae6-3b2c25a4ca0e",
+        "92ae1575-4b3f-53c7-8bbf-fc11834d516b",
+        "4f30e3a0-bc86-5ba7-ba4f-918b42946a31"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "5885942c-18e4-5240-903e-a6a8a4ad6af5",
+      "key": "radiohead.alien.lead",
+      "name": "Radiohead / Subterranean Homesick Alien - Floating Lead",
+      "output_db": 1.0,
+      "pedals": [
+        "Song / Gentle Pick Compression",
+        "Song / Warm Alien Clean",
+        "Cabinet Unity",
+        "Song / Alien Lead Focus",
+        "Song / Alien Slow Motion",
+        "Song / Alien Floating Echo",
+        "Song / Alien Floating Hall"
+      ],
+      "pedal_ids": [
+        "2568c58e-71df-5e72-b09e-ce838f5a94b0",
+        "6b9a94ba-342c-55a2-b49c-ac2dd514b39b",
+        "40000000-0000-4000-8000-000000000076",
+        "06aedd3e-1bbe-5cab-b33f-3b282f9b9f29",
+        "ec48c6f6-5ab0-56bb-b2ea-9bba3a7e2949",
+        "5604463b-b866-53ff-8497-5dc7998faf48",
+        "70fd023c-966c-5a79-b3a1-23f21265afdd"
+      ],
+      "instance_ids": [
+        "acee116a-fea4-5628-8a71-44065224627d",
+        "59ea9624-15bb-5bc8-9dd4-4993aad14cb4",
+        "d7bb8cab-8325-5387-a1bd-d4797c961f86",
+        "aa5bf740-c7f1-50a0-bd8f-9c43d8adad85",
+        "894f521c-2d62-5b48-a6ff-307d0bf8b1bf",
+        "42d9146b-0b81-5ef9-9084-3e73359f8a54",
+        "946d5cbf-37b9-531f-bf5d-7c6e927c065c"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "d615a5f5-7acc-5dcf-8553-88b41a6f80fa",
+      "key": "radiohead.weirdfishes.clean",
+      "name": "Radiohead / Weird Fishes - Interlocking Clean",
+      "output_db": 2.5,
+      "pedals": [
+        "Song / Gentle Pick Compression",
+        "Song / Clear Chime",
+        "Cabinet Unity",
+        "Song / Chime Focus",
+        "Song / Arpeggio Halo",
+        "Song / Interlocking Arpeggio Echo",
+        "Song / Picking Plate"
+      ],
+      "pedal_ids": [
+        "2568c58e-71df-5e72-b09e-ce838f5a94b0",
+        "c1858a4e-f8d1-568d-962d-3460436b1bd7",
+        "40000000-0000-4000-8000-000000000076",
+        "0b8a98d8-55e5-52f2-87f4-ddeadb13053f",
+        "a0df5d25-3e0c-50c1-924b-2fe534eb1487",
+        "1d898cba-ea5a-5f1b-9414-03c2e6ae70bf",
+        "0d44b86e-eb9b-5e6c-9be2-4c6882e812d4"
+      ],
+      "instance_ids": [
+        "d9ef0f21-3c9d-5829-96e7-736f5cab4e42",
+        "7930cadd-8fa9-5bd9-a042-c58b7e4c60d1",
+        "e8bd8c4b-8251-570f-af50-e9d938ecfe42",
+        "11ca7a3b-62a9-59ad-8291-f93af3bbfa01",
+        "5e4b3931-5e96-5115-b339-e31dd050c455",
+        "e86bda5a-8f1e-5cf0-b191-1d225d34bc93",
+        "f0a8a4a9-1ba6-5524-98f6-4dbd944468b4"
+      ],
+      "cabinet_assets": {
+        "2": "e69b28f563f39599f8882d80bb0e56ae336d51cc16b7a273eb7b916511c51da6"
+      }
+    },
+    {
+      "id": "fe249724-9ab3-505f-a71b-21a2c28719a6",
+      "key": "muse.pluginbaby.fuzz",
+      "name": "Muse / Plug In Baby - Singing Fuzz",
+      "output_db": -11.0,
+      "pedals": [
+        "Song / Plug In Singing Fuzz",
+        "British Chime Edge",
+        "Cabinet Unity",
+        "Post-Cab Tight",
+        "Song / Muse Lead Plate"
+      ],
+      "pedal_ids": [
+        "20239536-ec8e-583d-9608-6748494fdf9c",
+        "2e9722f5-4b3c-5115-ad89-0e5baae4fc31",
+        "40000000-0000-4000-8000-000000000076",
+        "8d2b09db-b4a8-51f2-983c-aee9df0a8d3e",
+        "07e21c31-6aa4-5e53-82b1-92bf96937fd3"
+      ],
+      "instance_ids": [
+        "7c3abca6-0081-5081-b3a6-d7cf87a65a44",
+        "6e8b9419-b361-52dc-9073-b9347206fb32",
+        "bccabe58-6b5a-519f-918b-f1f500026420",
+        "0156f263-6b07-50eb-b7ce-8fc63add03c9",
+        "b9ea5540-d9d0-53d7-8b4e-b8077d4fedbf"
+      ],
+      "cabinet_assets": {
+        "2": "e69b28f563f39599f8882d80bb0e56ae336d51cc16b7a273eb7b916511c51da6"
+      }
+    },
+    {
+      "id": "f7e72fb3-429c-5823-97d6-1780f8ad897c",
+      "key": "muse.stockholm.rhythm",
+      "name": "Muse / Stockholm Syndrome - Tight Rhythm",
+      "output_db": -13.0,
+      "pedals": [
+        "Tight Gate",
+        "Metal Tight Boost",
+        "Song / Stockholm Tight Rhythm",
+        "Cabinet Unity",
+        "Post-Cab Tight"
+      ],
+      "pedal_ids": [
+        "9562fefa-bd0e-5173-a6a4-89a64fea90c6",
+        "0711b147-09a8-5836-9f22-5ff36750a189",
+        "ed0d58bb-b62e-5a7b-ae21-260a3c838d32",
+        "40000000-0000-4000-8000-000000000076",
+        "8d2b09db-b4a8-51f2-983c-aee9df0a8d3e"
+      ],
+      "instance_ids": [
+        "6f385762-44e7-5a9e-beab-f328fb259445",
+        "6e598776-c729-58be-b7c6-c3e092ced6db",
+        "e00aa8b7-3835-5700-8172-062dcf5a6603",
+        "7b920755-ce7a-5d6f-b44b-b0caf2ceef40",
+        "346fc104-e1b0-5099-8e1b-c19901efdc3a"
+      ],
+      "cabinet_assets": {
+        "3": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d"
+      }
+    },
+    {
+      "id": "9c3a69b7-8ba8-5aba-8372-2024d10e0bb0",
+      "key": "muse.starlight.chime",
+      "name": "Muse / Starlight - Chiming Guitar",
+      "output_db": -1.5,
+      "pedals": [
+        "Song / Gentle Pick Compression",
+        "Song / Starlight Edge",
+        "Cabinet Unity",
+        "Song / Chime Focus",
+        "Song / Chiming Eighth Echo",
+        "Song / Picking Plate"
+      ],
+      "pedal_ids": [
+        "2568c58e-71df-5e72-b09e-ce838f5a94b0",
+        "67174aea-4a2d-51be-b2cf-9b4d1ec826bc",
+        "40000000-0000-4000-8000-000000000076",
+        "0b8a98d8-55e5-52f2-87f4-ddeadb13053f",
+        "b5c8ea61-f94e-5780-aea2-1f3768b24d7d",
+        "0d44b86e-eb9b-5e6c-9be2-4c6882e812d4"
+      ],
+      "instance_ids": [
+        "f0710a92-5c87-57d3-aa86-ca077e1eb39b",
+        "432d7ee9-04fd-50a8-87df-bc352f0c9344",
+        "3c2a5df3-49e7-5752-a21d-c21262591a52",
+        "7aeea3c5-cf47-5a47-9980-22e8d4d3035b",
+        "ad101605-e95f-5d55-9ffc-777179d4dabb",
+        "0f439e46-6147-5cff-bf61-9763eabbe3b4"
+      ],
+      "cabinet_assets": {
+        "2": "e69b28f563f39599f8882d80bb0e56ae336d51cc16b7a273eb7b916511c51da6"
+      }
+    },
+    {
+      "id": "b2700a25-ec15-5e3f-9cbf-923e0ff49fe2",
+      "key": "muse.knights.western",
+      "name": "Muse / Knights of Cydonia - Western Guitar",
+      "output_db": -8.0,
+      "pedals": [
+        "British Crunch Rhythm",
+        "Cabinet Unity",
+        "Post-Cab Tight",
+        "Song / Western Gallop Echo",
+        "Gentle Room"
+      ],
+      "pedal_ids": [
+        "70d344a0-b946-55f7-8193-9dfef0aecc97",
+        "40000000-0000-4000-8000-000000000076",
+        "8d2b09db-b4a8-51f2-983c-aee9df0a8d3e",
+        "2ec4cd59-b0b3-5a40-a61a-59d41620af16",
+        "2dfcccc9-76fe-5044-8ff2-6ee24bd4a6fb"
+      ],
+      "instance_ids": [
+        "273a2f0b-ea10-5935-84ce-602a4e3560fa",
+        "d431b371-cd23-5403-9017-4ed7ca12a1e8",
+        "e7ccd9d7-58d0-5274-b650-c4db1820531c",
+        "b6ea4522-99e6-5182-8124-d08239ebaa2e",
+        "45a639e5-3d23-5c0f-822f-e960b679531d"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "f8493334-b6f0-5398-b2c6-f4a7cd165502",
+      "key": "muse.space.lead",
+      "name": "Muse / Space Lead - Sustained Echo",
+      "output_db": -8.0,
+      "pedals": [
+        "Lead Decay Gate",
+        "British Hot-Rod Lead",
+        "Cabinet Unity",
+        "Post-Cab Tight",
+        "Song / Stadium Lead Echo",
+        "Song / Muse Lead Plate"
+      ],
+      "pedal_ids": [
+        "1531bb69-45a7-5112-993d-ada461e7a808",
+        "c9825f2a-13e4-5e5d-a15a-59f6cf0d4984",
+        "40000000-0000-4000-8000-000000000076",
+        "8d2b09db-b4a8-51f2-983c-aee9df0a8d3e",
+        "0f781ffc-81e7-5e7b-9e40-881a550a2c69",
+        "07e21c31-6aa4-5e53-82b1-92bf96937fd3"
+      ],
+      "instance_ids": [
+        "950ddf0e-6a23-55e0-98d0-d96c5d6ee98f",
+        "e68bb31f-6ba8-5990-a887-4aed33ce6a17",
+        "857f4367-8118-56c1-924e-3d7e6c32a31e",
+        "c0a85289-e0dc-579d-9846-a1f636f84eee",
+        "43b22ab7-8fae-5cef-9bb6-5c5cbe802c58",
+        "80f0f864-71da-5482-aff4-1b00450b41f4"
+      ],
+      "cabinet_assets": {
+        "2": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "0b0e1efc-6bd1-5833-b0bb-7a78171970d4",
+      "key": "muse.time.fuzz",
+      "name": "Muse / Time Is Running Out - Guitar Fuzz",
+      "output_db": -14.5,
+      "pedals": [
+        "Song / Focused Sustain Fuzz",
+        "British Crunch Edge",
+        "Cabinet Unity",
+        "Nasal Mid Fuzz",
+        "Song / Muse Lead Plate"
+      ],
+      "pedal_ids": [
+        "2ddd5815-10a4-57cd-9422-45092e2df363",
+        "b520b28c-68d1-5892-ba9a-21c39281508f",
+        "40000000-0000-4000-8000-000000000076",
+        "e45835f6-4628-512e-a1d3-dbdc13183193",
+        "07e21c31-6aa4-5e53-82b1-92bf96937fd3"
+      ],
+      "instance_ids": [
+        "e8328282-c27d-562d-be98-cfddb4ba0258",
+        "1b8d0d5e-b523-5d5b-b7fe-417c53d70d9a",
+        "f80d0db9-cf12-5e81-9f3f-4cc578a93a7c",
+        "6e44db40-8e34-5bad-aec9-5cec434462f9",
+        "fb9c6999-2398-5bf4-9ed3-4375c4b29297"
+      ],
+      "cabinet_assets": {
+        "2": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "6a07c9b3-7fac-5681-b647-4c429b01d8e8",
+      "key": "muse.citizen.distortion",
+      "name": "Muse / Citizen Erased - Dense Distortion",
+      "output_db": -17.5,
+      "pedals": [
+        "Muse / Citizen Dense Sustain",
+        "Muse / Citizen Low-String Amp",
+        "Cabinet Unity",
+        "Muse / Citizen Low-String Focus",
+        "Gentle Room"
+      ],
+      "pedal_ids": [
+        "dd8400d1-f87a-5076-93c8-c5420ea2554f",
+        "9e5ceec2-06e9-5bc8-8ea6-f9453de4ee3c",
+        "40000000-0000-4000-8000-000000000076",
+        "ef3d9187-9f6b-5cef-948a-9082aaf97f71",
+        "2dfcccc9-76fe-5044-8ff2-6ee24bd4a6fb"
+      ],
+      "instance_ids": [
+        "292f6b2b-d17e-5c16-bdf3-7cc01581cba1",
+        "6bf2a0cc-f080-5e83-9d36-d7cb72851a26",
+        "a32ed350-2fff-56ee-8daf-c52b925330a1",
+        "f7d64b49-e204-5fd3-8325-31eace99e728",
+        "b2cb9da4-f9aa-5936-9421-636a34a07c02"
+      ],
+      "cabinet_assets": {
+        "2": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+      }
+    },
+    {
+      "id": "e64e882a-5970-5ec3-9fff-558c3334bbc4",
+      "key": "muse.citizen.clean",
+      "name": "Muse / Citizen Erased - Clean Ending",
+      "output_db": 4.0,
+      "pedals": [
+        "Song / Gentle Pick Compression",
+        "Muse / Citizen Ending Clean Amp",
+        "Cabinet Unity",
+        "Song / Rounded Bell Focus",
+        "Muse / Gentle Ending Chorus",
+        "Muse / Citizen Ending Echo",
+        "Muse / Citizen Ending Plate"
+      ],
+      "pedal_ids": [
+        "2568c58e-71df-5e72-b09e-ce838f5a94b0",
+        "5392e1f3-d116-555f-a1c4-6d03853a8831",
+        "40000000-0000-4000-8000-000000000076",
+        "c8611094-c631-508d-b495-6dccd72934ff",
+        "cb6c8b25-dfb3-516b-8f25-3bb9d08799ff",
+        "3ae27bb9-30ab-5d6e-a4b8-d00975d9729e",
+        "e9f10b88-5075-587f-ad66-229e52782bd4"
+      ],
+      "instance_ids": [
+        "b6e9794e-240b-553b-b225-f5c67dff96be",
+        "090d0e25-6a07-55a8-b8e2-0d0e2ea83ddc",
+        "14feae07-9b76-51dc-9efd-20fd7cde76ca",
+        "004208c9-08d9-56c7-8f81-3389d166ce6d",
+        "febe3f64-b818-5f5b-ba44-ba1234138f16",
+        "457ae7f7-fd83-5d3e-8b0a-2073cd04497e",
+        "ad764e3f-5a8b-5f3a-b48a-42c28dae803c"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "95e42649-f38c-5ca3-b7dd-2a739dce0f5f",
+      "key": "muse.newborn.rhythm",
+      "name": "Muse / New Born - Fuzz Rhythm",
+      "output_db": -10.5,
+      "pedals": [
+        "Muse / New Born Tight Bias Fuzz",
+        "Muse / New Born Forward Chime",
+        "Cabinet Unity",
+        "Post-Cab Tight",
+        "Gentle Room"
+      ],
+      "pedal_ids": [
+        "814cf7d0-1d2c-5a7c-8e57-199f5ccc352b",
+        "653dfce3-b58c-5e53-87a0-281e9a919bbf",
+        "40000000-0000-4000-8000-000000000076",
+        "8d2b09db-b4a8-51f2-983c-aee9df0a8d3e",
+        "2dfcccc9-76fe-5044-8ff2-6ee24bd4a6fb"
+      ],
+      "instance_ids": [
+        "24db1393-acea-5354-b5fa-0fc8123f3455",
+        "20ead8cd-c2df-589f-863f-648aa07874f2",
+        "475926cf-e42b-51e8-9cc5-e98bf8aab23f",
+        "3c1075eb-09f9-5755-8457-0708c84c3dff",
+        "2a02f500-dd35-5464-892d-446470ca0e68"
+      ],
+      "cabinet_assets": {
+        "2": "e69b28f563f39599f8882d80bb0e56ae336d51cc16b7a273eb7b916511c51da6"
+      }
+    },
+    {
+      "id": "99f370ae-930b-5794-8787-a61437c488c0",
+      "key": "muse.newborn.lead",
+      "name": "Muse / New Born - Filtered Fuzz Lead",
+      "output_db": -2.0,
+      "pedals": [
+        "Muse / New Born Tight Bias Fuzz",
+        "Singing Manual Wah",
+        "Muse / New Born Forward Chime",
+        "Cabinet Unity",
+        "Post-Cab Tight",
+        "Song / Stadium Lead Echo",
+        "Song / Muse Lead Plate"
+      ],
+      "pedal_ids": [
+        "814cf7d0-1d2c-5a7c-8e57-199f5ccc352b",
+        "06251879-8138-5d76-87c3-07811a0e6e6b",
+        "653dfce3-b58c-5e53-87a0-281e9a919bbf",
+        "40000000-0000-4000-8000-000000000076",
+        "8d2b09db-b4a8-51f2-983c-aee9df0a8d3e",
+        "0f781ffc-81e7-5e7b-9e40-881a550a2c69",
+        "07e21c31-6aa4-5e53-82b1-92bf96937fd3"
+      ],
+      "instance_ids": [
+        "c6345fbf-8d62-53ed-aa6a-6af69815f8be",
+        "ae2efdf5-2f54-559b-a431-43a2f4898c59",
+        "14b2fa12-371a-56e1-aae1-b9248ae5fd47",
+        "d9141d7e-b902-5065-af70-84cf587eb2e7",
+        "68170862-6f3c-50f4-adaf-6300b1cdf852",
+        "b5112347-d249-577f-b2ab-8efbeff28e86",
+        "cd5a87e3-a07f-515c-8c9f-a97cde942c83"
+      ],
+      "cabinet_assets": {
+        "3": "e69b28f563f39599f8882d80bb0e56ae336d51cc16b7a273eb7b916511c51da6"
+      }
+    },
+    {
+      "id": "a46552c2-76f5-5c5f-91c3-8982cdc929cc",
+      "key": "muse.hysteria.guitar",
+      "name": "Muse / Hysteria - Guitar Drive",
+      "output_db": -9.5,
+      "pedals": [
+        "Muse / Hysteria Guitar Saturation",
+        "British Crunch Edge",
+        "Cabinet Unity",
+        "Muse / Hysteria Guitar Mid Focus",
+        "Song / Muse Lead Plate"
+      ],
+      "pedal_ids": [
+        "9fd92f46-72bf-5944-aef0-3c45fe181ae6",
+        "b520b28c-68d1-5892-ba9a-21c39281508f",
+        "40000000-0000-4000-8000-000000000076",
+        "8da6513d-4c57-5004-9981-efc2c57641ec",
+        "07e21c31-6aa4-5e53-82b1-92bf96937fd3"
+      ],
+      "instance_ids": [
+        "cca2fa49-433c-5299-8219-bb2c205ff49b",
+        "3341bd1e-f9db-57cb-bd33-a3061a5afaa8",
+        "bc69319e-eed9-5484-a84f-634d425935a6",
+        "f3a78799-fe55-5d8c-a54a-525ecc92a673",
+        "bc9e464b-ec0b-5b83-8e2b-d400d7fcdb18"
+      ],
+      "cabinet_assets": {
+        "2": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "cf2b7dcb-8c8e-5c91-b9d0-d6c9a3dfe5f9",
+      "key": "muse.psycho.rhythm",
+      "name": "Muse / Psycho - Dry Riff",
+      "output_db": -12.5,
+      "pedals": [
+        "Tight Gate",
+        "Muse / Psycho Dry Riff Amp",
+        "Cabinet Unity",
+        "Post-Cab Tight"
+      ],
+      "pedal_ids": [
+        "9562fefa-bd0e-5173-a6a4-89a64fea90c6",
+        "c818dc18-9824-5fca-9f01-d9ccf6f17bd0",
+        "40000000-0000-4000-8000-000000000076",
+        "8d2b09db-b4a8-51f2-983c-aee9df0a8d3e"
+      ],
+      "instance_ids": [
+        "2d68a361-506c-5e16-914d-4d01ec75f832",
+        "ae4660d9-3171-5beb-af4d-d4982af25d3e",
+        "ae631153-453f-5aae-8ff9-89d7b7cee456",
+        "b90c0564-a71b-52d1-a047-ad970d66f27f"
+      ],
+      "cabinet_assets": {
+        "2": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d"
+      }
+    },
+    {
+      "id": "339161f6-ae58-5df0-a22e-afdc6d40cf57",
+      "key": "muse.reapers.tapping",
+      "name": "Muse / Reapers - Articulate Tapping",
+      "output_db": -9.5,
+      "pedals": [
+        "Song / Gentle Pick Compression",
+        "Muse / Reapers Tapping Amp",
+        "Cabinet Unity",
+        "Post-Cab Tight",
+        "Song / Muse Lead Plate"
+      ],
+      "pedal_ids": [
+        "2568c58e-71df-5e72-b09e-ce838f5a94b0",
+        "af35b5b2-2a2d-5de4-bebe-e6219641e40a",
+        "40000000-0000-4000-8000-000000000076",
+        "8d2b09db-b4a8-51f2-983c-aee9df0a8d3e",
+        "07e21c31-6aa4-5e53-82b1-92bf96937fd3"
+      ],
+      "instance_ids": [
+        "fe760c27-f4f8-505d-a8c7-8772f34d1504",
+        "c640e372-ba8b-5cfa-9e4c-42e791d176ea",
+        "6fb15431-7d09-5872-8ba7-73fc5f1d651f",
+        "7c0535a5-d5b1-5f74-883b-335e7a355728",
+        "73172ea4-c517-533e-a717-77a4b09a2f27"
+      ],
+      "cabinet_assets": {
+        "2": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d"
+      }
+    },
+    {
+      "id": "2c375f80-9051-57d3-9950-c94c32185bfd",
+      "key": "muse.reapers.lead",
+      "name": "Muse / Reapers - Singing Lead",
+      "output_db": -8.0,
+      "pedals": [
+        "Lead Decay Gate",
+        "Muse / Reapers Lead Wah",
+        "British Hot-Rod Lead",
+        "Cabinet Unity",
+        "Post-Cab Tight",
+        "Muse / Reapers Lead Echo",
+        "Song / Muse Lead Plate"
+      ],
+      "pedal_ids": [
+        "1531bb69-45a7-5112-993d-ada461e7a808",
+        "f22fb627-2fd8-5db4-a451-25e89dc8a11a",
+        "c9825f2a-13e4-5e5d-a15a-59f6cf0d4984",
+        "40000000-0000-4000-8000-000000000076",
+        "8d2b09db-b4a8-51f2-983c-aee9df0a8d3e",
+        "d867f05f-9891-5017-b7f6-450301cb265e",
+        "07e21c31-6aa4-5e53-82b1-92bf96937fd3"
+      ],
+      "instance_ids": [
+        "ab3b4105-7a60-5486-970d-670a7a625e4a",
+        "8c98d96d-b7f6-505c-8865-7f2047177cb0",
+        "d9041e24-f8d0-545a-99dc-2196e285590a",
+        "2eb475fe-d778-55b9-87d2-9baae8e2b923",
+        "c250d51f-a984-50f3-bcc0-187403d2bf8c",
+        "51f7aa36-d0b3-55d1-b74d-3bc384b01094",
+        "257bd56f-ff3c-50a7-afef-bf371c00e9a6"
+      ],
+      "cabinet_assets": {
+        "3": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "3f7b52b4-cf82-5a39-877e-d6d8e4714298",
+      "key": "muse.defector.rhythm",
+      "name": "Muse / Defector - Broad Distortion",
+      "output_db": -13.0,
+      "pedals": [
+        "Tight Gate",
+        "Muse / Defector Broad Rhythm Amp",
+        "Cabinet Unity",
+        "Post-Cab Full",
+        "Song / Muse Lead Plate"
+      ],
+      "pedal_ids": [
+        "9562fefa-bd0e-5173-a6a4-89a64fea90c6",
+        "5aa5fef6-b0fb-58cd-8bd5-b286dbee236c",
+        "40000000-0000-4000-8000-000000000076",
+        "08c5bad8-1eb9-5611-9c9f-ecbd5ec92f60",
+        "07e21c31-6aa4-5e53-82b1-92bf96937fd3"
+      ],
+      "instance_ids": [
+        "80af3f23-16c7-516f-9ed3-26ba3c5b51e3",
+        "874ac212-edc8-58d8-9008-2ac8199876f7",
+        "cdc611c2-85a7-56e3-9137-9394364b8813",
+        "dc2d3eb1-88bd-5da2-a045-1581ce56326f",
+        "92231fa4-0d93-50b0-964e-a9670661539d"
+      ],
+      "cabinet_assets": {
+        "2": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+      }
+    },
+    {
+      "id": "ec51b92c-693c-5dab-8979-567058a8f7e1",
+      "key": "muse.globalist.intro",
+      "name": "Muse / The Globalist - Spacious Clean Intro",
+      "output_db": 3.0,
+      "pedals": [
+        "Song / Gentle Pick Compression",
+        "Muse / Globalist Intro Clean Amp",
+        "Cabinet Unity",
+        "Song / Alien Lead Focus",
+        "Song / Slow Space Chorus",
+        "Muse / Globalist Intro Echo",
+        "Muse / Globalist Intro Hall"
+      ],
+      "pedal_ids": [
+        "2568c58e-71df-5e72-b09e-ce838f5a94b0",
+        "984e9dbf-2433-57af-a75e-59a90d6467d1",
+        "40000000-0000-4000-8000-000000000076",
+        "06aedd3e-1bbe-5cab-b33f-3b282f9b9f29",
+        "2b310928-00e4-56a9-af6d-be37bcc9f256",
+        "a3792a62-24a3-5830-a3be-1fb96ed5dcc3",
+        "b67dd53d-157e-5360-9242-41ded8142cff"
+      ],
+      "instance_ids": [
+        "891f6e83-974d-5b83-bde9-890b9d252f0e",
+        "36ad4302-5f56-5d56-95a4-3b4da84677a7",
+        "77d9aa71-a81f-545a-9101-81478d3c06b2",
+        "00581a2b-936f-57bd-903d-2662b4a15a49",
+        "d50b955e-8aac-5a63-8d46-c9c95b6ac090",
+        "061cf86c-af64-5f84-b14f-59c80222a31a",
+        "ce1075d2-c955-5a5f-8ee5-c725f892ea31"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "5a958122-6aa6-5758-ae6d-bfa0f5ec515b",
+      "key": "muse.globalist.heavy",
+      "name": "Muse / The Globalist - Heavy Middle",
+      "output_db": -15.0,
+      "pedals": [
+        "Tight Gate",
+        "Metal Tight Boost",
+        "Muse / Globalist Heavy Amp",
+        "Cabinet Unity",
+        "Post-Cab Tight",
+        "Gentle Room"
+      ],
+      "pedal_ids": [
+        "9562fefa-bd0e-5173-a6a4-89a64fea90c6",
+        "0711b147-09a8-5836-9f22-5ff36750a189",
+        "e03b58d5-0e74-54cf-9784-d511535af253",
+        "40000000-0000-4000-8000-000000000076",
+        "8d2b09db-b4a8-51f2-983c-aee9df0a8d3e",
+        "2dfcccc9-76fe-5044-8ff2-6ee24bd4a6fb"
+      ],
+      "instance_ids": [
+        "14f09151-8547-54bc-96ce-646090d84a4e",
+        "0d6014c3-9eff-5e0c-8e64-d41f81090117",
+        "c464d532-3539-53aa-ba98-946d9dbf06e1",
+        "a4a2af86-bad5-5f88-bf7e-b9ca9da6b712",
+        "e6544037-6247-53c2-b359-bb6925a87e4f",
+        "3c5e60c1-66ce-5cd3-8213-d90155bda19d"
+      ],
+      "cabinet_assets": {
+        "3": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+      }
+    },
+    {
+      "id": "f7edf4c9-bda3-582e-bb3c-e7e7eb1310c6",
+      "key": "muse.globalist.outro",
+      "name": "Muse / The Globalist - Clean Outro Guitar",
+      "output_db": 0.5,
+      "pedals": [
+        "Song / Bell Compression",
+        "Muse / Globalist Outro Clean Amp",
+        "Cabinet Unity",
+        "Song / Rounded Bell Focus",
+        "Muse / Globalist Outro Room"
+      ],
+      "pedal_ids": [
+        "90b5ff42-5f9e-5e1a-89a9-fc041db2d5c6",
+        "bfae22bc-091c-5f2e-a505-e7f34a86edbd",
+        "40000000-0000-4000-8000-000000000076",
+        "c8611094-c631-508d-b495-6dccd72934ff",
+        "0f4aeb91-d606-52d1-a1dc-fbc5ffc6dd1d"
+      ],
+      "instance_ids": [
+        "d4359d0f-b089-5b87-8e9f-addb376bd450",
+        "4b17340d-db5c-57d4-addd-7a83986222eb",
+        "c51b6353-81b1-57d2-9450-128fe507d0f5",
+        "5e4d32a4-9ef6-5d09-9a12-5bdf99898854",
+        "1c4f2bca-903e-5357-b65c-6a47bb2c645c"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "c0f5ca27-5e32-5e26-9a04-f59c1780f30b",
+      "key": "alternative.outlaws.clean",
+      "name": "Green Day / Outlaws - Clear Clean",
+      "output_db": 4.0,
+      "pedals": [
+        "Research / Natural Pick Compression",
+        "Green Day / Clear Picked Combo",
+        "Cabinet Unity",
+        "Green Day / Picked Clarity",
+        "Research / Acoustic Air"
+      ],
+      "pedal_ids": [
+        "261ac95d-f4de-54cb-b01a-898dc1ed500e",
+        "801fd615-0cfa-523f-a0bd-fedb8bf40552",
+        "40000000-0000-4000-8000-000000000076",
+        "6c0ee164-7541-5597-b11f-60fd1f5c4b63",
+        "2d897bdc-bef5-5542-b546-6cc97da4a5ea"
+      ],
+      "instance_ids": [
+        "4cd4a68d-36cd-5c58-8f3e-8e5a304f9aaf",
+        "856ab879-2af1-5971-b3c1-fd881fe9957b",
+        "4f032e8f-2ece-50f7-b19e-59b2b82917b6",
+        "4e3c9566-e49e-5096-9674-5f14e2208902",
+        "f7531ebb-3baa-516f-81e0-6c4efaf1d739"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "2109233b-7ff4-57b5-9760-19c73870d102",
+      "key": "alternative.outlaws.rhythm",
+      "name": "Green Day / Outlaws - Broad Crunch",
+      "output_db": -10.5,
+      "pedals": [
+        "Green Day / Broad British Crunch",
+        "Cabinet Unity",
+        "Green Day / Broad Outlaws Body",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "92a4e2ac-599b-51bc-beb2-33758690e6e5",
+        "40000000-0000-4000-8000-000000000076",
+        "2a0bee9b-a63b-5883-b10b-829af784db8b",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "4c35b9c1-76de-5331-a278-ba67f55a1ede",
+        "58db0e85-ee4c-506d-b035-0eda1b1e237b",
+        "011e9849-2c03-52d0-aa61-ae19eb00dda3",
+        "1de764c2-4912-5a5b-9f8b-0d408101afd3"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "81fd365f-1f03-59c2-8403-556bcdc288de",
+      "key": "alternative.outlaws.lead",
+      "name": "Green Day / Outlaws - Singing Lead",
+      "output_db": -11.0,
+      "pedals": [
+        "Green Day / Singing British Lead",
+        "Cabinet Unity",
+        "Research / Singing Mid Focus",
+        "Research / Quiet Lead Echo",
+        "Research / Restrained Lead Plate"
+      ],
+      "pedal_ids": [
+        "dc443701-f778-5854-82a1-6d6fae138925",
+        "40000000-0000-4000-8000-000000000076",
+        "b114d71f-4a68-5812-b498-9dc8f31256b8",
+        "2ad8583e-fbbe-52af-9578-11217db88bf2",
+        "5e74de2a-e468-57fb-8464-1ee927e0e24f"
+      ],
+      "instance_ids": [
+        "751aa3af-362f-5bd2-ba36-47d77b3880bc",
+        "c4579da3-14cb-55d5-8c1d-f642495dfb31",
+        "03d8a91c-ded1-5fca-903c-9fce25222c4c",
+        "a6950ad8-f0f3-5f01-a82f-3008ff16773c",
+        "12169a68-784e-55d8-93e7-5298f396de65"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "0d57ae35-357a-5da6-9922-caa2fa81693e",
+      "key": "alternative.outlaws.halo",
+      "name": "Green Day / Outlaws - Bowed Layer Adaptation",
+      "output_db": 6,
+      "pedals": [
+        "Research / Natural Pick Compression",
+        "Green Day / Clear Picked Combo",
+        "Cabinet Unity",
+        "Green Day / Picked Clarity",
+        "Research / Layered Halo Echo",
+        "Research / Bowed Layer Hall"
+      ],
+      "pedal_ids": [
+        "261ac95d-f4de-54cb-b01a-898dc1ed500e",
+        "801fd615-0cfa-523f-a0bd-fedb8bf40552",
+        "40000000-0000-4000-8000-000000000076",
+        "6c0ee164-7541-5597-b11f-60fd1f5c4b63",
+        "836a4c06-b7ae-58e8-90b8-e92081c36fcf",
+        "7fd78427-7751-597b-b388-360eb916d381"
+      ],
+      "instance_ids": [
+        "8fab89e2-8b44-587e-b1fe-70e3cd756d3b",
+        "ad6961f3-094c-53c4-8bde-b8d87e0be7c1",
+        "40ec0567-465f-5e28-aff8-f28ad4a41db6",
+        "f3046856-a298-5525-a05a-34230dc36761",
+        "3978e70d-1e2f-5570-a609-553b90d44dd4",
+        "c0d70254-3131-5b95-8044-a1fd2b2028da"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "567501c6-6b80-504a-be8e-16234f14424b",
+      "key": "alternative.revolution.rhythm",
+      "name": "Green Day / Revolution Radio - Punch Rhythm",
+      "output_db": -10.0,
+      "pedals": [
+        "Green Day / Punchy British Rhythm",
+        "Cabinet Unity",
+        "Green Day / Revolution Chord Bite",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "ab69e79f-6f99-5a62-8003-5c016a20fbf4",
+        "40000000-0000-4000-8000-000000000076",
+        "7a20cc42-2cb0-512b-858d-5fff45fd2a1f",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "e92b8e15-692e-5804-b65f-fe14e5772aa8",
+        "0d8c33cf-a605-5901-b2e8-9ce5b72a7a30",
+        "aca385d1-ca6d-5b38-996d-9283f5915684",
+        "a4daecd2-2aae-5732-9744-ee91ed68e8d5"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "52254083-cbce-5b07-a6dc-2a7a0ea87062",
+      "key": "alternative.revolution.lead",
+      "name": "Green Day / Revolution Radio - Forward Lead",
+      "output_db": -11.0,
+      "pedals": [
+        "Green Day / Singing British Lead",
+        "Cabinet Unity",
+        "Green Day / Revolution Chord Bite",
+        "Research / Short Melodic Echo",
+        "Research / Restrained Lead Plate"
+      ],
+      "pedal_ids": [
+        "dc443701-f778-5854-82a1-6d6fae138925",
+        "40000000-0000-4000-8000-000000000076",
+        "7a20cc42-2cb0-512b-858d-5fff45fd2a1f",
+        "358f069c-5d49-5b9d-9f9c-bdff1de08d0a",
+        "5e74de2a-e468-57fb-8464-1ee927e0e24f"
+      ],
+      "instance_ids": [
+        "a1e9cb57-0fe6-5868-a571-34ac63a132c4",
+        "27c7698c-27f5-5432-afb1-0f0a2e1298fa",
+        "772a16d9-89a0-5311-994d-3490e77acc57",
+        "337071a5-caac-5e8c-8009-d7998eba8470",
+        "2ff6cdf9-a9b7-5ad1-9b61-869cfd4c6d45"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "bb3c225f-571e-5cac-9501-95420452e42e",
+      "key": "alternative.september.acoustic",
+      "name": "Green Day / Wake Me Up When September Ends - Acoustic Source",
+      "output_db": -2.5,
+      "pedals": [
+        "Research / Natural Pick Compression",
+        "Research / Acoustic Source Balance",
+        "Research / Acoustic Air"
+      ],
+      "pedal_ids": [
+        "261ac95d-f4de-54cb-b01a-898dc1ed500e",
+        "ff6dcdd1-d776-55ab-8aa8-efa0d6238805",
+        "2d897bdc-bef5-5542-b546-6cc97da4a5ea"
+      ],
+      "instance_ids": [
+        "c2a6de03-7c75-5a09-89e0-decdd9a21eeb",
+        "6df492e7-4b53-5f94-983b-d4df1e9c0ade",
+        "c81438d4-3a99-5169-beba-46401b28e5f7"
+      ],
+      "cabinet_assets": {}
+    },
+    {
+      "id": "41bfa4f5-32b9-5ee9-8378-23c21292b1e3",
+      "key": "alternative.september.clean",
+      "name": "Green Day / Wake Me Up When September Ends - Electric Clean Adaptation",
+      "output_db": 4.5,
+      "pedals": [
+        "Research / Natural Pick Compression",
+        "Green Day / Clear Picked Combo",
+        "Cabinet Unity",
+        "Research / Electric Acoustic Adaptation",
+        "Research / Acoustic Air"
+      ],
+      "pedal_ids": [
+        "261ac95d-f4de-54cb-b01a-898dc1ed500e",
+        "801fd615-0cfa-523f-a0bd-fedb8bf40552",
+        "40000000-0000-4000-8000-000000000076",
+        "0518d098-f189-5bca-88ec-ae5846d1588f",
+        "2d897bdc-bef5-5542-b546-6cc97da4a5ea"
+      ],
+      "instance_ids": [
+        "5dc02bbe-ce3a-50cd-b7be-238452df558d",
+        "6d7a54b0-ccfd-502f-9a98-4262e51d6793",
+        "0cb22715-d727-57ee-9ec7-3cde7764a6c5",
+        "f741f48d-da61-59c6-aaf3-8f75f792e811",
+        "2a5a59fd-04e7-5a08-80b7-5d17b886d1e5"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "4d97b946-642e-55db-9601-be96a448e995",
+      "key": "alternative.september.rhythm",
+      "name": "Green Day / Wake Me Up When September Ends - Heavy Rhythm",
+      "output_db": -11.5,
+      "pedals": [
+        "Green Day / American Heavy Support",
+        "Cabinet Unity",
+        "Green Day / September Electric Weight",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "e105c82b-3f35-55ef-af0f-d78a0c3f6572",
+        "40000000-0000-4000-8000-000000000076",
+        "f862b9d3-4ec5-5063-b535-e0c9eaac6658",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "0f654ee3-ade6-5830-9cb7-09e2e35f305a",
+        "462532cf-161a-598b-8ac3-b840a368ed54",
+        "67100ebe-9afe-5778-99a0-f57da38355f7",
+        "8cf02c48-8680-5d87-8d9c-5ac7ef9a9b37"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "6d75d680-0cf9-5622-b519-1a9d01b2819f",
+      "key": "alternative.september.lead",
+      "name": "Green Day / Wake Me Up When September Ends - Melodic Lead",
+      "output_db": -11.0,
+      "pedals": [
+        "Green Day / Singing British Lead",
+        "Cabinet Unity",
+        "Research / Singing Mid Focus",
+        "Research / Quiet Lead Echo",
+        "Research / Restrained Lead Plate"
+      ],
+      "pedal_ids": [
+        "dc443701-f778-5854-82a1-6d6fae138925",
+        "40000000-0000-4000-8000-000000000076",
+        "b114d71f-4a68-5812-b498-9dc8f31256b8",
+        "2ad8583e-fbbe-52af-9578-11217db88bf2",
+        "5e74de2a-e468-57fb-8464-1ee927e0e24f"
+      ],
+      "instance_ids": [
+        "136aacc9-21e8-52e3-97fc-614e93e5ea3d",
+        "cc70eb6d-9ca7-5699-bdf7-af0ed950985c",
+        "2b839d6a-bcd4-5dc6-8db2-62ee20414950",
+        "57122495-ea1b-54ec-8031-34534774862d",
+        "4edddf5e-7cf6-5f61-b6b0-5d069bbdcb59"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "c255fa34-3fc6-570a-ba19-ab0911c63227",
+      "key": "alternative.outshined.cornell",
+      "name": "Soundgarden / Outshined - Cornell Role Rhythm",
+      "output_db": -14.5,
+      "pedals": [
+        "Soundgarden / Cornell Role Warm Rhythm",
+        "Cabinet Unity",
+        "Soundgarden / Warm Low-D Weight",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "e2ab7069-812c-51f8-ad77-7b8964af4a04",
+        "40000000-0000-4000-8000-000000000076",
+        "ec0381be-14c8-51b9-99f6-9e3054a1a76c",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "1496396c-14e5-5afb-a92f-2e7eb54b4c03",
+        "ceeb02b0-5571-5254-960b-0a4af9ffff5a",
+        "8b2b4572-4ec9-519b-bcca-72114c22bfd0",
+        "f2b132db-02b8-523a-8d64-abd53d734e8f"
+      ],
+      "cabinet_assets": {
+        "1": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+      }
+    },
+    {
+      "id": "4784f12e-043f-5b21-ba17-f0a8fedca916",
+      "key": "alternative.outshined.thayil",
+      "name": "Soundgarden / Outshined - Thayil Role Rhythm",
+      "output_db": -12.0,
+      "pedals": [
+        "Soundgarden / Thayil Role Cutting Rhythm",
+        "Cabinet Unity",
+        "Soundgarden / Complementary Guitar Bite",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "189740ff-a69a-5ca2-a325-7ee83397af1a",
+        "40000000-0000-4000-8000-000000000076",
+        "fb2f9fc9-177a-529b-ab3c-aa57f24c6e34",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "e4bf3b89-5783-55a6-8352-f94f053ba1a0",
+        "918a43c4-4841-5d57-abaa-c441b5ec254f",
+        "750ab2f2-8439-5a5f-b37d-e85cb87da550",
+        "b92973a5-3594-532e-b7a1-b206daeefc8b"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "1ea56fee-493e-5702-8655-ffcbb69d27cc",
+      "key": "alternative.outshined.lead",
+      "name": "Soundgarden / Outshined - Thayil Lead",
+      "output_db": -12.5,
+      "pedals": [
+        "Soundgarden / Thayil Role Raw Lead",
+        "Cabinet Unity",
+        "Research / Singing Mid Focus",
+        "Research / Restrained Lead Plate"
+      ],
+      "pedal_ids": [
+        "e72ed0f2-7f16-5f93-8a23-d43190661ea7",
+        "40000000-0000-4000-8000-000000000076",
+        "b114d71f-4a68-5812-b498-9dc8f31256b8",
+        "5e74de2a-e468-57fb-8464-1ee927e0e24f"
+      ],
+      "instance_ids": [
+        "21ed167c-9705-5084-ac0e-94608bb4398a",
+        "4693b283-3f8b-5ef0-97c1-e1eb1aa611aa",
+        "3686dad6-ea00-5b8e-bde0-4cf840658907",
+        "ec76dc81-5f55-5007-8f6c-2bb15120d272"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "f26dd8eb-be90-50f6-acb8-3220c3271b1c",
+      "key": "alternative.slaves.cornell",
+      "name": "Soundgarden / Slaves and Bulldozers - Cornell Role Weight",
+      "output_db": -18.5,
+      "pedals": [
+        "Soundgarden / Cornell Role Bulldozer Body",
+        "Cabinet Unity",
+        "Soundgarden / Bulldozer Low-Mid Body",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "33fd9e58-8329-5da2-be1c-5e7a3e681062",
+        "40000000-0000-4000-8000-000000000076",
+        "84615223-2aef-526a-b0f8-02f08e5faed5",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "f5baf1ca-badc-5cd6-998b-b366ee1a87f7",
+        "e2f988c9-9a9c-56d8-835b-484b159321a7",
+        "f921857b-6135-5cad-80d3-ed543d9f8bf1",
+        "50979895-25be-5006-b3fe-94d0f25560e6"
+      ],
+      "cabinet_assets": {
+        "1": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+      }
+    },
+    {
+      "id": "ad0b5571-ac46-50e0-99bc-da6bb724ac6c",
+      "key": "alternative.slaves.thayil",
+      "name": "Soundgarden / Slaves and Bulldozers - Thayil Role Bite",
+      "output_db": -12.0,
+      "pedals": [
+        "Soundgarden / Thayil Role Cutting Rhythm",
+        "Cabinet Unity",
+        "Soundgarden / Complementary Guitar Bite",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "189740ff-a69a-5ca2-a325-7ee83397af1a",
+        "40000000-0000-4000-8000-000000000076",
+        "fb2f9fc9-177a-529b-ab3c-aa57f24c6e34",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "e5e0e512-504b-5520-ab5b-61e3dab8d549",
+        "104ffb8e-9e38-532e-8260-3c0d0f06ab26",
+        "5614d868-e153-5eba-a453-e8d92f818616",
+        "1fab0892-e536-5aa9-aff8-ab3439fb59e5"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "2d958f6c-b96c-5322-9970-4d1345a0faa4",
+      "key": "alternative.slaves.lead",
+      "name": "Soundgarden / Slaves and Bulldozers - Raw Lead",
+      "output_db": -13.0,
+      "pedals": [
+        "Soundgarden / Thayil Role Raw Lead",
+        "Cabinet Unity",
+        "Soundgarden / Complementary Guitar Bite",
+        "Research / Restrained Lead Plate"
+      ],
+      "pedal_ids": [
+        "e72ed0f2-7f16-5f93-8a23-d43190661ea7",
+        "40000000-0000-4000-8000-000000000076",
+        "fb2f9fc9-177a-529b-ab3c-aa57f24c6e34",
+        "5e74de2a-e468-57fb-8464-1ee927e0e24f"
+      ],
+      "instance_ids": [
+        "40e5e8d1-4400-53cb-a369-28b36821bd20",
+        "53265ad6-08bc-5e4a-9b94-c38d557bcf96",
+        "996d5f9b-1b2e-58ef-b2c4-371f276a3e2f",
+        "f7c9df7b-613b-53f1-8f21-91b6197b772f"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "529cf61b-9297-540f-8f33-2322db789f64",
+      "key": "alternative.hsb.clean",
+      "name": "Nirvana / Heart-Shaped Box - Dark Clean",
+      "output_db": -3.0,
+      "pedals": [
+        "Nirvana / Dark In Utero Clean",
+        "Cabinet Unity",
+        "Nirvana / Dark Drop-Csharp Picking",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "4326b61d-8129-57d3-bc87-a439e4c8fa15",
+        "40000000-0000-4000-8000-000000000076",
+        "620f7636-9be9-5568-8abc-510754f22c92",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "d8b42df8-eabe-5bb9-a8e8-c0d84bb905b5",
+        "be9ba71a-0869-5210-b3ed-6310244455e4",
+        "138fa4c7-9368-5ecd-8c6c-7a8c804c4b46",
+        "e702a303-faea-5d33-afc9-2e11189d302d"
+      ],
+      "cabinet_assets": {
+        "1": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "8d051212-d179-50e9-bc31-88f1898aaba9",
+      "key": "alternative.hsb.rhythm",
+      "name": "Nirvana / Heart-Shaped Box - Abrasive Rhythm",
+      "output_db": -15.0,
+      "pedals": [
+        "Nirvana / Abrasive In Utero Drive",
+        "Nirvana / In Utero Drive Support",
+        "Cabinet Unity",
+        "Nirvana / In Utero Abrasive Mids",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "b8810661-c396-520b-8f58-a3d3a13ab184",
+        "ef7ae891-fd58-5754-a0be-cccfff399c3c",
+        "40000000-0000-4000-8000-000000000076",
+        "38bb235c-eb42-5751-849d-9948e9760796",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "a43f8eb2-3a71-54e2-8227-192fa2a0204a",
+        "0f2040aa-6911-5def-a422-25fa237ace6d",
+        "2a633ed8-4c60-5889-bdef-ba8cf7306dc6",
+        "59128c6c-63e9-5137-b325-a1f3b8a1fbc8",
+        "e64fa3f4-18c2-580c-8cf9-65547f15cfe6"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "183f5d34-68e5-5aac-9558-86d5d12b1395",
+      "key": "alternative.hsb.lead",
+      "name": "Nirvana / Heart-Shaped Box - Focused Lead",
+      "output_db": -16.0,
+      "pedals": [
+        "Nirvana / Rough Melodic Distortion",
+        "Nirvana / In Utero Drive Support",
+        "Cabinet Unity",
+        "Nirvana / In Utero Abrasive Mids",
+        "Research / Restrained Lead Plate"
+      ],
+      "pedal_ids": [
+        "99b04959-0538-58c6-bd32-4382e98a18ba",
+        "ef7ae891-fd58-5754-a0be-cccfff399c3c",
+        "40000000-0000-4000-8000-000000000076",
+        "38bb235c-eb42-5751-849d-9948e9760796",
+        "5e74de2a-e468-57fb-8464-1ee927e0e24f"
+      ],
+      "instance_ids": [
+        "0efbbef7-0c23-5c73-9004-fb3b19b64fec",
+        "74fd397f-4be2-5618-abfd-561f9321e440",
+        "913b0f78-252a-522e-82e5-1ce8e17b0cc6",
+        "6e738f26-5435-5ef2-96ce-af043cddc40f",
+        "1b11ebea-64c5-5eee-a5b4-2a9fd4cab66d"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "aa283d41-973e-50b5-bde2-7e2164fcb2c7",
+      "key": "alternative.teen.clean",
+      "name": "Nirvana / Smells Like Teen Spirit - Watery Clean",
+      "output_db": 6,
+      "pedals": [
+        "Nirvana / Watery Clean Motion",
+        "Nirvana / Open Clean Combo",
+        "Cabinet Unity",
+        "Nirvana / Dry Clean Body",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "91a42480-c1fa-55c1-92d4-0fe7cc22d3bc",
+        "9ef951b0-e590-537c-be22-6d685f5684ff",
+        "40000000-0000-4000-8000-000000000076",
+        "a5a7e91b-98b6-54e0-b8f6-48fce8582c91",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "70c029a6-c233-56cf-8b6d-5a9f06a4f023",
+        "e32be914-0c5e-515a-b051-c42f00c7996d",
+        "91c158f4-0da7-54c8-a600-a23c5794c648",
+        "688781ea-adc3-5156-a240-e4a123fd844e",
+        "e2933276-5344-5fed-b621-e6ab7639bda7"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "4d5fde3b-4101-56cd-9b89-0166ede048ae",
+      "key": "alternative.teen.rhythm",
+      "name": "Nirvana / Smells Like Teen Spirit - Explosive Rhythm",
+      "output_db": -4.5,
+      "pedals": [
+        "Nirvana / Hard Chord Distortion",
+        "Nirvana / Controlled Nevermind Support",
+        "Cabinet Unity",
+        "Nirvana / Nevermind Hard-Chord Focus",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "216547e9-4586-56c2-998b-29115ef52e1b",
+        "7feacad6-a843-5ab1-a6b4-0571eb23cabf",
+        "40000000-0000-4000-8000-000000000076",
+        "35ee6b55-ec56-5666-9be5-5ea01acaf44c",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "bebbd444-971d-5a9b-be35-a8375282dc23",
+        "d37b555c-9cae-57b6-8fd2-f9d1a80557e1",
+        "b37f7fa5-55ec-5402-9d8d-dadf851502a5",
+        "91e6b32b-4bc3-5eb9-81a4-b2982bb42761",
+        "135a8fb6-7e53-5935-a3f0-8dfdb883efac"
+      ],
+      "cabinet_assets": {
+        "2": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "da4e4f71-4835-527a-8d18-a5d252d8a14a",
+      "key": "alternative.teen.lead",
+      "name": "Nirvana / Smells Like Teen Spirit - Melodic Lead",
+      "output_db": -2.5,
+      "pedals": [
+        "Nirvana / Rough Melodic Distortion",
+        "Nirvana / Distorted Mono Water",
+        "Nirvana / Controlled Nevermind Support",
+        "Cabinet Unity",
+        "Research / Singing Mid Focus",
+        "Research / Restrained Lead Plate"
+      ],
+      "pedal_ids": [
+        "99b04959-0538-58c6-bd32-4382e98a18ba",
+        "8b2c2f18-15bd-51f8-9ad7-2a5802be699b",
+        "7feacad6-a843-5ab1-a6b4-0571eb23cabf",
+        "40000000-0000-4000-8000-000000000076",
+        "b114d71f-4a68-5812-b498-9dc8f31256b8",
+        "5e74de2a-e468-57fb-8464-1ee927e0e24f"
+      ],
+      "instance_ids": [
+        "70a48cb6-b593-5ee5-86c6-311da095453b",
+        "0d51b6a5-10b3-537c-b486-d272935b6db2",
+        "ed3482ff-cac6-5c0e-b8b9-d7d0edf0ed7f",
+        "5a0304bf-e790-594b-b36a-bec356ea014f",
+        "003ea606-7596-5956-ba86-4d00d7bafdef",
+        "317a5242-2624-52be-a7d9-036e6380027e"
+      ],
+      "cabinet_assets": {
+        "3": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "f98aa263-6fcc-58e4-807a-68cf51ead2ba",
+      "key": "alternative.caya.clean",
+      "name": "Nirvana / Come as You Are - Deep Mono Chorus",
+      "output_db": 5.0,
+      "pedals": [
+        "Nirvana / Deep Mono Water",
+        "Nirvana / Open Clean Combo",
+        "Cabinet Unity",
+        "Nirvana / Low-String Water Balance",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "2473f6c0-0d83-5ccd-8be5-146569f9ecf6",
+        "9ef951b0-e590-537c-be22-6d685f5684ff",
+        "40000000-0000-4000-8000-000000000076",
+        "52b298c0-1606-5003-b656-24667a76e083",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "a47c3a57-8b1f-59f3-b4b7-dd530212cb08",
+        "51eb9889-a384-584c-bab3-6f3e09efd638",
+        "99ec5cb8-6a3b-5bc3-8829-5c3b636f4578",
+        "a474a26f-5a74-5f3f-9105-1b736ef2c3c9",
+        "4c635416-7687-581e-a78e-8f1d46ae232c"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "537c0532-eada-5df9-b80f-f9f681ca70aa",
+      "key": "alternative.caya.rhythm",
+      "name": "Nirvana / Come as You Are - Chorus Drive",
+      "output_db": -9.5,
+      "pedals": [
+        "Nirvana / Low-String Chorus Drive",
+        "Nirvana / Deep Mono Water",
+        "Nirvana / Pedal Driven Combo",
+        "Cabinet Unity",
+        "Nirvana / Low-String Water Balance",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "3c165234-859a-5285-9cb7-2c920776086a",
+        "2473f6c0-0d83-5ccd-8be5-146569f9ecf6",
+        "ee9a4b9e-fe13-5d0b-9626-9278deeded99",
+        "40000000-0000-4000-8000-000000000076",
+        "52b298c0-1606-5003-b656-24667a76e083",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "aa50ddea-74cc-5d10-8b40-8af43f27c59e",
+        "dcf628bd-75a5-50e6-8277-2b9ccfa206aa",
+        "523765cf-b5fc-57da-81ca-84a3f66b7e00",
+        "0fc6309f-fe67-5542-90eb-416c85b819da",
+        "8d04a1ec-809f-55d3-810d-dfb8ad84b2c5",
+        "9de54b5d-f525-5e3e-b489-115b9799204f"
+      ],
+      "cabinet_assets": {
+        "3": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "fa83f6d6-b7da-5055-a867-b6d4ec5f2ec7",
+      "key": "alternative.caya.lead",
+      "name": "Nirvana / Come as You Are - Watery Lead",
+      "output_db": -9.0,
+      "pedals": [
+        "Nirvana / Rough Melodic Distortion",
+        "Nirvana / Distorted Mono Water",
+        "Nirvana / Pedal Driven Combo",
+        "Cabinet Unity",
+        "Research / Singing Mid Focus",
+        "Research / Restrained Lead Plate"
+      ],
+      "pedal_ids": [
+        "99b04959-0538-58c6-bd32-4382e98a18ba",
+        "8b2c2f18-15bd-51f8-9ad7-2a5802be699b",
+        "ee9a4b9e-fe13-5d0b-9626-9278deeded99",
+        "40000000-0000-4000-8000-000000000076",
+        "b114d71f-4a68-5812-b498-9dc8f31256b8",
+        "5e74de2a-e468-57fb-8464-1ee927e0e24f"
+      ],
+      "instance_ids": [
+        "f7968f96-5dc1-5170-a667-0b5a2c55094d",
+        "8f4a752e-8bec-54ee-a232-f44b8baa9237",
+        "0e793abb-8c83-5cb7-bd25-ae83d5cdf515",
+        "dd5cf0d7-867f-5e9e-a648-ddda290edf7b",
+        "984d2ed4-2a39-5a7b-9dc6-0b8f35fbef2f",
+        "26338570-adb5-50bb-ac58-b26e5ddf7c4f"
+      ],
+      "cabinet_assets": {
+        "3": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "db53bbcc-0dd5-512a-8a0f-6b686bcf8bbb",
+      "key": "alternative.lithium.clean",
+      "name": "Nirvana / Lithium - Dry Clean",
+      "output_db": 3.5,
+      "pedals": [
+        "Nirvana / Open Clean Combo",
+        "Cabinet Unity",
+        "Nirvana / Dry Clean Body",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "9ef951b0-e590-537c-be22-6d685f5684ff",
+        "40000000-0000-4000-8000-000000000076",
+        "a5a7e91b-98b6-54e0-b8f6-48fce8582c91",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "64ac864d-d2b4-57b7-a10b-35321f6ec4c5",
+        "ba1c5f37-dd4b-5b21-aecc-da161970bf13",
+        "68ba53ff-b80c-502d-bd13-1a4fbc1684ca",
+        "2b82e498-2e0b-5136-a764-283149913ce8"
+      ],
+      "cabinet_assets": {
+        "1": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "3c473b18-ef9a-566b-84dc-e8d3a2da3dae",
+      "key": "alternative.lithium.fuzz",
+      "name": "Nirvana / Lithium - Dark Sustain Fuzz",
+      "output_db": -13.0,
+      "pedals": [
+        "Nirvana / Dark Lithium Sustain Fuzz",
+        "Nirvana / Pedal Driven Combo",
+        "Cabinet Unity",
+        "Nirvana / Dark Lithium Weight",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "5ed6d215-bd26-5c20-b7bd-6c7e3169485d",
+        "ee9a4b9e-fe13-5d0b-9626-9278deeded99",
+        "40000000-0000-4000-8000-000000000076",
+        "b63efd5e-9e9c-5588-82bf-70782d07296f",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "77ebd893-388d-56f1-998e-3d0f6d295f4a",
+        "0fd2642d-0fa3-5f86-82ba-53dc668971e9",
+        "4e6ef038-e933-55c9-ac50-01e35f01e4f4",
+        "fac61a06-e7ec-5f84-8dd2-e2b60e0ca392",
+        "bddb18c5-66fb-5e27-b49d-bd2924a49058"
+      ],
+      "cabinet_assets": {
+        "2": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+      }
+    },
+    {
+      "id": "6f0f2104-6ca4-5f48-9c02-b8408504febe",
+      "key": "alternative.mtv.acoustic",
+      "name": "Nirvana / The Man Who Sold the World MTV Unplugged - Acoustic Source",
+      "output_db": -1.5,
+      "pedals": [
+        "Research / Acoustic Source Balance",
+        "Research / Acoustic Air"
+      ],
+      "pedal_ids": [
+        "ff6dcdd1-d776-55ab-8aa8-efa0d6238805",
+        "2d897bdc-bef5-5542-b546-6cc97da4a5ea"
+      ],
+      "instance_ids": [
+        "0cd2c82d-f089-5f96-9525-581975867ea0",
+        "580e76c4-8516-51ec-99e3-a040cf5fc048"
+      ],
+      "cabinet_assets": {}
+    },
+    {
+      "id": "9cd49b2e-2151-532f-abc3-1d485a4d2452",
+      "key": "alternative.mtv.lead",
+      "name": "Nirvana / The Man Who Sold the World MTV Unplugged - Colored Acoustic Lead",
+      "output_db": 1.0,
+      "pedals": [
+        "Nirvana / Restrained Unplugged Color",
+        "Nirvana / Electro-Acoustic Mono Color",
+        "Nirvana / Electro-Acoustic Clean Support",
+        "Cabinet Unity",
+        "Nirvana / Dry Clean Body",
+        "Research / Acoustic Air"
+      ],
+      "pedal_ids": [
+        "e66c2946-4ee1-5a68-a791-91f109a068d7",
+        "f4a69831-7436-55d6-a7d9-d59716ed014b",
+        "14666cd6-eb08-5606-88f7-ad7aac8d8c00",
+        "40000000-0000-4000-8000-000000000076",
+        "a5a7e91b-98b6-54e0-b8f6-48fce8582c91",
+        "2d897bdc-bef5-5542-b546-6cc97da4a5ea"
+      ],
+      "instance_ids": [
+        "f1b566e7-e58f-5a49-bf53-f2ed330a9d84",
+        "5fdfe072-accf-5f65-831e-3e524ce4092b",
+        "801f79be-f9c8-5e8e-b18f-46507817e722",
+        "4d28cafd-79fb-5c69-addf-e864f8202d59",
+        "5dba8258-c24f-5371-9818-b293df925bca",
+        "c9f9d251-25f4-5509-8031-712dd6e4b438"
+      ],
+      "cabinet_assets": {
+        "3": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "484bc475-fb83-56ea-ba6a-2c57c64bf188",
+      "key": "alternative.mtv.electric",
+      "name": "Nirvana / The Man Who Sold the World MTV Unplugged - Electric Adaptation",
+      "output_db": 6,
+      "pedals": [
+        "Research / Natural Pick Compression",
+        "Nirvana / Electro-Acoustic Mono Color",
+        "Nirvana / Electro-Acoustic Clean Support",
+        "Cabinet Unity",
+        "Research / Electric Acoustic Adaptation",
+        "Research / Acoustic Air"
+      ],
+      "pedal_ids": [
+        "261ac95d-f4de-54cb-b01a-898dc1ed500e",
+        "f4a69831-7436-55d6-a7d9-d59716ed014b",
+        "14666cd6-eb08-5606-88f7-ad7aac8d8c00",
+        "40000000-0000-4000-8000-000000000076",
+        "0518d098-f189-5bca-88ec-ae5846d1588f",
+        "2d897bdc-bef5-5542-b546-6cc97da4a5ea"
+      ],
+      "instance_ids": [
+        "8a22705c-c231-529b-9023-b7b6bab0321d",
+        "55ccb873-5ff3-54c3-baae-a47373549d48",
+        "6c316751-fcc3-59d1-99b5-311bfa7547aa",
+        "a5f52b4f-aec8-579e-9875-81fce0a023ff",
+        "abe612be-7ff0-5228-a8e2-f1944b3f3a56",
+        "0fcafb84-e3a6-59f8-a9ce-53135417d308"
+      ],
+      "cabinet_assets": {
+        "3": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "d24f4b8f-029c-5bd8-a16d-01cc70133420",
+      "key": "alternative.bloom.clean",
+      "name": "Nirvana / In Bloom - Dry Clean",
+      "output_db": 3.5,
+      "pedals": [
+        "Nirvana / Open Clean Combo",
+        "Cabinet Unity",
+        "Nirvana / Dry Clean Body",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "9ef951b0-e590-537c-be22-6d685f5684ff",
+        "40000000-0000-4000-8000-000000000076",
+        "a5a7e91b-98b6-54e0-b8f6-48fce8582c91",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "e34e8ff1-fef0-50c4-b5cf-8c308d42cd20",
+        "17b0b685-1bcb-5819-8ce3-1ab77906d1a7",
+        "83dbc164-59ad-58ef-9723-7ac15a75c69f",
+        "3cc12a42-b213-54c6-a636-c3e63b9d67be"
+      ],
+      "cabinet_assets": {
+        "1": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "01076174-b21d-511b-8d2f-8c1c6ce25d5e",
+      "key": "alternative.bloom.rhythm",
+      "name": "Nirvana / In Bloom - Full Hard Rhythm",
+      "output_db": -11.0,
+      "pedals": [
+        "Nirvana / Hard Chord Distortion",
+        "Nirvana / Pedal Driven Combo",
+        "Cabinet Unity",
+        "Nirvana / Nevermind Hard-Chord Focus",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "216547e9-4586-56c2-998b-29115ef52e1b",
+        "ee9a4b9e-fe13-5d0b-9626-9278deeded99",
+        "40000000-0000-4000-8000-000000000076",
+        "35ee6b55-ec56-5666-9be5-5ea01acaf44c",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "3ee215a6-8d16-5d6f-a019-3b8678216bdf",
+        "06699e57-6c54-56de-b205-915c518cec24",
+        "a36a8ba8-3895-5749-a31f-0f118aa7e741",
+        "3a2073ce-5900-571b-9ea1-60f9a3b5a511",
+        "f8343418-76cd-502b-8374-0e893cddd1ba"
+      ],
+      "cabinet_assets": {
+        "2": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+      }
+    },
+    {
+      "id": "66a66a65-94d3-5717-8aff-76d3044fb9d8",
+      "key": "alternative.bloom.lead",
+      "name": "Nirvana / In Bloom - Rough Lead",
+      "output_db": -11.5,
+      "pedals": [
+        "Nirvana / Rough Melodic Distortion",
+        "Nirvana / Pedal Driven Combo",
+        "Cabinet Unity",
+        "Research / Singing Mid Focus",
+        "Research / Restrained Lead Plate"
+      ],
+      "pedal_ids": [
+        "99b04959-0538-58c6-bd32-4382e98a18ba",
+        "ee9a4b9e-fe13-5d0b-9626-9278deeded99",
+        "40000000-0000-4000-8000-000000000076",
+        "b114d71f-4a68-5812-b498-9dc8f31256b8",
+        "5e74de2a-e468-57fb-8464-1ee927e0e24f"
+      ],
+      "instance_ids": [
+        "2ca85fbe-4928-57ed-b12f-9e2ac5bb86bc",
+        "8008d444-3a1b-51e1-9b6f-fa451a090c37",
+        "ee34c9ee-2d5b-5e1e-89f7-91d072f2425c",
+        "20724c89-0a33-5e75-806a-846011ab5d83",
+        "a894010f-c4f7-5572-b11d-068bf8914fca"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "ad9525cc-1ec8-5ef5-9a9a-b2401e30e492",
+      "key": "alternative.chop.clean",
+      "name": "System Of A Down / Chop Suey! - Picked Clean Adaptation",
+      "output_db": 0.5,
+      "pedals": [
+        "Research / Natural Pick Compression",
+        "System Of A Down / Clear Picked Amp",
+        "Cabinet Unity",
+        "System Of A Down / Defined Picking",
+        "Research / Acoustic Air"
+      ],
+      "pedal_ids": [
+        "261ac95d-f4de-54cb-b01a-898dc1ed500e",
+        "e66c0d1e-668c-59ba-a07c-099d12524434",
+        "40000000-0000-4000-8000-000000000076",
+        "493a953d-9586-58a7-82a7-97c11695c1f1",
+        "2d897bdc-bef5-5542-b546-6cc97da4a5ea"
+      ],
+      "instance_ids": [
+        "02fe0f01-2c90-5848-93ea-e984122df167",
+        "6eef8c65-76b0-584f-a147-71efa62a64e1",
+        "55d198ec-46a5-59f1-bfd3-771631ff3968",
+        "f9dca5e7-fe1c-5eaf-a17b-2fc2daa55d58",
+        "6798d2ad-2b85-57df-a948-763850654f8f"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "34d96294-521a-54d7-a37e-8b7e1aeae28b",
+      "key": "alternative.chop.rhythm",
+      "name": "System Of A Down / Chop Suey! - Tight Rhythm",
+      "output_db": -12.0,
+      "pedals": [
+        "Research / Rhythm Noise Control",
+        "System Of A Down / Chop Tight Attack",
+        "Cabinet Unity",
+        "System Of A Down / Chop Low-C Stops"
+      ],
+      "pedal_ids": [
+        "d5c53273-e582-5e0e-87b0-f456bca9b2d6",
+        "7ee94821-6a13-53f1-922c-b9bfee111624",
+        "40000000-0000-4000-8000-000000000076",
+        "7affbbda-76a4-5ce7-a915-b0d3a19778e3"
+      ],
+      "instance_ids": [
+        "c0d1a46f-261f-50e7-9b63-7d248505266e",
+        "4c813e0a-17cc-58fc-8cd6-575215888a7f",
+        "ef85b09d-4f34-5cf4-a0d7-c3cfe3835a2f",
+        "f8a92ba0-d2dd-549a-a1c7-4ac1b0ea793f"
+      ],
+      "cabinet_assets": {
+        "2": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d"
+      }
+    },
+    {
+      "id": "0c1cfb1b-5f21-53d2-9a57-db602c41598a",
+      "key": "alternative.chop.open",
+      "name": "System Of A Down / Chop Suey! - Open Heavy Chords",
+      "output_db": -16.0,
+      "pedals": [
+        "System Of A Down / Open Toxicity Chords",
+        "Cabinet Unity",
+        "System Of A Down / Toxicity Weight And Bite",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "76330550-d999-5361-8d8e-5e4da903f4d9",
+        "40000000-0000-4000-8000-000000000076",
+        "c3fb26d5-edd8-583b-938d-c52cb336c276",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "f61d3267-fac6-545f-a502-7aa0604ce8b7",
+        "9b613d19-b361-50b6-817f-ec1e6ef384e9",
+        "e52b020b-7565-5831-b1cb-64981d6a4440",
+        "2ff1ab61-60ca-5d69-9005-f26ce7f2fa03"
+      ],
+      "cabinet_assets": {
+        "1": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+      }
+    },
+    {
+      "id": "07e8fd36-94f8-5ed0-b079-132634514abd",
+      "key": "alternative.tox.clean",
+      "name": "System Of A Down / Toxicity - Defined Clean",
+      "output_db": 1.5,
+      "pedals": [
+        "System Of A Down / Clear Picked Amp",
+        "Cabinet Unity",
+        "System Of A Down / Defined Picking",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "e66c0d1e-668c-59ba-a07c-099d12524434",
+        "40000000-0000-4000-8000-000000000076",
+        "493a953d-9586-58a7-82a7-97c11695c1f1",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "a8414dc2-68bc-5c6e-8f1c-9d1d07bcceeb",
+        "042cdf1e-4981-572b-bcac-70ddc34b14df",
+        "e8845787-b5b0-59c4-9faa-b007b606bc13",
+        "f1814c4f-d6df-5058-98fa-8616ead5ed72"
+      ],
+      "cabinet_assets": {
+        "1": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "e10c16ee-53d6-52d4-8c66-ea27f7ddf294",
+      "key": "alternative.tox.rhythm",
+      "name": "System Of A Down / Toxicity - Body And Bite Rhythm",
+      "output_db": -12.5,
+      "pedals": [
+        "Research / Rhythm Noise Control",
+        "System Of A Down / Toxicity Body And Teeth",
+        "Cabinet Unity",
+        "System Of A Down / Toxicity Weight And Bite"
+      ],
+      "pedal_ids": [
+        "d5c53273-e582-5e0e-87b0-f456bca9b2d6",
+        "b24ec661-8a8d-5533-b8f0-84a39bb4741c",
+        "40000000-0000-4000-8000-000000000076",
+        "c3fb26d5-edd8-583b-938d-c52cb336c276"
+      ],
+      "instance_ids": [
+        "cf6be1a5-0f7a-5d0c-bc94-30ed343f3158",
+        "06e42d30-06c8-5d72-ae9f-8a57c8d242ac",
+        "87943bf0-f47e-51bb-910a-e35cb5ab354f",
+        "7100b8ce-6902-5403-99d7-0a2c7f6db8f8"
+      ],
+      "cabinet_assets": {
+        "2": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+      }
+    },
+    {
+      "id": "cd52369e-11d6-5d63-9b7e-8d8a231f4535",
+      "key": "alternative.tox.lead",
+      "name": "System Of A Down / Toxicity - Articulate Heavy Lead",
+      "output_db": -10.5,
+      "pedals": [
+        "System Of A Down / Open Toxicity Chords",
+        "Cabinet Unity",
+        "Research / Singing Mid Focus",
+        "Research / Restrained Lead Plate"
+      ],
+      "pedal_ids": [
+        "76330550-d999-5361-8d8e-5e4da903f4d9",
+        "40000000-0000-4000-8000-000000000076",
+        "b114d71f-4a68-5812-b498-9dc8f31256b8",
+        "5e74de2a-e468-57fb-8464-1ee927e0e24f"
+      ],
+      "instance_ids": [
+        "35fb331c-e0d3-5db8-a7ec-6d770c0f68f7",
+        "5015955e-9f52-58e8-b157-c71d9d38f790",
+        "e77727f4-0318-5349-a84c-bd33aaab6f20",
+        "f00e944e-4c44-5e07-8d7b-466c548936a7"
+      ],
+      "cabinet_assets": {
+        "1": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d"
+      }
+    },
+    {
+      "id": "aedb41b9-8004-55bd-9559-b754eba28c69",
+      "key": "alternative.soldier.clean",
+      "name": "System Of A Down / Soldier Side - Clear Clean",
+      "output_db": 0.5,
+      "pedals": [
+        "Research / Natural Pick Compression",
+        "System Of A Down / Clear Picked Amp",
+        "Cabinet Unity",
+        "System Of A Down / Defined Picking",
+        "Research / Acoustic Air"
+      ],
+      "pedal_ids": [
+        "261ac95d-f4de-54cb-b01a-898dc1ed500e",
+        "e66c0d1e-668c-59ba-a07c-099d12524434",
+        "40000000-0000-4000-8000-000000000076",
+        "493a953d-9586-58a7-82a7-97c11695c1f1",
+        "2d897bdc-bef5-5542-b546-6cc97da4a5ea"
+      ],
+      "instance_ids": [
+        "bd464979-e5f9-5bd5-a68d-f7bbf5f1cdee",
+        "7401ee1b-8399-59e1-8871-94f9bc5c382a",
+        "c50fc5d0-cc91-5de0-83d8-a6da95bb9b3c",
+        "e5464f72-fcf1-5949-9bca-0949282483eb",
+        "1ce74e48-46b0-50c2-b3d1-0a1e971d1012"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "01e9afae-1f57-5c00-8c2d-c3d29d3e1acc",
+      "key": "alternative.soldier.rhythm",
+      "name": "System Of A Down / Soldier Side - British Heavy Rhythm",
+      "output_db": -11.5,
+      "pedals": [
+        "System Of A Down / Hypnotize British Drive",
+        "Cabinet Unity",
+        "System Of A Down / Hypnotize String Attack",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "f3c4690c-3508-55bf-9dfa-4fe1fa859843",
+        "40000000-0000-4000-8000-000000000076",
+        "e254bc2c-b21f-5684-960c-b2c8b95789ab",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "9f517486-920a-5659-be42-1681c27991cd",
+        "cce8b923-fee0-534f-a6ad-d802f834edfb",
+        "7f25a8ef-433f-5c11-bf0f-5fc0e1d07c8d",
+        "c939e4e8-ac8c-5126-a68f-e993d97f6bea"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "a1b3b302-0619-5d07-87d4-cdf9701d2644",
+      "key": "alternative.soldier.lead",
+      "name": "System Of A Down / Soldier Side - Singing Lead",
+      "output_db": -11.5,
+      "pedals": [
+        "System Of A Down / Melodic British Lead",
+        "Cabinet Unity",
+        "Research / Singing Mid Focus",
+        "Research / Quiet Lead Echo",
+        "Research / Restrained Lead Plate"
+      ],
+      "pedal_ids": [
+        "54c128ae-1fd4-5e4d-87e7-eed84c1590ce",
+        "40000000-0000-4000-8000-000000000076",
+        "b114d71f-4a68-5812-b498-9dc8f31256b8",
+        "2ad8583e-fbbe-52af-9578-11217db88bf2",
+        "5e74de2a-e468-57fb-8464-1ee927e0e24f"
+      ],
+      "instance_ids": [
+        "8377f675-f8d7-5a0b-9ee8-bf94c2e0cf1a",
+        "2a149dec-2c17-5cab-b71f-b2e43334b572",
+        "9e13597a-6c81-5c12-8f10-ca676e03b54d",
+        "6b96c4fa-4704-5379-9b14-ec289ce42c39",
+        "85a2dc7c-ff0f-554c-a019-ffc747cc14b8"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "10a3641e-99d7-5947-a180-a8fc55593c68",
+      "key": "modernrock.everlong.intro",
+      "name": "Foo Fighters / Everlong - Ringing Intro Crunch",
+      "output_db": -6.5,
+      "pedals": [
+        "Foo Fighters / Ringing American Crunch",
+        "Cabinet Unity",
+        "Foo Fighters / Low-D Chord Separation",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "92991402-3259-5b0c-a3ed-8593a63d8b9a",
+        "40000000-0000-4000-8000-000000000076",
+        "24309a60-2073-5b25-8a52-1c8c3487f2b5",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "65118ee6-0861-58e8-b252-05ded3627ffa",
+        "9fe95057-0402-587b-9401-665fb2ffb3e2",
+        "950581fb-7643-5c80-ac0c-53ab0911fb5c",
+        "3c8c0962-1e1a-5ba0-9463-047313ff599a"
+      ],
+      "cabinet_assets": {
+        "1": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "423b2544-ed7c-5404-8588-94be615210e9",
+      "key": "modernrock.everlong.rhythm",
+      "name": "Foo Fighters / Everlong - Full Chord Rhythm",
+      "output_db": -4.0,
+      "pedals": [
+        "Foo Fighters / Complementary Body And Edge",
+        "Cabinet Unity",
+        "Foo Fighters / Low-D Chord Separation",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "d24dfab2-a479-5a97-acb1-b8d906e4198b",
+        "40000000-0000-4000-8000-000000000076",
+        "24309a60-2073-5b25-8a52-1c8c3487f2b5",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "d82d0e8c-cd54-53da-8f2d-7cb31df41557",
+        "05ecbd3d-c006-560f-bdd4-a376a6908a7a",
+        "5cb4374f-8107-5493-a16a-32a00e0c94e7",
+        "bc3aa8fe-33e7-50a8-8a2b-e3c4154ac918"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "7036a299-e39d-52eb-9825-497be1e86bad",
+      "key": "modernrock.everlong.upper",
+      "name": "Foo Fighters / Everlong - Upper Part Detail",
+      "output_db": -8.0,
+      "pedals": [
+        "Foo Fighters / Cutting Melodic Drive",
+        "Cabinet Unity",
+        "Foo Fighters / Upper Part Definition",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "66b9f109-90c4-5ced-b82c-0c6eb4f664f4",
+        "40000000-0000-4000-8000-000000000076",
+        "3545bba6-ad66-5ad6-bf3f-0e85f9f0a9f1",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "6fee2483-e0cc-58a6-9b9e-aec6e3899421",
+        "c5ae972a-c1a7-565b-9a9b-320d834d4a66",
+        "d0b51321-6f09-559d-aa19-ba62d6a1124b",
+        "6a0109ab-19c2-50f1-bac0-2cebea3cdb8d"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "fae53a93-cee5-57c3-af79-7f032b798777",
+      "key": "modernrock.everlong.breakdown",
+      "name": "Foo Fighters / Everlong - Clean Breakdown Adaptation",
+      "output_db": -0.5,
+      "pedals": [
+        "Foo Fighters / Reduced Drive Detail",
+        "Cabinet Unity",
+        "Foo Fighters / Dark Intro Balance",
+        "Research / Acoustic Air"
+      ],
+      "pedal_ids": [
+        "a362dbd5-e467-5838-a3f9-0eb67661947c",
+        "40000000-0000-4000-8000-000000000076",
+        "1685eb06-6bcb-54bd-8dbd-02f68a6095a4",
+        "2d897bdc-bef5-5542-b546-6cc97da4a5ea"
+      ],
+      "instance_ids": [
+        "1f4561b0-908b-54e5-8814-1bac224ceee6",
+        "0e4176fa-cc33-55d5-a705-72d3dcfe1812",
+        "b364da73-dd1e-56cc-8a1e-483dc4719630",
+        "31fa11ba-da12-54ed-b5b7-9b6f8078200c"
+      ],
+      "cabinet_assets": {
+        "1": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "c84cfc49-05cf-58b8-85bf-5f214cf95b4b",
+      "key": "modernrock.walk.clean",
+      "name": "Foo Fighters / Walk - Picked Intro Clean",
+      "output_db": 2.5,
+      "pedals": [
+        "Research / Natural Pick Compression",
+        "Foo Fighters / Clear American Picking",
+        "Cabinet Unity",
+        "Foo Fighters / Picked Clean Balance",
+        "Research / Acoustic Air"
+      ],
+      "pedal_ids": [
+        "261ac95d-f4de-54cb-b01a-898dc1ed500e",
+        "06dce4dd-4d91-527b-8ed2-138edaa64f5d",
+        "40000000-0000-4000-8000-000000000076",
+        "34bc6ae2-40a6-5e57-a3e4-c974ea78d798",
+        "2d897bdc-bef5-5542-b546-6cc97da4a5ea"
+      ],
+      "instance_ids": [
+        "249b6005-ed88-5753-bc91-a0823cc1649b",
+        "00b8e439-5ef6-5a36-b22e-3973c66998ca",
+        "f565ec9c-7739-50c2-8f83-6d64f09a2c76",
+        "1831c204-cf76-50ce-8890-d4a6b05d2a60",
+        "feabd53f-9c90-56f0-9447-f5679ea2fb41"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "6f120320-23c4-5d0a-93ba-1bc9202daeca",
+      "key": "modernrock.walk.rhythm",
+      "name": "Foo Fighters / Walk - Driving Rhythm",
+      "output_db": -7.5,
+      "pedals": [
+        "Foo Fighters / Garage American Drive",
+        "Cabinet Unity",
+        "Foo Fighters / Garage Mid Body",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "c2da5f9f-a6c1-5dd5-9bb8-17e7bdebd149",
+        "40000000-0000-4000-8000-000000000076",
+        "9640de1c-78ab-5c59-b1e4-75df488b2985",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "a228e7ca-9c22-5845-ad13-4670a4f3ac31",
+        "1bf41a66-d595-5a0b-a31e-04fc7175bf5f",
+        "c067b6d5-af62-580e-8118-5225d324aab4",
+        "24e4e5bf-b5e4-5266-a38e-b68d995ecf04"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "aac3779e-09bb-52d3-a716-7649d61b2963",
+      "key": "modernrock.walk.upper",
+      "name": "Foo Fighters / Walk - Upper Chime Support",
+      "output_db": -8.5,
+      "pedals": [
+        "Foo Fighters / Upper Chime Support",
+        "Cabinet Unity",
+        "Foo Fighters / Upper Part Definition",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "0229219d-5900-51db-82a9-326043e309a5",
+        "40000000-0000-4000-8000-000000000076",
+        "3545bba6-ad66-5ad6-bf3f-0e85f9f0a9f1",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "ea6f0c5f-4a0b-53d7-a519-755d579043a1",
+        "a7610ccc-d98e-5e3f-87c2-1a9f03e68e55",
+        "acc55f36-0be2-590f-8ebe-cc98612a5a87",
+        "dd2f8c58-0d69-55f6-9569-03f3e9c00d57"
+      ],
+      "cabinet_assets": {
+        "1": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "472b0718-9e99-599e-a87c-1abd225fe6f1",
+      "key": "modernrock.walk.lead",
+      "name": "Foo Fighters / Walk - Melodic Accent Lead",
+      "output_db": -8.0,
+      "pedals": [
+        "Foo Fighters / Cutting Melodic Drive",
+        "Cabinet Unity",
+        "Modern Rock / Lead Mid Separation",
+        "Modern Rock / Short Melodic Repeat",
+        "Research / Restrained Lead Plate"
+      ],
+      "pedal_ids": [
+        "66b9f109-90c4-5ced-b82c-0c6eb4f664f4",
+        "40000000-0000-4000-8000-000000000076",
+        "82002971-ee61-56cc-a22b-61b19da110e3",
+        "83669def-0a59-5fa4-ba8d-ce92c6d0d666",
+        "5e74de2a-e468-57fb-8464-1ee927e0e24f"
+      ],
+      "instance_ids": [
+        "43d46eec-5245-5117-b4f6-08fe94f4c740",
+        "a301113f-51c9-5953-a038-5e415feec506",
+        "6048215e-ff32-56b5-9ea4-4eb55dc6eadc",
+        "2565da14-7772-5230-acc8-64ba874180e0",
+        "f243fd3b-4f9e-59e7-ad1f-dd5a9d9906bf"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "1622ce41-826a-590e-9ee3-54be096a7670",
+      "key": "modernrock.hero.rhythm",
+      "name": "Foo Fighters / My Hero - Body And Edge Rhythm",
+      "output_db": -4.5,
+      "pedals": [
+        "Foo Fighters / Complementary Body And Edge",
+        "Cabinet Unity",
+        "Foo Fighters / Firm Chord Body",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "d24dfab2-a479-5a97-acb1-b8d906e4198b",
+        "40000000-0000-4000-8000-000000000076",
+        "3243b7a3-dcaf-5ad7-802b-8b14311e0438",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "56b40914-104e-5260-92b0-e0cb73a8cae0",
+        "d2830c80-f07f-5cdc-bcd7-38e0c69ab542",
+        "8f993fbe-a51c-530e-a7ed-9e8b3dc07828",
+        "8d520332-7e6f-51e7-b6ad-6f90f056c4a8"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "9c668b93-f46b-5600-ba39-c2caa54b9238",
+      "key": "modernrock.hero.upper",
+      "name": "Foo Fighters / My Hero - Octave Melody Detail",
+      "output_db": -8.0,
+      "pedals": [
+        "Foo Fighters / Cutting Melodic Drive",
+        "Cabinet Unity",
+        "Foo Fighters / Upper Part Definition",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "66b9f109-90c4-5ced-b82c-0c6eb4f664f4",
+        "40000000-0000-4000-8000-000000000076",
+        "3545bba6-ad66-5ad6-bf3f-0e85f9f0a9f1",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "008eebb5-895f-5b9d-8a37-d92477249291",
+        "b967a3e8-84b0-592b-85ec-4bf362f9d920",
+        "40fc0cfc-fe5d-5330-a7b3-c76ec24afb07",
+        "d7c70ac3-fd84-51f0-943b-45ecb5eb4d71"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "2aacc8e2-8e70-5289-83d3-131c529b7910",
+      "key": "modernrock.hero.breakdown",
+      "name": "Foo Fighters / My Hero - Reduced Drive Breakdown",
+      "output_db": 0.0,
+      "pedals": [
+        "Foo Fighters / Reduced Drive Detail",
+        "Cabinet Unity",
+        "Foo Fighters / Picked Clean Balance",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "a362dbd5-e467-5838-a3f9-0eb67661947c",
+        "40000000-0000-4000-8000-000000000076",
+        "34bc6ae2-40a6-5e57-a3e4-c974ea78d798",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "ac03abd4-b3de-5398-b81f-b586dc22d5f0",
+        "26afd015-4e23-5b6c-b56d-1db8a6a357a8",
+        "3c1ae161-88d2-5565-855b-1d81af4a0f5f",
+        "af52c5a9-3f89-5f54-84c0-d52ae9784f15"
+      ],
+      "cabinet_assets": {
+        "1": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "9fbbd0ce-9e6c-5cda-ac0d-6f7f62b1694e",
+      "key": "modernrock.pretender.clean",
+      "name": "Foo Fighters / The Pretender - Dark Clean Intro",
+      "output_db": 1.5,
+      "pedals": [
+        "Research / Natural Pick Compression",
+        "Foo Fighters / Clear American Picking",
+        "Cabinet Unity",
+        "Foo Fighters / Dark Intro Balance",
+        "Research / Acoustic Air"
+      ],
+      "pedal_ids": [
+        "261ac95d-f4de-54cb-b01a-898dc1ed500e",
+        "06dce4dd-4d91-527b-8ed2-138edaa64f5d",
+        "40000000-0000-4000-8000-000000000076",
+        "1685eb06-6bcb-54bd-8dbd-02f68a6095a4",
+        "2d897bdc-bef5-5542-b546-6cc97da4a5ea"
+      ],
+      "instance_ids": [
+        "208455ef-004b-57ac-8c75-cf16a0ed0f88",
+        "ed5d0d32-e2a7-53bf-b9ff-46926b825232",
+        "e745fcc9-5f56-55fc-bb5c-4e03752705e3",
+        "0afd0bd2-a428-5ffd-aaa8-9509d4da8ba9",
+        "be186f8c-ab13-5122-abae-d0de0d1b1443"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "481b51dd-101a-586b-a062-f891c61fc516",
+      "key": "modernrock.pretender.staccato",
+      "name": "Foo Fighters / The Pretender - Staccato Rhythm",
+      "output_db": -10.5,
+      "pedals": [
+        "Foo Fighters / Dry British Attack",
+        "Cabinet Unity",
+        "Foo Fighters / Staccato Low-End Control",
+        "Foo Fighters / Light Mix Punch",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "ff384d71-1d58-576c-8f51-a42419a8a63b",
+        "40000000-0000-4000-8000-000000000076",
+        "df4bcc3e-1e85-52d3-b130-a962ea041716",
+        "eb23f6a5-2c06-58ca-8611-aa4206013ba5",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "c5a0699a-c671-5199-a336-c9a0c4b66db2",
+        "dcda4bac-5d61-5dd3-b236-3db1b74d6924",
+        "f7a7ce16-19b6-54a4-a3e7-e9cf1403ed80",
+        "b47b31e6-e292-5df1-a0a9-0c61a140ff93",
+        "1349c43f-a0f5-5082-bef3-e4c7712bf2dc"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "0c906d91-ba61-572d-a80d-27223d31eb00",
+      "key": "modernrock.pretender.chorus",
+      "name": "Foo Fighters / The Pretender - Open Chorus Rhythm",
+      "output_db": -11.0,
+      "pedals": [
+        "Foo Fighters / Open British Chords",
+        "Cabinet Unity",
+        "Foo Fighters / Firm Chord Body",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "59439b9b-8f79-5990-891d-6704e7309371",
+        "40000000-0000-4000-8000-000000000076",
+        "3243b7a3-dcaf-5ad7-802b-8b14311e0438",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "dc1233f4-b608-5247-a5a1-277a02f68a7b",
+        "9718262a-3bd4-5307-a411-d8bbf6668aea",
+        "349e3e8b-754a-5dd2-ae85-ae51f68f6fdf",
+        "4ff93e67-57d8-5e23-a33f-0b8c0a191952"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "a62845bb-ad61-537a-8095-ff79f5f9ad5d",
+      "key": "modernrock.pretender.counter",
+      "name": "Foo Fighters / The Pretender - Cutting Countermelody",
+      "output_db": -8.0,
+      "pedals": [
+        "Foo Fighters / Cutting Melodic Drive",
+        "Cabinet Unity",
+        "Foo Fighters / Upper Part Definition",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "66b9f109-90c4-5ced-b82c-0c6eb4f664f4",
+        "40000000-0000-4000-8000-000000000076",
+        "3545bba6-ad66-5ad6-bf3f-0e85f9f0a9f1",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "aec63765-afd1-52dd-8974-4d9a493c463c",
+        "6a16cf2a-f3bb-5df8-af52-5bdcb69702ee",
+        "ea99014f-ef73-5b51-85b0-71f4262c2bd5",
+        "7e89ed1a-0fc5-536c-9317-3dbb7d28a335"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "96ac7796-e70d-57b7-9d70-d05fd448cb57",
+      "key": "modernrock.madness.rhythm",
+      "name": "Shinedown / Sound of Madness - Tight Riff Rhythm",
+      "output_db": -12.0,
+      "pedals": [
+        "Research / Rhythm Noise Control",
+        "Shinedown / Madness Riff Definition",
+        "Cabinet Unity",
+        "Shinedown / Madness Low-D Control"
+      ],
+      "pedal_ids": [
+        "d5c53273-e582-5e0e-87b0-f456bca9b2d6",
+        "c89c379c-19d2-5bbc-802f-6105ce47f853",
+        "40000000-0000-4000-8000-000000000076",
+        "281ea4c8-0e88-5712-a547-0b81be0464c3"
+      ],
+      "instance_ids": [
+        "44972aba-2d31-54ef-8b97-037414daa9ae",
+        "123917da-5621-578f-889b-c2b2168f5c08",
+        "4c98fcd3-f4c2-56bb-bf69-8c6ccf88889b",
+        "d3428c53-0995-566a-ab6d-c82ecad52392"
+      ],
+      "cabinet_assets": {
+        "2": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d"
+      }
+    },
+    {
+      "id": "7fd7a60e-c3e9-52f6-beb3-93f43bf3f2e5",
+      "key": "modernrock.madness.chorus",
+      "name": "Shinedown / Sound of Madness - Broad Chorus Chords",
+      "output_db": -15.0,
+      "pedals": [
+        "Shinedown / Madness Open Chords",
+        "Cabinet Unity",
+        "Shinedown / Madness Low-D Control",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "9e09fa42-3961-5639-9a88-c01882544a82",
+        "40000000-0000-4000-8000-000000000076",
+        "281ea4c8-0e88-5712-a547-0b81be0464c3",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "d0362670-2337-5e2e-83fd-f5d9a74022b6",
+        "9fe46d5d-fe5e-50f7-bd9c-260ac5d8233e",
+        "5a7e9b28-70f1-5da4-8104-79f256ac5422",
+        "0e96fca0-fb91-5b06-af17-e932738ce86f"
+      ],
+      "cabinet_assets": {
+        "1": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+      }
+    },
+    {
+      "id": "86b4c7c5-ae11-52cd-aa8a-c09cf353866d",
+      "key": "modernrock.madness.lead",
+      "name": "Shinedown / Sound of Madness - Filtered Lead Adaptation",
+      "output_db": -8.5,
+      "pedals": [
+        "Shinedown / Stationary Lead Color Adaptation",
+        "Shinedown / Forward Melodic Sustain",
+        "Cabinet Unity",
+        "Modern Rock / Lead Mid Separation",
+        "Modern Rock / Short Melodic Repeat",
+        "Research / Restrained Lead Plate"
+      ],
+      "pedal_ids": [
+        "c36555aa-1efd-50e1-a044-28c237c7d0fe",
+        "935d9c82-0052-5285-8926-b07e7f88184d",
+        "40000000-0000-4000-8000-000000000076",
+        "82002971-ee61-56cc-a22b-61b19da110e3",
+        "83669def-0a59-5fa4-ba8d-ce92c6d0d666",
+        "5e74de2a-e468-57fb-8464-1ee927e0e24f"
+      ],
+      "instance_ids": [
+        "95a066ed-7194-5db2-9ac7-9490d83dc34d",
+        "729ff5ea-a2b2-52f8-aa5f-6b9b50cff7da",
+        "79b279f5-b094-59be-a5d9-69bf49cfbc50",
+        "53627725-629d-50b4-a8b9-19a1ddb1dcbc",
+        "1b1e3065-4717-52fa-ad04-e772fa69fa76",
+        "0d51c843-82f3-5654-a6fe-82b4b127fbc0"
+      ],
+      "cabinet_assets": {
+        "2": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "8fc64f6f-9060-5e43-afaf-f4e6435f17ff",
+      "key": "modernrock.monsters.verse",
+      "name": "Shinedown / Monsters - Verse Clarity Adaptation",
+      "output_db": -1.5,
+      "pedals": [
+        "Research / Natural Pick Compression",
+        "Shinedown / Sparse Verse Clarity",
+        "Cabinet Unity",
+        "Shinedown / Monsters Low-String Balance",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "261ac95d-f4de-54cb-b01a-898dc1ed500e",
+        "48e7a475-e8fd-5cb3-93dc-ebbe0aa7e4df",
+        "40000000-0000-4000-8000-000000000076",
+        "70f51303-5b46-5934-8e12-b6d88814ab32",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "29e4b544-fc1a-5fa1-9996-1f7870f50927",
+        "00fb12f0-ab66-51a7-ac41-3929a4e22679",
+        "ac8ca051-ce57-5d33-ac02-ee5af5180e0d",
+        "ab51aafc-f949-5a15-8bcf-ea9f10b376d3",
+        "a58c76f5-7f36-5fd3-bfc3-837269dfcd55"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "754407f1-38e3-5693-8f84-caa3b20a83ef",
+      "key": "modernrock.monsters.riff",
+      "name": "Shinedown / Monsters - Wiry Main Riff",
+      "output_db": -11.5,
+      "pedals": [
+        "Research / Rhythm Noise Control",
+        "Shinedown / Wiry D-Standard Riff",
+        "Cabinet Unity",
+        "Shinedown / Monsters Low-String Balance"
+      ],
+      "pedal_ids": [
+        "d5c53273-e582-5e0e-87b0-f456bca9b2d6",
+        "bf06cb3e-a7ce-5ed6-a6c1-0c88c782b7c0",
+        "40000000-0000-4000-8000-000000000076",
+        "70f51303-5b46-5934-8e12-b6d88814ab32"
+      ],
+      "instance_ids": [
+        "784d38a0-c68e-5e7c-923f-aed8d741bc03",
+        "a62dd98b-3e9e-5744-955c-73ae87bd20fb",
+        "c95dfeed-3435-5827-bab7-bf713ee81b89",
+        "4f926601-461f-54c6-ab10-2fbf8d604cda"
+      ],
+      "cabinet_assets": {
+        "2": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "66ce90a6-8aa2-53e2-911f-6b3a49dfcaaf",
+      "key": "modernrock.monsters.chorus",
+      "name": "Shinedown / Monsters - Full Chorus Rhythm",
+      "output_db": -11.5,
+      "pedals": [
+        "Shinedown / Monsters Full Chords",
+        "Cabinet Unity",
+        "Shinedown / Monsters Low-String Balance",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "ec3b3494-7904-5047-9f84-64236f88b58b",
+        "40000000-0000-4000-8000-000000000076",
+        "70f51303-5b46-5934-8e12-b6d88814ab32",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "2ee795b0-1df4-51b7-9a60-79246d1b4212",
+        "f597a24e-d62f-520b-be2a-d0a94eaa985c",
+        "11bcc6f6-5ebf-5cbf-9a20-0f0c68ad2e74",
+        "a46ae045-ae34-56bd-b441-0ada0fd22827"
+      ],
+      "cabinet_assets": {
+        "1": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d"
+      }
+    },
+    {
+      "id": "eb726d04-0844-5c8f-8d91-147900a3797a",
+      "key": "modernrock.monsters.lead",
+      "name": "Shinedown / Monsters - Melodic Accent Lead",
+      "output_db": -11.0,
+      "pedals": [
+        "Shinedown / Forward Melodic Sustain",
+        "Cabinet Unity",
+        "Modern Rock / Lead Mid Separation",
+        "Modern Rock / Short Melodic Repeat",
+        "Research / Restrained Lead Plate"
+      ],
+      "pedal_ids": [
+        "935d9c82-0052-5285-8926-b07e7f88184d",
+        "40000000-0000-4000-8000-000000000076",
+        "82002971-ee61-56cc-a22b-61b19da110e3",
+        "83669def-0a59-5fa4-ba8d-ce92c6d0d666",
+        "5e74de2a-e468-57fb-8464-1ee927e0e24f"
+      ],
+      "instance_ids": [
+        "40f16869-29dc-59c4-a122-a8be8ebbad0c",
+        "40009ca3-bb71-5073-b3d7-f78b455627d9",
+        "f48563a4-86b0-55a8-b12c-68b6bd3ea426",
+        "4af35edb-c31b-5146-89d8-eab9a1e3d55d",
+        "d9b349f3-054f-531d-bd67-15332ba6d65a"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+      }
+    },
+    {
+      "id": "0dde262f-8269-51ab-a125-9a892f394a18",
+      "key": "modernrock.cord.riff",
+      "name": "Shinedown / Cut the Cord - Rough Fuzz Combo",
+      "output_db": -10.0,
+      "pedals": [
+        "Research / Rhythm Noise Control",
+        "Shinedown / Rough Combo Fuzz Adaptation",
+        "Shinedown / Rough Small-Combo Support",
+        "Cabinet Unity",
+        "Shinedown / Combo Fuzz Definition"
+      ],
+      "pedal_ids": [
+        "d5c53273-e582-5e0e-87b0-f456bca9b2d6",
+        "cbb298ee-9a38-5bf6-ae40-35420812a2a1",
+        "31050108-62fe-5c14-af64-27c2c34e55a1",
+        "40000000-0000-4000-8000-000000000076",
+        "779e037a-8e13-5cb8-b7df-7363d3007ea7"
+      ],
+      "instance_ids": [
+        "f55a6fd5-d8bb-53f1-9e0b-bdde8b375245",
+        "1cbdd28c-5127-514b-b9d2-338ef903534c",
+        "8339b53a-e175-5ef1-a6b5-d29b2970e061",
+        "a7d76526-b077-50c7-b676-ca9aecc4fdd3",
+        "c3346c56-1d0a-535d-be63-8ab996bbae76"
+      ],
+      "cabinet_assets": {
+        "3": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "69782437-3a87-5b58-a58f-c5d01ed11560",
+      "key": "modernrock.cord.chorus",
+      "name": "Shinedown / Cut the Cord - Open Combo Chorus",
+      "output_db": -9.5,
+      "pedals": [
+        "Shinedown / Open Combo Drive",
+        "Cabinet Unity",
+        "Shinedown / Combo Fuzz Definition",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "fd8f3a69-b20b-55ab-96db-b709218aaa05",
+        "40000000-0000-4000-8000-000000000076",
+        "779e037a-8e13-5cb8-b7df-7363d3007ea7",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "2a819417-5bca-5251-8b2a-89e44c02e894",
+        "1a2991ae-d869-5faf-a26b-c471f7162f66",
+        "2ec7bedd-896d-5a64-9c46-abbf7794d9d1",
+        "746b225d-1187-5e29-ade8-ae6e44008a14"
+      ],
+      "cabinet_assets": {
+        "1": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "5fbb860c-41cf-50cf-80e0-a63c0c4f35d4",
+      "key": "modernrock.cord.accent",
+      "name": "Shinedown / Cut the Cord - Filtered Hook Accent",
+      "output_db": 6,
+      "pedals": [
+        "Shinedown / Stationary Lead Color Adaptation",
+        "Shinedown / Rough Small-Combo Support",
+        "Cabinet Unity",
+        "Modern Rock / Lead Mid Separation",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "c36555aa-1efd-50e1-a044-28c237c7d0fe",
+        "31050108-62fe-5c14-af64-27c2c34e55a1",
+        "40000000-0000-4000-8000-000000000076",
+        "82002971-ee61-56cc-a22b-61b19da110e3",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "4de81974-2016-5624-8620-d06df42d647b",
+        "e4eb0b0c-21f1-5d2d-8ba2-b338bdc90e6a",
+        "6ff6d862-ee41-5b6a-888a-394d536fba98",
+        "88ba390b-065d-5cf0-8cbb-8cca4a62a113",
+        "19d86bf7-f4ea-500c-afe1-4b0b164c1f26"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "c107a32b-42de-5ad2-ad6a-d17ccc1e9c50",
+      "key": "modernrock.devil.rhythm",
+      "name": "Shinedown / Devil - Dry Stop Rhythm",
+      "output_db": -12.0,
+      "pedals": [
+        "Research / Rhythm Noise Control",
+        "Shinedown / Devil Dry Stop Attack",
+        "Cabinet Unity",
+        "Shinedown / Devil Riff Space"
+      ],
+      "pedal_ids": [
+        "d5c53273-e582-5e0e-87b0-f456bca9b2d6",
+        "57f632e8-e87e-5981-b231-188436c55cc2",
+        "40000000-0000-4000-8000-000000000076",
+        "61150646-1868-5514-9279-440a3c082bb3"
+      ],
+      "instance_ids": [
+        "8fa60cc7-fb52-55fe-8d2e-332c5e5b56a7",
+        "8a54f38b-3d81-5d82-8ad2-6af18293f32c",
+        "ae70b5c8-9f70-5fb9-b97d-0790a7778fb6",
+        "64e7482f-0c2d-5311-a7c6-d070fe4119fd"
+      ],
+      "cabinet_assets": {
+        "2": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d"
+      }
+    },
+    {
+      "id": "589ccac6-d60d-5751-acf5-30ed014564b3",
+      "key": "modernrock.devil.chorus",
+      "name": "Shinedown / Devil - Open Chorus Rhythm",
+      "output_db": -15.0,
+      "pedals": [
+        "Shinedown / Devil Broad Chords",
+        "Cabinet Unity",
+        "Shinedown / Devil Riff Space",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "8b517257-348f-5a5f-bf0c-a07ee756d6e4",
+        "40000000-0000-4000-8000-000000000076",
+        "61150646-1868-5514-9279-440a3c082bb3",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "06e89ddf-61c7-54f3-a13a-c1d4d90fc1e2",
+        "db566df7-27bf-55c0-ae45-281b2713b66d",
+        "8eeac0a9-6b1d-54b9-adb3-9c6799a29e61",
+        "989378f6-95e0-55cb-96ce-2643d724b1ef"
+      ],
+      "cabinet_assets": {
+        "1": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+      }
+    },
+    {
+      "id": "32c0af1e-905c-5bdf-8a15-f9259adab7e2",
+      "key": "modernrock.devil.texture",
+      "name": "Shinedown / Devil - Filtered Texture Adaptation",
+      "output_db": -5.0,
+      "pedals": [
+        "Shinedown / Filtered Texture Drive",
+        "Shinedown / Rough Small-Combo Support",
+        "Cabinet Unity",
+        "Shinedown / Narrow Texture Adaptation",
+        "Modern Rock / Short Melodic Repeat"
+      ],
+      "pedal_ids": [
+        "539a7782-fb94-5061-a379-886f635447e9",
+        "31050108-62fe-5c14-af64-27c2c34e55a1",
+        "40000000-0000-4000-8000-000000000076",
+        "2ecbcd73-78b8-5488-9c23-48e017edb602",
+        "83669def-0a59-5fa4-ba8d-ce92c6d0d666"
+      ],
+      "instance_ids": [
+        "aab24e0e-0e44-5296-a4ba-d0f9bac34bd8",
+        "3c28e9ca-da64-5f69-b0c3-1060ca4c9be6",
+        "15971c57-fdd6-5c72-9a4b-c8b5af9d66a3",
+        "539016cc-afef-5e84-b229-6156189c2201",
+        "924a6201-7e6a-56bf-b01f-d19649f7b280"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "fdd784fd-cb19-5133-9445-93952291df08",
+      "key": "modernrock.blackbird.clean",
+      "name": "Alter Bridge / Blackbird - Fingerpicked Clean",
+      "output_db": 3.0,
+      "pedals": [
+        "Research / Natural Pick Compression",
+        "Alter Bridge / Fingerpicked Clean Body",
+        "Cabinet Unity",
+        "Alter Bridge / Fingerstyle String Balance",
+        "Research / Acoustic Air"
+      ],
+      "pedal_ids": [
+        "261ac95d-f4de-54cb-b01a-898dc1ed500e",
+        "8e746b92-d065-5fe2-b790-fba94f319571",
+        "40000000-0000-4000-8000-000000000076",
+        "24ed4796-71fe-5df7-a25d-4cf781cb10d2",
+        "2d897bdc-bef5-5542-b546-6cc97da4a5ea"
+      ],
+      "instance_ids": [
+        "5c10b744-9fda-5a16-b975-f1128dbf6cbc",
+        "245473ba-e1e3-5026-99b3-2d6efe9616e6",
+        "b4e75747-ec1f-5dfe-9e14-81135759f5cc",
+        "f6a1b8c3-66b9-5c40-9570-d280e6a90ca3",
+        "0584d33d-1bef-5c16-a532-35a6a562c134"
+      ],
+      "cabinet_assets": {
+        "2": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+      }
+    },
+    {
+      "id": "1b09ce14-7209-5e47-afd4-56d680481633",
+      "key": "modernrock.blackbird.tremonti.rhythm",
+      "name": "Alter Bridge / Blackbird - Tremonti Role Rhythm",
+      "output_db": -12.0,
+      "pedals": [
+        "Alter Bridge / Complementary Heavy Body",
+        "Cabinet Unity",
+        "Alter Bridge / Heavy Chord Separation",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "13506165-f760-5e8b-b832-b64090e5df25",
+        "40000000-0000-4000-8000-000000000076",
+        "25c534d5-85b0-53b3-8e5d-acf42742ce69",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "ab9c37d2-aa36-5411-b055-db59fa882575",
+        "e884bba5-1287-5fc2-8d3e-784b3a6030ae",
+        "3d4bc424-f3bd-54e6-8ca7-880a2400be89",
+        "7d20e8c5-3fea-5328-bfc6-65ea09fc91d2"
+      ],
+      "cabinet_assets": {
+        "1": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+      }
+    },
+    {
+      "id": "1cca1ab5-13d2-5892-8444-accf3e778eab",
+      "key": "modernrock.blackbird.kennedy.rhythm",
+      "name": "Alter Bridge / Blackbird - Kennedy Role Support",
+      "output_db": 6,
+      "pedals": [
+        "Alter Bridge / Supporting Mark-Family Rhythm",
+        "Cabinet Unity",
+        "Alter Bridge / Complementary Upper Weight",
+        "Research / Dry Tracking Room"
+      ],
+      "pedal_ids": [
+        "b20f5ebc-8fec-5029-bff7-6ae605e68ec1",
+        "40000000-0000-4000-8000-000000000076",
+        "d20df3b0-74c2-5d27-bcfb-3426da360627",
+        "ce6bb6d1-ea9c-593d-ba5f-e739ae4460e9"
+      ],
+      "instance_ids": [
+        "e17a6ff7-7079-5db1-83a1-6395a33f608a",
+        "464f8e52-f88a-5fe8-8b47-9872de851788",
+        "e2917151-6cb8-55b0-8209-de0164c295fc",
+        "4310826e-9d55-5fc2-912d-984400f1ce81"
+      ],
+      "cabinet_assets": {
+        "1": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d"
+      }
+    },
+    {
+      "id": "729c73bc-e7fb-5f58-83ac-4e265b9f13f9",
+      "key": "modernrock.blackbird.kennedy.lead",
+      "name": "Alter Bridge / Blackbird - Kennedy Expressive Lead",
+      "output_db": -1.5,
+      "pedals": [
+        "Alter Bridge / Expressive Mark-Family Lead",
+        "Cabinet Unity",
+        "Alter Bridge / Warm Expressive Lead Mids",
+        "Alter Bridge / Expressive Lead Repeat",
+        "Research / Restrained Lead Plate"
+      ],
+      "pedal_ids": [
+        "c2fc92ca-862c-5e9b-a07c-9b3e792022ec",
+        "40000000-0000-4000-8000-000000000076",
+        "62e9760a-3ec1-54f1-a3e4-85347ffd6b0f",
+        "809ace52-0551-55a0-aa90-5cdd13a0aaec",
+        "5e74de2a-e468-57fb-8464-1ee927e0e24f"
+      ],
+      "instance_ids": [
+        "0b8b21f3-2d4f-58fd-a885-b2adae04924f",
+        "70e910f7-dc4e-5df3-b924-a0bffea67328",
+        "f6a7a570-c77f-59be-9732-fb4dcc6db2e6",
+        "7058e447-13eb-5c1b-aaec-dcfbf7fdc912",
+        "1a0e30ee-94b0-541f-8c56-b53546f017a2"
+      ],
+      "cabinet_assets": {
+        "1": "7fb527368ad6abd01814b6e93db868e6651ab0c344994223d1682c2b5aac6e0d"
+      }
+    },
+    {
+      "id": "5f8b7345-a006-517b-84b9-297da7cecc26",
+      "key": "modernrock.blackbird.tremonti.lead",
+      "name": "Alter Bridge / Blackbird - Tremonti Articulate Lead",
+      "output_db": -10.0,
+      "pedals": [
+        "Alter Bridge / Articulate Hot-Rod Lead",
+        "Cabinet Unity",
+        "Alter Bridge / Fast Lead Note Definition",
+        "Alter Bridge / Articulate Lead Repeat",
+        "Research / Restrained Lead Plate"
+      ],
+      "pedal_ids": [
+        "d35cc275-f9eb-57a0-b15e-e1e435814f73",
+        "40000000-0000-4000-8000-000000000076",
+        "4235a93c-9d40-5d95-ab7a-b9ef6f4ef16b",
+        "38bcd533-681a-5c8b-9cd4-f8a46ce5a495",
+        "5e74de2a-e468-57fb-8464-1ee927e0e24f"
+      ],
+      "instance_ids": [
+        "0cbd32ea-31e0-58b7-979a-ee65016af0be",
+        "7b360b61-6501-5c84-add5-a4707177e9ed",
+        "55d9198a-c143-5960-b8d4-b456fd8de882",
+        "6c071846-7abd-5aac-b50f-4a101153db31",
+        "31f47e12-ae5e-5abc-9a66-a283bef24dfb"
+      ],
+      "cabinet_assets": {
+        "1": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
       }
     }
   ]

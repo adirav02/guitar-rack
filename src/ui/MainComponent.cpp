@@ -1,4 +1,5 @@
 #include "MainComponent.h"
+#include "StudioTheme.h"
 #include <cmath>
 
 namespace guitarrack {
@@ -8,13 +9,19 @@ void PeakMeter::update(float peak, bool clipped) {
     repaint();
 }
 void PeakMeter::paint(juce::Graphics& g) {
-    auto box = getLocalBounds().toFloat();
-    g.setColour(juce::Colour(0xff17212d)); g.fillRoundedRectangle(box, 4);
+    auto box = getLocalBounds().toFloat().reduced(1);
+    g.setColour(studio::inset); g.fillRoundedRectangle(box, 5);
     const auto db = value > 0 ? 20 * std::log10(value) : -60.0f;
     const auto fill = std::clamp((db + 60) / 60, 0.0f, 1.0f);
-    g.setColour(clip ? juce::Colour(0xffed655f) : juce::Colour(0xff5ad7b0));
-    g.fillRoundedRectangle(box.withWidth(box.getWidth() * fill), 4);
-    g.setColour(juce::Colours::white);
+    const auto track=box.reduced(5,5).withTrimmedRight(92);
+    const int segments=juce::jmax(1,int(track.getWidth()/7));
+    for(int i=0;i<segments;++i) {
+        const float fraction=float(i+1)/float(segments);
+        const auto colour=clip?studio::danger:fraction>.88f?studio::amber:studio::accent;
+        g.setColour(colour.withAlpha(fraction<=fill?.95f:.12f));
+        g.fillRoundedRectangle(track.getX()+float(i)*track.getWidth()/float(segments),track.getY(),juce::jmax(1.0f,track.getWidth()/float(segments)-2),track.getHeight(),1);
+    }
+    g.setColour(clip?studio::danger:studio::text);g.setFont(12.0f);
     g.drawText(value > 0.001f ? juce::String(db, 1) + " dBFS" : "< -60 dBFS", getLocalBounds().reduced(8), juce::Justification::centredRight);
 }
 void MainComponent::label(juce::Label& item, const juce::String& text) {
@@ -25,8 +32,9 @@ void MainComponent::label(juce::Label& item, const juce::String& text) {
 }
 MainComponent::MainComponent() {
     setWantsKeyboardFocus(true);
-    label(title, "GuitarRack | Serial rack");
-    title.setFont(juce::FontOptions(24));
+    label(title, "GuitarRack");
+    title.setFont(juce::FontOptions(26.0f,juce::Font::bold));
+    title.setColour(juce::Label::textColourId,studio::accent);
     label(hint, "M-Track Solo: guitar in physical Input 2, Instrument mode, Direct/USB switch on USB.\nUse wired headphones or monitors on your interface. Start with low headphone volume.");
     label(backendLabel, "Audio backend");
     label(inputDeviceLabel, "Input device"); label(outputDeviceLabel, "Output device");
@@ -46,6 +54,12 @@ MainComponent::MainComponent() {
         combo->onChange = [this] { setupError.clear(); updateEnabled(); };
 
     for (auto* button : {&startButton, &stopButton, &muteButton, &refreshButton, &resetClips}) addAndMakeVisible(button);
+    studio::primary(startButton);
+    stopButton.setColour(juce::TextButton::textColourOffId,studio::danger);
+    muteButton.setColour(juce::TextButton::buttonOnColourId,juce::Colour(0xff71442b));
+    hint.setColour(juce::Label::textColourId,studio::muted);
+    configLabel.setColour(juce::Label::textColourId,studio::muted);
+    configLabel.setFont(juce::FontOptions(12.0f));
     startButton.onClick = [this] { startAudio(); };
     stopButton.onClick = [this] { session.requestStop(); updateEnabled(); };
     muteButton.setClickingTogglesState(true);
@@ -66,21 +80,31 @@ MainComponent::MainComponent() {
     inputGain.onValueChange = [this] { session.processor.controls.setInputDb(static_cast<float>(inputGain.getValue())); };
     outputGain.onValueChange = [this] { session.processor.controls.setOutputDb(static_cast<float>(outputGain.getValue())); };
     addAndMakeVisible(inputMeter); addAndMakeVisible(outputMeter);
+    outputMeter.setTooltip("GuitarRack output before JACK/device connections. A moving meter does not confirm sound at the interface.");
     inputChannel.setTooltip("Choose one physical input. For M-Track Solo guitar, choose channel 2.");
     rateBox.setTooltip("JACK uses the existing server rate; GuitarRack does not change global audio policy.");
-    bufferBox.setTooltip("JACK uses the existing server buffer. ALSA exposes the device's supported choices.");
+    bufferBox.setTooltip("PipeWire JACK: requested per-client period, applied on Start. ALSA: device-supported sizes. Check Actual after Start.");
     outputGain.setTooltip("Defaults to -12 dB. Output protection clamps peaks at 0.98; clipping changes tone.");
     addAndMakeVisible(rackEditor); addAndMakeVisible(presetBar);
     addAndMakeVisible(latencyProfile);latencyProfile.addItem("Legacy: 128 DSP samples",1);latencyProfile.addItem("Creative: 4096 DSP samples",2);latencyProfile.setSelectedId(1,juce::dontSendNotification);
     latencyProfile.setTooltip("Stopped-state session setting. Creative enables spectral pitch; all sounds in this session use 4096 samples. This is processor latency, not total I/O latency. Not stored in portable tones.");
     latencyProfile.onChange=[this]{if(!session.processor.rack.setLatencyProfile(latencyProfile.getSelectedId()==2?creativeLatencySamples:rackLatencySamples)) {presetBar.presets.error="Latency profile could not change: "+session.processor.rack.snapshot().error;latencyProfile.setSelectedId(session.processor.rack.latencySamples()==128?1:2,juce::dontSendNotification);}else session.processor.setLatencySamples(session.processor.rack.latencySamples());};
     addAndMakeVisible(audioSetup);audioSetup.onClick=[this]{audioCollapsed=!audioCollapsed;resized();};
+    // Audio controls remain reachable on short displays without taking the
+    // pedalboard off-screen. Reparenting does not replace any action handlers.
+    for(auto* c:std::initializer_list<juce::Component*>{&hint,&backendLabel,&inputDeviceLabel,&outputDeviceLabel,&inputLabel,&leftLabel,&rightLabel,&rateLabel,&bufferLabel,&backendBox,&inputDevice,&outputDevice,&inputChannel,&leftChannel,&rightChannel,&rateBox,&bufferBox,&inputGainLabel,&outputGainLabel,&inputGain,&outputGain,&inputMeterLabel,&outputMeterLabel,&inputMeter,&outputMeter,&resetClips,&clipLabel,&configLabel}) console.addAndMakeVisible(c);
+    addAndMakeVisible(consoleViewport);consoleViewport.setViewedComponent(&console,false);
+    consoleViewport.setScrollBarsShown(true,false);
     refreshDevices();
     setSize(1280, 720); restorePreferences();
     startTimerHz(20);
 }
-MainComponent::~MainComponent() { stopTimer(); session.stopNow(); }
-void MainComponent::paint(juce::Graphics& g) { g.fillAll(juce::Colour(0xff202b3a)); }
+MainComponent::~MainComponent() { stopTimer(); session.stopNow(); consoleViewport.setViewedComponent(nullptr,false); }
+void MainComponent::paint(juce::Graphics& g) {
+    g.fillAll(studio::background);
+    studio::surface(g,juce::Rectangle<float>(8,8,float(getWidth()-16),float(presetBar.getY()-16)));
+    g.setColour(studio::accent.withAlpha(.7f));g.fillRoundedRectangle(20,20,3,24,1.5f);
+}
 void MainComponent::refreshDevices() {
     if (session.isBusy()) return;
     const auto oldBackend = backendBox.getText();
@@ -119,6 +143,12 @@ void MainComponent::devicesChanged() {
             rightChannel.setSelectedId(2, juce::dontSendNotification);
         }
         rates = device->getAvailableSampleRates(); buffers = device->getAvailableBufferSizes();
+        if (auto* type=session.backend(backendBox.getSelectedItemIndex()); type && type->getTypeName()=="JACK") {
+            // JUCE JACK advertises only the current period. PipeWire accepts a
+            // per-client request when AudioSession creates the Start client.
+            for (int frames : {128,256,512,1024}) if (!buffers.contains(frames)) buffers.add(frames);
+            buffers.sort();
+        }
         for (int i = 0; i < rates.size(); ++i) rateBox.addItem(juce::String(rates[i], 0) + " Hz", i + 1);
         for (int i = 0; i < buffers.size(); ++i) bufferBox.addItem(juce::String(buffers[i]) + " frames", i + 1);
         rateBox.setSelectedItemIndex(rates.contains(48000) ? rates.indexOf(48000) : (rates.isEmpty() ? -1 : 0), juce::dontSendNotification);
@@ -149,10 +179,12 @@ void MainComponent::updateEnabled() {
 void MainComponent::updateConfigurationLabel() {
     const auto diagnostics=session.configuration();
     auto selection=backendBox.getText()+" | "+(inputDevice.getText().isEmpty()?juce::String("Select audio device"):inputDevice.getText());
-    if(outputDevice.getText().isNotEmpty()&&outputDevice.getText()!=inputDevice.getText())selection+=" → "+outputDevice.getText();
+    if(outputDevice.getText().isNotEmpty()&&outputDevice.getText()!=inputDevice.getText())selection+=" -> "+outputDevice.getText();
     auto channel=[](const juce::ComboBox& box){return box.getSelectedItemIndex()<0?juce::String("?"):juce::String(box.getSelectedItemIndex()+1);};
     selection+=" | In "+channel(inputChannel)+" / Out "+channel(leftChannel)+"+"+channel(rightChannel);
-    configLabel.setText(audioCollapsed?selection+" | "+diagnostics.upToFirstOccurrenceOf("\n",false,false):diagnostics,juce::dontSendNotification);
+    auto brief=selection+" | "+diagnostics.upToFirstOccurrenceOf("\n",false,false);
+    if(session.isBusy()) brief=diagnostics.fromLastOccurrenceOf("Backend xruns: ",true,false)+" | "+brief;
+    configLabel.setText(audioCollapsed?brief:diagnostics,juce::dontSendNotification);
     configLabel.setTooltip(selection+"\n"+diagnostics);
 }
 void MainComponent::timerCallback() {
@@ -173,6 +205,7 @@ void MainComponent::timerCallback() {
     if (clipFlags & MonitorEngine::outputProtected) clips += "Peak protection active: lower trim/output. ";
     if (clipFlags & MonitorEngine::nonFiniteInput) clips += "Invalid input samples silenced. ";
     if (clipFlags & MonitorEngine::nonFiniteDSP) clips += "Invalid DSP samples silenced. ";
+    clipLabel.setColour(juce::Label::textColourId,clips.isEmpty()?studio::muted:studio::danger);
     clipLabel.setText(clips.isEmpty() ? "No clipping detected." : clips, juce::dontSendNotification);
     statusLabel.setText(setupError.isNotEmpty() ? setupError : session.status(), juce::dontSendNotification);
     statusLabel.setTooltip(statusLabel.getText());
@@ -233,11 +266,20 @@ bool MainComponent::keyPressed(const juce::KeyPress& key) {
     return false;
 }
 void MainComponent::resized() {
-    auto area=getLocalBounds().reduced(12);
+    auto area=getLocalBounds().reduced(20,16);
     const bool compact=audioCollapsed||getHeight()<600;
-    auto header=area.removeFromTop(34);audioSetup.setBounds(header.removeFromRight(150));latencyProfile.setBounds(header.removeFromRight(220).reduced(4));title.setBounds(header);
-    audioSetup.setButtonText(audioCollapsed?"Audio Setup ▸":"Audio Setup ▾");
+    auto header=area.removeFromTop(38);audioSetup.setBounds(header.removeFromRight(150));latencyProfile.setBounds(header.removeFromRight(220).reduced(4));title.setBounds(header.withTrimmedLeft(10));
+    audioSetup.setButtonText(audioCollapsed?"Audio Setup +":"Audio Setup -");
     for(auto* c:std::initializer_list<juce::Component*>{&hint,&backendLabel,&inputDeviceLabel,&outputDeviceLabel,&inputLabel,&leftLabel,&rightLabel,&rateLabel,&bufferLabel,&backendBox,&inputDevice,&outputDevice,&inputChannel,&leftChannel,&rightChannel,&rateBox,&bufferBox}) c->setVisible(!audioCollapsed);
+    auto buttons=area.removeFromTop(36);
+    for(auto* button:{&startButton,&stopButton,&muteButton}){button->setBounds(buttons.removeFromLeft(100).reduced(2));}
+    refreshButton.setBounds(buttons.removeFromLeft(175).reduced(2));statusLabel.setBounds(buttons);
+    const int consoleHeight=(audioCollapsed?0:128)+(compact?112:158);
+    const int visibleConsoleHeight=std::min(consoleHeight,std::max(68,getHeight()/3-36));
+    consoleViewport.setBounds(area.removeFromTop(visibleConsoleHeight));
+    console.setSize(consoleViewport.getWidth()-consoleViewport.getScrollBarThickness(),consoleHeight);
+    auto workspace=area;
+    area=console.getLocalBounds();
     const int gap=12,half=(area.getWidth()-gap)/2;
     if(!audioCollapsed) {
         hint.setBounds(area.removeFromTop(36));
@@ -254,9 +296,6 @@ void MainComponent::resized() {
             pair.second->setBounds(selectors.removeFromLeft(fifth));selectors.removeFromLeft(gap);
         }
     }
-    auto buttons=area.removeFromTop(32);
-    for(auto* button:{&startButton,&stopButton,&muteButton}){button->setBounds(buttons.removeFromLeft(100).reduced(2));}
-    refreshButton.setBounds(buttons.removeFromLeft(175).reduced(2));statusLabel.setBounds(buttons);
     inputGainLabel.setText(compact?"Input trim":"Input trim (-24 to +24 dB)",juce::dontSendNotification);
     outputGainLabel.setText(compact?"Output level":"Output level (-60 to +6 dB)",juce::dontSendNotification);
     inputMeterLabel.setText(compact?"Input peak":"Input peak after trim",juce::dontSendNotification);
@@ -276,6 +315,6 @@ void MainComponent::resized() {
     }
     auto clips=area.removeFromTop(26);resetClips.setBounds(clips.removeFromRight(120));clipLabel.setBounds(clips);
     configLabel.setBounds(area.removeFromTop(compact?28:42));updateConfigurationLabel();
-    presetBar.setBounds(area.removeFromTop(54));area.removeFromTop(4);rackEditor.setBounds(area);
+    area=workspace;area.removeFromTop(12);presetBar.setBounds(area.removeFromTop(72));area.removeFromTop(12);rackEditor.setBounds(area);
 }
 }

@@ -37,6 +37,8 @@ private:
 
     std::vector<std::unique_ptr<juce::AudioIODeviceType>> types;
     std::unique_ptr<juce::AudioIODevice> device;
+    int selectedBackend = -1;
+    juce::String selectedInputDevice, selectedOutputDevice;
     std::atomic<bool> authorized{false};
     std::atomic<unsigned> fault{0}, heartbeat{0};
     bool started = false, stopping = false;

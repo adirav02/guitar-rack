@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "preset_id": "bb3c225f-571e-5cac-9501-95420452e42e",
+  "name": "Green Day / Wake Me Up When September Ends - Acoustic Source",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -2.5,
+    "rack_bypass": false
+  },
+  "order": [
+    "c2a6de03-7c75-5a09-89e0-decdd9a21eeb",
+    "6df492e7-4b53-5f94-983b-d4df1e9c0ade",
+    "c81438d4-3a99-5169-beba-46401b28e5f7"
+  ],
+  "instances": [
+    {
+      "instance_id": "c2a6de03-7c75-5a09-89e0-decdd9a21eeb",
+      "slot_id": 0,
+      "effect_type": "compressor",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "threshold_db": -25.0,
+        "ratio": 2.0,
+        "attack_ms": 24.0,
+        "release_ms": 170.0,
+        "makeup_db": 2.0,
+        "mix_percent": 60.000003814697266
+      }
+    },
+    {
+      "instance_id": "6df492e7-4b53-5f94-983b-d4df1e9c0ade",
+      "slot_id": 1,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 230.0,
+        "band1_db": -2.0,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 1300.0,
+        "band2_db": 0.0,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 4200.0,
+        "band3_db": -1.0,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 65.0,
+        "low_pass_hz": 11500.0,
+        "output_db": 0.0
+      }
+    },
+    {
+      "instance_id": "c81438d4-3a99-5169-beba-46401b28e5f7",
+      "slot_id": 2,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.899999976158142,
+        "pre_delay_ms": 12.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 8.0,
+        "output_db": 0.0
+      }
+    }
+  ],
+  "assets": []
+}

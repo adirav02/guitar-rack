@@ -1,0 +1,14 @@
+CMake Error at build/local-tools/cmake/data/share/cmake-4.4/Modules/FindPackageHandleStandardArgs.cmake:290 (message):
+  Could NOT find PkgConfig (missing: PKG_CONFIG_EXECUTABLE)
+Call Stack (most recent call first):
+  build/local-tools/cmake/data/share/cmake-4.4/Modules/FindPackageHandleStandardArgs.cmake:654 (_FPHSA_FAILURE_MESSAGE)
+  build/local-tools/cmake/data/share/cmake-4.4/Modules/FindPkgConfig.cmake:562 (find_package_handle_standard_args)
+  build/vendor/JUCE/extras/Build/CMake/JUCEModuleSupport.cmake:375 (find_package)
+  build/vendor/JUCE/extras/Build/CMake/JUCEModuleSupport.cmake:627 (_juce_create_pkgconfig_target)
+  build/vendor/JUCE/extras/Build/CMake/JUCEModuleSupport.cmake:670 (juce_add_module)
+  build/vendor/JUCE/modules/CMakeLists.txt:33 (juce_add_modules)
+
+
+-- Configuring incomplete, errors occurred!
+
+Configure exit code: 1

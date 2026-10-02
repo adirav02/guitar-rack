@@ -1,0 +1,112 @@
+{
+  "schema_version": 2,
+  "preset_id": "b435cacd-3086-597b-92a4-732ce6c7bfa9",
+  "name": "Radiohead / No Surprises - Bell Clean",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": 1.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "f0265983-30f5-5a70-992b-42295abe9a81",
+    "d0077471-cc2b-502e-a754-41ae63eda629",
+    "fdf5976a-82fc-536d-9c5f-88321afe9e30",
+    "865603af-1314-5437-b223-5a3acff7740c",
+    "69453e3a-e6e9-5eed-a860-59f1df85e9d6"
+  ],
+  "instances": [
+    {
+      "instance_id": "f0265983-30f5-5a70-992b-42295abe9a81",
+      "slot_id": 0,
+      "effect_type": "compressor",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "threshold_db": -27.0,
+        "ratio": 2.5,
+        "attack_ms": 18.0,
+        "release_ms": 180.0,
+        "makeup_db": 2.0,
+        "mix_percent": 75.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "d0077471-cc2b-502e-a754-41ae63eda629",
+      "slot_id": 1,
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 0.0,
+        "bass_db": -2.0,
+        "mid_db": 0.0,
+        "treble_db": 0.0,
+        "master_percent": 20.0,
+        "presence_percent": 40.0,
+        "output_db": -3.0,
+        "sag_percent": 20.0,
+        "bright_percent": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "fdf5976a-82fc-536d-9c5f-88321afe9e30",
+      "slot_id": 2,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+    },
+    {
+      "instance_id": "865603af-1314-5437-b223-5a3acff7740c",
+      "slot_id": 3,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 240.0,
+        "band1_db": -1.0,
+        "band1_q": 0.699999988079071,
+        "band2_hz": 1500.0,
+        "band2_db": 0.5,
+        "band2_q": 0.699999988079071,
+        "band3_hz": 3800.0,
+        "band3_db": -1.5,
+        "band3_q": 0.699999988079071,
+        "high_pass_hz": 90.0,
+        "low_pass_hz": 6500.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "69453e3a-e6e9-5eed-a860-59f1df85e9d6",
+      "slot_id": 4,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 1.200000047683716,
+        "pre_delay_ms": 12.0,
+        "damping_hz": 5200.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 11.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "sha256": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "relative_path": "ir/43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d.wav",
+      "format": "wav"
+    }
+  ]
+}

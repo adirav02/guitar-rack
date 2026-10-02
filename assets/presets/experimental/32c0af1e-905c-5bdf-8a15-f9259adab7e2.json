@@ -1,0 +1,119 @@
+{
+  "schema_version": 2,
+  "preset_id": "32c0af1e-905c-5bdf-8a15-f9259adab7e2",
+  "name": "Shinedown / Devil - Filtered Texture Adaptation",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -5.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "aab24e0e-0e44-5296-a4ba-d0f9bac34bd8",
+    "3c28e9ca-da64-5f69-b0c3-1060ca4c9be6",
+    "15971c57-fdd6-5c72-9a4b-c8b5af9d66a3",
+    "539016cc-afef-5e84-b229-6156189c2201",
+    "924a6201-7e6a-56bf-b01f-d19649f7b280"
+  ],
+  "instances": [
+    {
+      "instance_id": "aab24e0e-0e44-5296-a4ba-d0f9bac34bd8",
+      "slot_id": 0,
+      "effect_type": "oxford_distortion",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "drive_db": 19.0,
+        "bass_db": -2.0,
+        "contour_percent": 18.0,
+        "treble_db": -1.0,
+        "output_db": -10.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "3c28e9ca-da64-5f69-b0c3-1060ca4c9be6",
+      "slot_id": 1,
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 5.0,
+        "bass_db": -2.0,
+        "mid_db": 2.0,
+        "treble_db": -1.0,
+        "master_percent": 28.0,
+        "presence_percent": 24.0,
+        "output_db": -8.0,
+        "sag_percent": 25.0,
+        "bright_percent": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "15971c57-fdd6-5c72-9a4b-c8b5af9d66a3",
+      "slot_id": 2,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+    },
+    {
+      "instance_id": "539016cc-afef-5e84-b229-6156189c2201",
+      "slot_id": 3,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 280.0,
+        "band1_db": -2.0,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 1100.0,
+        "band2_db": 3.0,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 3400.0,
+        "band3_db": -2.0,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 220.0,
+        "low_pass_hz": 4200.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "924a6201-7e6a-56bf-b01f-d19649f7b280",
+      "slot_id": 4,
+      "effect_type": "echo",
+      "effect_version": 2,
+      "bypassed": false,
+      "parameters": {
+        "time_ms": 210.0,
+        "bpm": 120.0,
+        "subdivision": 0.0,
+        "clock": 0.0,
+        "mode": 1.0,
+        "feedback_percent": 22.0,
+        "color_hz": 3800.0,
+        "wow_percent": 0.0,
+        "stereo": 0.0,
+        "heads": 0.0,
+        "mix_percent": 7.0,
+        "output_db": 0.0,
+        "wet_low_cut_hz": 240.0,
+        "wow_rate_hz": 0.699999988079071,
+        "wow_width_percent": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "sha256": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "relative_path": "ir/43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d.wav",
+      "format": "wav"
+    }
+  ]
+}

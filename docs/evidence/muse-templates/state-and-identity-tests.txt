@@ -1,0 +1,13 @@
+Test project /workspace/guitar-rack/build/song-tones/headless
+    Start 1: StateTests
+    Start 2: AssetTests
+1/4 Test #2: AssetTests .......................   Passed    0.15 sec
+    Start 4: legacy_identity_compatibility
+2/4 Test #4: legacy_identity_compatibility ....   Passed    0.03 sec
+    Start 3: PedalPresetTests
+3/4 Test #3: PedalPresetTests .................   Passed    0.01 sec
+4/4 Test #1: StateTests .......................   Passed    0.84 sec
+
+100% tests passed out of 4
+
+Total Test time (real) =   0.84 sec

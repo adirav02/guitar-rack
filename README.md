@@ -3,12 +3,46 @@
 Fedora Linux standalone guitar monitoring and a native pedalboard using C++20,
 CMake and pinned JUCE 8.0.15. The tone upgrade adds eight original inspired amp
 families, six drives, gate/EQ, modulation, echo/reverb, spectral expression pitch,
-swell/hold, Dual Amp and five original synthetic cabinet responses. There are 69
-complete sounds and 146 reusable voicings. All 45 original sounds, 77 original
+swell/hold, Dual Amp and five original synthetic cabinet responses. There are 168
+complete sounds and 305 reusable voicings. All 135 prior sounds, 256 prior
 voicings and executable effect versions remain unchanged. **Art Rock /
 Subterranean Pulse** is the owner's confirmed approved sound and is protected
 exactly. New sounds are technically validated starting points with listening
 pending; no album/circuit accuracy is claimed.
+
+The [song templates](docs/song-templates.md) add clean/space versions of **Let Down**,
+**No Surprises** and **Subterranean Homesick Alien**, plus Weird Fishes and six Muse
+guitar sounds. Search **Song templates** in Choose Preset...; all fit Legacy 128.
+New Stereo / Tape Echo v2 adds wet low cut, adjustable wow rate and stereo phase,
+while existing echo versions retain their saved sound. Read the
+[research and access limitations](docs/song-tone-research.md) before treating
+these inferred settings as recording matches.
+
+Additional Muse templates cover **Citizen Erased** (distortion/clean ending),
+**New Born** (rhythm/lead), **Hysteria**, **Psycho**, **Reapers** (tapping/lead),
+**Defector** and **The Globalist** (clean intro/heavy middle/clean outro). Search
+**Muse expansion** to find this additional collection.
+
+The [alternative collection](docs/alternative-templates.md) adds **42 complete
+chains** for Green Day, Soundgarden, Nirvana and System Of A Down, with separate
+clean/rhythm/lead roles and acoustic-source/electric-adaptation choices. Search
+**Alternative research**. Read the [recording and tuning research](docs/alternative-tone-research.md)
+for sourced facts, uncertainties and proposed app settings; all album matching
+remains pending. Physically retune: these chains contain no pitch shifting.
+
+The [modern rock collection](docs/modern-rock-templates.md) adds **33 complete
+chains / 49 voices** for Foo Fighters (Everlong, Walk, My Hero, The Pretender),
+Shinedown (Sound of Madness, Monsters, Cut the Cord, Devil) and Alter Bridge
+(Blackbird). Search **Modern rock research**. Separate guitar roles, tuning
+evidence and adaptation limits are covered in the
+[recording research](docs/modern-rock-tone-research.md). All fit Legacy 128;
+reference listening remains pending.
+
+These are complete loadable chains in the application. Rebuild and restart,
+open **Choose Preset...**, set filters to **All**, search a song and press
+**Load**. Individual importable bundles can also be exported with
+`./build/linux-release/guitarrack_export_sounds --song-pack build/song-presets`;
+see [bundle import instructions](docs/song-templates.md#choose-and-adjust).
 
 Choose Preset... opens a searchable native window; selecting/searching does not
 change audio. Load/Enter/double-click uses the dirty guard and transactional
@@ -17,7 +51,7 @@ sound. Default geometry is 1280×720; the old 1030-pixel minimum is removed.
 Start/Stop/Mute, bypass, meters, clipping and gains remain accessible.
 
 Read [the upgrade contract](docs/tone-upgrade.md), [exact new controls](docs/tone-controls.md),
-[current verification](docs/testing.md#tone-upgrade-current-verification-2026-10-01)
+[current verification](docs/testing.md#modern-rock-template-expansion-2026-10-01)
 and [launch/listening worksheet](docs/listening.md). Linux software is implemented;
 native visual/HiDPI checks, new guitar listening, hardware latency/soak, measured
 IR realism, VST3 and Windows remain pending. The prior M3/M4 owner reports are
@@ -60,17 +94,25 @@ ctest --preset linux-release --output-on-failure
 ./build/linux-release/GuitarRack_artefacts/Release/GuitarRack
 ```
 
-Preferred PipeWire launch (from the project directory):
+For the current locally built application, launch directly (from the project directory):
 
 ```bash
-PIPEWIRE_LATENCY=256/48000 pw-jack ./build/linux-release/GuitarRack_artefacts/Release/GuitarRack
+./build/linux-release/GuitarRack_artefacts/Release/GuitarRack
 ```
 
 Choose JACK, the interface, mono physical Input 2 and outputs 1/2, then Start.
-This is a client latency request; confirm the application's **actual** rate/buffer.
-GuitarRack does not change global audio settings. The GUI prefers 256 when that
-buffer is supported. The reported 512/48000 launch also sounded acceptable;
-256 is the current preference.
+Choose **256 frames** in Audio Setup to request a PipeWire JACK client period
+when pressing Start; 128, 512 and 1024 are also available. The app recreates its
+JACK client for this request, then displays requested and actual rate/buffer
+and the backend xrun count. The count stays visible with Audio Setup collapsed.
+PipeWire may choose a smaller period; a larger one produces a visible Start
+error. This follows [PipeWire's documented JACK client latency request](https://docs.pipewire.org/page_man_pipewire-jack_conf_5.html).
+The app does not change the system-wide PipeWire/JACK quantum. ALSA uses
+the device's advertised sizes. The top Legacy/Creative selector controls a
+separate DSP latency budget (128 or 4096 samples); Creative pitch sounds add
+about 85 ms at 48 kHz before device latency and are unsuitable for tight live
+monitoring. The reported 512/48000 launch also sounded acceptable; 256 remains
+the initial request.
 
 Normally CMake fetches the exact pinned JUCE commit. To fetch it manually or use
 the local checkout already provided by the owner:
@@ -292,8 +334,8 @@ library selections cannot revive a deleted entry. These checks pass in automated
 state/adapter fixtures; the new native dialogs and real-guitar deletion checklist
 still need desktop verification.
 
-The library has **69 full rack presets** (45 legacy plus 24 upgraded) and
-**146 pedal voicings**. Original factory examples: **Clean**, **Crunch**, **Lead Delay**, **Driven Synthetic
+The library has **168 full rack presets** and **305 pedal voicings**.
+Original factory examples: **Clean**, **Crunch**, **Lead Delay**, **Driven Synthetic
 Cabinet** (Distortion → Cabinet → EQ → Delay → Reverb) and **Small Room** (EQ →
 Reverb). Output defaults to -12 dB. The Cabinet example uses an explicitly
 synthetic CC0 filter, not a measured cabinet or nonlinear amp simulation.
@@ -308,7 +350,7 @@ Start/Stop, Mute, and delay-buffer contents never appear in exported tone files.
 
 The [version 1 schema](assets/presets/schema-v1.json) retains existing M4 presets;
 [version 2](assets/presets/schema-v2.json) adds Cabinet checksum references.
-The registry supports 42 stable types / 43 exact descriptors, including Delay
+The registry supports 42 stable types / 44 exact descriptors, including Delay
 v1/v2. Legacy versions remain executable. Unknown fields/effects, unsupported
 versions, unsafe/missing assets and invalid values fail transactionally. JSON
 is limited to 128 KiB; portable IR bundles to 17 MiB. See
@@ -344,4 +386,3 @@ without starting monitoring. It requires access to the desktop display.
 Architecture/real-time ownership is documented in
 [docs/architecture.md](docs/architecture.md). Actual verification results are in
 [docs/testing.md](docs/testing.md).
-

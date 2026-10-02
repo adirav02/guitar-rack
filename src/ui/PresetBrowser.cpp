@@ -1,4 +1,5 @@
 #include "PresetBrowser.h"
+#include "StudioTheme.h"
 #include "core/SoundCatalog.h"
 #include "core/Impulse.h"
 #include "core/CabinetAssets.h"
@@ -11,16 +12,37 @@ PresetBrowser::PresetBrowser(PresetSession& s,const EffectRegistry& r,std::funct
     :DocumentWindow("Choose Preset",juce::Colour(0xff202b3a),closeButton),session(s),registry(r),onLoad(std::move(loadAction)) {
     setUsingNativeTitleBar(true); setContentNonOwned(&content,false); setResizable(true,false); setResizeLimits(700,400,7680,4320);
     for(auto* c:std::initializer_list<juce::Component*>{&search,&source,&artist,&category,&list,&description,&loadButton,&favorite,&cancel,&importButton,&exportButton,&deleteButton,&status}) content.addAndMakeVisible(c);
-    search.setTextToShowWhenEmpty("Search name, tags and inspiration",juce::Colours::grey);
+    for(auto* label:{&heading,&subtitle,&sourceLabel,&artistLabel,&categoryLabel,&resultsLabel,&detailLabel}) {
+        content.addAndMakeVisible(label);label->setColour(juce::Label::textColourId,studio::muted);
+    }
+    heading.setText("Find your next sound",juce::dontSendNotification);
+    heading.setFont(juce::FontOptions(25.0f,juce::Font::bold));heading.setColour(juce::Label::textColourId,studio::text);
+    subtitle.setText("Explore the collection. Make it yours.",juce::dontSendNotification);
+    sourceLabel.setText("COLLECTION",juce::dontSendNotification);
+    artistLabel.setText("ARTIST / STYLE",juce::dontSendNotification);
+    categoryLabel.setText("CHARACTER",juce::dontSendNotification);
+    detailLabel.setText("SOUND NOTES & SIGNAL CHAIN",juce::dontSendNotification);
+    for(auto* label:{&sourceLabel,&artistLabel,&categoryLabel,&resultsLabel,&detailLabel}) label->setFont(juce::FontOptions(12.0f,juce::Font::bold));
+    studio::primary(loadButton);
+    deleteButton.setColour(juce::TextButton::textColourOffId,studio::danger);
+    search.setFont(juce::FontOptions(16.0f));search.setIndents(12,8);
+    search.setTextToShowWhenEmpty("Search sounds, artists, tags...",studio::muted);
     search.onTextChange=[this]{filter();}; search.onReturnKey=[this]{load();}; search.onEscapeKey=[this]{closeButtonPressed();};
     source.addItemList({"All","Factory","User","Favorites"},1);
-    artist.addItemList({"All","Radiohead","Muse","Metallica","Rock","Metal","Original"},1);
+    juce::StringArray artistOptions{"All","Radiohead","Muse","Metallica","Rock","Metal","Original"};
+    for(const auto& metadata:soundCatalog()) {
+        const auto name=u(metadata.artist);
+        if(name.isNotEmpty()&&!artistOptions.contains(name)) artistOptions.add(name);
+    }
+    artist.addItemList(artistOptions,1);
     category.addItemList({"All","Clean","Crunch","Distortion","Fuzz","High Gain","Ambient","Experimental"},1);
     for(auto* combo:{&source,&artist,&category}) {combo->setSelectedId(1,juce::dontSendNotification); combo->onChange=[this]{filter();};}
     source.setTooltip("Factory/User source, or your UUID-based favorites."); artist.setTooltip("Artist inspiration or style."); category.setTooltip("Sound gain/character category.");
     description.setMultiLine(true); description.setReadOnly(true); description.setScrollbarsShown(true);
     description.onEscapeKey=[this]{closeButtonPressed();};
-    list.setRowHeight(32); list.setMultipleSelectionEnabled(false);
+    description.setFont(juce::FontOptions(14.0f));description.setIndents(14,12);
+    list.setColour(juce::ListBox::backgroundColourId,juce::Colours::transparentBlack);
+    list.setRowHeight(68); list.setMultipleSelectionEnabled(false);
     loadButton.onClick=[this]{load();};
     favorite.onClick=[this]{if(highlighted.empty())return; if(hasId(favorites,highlighted)) std::erase(favorites,highlighted); else if(favorites.size()<512) favorites.push_back(highlighted); filter();};
     cancel.onClick=[this]{if(!session.cancelLoad())session.error="Preset already accepted; its transition will complete.";};
@@ -55,8 +77,18 @@ void PresetBrowser::poll() {
 int PresetBrowser::getNumRows(){return static_cast<int>(filtered.size());}
 void PresetBrowser::paintListBoxItem(int row,juce::Graphics& g,int width,int height,bool selected) {
     if(row<0||row>=getNumRows())return;
-    if(selected){g.setColour(juce::Colour(0xff405973));g.fillAll();}
-    g.setColour(juce::Colours::white);g.drawText((hasId(favorites,filtered[row].id)?"★ ":"")+u(filtered[row].name),8,0,width-16,height,juce::Justification::centredLeft);
+    const auto& tone=filtered[static_cast<std::size_t>(row)];
+    const auto* metadata=soundMetadata(tone.id);
+    auto bounds=juce::Rectangle<float>(3,3,float(width-6),float(height-6));
+    g.setColour(selected?juce::Colour(0xff29463e):studio::panel);g.fillRoundedRectangle(bounds,8);
+    if(selected) {g.setColour(studio::accent);g.drawRoundedRectangle(bounds.reduced(.5f),8,1.5f);}
+    g.setColour(selected?studio::accent:studio::border);g.fillRoundedRectangle(12,16,3,float(height-32),1.5f);
+    const bool isFavorite=hasId(favorites,tone.id);
+    g.setColour(studio::text);g.setFont(juce::FontOptions(15.0f,juce::Font::bold));
+    g.drawText((isFavorite?"* ":"")+u(tone.name),24,10,width-38,23,juce::Justification::centredLeft);
+    const auto detail=metadata?u(metadata->artist)+"  /  "+u(metadata->gain):juce::String("User sound");
+    g.setColour(selected?studio::accent:studio::muted);g.setFont(12.0f);
+    g.drawText(detail+"  /  "+juce::String(int(tone.rack.order.size()))+" pedals",24,36,width-38,20,juce::Justification::centredLeft);
 }
 void PresetBrowser::filter() {
     filtered.clear(); const auto query=search.getText().trim();
@@ -70,6 +102,8 @@ void PresetBrowser::filter() {
         if(category.getSelectedId()>1&&(!m||u(m->gain)!=category.getText()))continue;
         filtered.push_back(t);
     }
+    resultsLabel.setText(juce::String(int(filtered.size()))+" SOUNDS",juce::dontSendNotification);
+    content.repaint();
     list.updateContent(); int row=-1;for(int i=0;i<getNumRows();++i)if(filtered[i].id==highlighted)row=i;
     list.selectRow(row);if(row<0){highlighted.clear();details();}
 }
@@ -97,12 +131,34 @@ void PresetBrowser::load() {
 }
 void PresetBrowser::listBoxItemDoubleClicked(int row,const juce::MouseEvent&){selectedRowsChanged(row);load();}
 void PresetBrowser::returnKeyPressed(int row){selectedRowsChanged(row);load();}
+void PresetBrowser::Content::paint(juce::Graphics& g) {
+    g.fillAll(studio::background);
+    g.setColour(studio::accent);g.fillRoundedRectangle(20,23,3,28,1.5f);
+    if(browser.filtered.empty()) {
+        g.setColour(studio::muted);g.setFont(15.0f);
+        g.drawFittedText("No sounds found.\nTry another search or filter.",browser.list.getBounds().reduced(18),juce::Justification::centred,3);
+    }
+}
 void PresetBrowser::Content::resized() {
-    auto a=getLocalBounds().reduced(12);browser.search.setBounds(a.removeFromTop(32));a.removeFromTop(8);
-    auto filters=a.removeFromTop(30);int third=(filters.getWidth()-16)/3;
-    browser.source.setBounds(filters.removeFromLeft(third));filters.removeFromLeft(8);browser.artist.setBounds(filters.removeFromLeft(third));filters.removeFromLeft(8);browser.category.setBounds(filters);
-    auto footer=a.removeFromBottom(38);for(auto* b:{&browser.loadButton,&browser.favorite,&browser.cancel,&browser.importButton,&browser.exportButton}) {b->setBounds(footer.removeFromLeft(92).reduced(3));}browser.deleteButton.setBounds(footer.reduced(3));
-    browser.status.setBounds(a.removeFromBottom(42));a.removeFromTop(10);int half=a.getWidth()*45/100;
+    auto a=getLocalBounds().reduced(20,16);
+    auto header=a.removeFromTop(36);browser.heading.setBounds(header.withTrimmedLeft(12));
+    browser.subtitle.setBounds(a.removeFromTop(22));a.removeFromTop(12);
+    browser.search.setBounds(a.removeFromTop(38));a.removeFromTop(12);
+    auto labels=a.removeFromTop(20);auto filters=a.removeFromTop(32);int third=(filters.getWidth()-20)/3;
+    for(auto pair:{std::pair{&browser.sourceLabel,&browser.source},std::pair{&browser.artistLabel,&browser.artist},std::pair{&browser.categoryLabel,&browser.category}}) {
+        pair.first->setBounds(labels.removeFromLeft(third));labels.removeFromLeft(10);
+        pair.second->setBounds(filters.removeFromLeft(third));filters.removeFromLeft(10);
+    }
+    auto footer=a.removeFromBottom(36);
+    browser.loadButton.setBounds(footer.removeFromLeft(86));footer.removeFromLeft(6);
+    browser.favorite.setBounds(footer.removeFromLeft(90));footer.removeFromLeft(6);
+    browser.cancel.setBounds(footer.removeFromLeft(100));footer.removeFromLeft(12);
+    browser.deleteButton.setBounds(footer.removeFromRight(145));footer.removeFromRight(6);
+    browser.exportButton.setBounds(footer.removeFromRight(78));footer.removeFromRight(6);
+    browser.importButton.setBounds(footer.removeFromRight(78));
+    browser.status.setBounds(a.removeFromBottom(40));a.removeFromTop(12);
+    auto captions=a.removeFromTop(24);int half=a.getWidth()*45/100;
+    browser.resultsLabel.setBounds(captions.removeFromLeft(half));captions.removeFromLeft(12);browser.detailLabel.setBounds(captions);
     browser.list.setBounds(a.removeFromLeft(half));a.removeFromLeft(12);browser.description.setBounds(a);
 }
 }

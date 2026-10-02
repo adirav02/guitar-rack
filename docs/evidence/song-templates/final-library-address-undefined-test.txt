@@ -1,0 +1,20 @@
+Start testing: Oct 01 11:28 UTC
+----------------------------------------------------------
+7/9 Testing: experimental_signals
+7/9 Test: experimental_signals
+Command: "/workspace/guitar-rack/build/core-sanitize/guitarrack_experimental_tests"
+Directory: /workspace/guitar-rack/build/core-sanitize
+"experimental_signals" start time: Oct 01 11:28 UTC
+Output:
+----------------------------------------------------------
+Pitch peak: 438 Hz, amplitude 0.0922114, input residual 6.42383e-05
+PASS: experimental signals, coherent voicings, compatibility, lifecycle, legacy and upgraded factory voicings/racks
+<end of output>
+Test time =  16.33 sec
+----------------------------------------------------------
+Test Passed.
+"experimental_signals" end time: Oct 01 11:29 UTC
+"experimental_signals" time elapsed: 00:00:16
+----------------------------------------------------------
+
+End testing: Oct 01 11:29 UTC

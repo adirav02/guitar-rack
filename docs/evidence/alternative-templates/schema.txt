@@ -1,0 +1,2 @@
+PASS: 135 portable presets against strict version-specific schemas: {2: 129, 1: 6}
+PASS: 256 expanded pedal voices against strict pedal schema

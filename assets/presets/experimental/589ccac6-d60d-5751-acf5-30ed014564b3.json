@@ -1,0 +1,95 @@
+{
+  "schema_version": 2,
+  "preset_id": "589ccac6-d60d-5751-acf5-30ed014564b3",
+  "name": "Shinedown / Devil - Open Chorus Rhythm",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -15.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "06e89ddf-61c7-54f3-a13a-c1d4d90fc1e2",
+    "db566df7-27bf-55c0-ae45-281b2713b66d",
+    "8eeac0a9-6b1d-54b9-adb3-9c6799a29e61",
+    "989378f6-95e0-55cb-96ce-2643d724b1ef"
+  ],
+  "instances": [
+    {
+      "instance_id": "06e89ddf-61c7-54f3-a13a-c1d4d90fc1e2",
+      "slot_id": 0,
+      "effect_type": "amp_recto",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 21.0,
+        "bass_db": -1.0,
+        "mid_db": 2.0,
+        "treble_db": -1.0,
+        "master_percent": 35.0,
+        "presence_percent": 28.0,
+        "output_db": -10.0,
+        "sag_percent": 28.0,
+        "resonance_percent": 30.000001907348633
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "db566df7-27bf-55c0-ae45-281b2713b66d",
+      "slot_id": 1,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+    },
+    {
+      "instance_id": "8eeac0a9-6b1d-54b9-adb3-9c6799a29e61",
+      "slot_id": 2,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 160.0,
+        "band1_db": -2.0,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 1200.0,
+        "band2_db": 2.0,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 3800.0,
+        "band3_db": -2.0,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 65.0,
+        "low_pass_hz": 6200.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "989378f6-95e0-55cb-96ce-2643d724b1ef",
+      "slot_id": 3,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.550000011920929,
+        "pre_delay_ms": 12.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 5.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b",
+      "sha256": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b",
+      "relative_path": "ir/0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b.wav",
+      "format": "wav"
+    }
+  ]
+}

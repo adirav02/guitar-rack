@@ -1,0 +1,112 @@
+{
+  "schema_version": 2,
+  "preset_id": "f7edf4c9-bda3-582e-bb3c-e7e7eb1310c6",
+  "name": "Muse / The Globalist - Clean Outro Guitar",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": 0.5,
+    "rack_bypass": false
+  },
+  "order": [
+    "d4359d0f-b089-5b87-8e9f-addb376bd450",
+    "4b17340d-db5c-57d4-addd-7a83986222eb",
+    "c51b6353-81b1-57d2-9450-128fe507d0f5",
+    "5e4d32a4-9ef6-5d09-9a12-5bdf99898854",
+    "1c4f2bca-903e-5357-b65c-6a47bb2c645c"
+  ],
+  "instances": [
+    {
+      "instance_id": "d4359d0f-b089-5b87-8e9f-addb376bd450",
+      "slot_id": 0,
+      "effect_type": "compressor",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "threshold_db": -27.0,
+        "ratio": 2.5,
+        "attack_ms": 18.0,
+        "release_ms": 180.0,
+        "makeup_db": 2.0,
+        "mix_percent": 75.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "4b17340d-db5c-57d4-addd-7a83986222eb",
+      "slot_id": 1,
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 0.0,
+        "bass_db": -2.0,
+        "mid_db": 1.0,
+        "treble_db": -1.0,
+        "master_percent": 20.0,
+        "presence_percent": 40.0,
+        "output_db": -3.0,
+        "sag_percent": 20.0,
+        "bright_percent": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "c51b6353-81b1-57d2-9450-128fe507d0f5",
+      "slot_id": 2,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+    },
+    {
+      "instance_id": "5e4d32a4-9ef6-5d09-9a12-5bdf99898854",
+      "slot_id": 3,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 240.0,
+        "band1_db": -1.0,
+        "band1_q": 0.699999988079071,
+        "band2_hz": 1500.0,
+        "band2_db": 0.5,
+        "band2_q": 0.699999988079071,
+        "band3_hz": 3800.0,
+        "band3_db": -1.5,
+        "band3_q": 0.699999988079071,
+        "high_pass_hz": 90.0,
+        "low_pass_hz": 6500.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "1c4f2bca-903e-5357-b65c-6a47bb2c645c",
+      "slot_id": 4,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 1.5,
+        "pre_delay_ms": 16.0,
+        "damping_hz": 4500.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 13.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "sha256": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "relative_path": "ir/43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d.wav",
+      "format": "wav"
+    }
+  ]
+}

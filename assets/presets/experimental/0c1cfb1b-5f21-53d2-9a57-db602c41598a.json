@@ -1,0 +1,95 @@
+{
+  "schema_version": 2,
+  "preset_id": "0c1cfb1b-5f21-53d2-9a57-db602c41598a",
+  "name": "System Of A Down / Chop Suey! - Open Heavy Chords",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -16.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "f61d3267-fac6-545f-a502-7aa0604ce8b7",
+    "9b613d19-b361-50b6-817f-ec1e6ef384e9",
+    "e52b020b-7565-5831-b1cb-64981d6a4440",
+    "2ff1ab61-60ca-5d69-9005-f26ce7f2fa03"
+  ],
+  "instances": [
+    {
+      "instance_id": "f61d3267-fac6-545f-a502-7aa0604ce8b7",
+      "slot_id": 0,
+      "effect_type": "amp_recto",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 22.0,
+        "bass_db": 0.0,
+        "mid_db": 2.0,
+        "treble_db": -1.0,
+        "master_percent": 36.0,
+        "presence_percent": 28.0,
+        "output_db": -10.0,
+        "sag_percent": 38.0,
+        "resonance_percent": 32.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "9b613d19-b361-50b6-817f-ec1e6ef384e9",
+      "slot_id": 1,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b"
+    },
+    {
+      "instance_id": "e52b020b-7565-5831-b1cb-64981d6a4440",
+      "slot_id": 2,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 150.0,
+        "band1_db": -1.0,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 1100.0,
+        "band2_db": 1.0,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 3200.0,
+        "band3_db": -1.5,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 55.0,
+        "low_pass_hz": 6000.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "2ff1ab61-60ca-5d69-9005-f26ce7f2fa03",
+      "slot_id": 3,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.550000011920929,
+        "pre_delay_ms": 12.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 5.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b",
+      "sha256": "0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b",
+      "relative_path": "ir/0fd37b57376c7d2e872a7372558be56bf1c48fc791ab3ef91be81314e472969b.wav",
+      "format": "wav"
+    }
+  ]
+}

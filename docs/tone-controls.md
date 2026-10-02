@@ -1,7 +1,7 @@
 # New effect controls — tone upgrade, 2026-10-01
 
-Generated from the executable registry. Every entry below is **version 1** under
-a new type ID. Existing type/version/index/range/default/choice mappings are
+Generated from the executable registry. Exact versions appear in each heading.
+Existing type/version/index/range/default/choice mappings are
 frozen in `tests/fixtures/legacy/registry.json`. Values use linear normalization
 `(physical-minimum)/(maximum-minimum)`; enums use the listed integer ordinal.
 The 16 slots and 16 controls per slot remain fixed. Unused sparse indices are
@@ -297,6 +297,26 @@ in [effects.md](effects.md). No host parameters have been published as a VST3.
 | 09 | `heads` | enum | 0…1 | 0; 0=Single, 1=Three: 1 / 0.75 / 0.5 |
 | 10 | `mix_percent` | % | 0…100 | 25 |
 | 11 | `output_db` | dB | -24…6 | 0 |
+
+## `echo` v2
+
+| Index | Key | Units | Range | Default / enums |
+|---|---|---|---|---|
+| 00 | `time_ms` | ms | 1…4000 | 420 |
+| 01 | `bpm` | BPM | 40…240 | 120 |
+| 02 | `subdivision` | enum | 0…4 | 0; 0=Quarter, 1=Eighth, 2=Dotted eighth, 3=Sixteenth, 4=Half |
+| 03 | `clock` | enum | 0…1 | 0; 0=Milliseconds, 1=BPM |
+| 04 | `mode` | enum | 0…2 | 0; 0=Digital, 1=Analog, 2=Tape |
+| 05 | `feedback_percent` | % | 0…70 | 30 |
+| 06 | `color_hz` | Hz | 500…16000 | 5000 |
+| 07 | `wow_percent` | % | 0…100 | 0 |
+| 08 | `stereo` | enum | 0…1 | 0; 0=Stereo, 1=Ping-pong |
+| 09 | `heads` | enum | 0…1 | 0; 0=Single, 1=Three: 1 / 0.75 / 0.5 |
+| 10 | `mix_percent` | % | 0…100 | 25 |
+| 11 | `output_db` | dB | -24…6 | 0 |
+| 12 | `wet_low_cut_hz` | Hz | 0…1000 | 0 |
+| 13 | `wow_rate_hz` | Hz | 0.05…5 | 0.7 |
+| 14 | `wow_width_percent` | % | 0…100 | 0 |
 
 ## `space_reverb` v1
 

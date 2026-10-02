@@ -1,5 +1,402 @@
 # Verification record
 
+## Studio UI refresh — 2026-10-02
+
+Baseline: clean local checkout and matching GitHub branch at `0d4cab0`.
+Presentation changes only; DSP, state implementation, factory recipes, IRs,
+parameter mapping, callbacks and persistence schemas are not changed.
+
+Validation performed on Ubuntu 24.04, GCC 13.3.0, pinned JUCE 8.0.15
+`91ad83ae34a81e0833b1a2b0866f54846370ae53`:
+
+- All five affected translation units compile to **object files**, with no
+  diagnostics under `-std=c++20 -Wall -Wextra -Wpedantic`: MainComponent,
+  RackEditor, PresetBar, PresetBrowser and standalone Main (including StudioTheme).
+  This is not a linked or rendered native application.
+- Existing headless CTest checks **4/4 pass**, 1.85 seconds: StateTests,
+  AssetTests, PedalPresetTests and legacy_identity_compatibility. These exercise
+  the unchanged underlying preset/state contracts, not GUI input or rendering.
+- Diff review and exact callback-assignment-line comparison retain every
+  existing onClick/onChange/onValueChange/search/keyboard callback assignment.
+  DSP/state/assets/test sources are unchanged. `git diff --check` is clean.
+- Layout arithmetic checked positive board viewport space at 700×450,
+  1280×720, 1366×768 and 1920×1080 in both audio-panel modes. Card height includes
+  control rows, cabinet selectors and footer without overlapping allocations.
+  This is a source/geometry check, not screenshot or HiDPI validation.
+- Fresh native Release CMake configuration stops at missing
+  `PKG_CONFIG_EXECUTABLE`. Native X11/ALSA/font development headers and a display
+  are also unavailable; no system packages were installed. Exact Fedora
+  dependency command remains in [dependencies.md](dependencies.md).
+
+Reproduce object compilation from the repository root:
+
+```bash
+mkdir -p build/ui-refresh-objects
+for f in src/ui/MainComponent.cpp src/ui/PresetBar.cpp src/ui/PresetBrowser.cpp src/ui/RackEditor.cpp src/standalone/Main.cpp; do
+  g++ -std=c++20 -Wall -Wextra -Wpedantic -c -Isrc -Ibuild/vendor/JUCE/modules \
+    -DJUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1 -DJUCE_STANDALONE_APPLICATION=1 \
+    -DJUCE_USE_CURL=0 -DJUCE_WEB_BROWSER=0 "$f" \
+    -o "build/ui-refresh-objects/$(basename "$f" .cpp).o" || exit
+ done
+ctest --test-dir build/headless -E legacy_audio_compatibility --output-on-failure
+```
+
+The headless directory is the existing pinned-JUCE verification setup described
+in earlier entries. The original unavailable frozen audio fixture remains
+excluded, not regenerated or reported as passing. No new audio DSP tests,
+hardware, live listening, GUI rendering, sanitizer or performance claims.
+[Desktop checklist](ui-refresh.md) remains pending.
+
+
+## Modern rock template expansion 2026-10-01
+
+Local and remote `feat/radiohead-muse-song-tones` were clean at
+`c159e512932d6d95372c71779e91724f93f22104`. Before edits, checkpoint
+`b8e7dc6a42ff086470c7187a3a405c1af2d01a6e` preserved the identical tree.
+Added **33 racks / 49 voices / nine songs** for Foo Fighters, Shinedown and
+Alter Bridge. The full inventory is **168 sounds / 305 voices**, with the same
+42 effect types / 44 exact version descriptors. No DSP implementation, effect
+version, latency profile or cabinet asset changes. All new racks use Legacy
+128 and physical tuning, with no pitch processor. Research separates recording
+eras, both Blackbird players/solos, transcription-only tuning evidence and
+explicit application adaptations. Every new sound remains Listening pending.
+
+Final software checks:
+
+- Core Debug **9/9**, 156.69 s; Release **9/9**, 30.98 s. Existing factory signal
+  tests prepare/load all sounds, check finite output and audit callback heap
+  operations. Two relinked Debug binaries lacked executable permission in this
+  workspace; their permission was restored before the final complete run.
+- Pinned JUCE headless state/asset/pedal/legacy identity checks **4/4**, 2.09 s.
+  State fixtures match compiled factories to portable files, exercise failed
+  restores and transactional behavior, and round-trip all 305 pedal voices.
+- Application export/import verifies **99 complete song bundles**, including
+  every prior 66 song chain. Edited existing bundles remain protected.
+- Strict version-specific schemas validate **168 portable presets** (162 v2,
+  six v1) and **305 expanded voices**. Registry schemas/control docs are
+  regenerated and unchanged. Seed, generators and exporter are byte-idempotent.
+- `check_modern_rock_templates.py --baseline b8e7dc6` verifies every prior JSON
+  recipe/catalog record, preset/IR/legacy identity and accessible file bytes,
+  fresh additive seeding, repeated seeding and deliberate owner-edit retention.
+- The independent pre-alternative-expansion numerical capture retained from
+  checkpoint `15870b7` still compares with **zero failures**, maximum absolute
+  error **4.99981e-11** across the frozen 45-sound subset at 44.1/48/96 kHz.
+  This task reran the comparison; it did not recapture an updated baseline.
+- Headroom **99/99 renders** (33 racks × input scales 0.3/1/3), 48 kHz,
+  eight-second original phrase plus eight-second tail. Maximum peak
+  **0.19744243** (**-14.09 dBFS**); nominal phrase RMS range
+  **0.010599–0.015438**. Only the 33 new rack output trims were calibrated
+  toward 0.015 nominal phrase RMS, in 0.5 dB steps, capped at +6 dB and a
+  worst-input peak below 0.6. The audit checks finite output, zero callback heap
+  operations and Legacy 128. It is synthetic numerical evidence, not measured
+  pickup loudness, true-peak certification, live CPU deadlines or album matching.
+
+The original 10 MB `tests/fixtures/legacy/render.txt.gz` remains unavailable
+locally through the connector. Its Git blob
+`6b266404e4f9f601b04daacc98b59467216f3903` is retained exactly; it was not
+recaptured or replaced. The standard frozen `legacy_audio_compatibility` test
+requires these unavailable bytes and is excluded, not reported as passing.
+The independent earlier checkpoint comparison above provides additional
+regression evidence without replacing that fixture.
+
+Environment remains GNU C++ 13.3.0, CMake 4.4.3 / Make, Python 3.12.14 and JUCE
+8.0.15 at `91ad83ae34a81e0833b1a2b0866f54846370ae53`, using the existing
+callback patch. Native standalone Release configuration was retried and remains
+blocked by missing `PkgConfig`, before GUI/audio compilation. Dependencies were
+not installed into the system. No new native-window, sanitizer, Windows, VST3,
+physical-device, round-trip, soak or reference-listening result is claimed.
+The prior Dual/graph-fade benchmark caveat applies to the new parallel amp racks.
+Only the unchanged original Subterranean Pulse has owner listening approval.
+
+Evidence: [Debug](evidence/modern-rock-templates/core-debug.txt),
+[Release](evidence/modern-rock-templates/core-release.txt),
+[state](evidence/modern-rock-templates/state-tests.txt),
+[schemas](evidence/modern-rock-templates/schema.txt),
+[bundles](evidence/modern-rock-templates/song-pack.txt),
+[preservation](evidence/modern-rock-templates/preservation.txt),
+[regeneration](evidence/modern-rock-templates/regeneration.txt),
+[checkpoint comparison](evidence/modern-rock-templates/checkpoint-audio.txt),
+[native configure](evidence/modern-rock-templates/native-configure.txt),
+[before](evidence/modern-rock-templates/headroom-before.csv) /
+[after headroom](evidence/modern-rock-templates/headroom.csv).
+
+[Research](modern-rock-tone-research.md) and
+[ordered recipes/reproduction commands](modern-rock-templates.md) explain the
+settings and their limits. The pinned headless verification setup described
+in the previous entry also applies; run the new baseline checker and
+`render_sounds --catalog-audit output.csv 'Modern rock research'` separately.
+
+## Alternative template expansion 2026-10-01
+
+The remote branch was exactly the owner's verified `8800341` state. Before
+edits, checkpoint `15870b779998c5d056fec53212b2669e332dacd8` was committed to
+`feat/radiohead-muse-song-tones` with an identical tree. No local Git worktree
+or additional uncommitted state was available in this session; this reconstruction
+cannot preserve unpushed changes residing on a different computer.
+
+Added **42 independent racks / 60 voices / 14 songs**. Total inventory is
+**135 sounds / 256 voices**, still 42 types / 44 version descriptors. Changes are
+factory data, generated library/catalog/presets, additive tools and documentation;
+no DSP algorithm, control contract or latency profile changes. All new racks
+load in Legacy 128, with physical tuning and no spectral pitch. Historical
+sources, transcription-only tuning evidence, role/adaptation limitations and
+listening-pending status are visible in the [research](alternative-tone-research.md)
+and catalog. Only the original Subterranean Pulse retains owner approval.
+
+Final checks:
+
+- Core Debug **9/9**, 143.38 s; Release **9/9**, 29.40 s. Factory signal tests
+  load/prepare every sound and check finite output and callback heap behavior.
+  This is offline software evidence, not a device deadline benchmark.
+- Pinned JUCE headless state/asset/pedal/legacy identity checks **4/4**, 1.55 s.
+  State tests match compiled factories to tracked fixtures and exercise failed
+  restores/transactional behavior; all 256 pedal voices round-trip.
+- Application bundle export/import verifies **66 song bundles**, including
+  the unchanged 24 Radiohead/Muse chains. Existing edited bundles are retained.
+- Strict version-specific JSON Schema validation checks all **135 portable
+  preset fixtures** and **256 expanded voices**. Legacy v1 files use v1 rather
+  than being forced through v2. Generators leave schemas/control docs unchanged.
+- `check_alternative_templates.py --baseline 15870b7` verifies all earlier
+  JSON recipes/catalog records and preset/IR/legacy bytes, reproducible fresh
+  seeding from the checkpoint, byte-idempotent repetition and retention of
+  deliberate edits to new racks, voices and metadata. All UUIDs remain stable.
+- Fresh checkpoint numerical capture before library edits versus the final
+  optimized renderer: **0 failures**, maximum absolute error **4.99981e-11**,
+  covering the frozen 45 sound subset at 44.1/48/96 kHz. This is additional
+  checkpoint regression evidence, not a replacement for the frozen fixture.
+- Headroom audit **126/126 renders**, 42 racks × three input scales (0.3/1/3),
+  48 kHz, eight-second phrase plus eight-second tail. All finite with zero
+  callback heap operations and Legacy 128. Maximum output peak **0.25835985**
+  (**-11.76 dBFS**); nominal phrase RMS ranges from
+  0.013280 to 0.015429. New rack output alone was calibrated
+  toward 0.015 nominal RMS in 0.5 dB steps, capped at +6 dB and worst-case peak
+  0.6. This is synthetic headroom, not true-peak/inter-sample certification,
+  perceived loudness, pickup calibration or album matching.
+
+The frozen 10 MB `tests/fixtures/legacy/render.txt.gz` was not readable through
+the connector (contents API omits large content, blob API expects UTF-8).
+Its original Git blob `6b266404e4f9f601b04daacc98b59467216f3903` is retained
+unchanged in the checkpoint and final tree. It was neither recaptured nor
+replaced. The standard `legacy_audio_compatibility` test requiring those local
+bytes could not run; identity/byte checks for all accessible fixtures and the
+independent pre-edit checkpoint capture comparison pass.
+
+Environment: GNU C++ 13.3.0, CMake 4.4.3 / Make, Python 3.12.14, JUCE 8.0.15
+exact commit `91ad83ae34a81e0833b1a2b0866f54846370ae53`. CMake/jsonschema
+wheels and the public pinned JUCE checkout were placed only in ignored `build/`;
+no system packages or external audio/IR assets were installed. Native standalone
+Release configuration was attempted and stopped at missing `PkgConfig` before
+GUI/audio compilation. Native display, live guitar/pickup/CPU/round-trip/soak,
+reference listening and album acceptance remain pending. No new sanitizer,
+Windows or VST3 result is claimed.
+
+Evidence: [Debug](evidence/alternative-templates/core-debug.txt),
+[Release](evidence/alternative-templates/core-release.txt),
+[state](evidence/alternative-templates/state-tests.txt),
+[schemas](evidence/alternative-templates/schema.txt),
+[bundles](evidence/alternative-templates/song-pack.txt),
+[checkpoint audio](evidence/alternative-templates/checkpoint-audio.txt),
+[preservation](evidence/alternative-templates/preservation.txt),
+[native configure](evidence/alternative-templates/native-configure.txt),
+[before](evidence/alternative-templates/headroom-before.csv) /
+[after headroom](evidence/alternative-templates/headroom.csv).
+
+Reproduce normal builds/regeneration using [template commands](alternative-templates.md#reproduce-and-verify).
+For the recorded headless workaround, first build Release core with
+`GUITARRACK_BUILD_STANDALONE=OFF` and provide the exact pinned JUCE modules.
+Copy [headless-verification.cmake](evidence/alternative-templates/headless-verification.cmake)
+to `build/headless-src/CMakeLists.txt`; configure with `-DROOT="$PWD"`,
+`-DCORE_ARCHIVE="$PWD/build/core-release/libguitarrack_core.a"`,
+`-DJUCE_MODULES="$PWD/build/vendor/JUCE/modules"`, `-DCMAKE_BUILD_TYPE=Release`.
+Build, then `ctest --test-dir build/headless --output-on-failure` on a complete
+checkout. This session excluded only `legacy_audio_compatibility` for the
+specific unavailable binary described above. Run the additive baseline check
+and `render_sounds --catalog-audit output.csv 'Alternative research'` separately.
+
+## Application chain handoff 2026-10-01
+
+Confirmed the 24 Radiohead/Muse song chains are compiled through SoundLibrary
+into `factoryPresets`, exposed by PresetSession's library and searchable/loadable
+in PresetBrowser using their metadata. No additional preset installation is
+needed after rebuilding and restarting the application. This inspection is not
+a native visual/display acceptance result.
+
+Added `guitarrack_export_sounds --song-pack <directory>` to export named portable
+`.grbundle` files, including required cabinet WAVs. The headless exporter rebuild
+passes. **All 24 bundles pass the application's AssetStore importer and match
+the serialized factory state**, including controls, ordering, slots and assets.
+The verification compares the persisted representation because physical/control
+normalization can round one float ULP. Existing different bundles are reported
+rather than overwritten. Original registry output remains compatible: frozen
+legacy identity/byte/control checks pass. Retained output:
+[application-pack.txt](evidence/muse-templates/application-pack.txt).
+
+Created ignored `build/radiohead-muse-song-chains.zip` containing 24 bundles and
+loading instructions; ZIP integrity check passes. The archive must be extracted
+before importing an individual bundle. Older executables lacking effects/versions
+still require rebuilding. No DSP, preset recipe or user/device state was changed
+for this handoff.
+
+Attempted native Release configuration with the exact pinned local JUCE and
+portable CMake/Ninja. Restored JUCE's `extras/Build` sparse-checkout files from
+the existing local Git objects, preserving the backend patches. Configuration
+then fails while building juceaide at `X11/Xlib.h: No such file or directory`.
+pkg-config also reports missing ALSA, Freetype, Fontconfig, X11 extensions and
+JACK development packages. No system packages were installed and no runnable
+desktop executable or native launch is claimed. The owner can build on Fedora
+using the [required package list](dependencies.md) and [README commands](../README.md#build-and-run).
+
+## Muse template expansion verification 2026-10-01
+
+Continuation on `feat/radiohead-muse-song-tones`: 12 additional Muse templates
+and 22 reusable pedal voices, covering all seven requested album-version songs.
+Inventory: 93 factory sounds / 196 voices, with the existing 42 types / 44
+descriptors. This expansion changes template data, generated sources and docs;
+it adds no DSP algorithm, effect schema or latency profile. All 12 fit Legacy
+128. The [tone research guide](muse-tone-research.md) separates inferred settings
+from evidence and documents blocked artist-source research and pending listening.
+
+The same Release core and pinned-JUCE headless harness described below were
+rebuilt. Final calibrated data passed the affected checks:
+
+- Core `experimental_signals`: **1/1 PASS, 5.28 s**, including all factory racks
+  and callback heap audits.
+- Headless StateTests, AssetTests, PedalPresetTests and frozen legacy identity
+  compatibility: **4/4 PASS, 0.84 s**.
+- Strict JSON Schema validation: **93 factory fixtures and 196 expanded voices**.
+  All prior 81 sounds, 174 voices and catalog metadata match the pre-expansion
+  snapshots exactly. Frozen compatibility fixtures were not recaptured.
+- Final synthetic headroom audit: **36 renders**, 12 templates at 0.3/1/3 input
+  strength, 48 kHz, eight-second phrase plus eight-second tail. Maximum
+  unclamped peak **0.12439519**; nominal-input phrase RMS
+  **0.0097278691–0.010235227**. Output remains finite and callback heap-free.
+  These measurements calibrate initial levels; they do not establish perceived
+  loudness, guitar realism or agreement with an album recording.
+- Re-running additive seeding and source/catalog/schema/control/preset export
+  preserves **101 artifacts byte-for-byte**. `git diff --check` passes.
+
+Actual outputs are retained in [the evidence directory](evidence/muse-templates/README.md).
+Earlier full DSP, legacy audio and sanitizer checks below remain historical;
+this expansion does not claim a fresh full-suite or sanitizer run. Native GUI,
+physical audio, deadlines, guitar/reference listening and authenticated
+song-specific studio chains remain unverified. No commit or push was made.
+
+## Song template verification 2026-10-01
+
+Branch: `feat/radiohead-muse-song-tones`, created from a clean checkout after
+[research](song-tone-research.md). This record covers the additive Echo v2,
+12 sounds and 28 voices. It does not supersede earlier Fedora results below.
+The current inventory is 42 types / 44 descriptors, 81 sounds and 174 voices.
+No commit/push, system package installation, external audio asset or global
+audio-policy change was performed. Native desktop/audio and reference listening
+remain pending. YouTube and the specialist gear websites returned HTTP-policy
+403 errors, so no listening or song-specific hardware verification is claimed.
+
+Environment: Debian 13 x86-64, GCC 14.2.0, C++20, Python 3.12.14. Existing
+CMake/Ninja and native ALSA/Freetype/Fontconfig/X11/JACK development packages
+were absent. Official CMake 4.4.3 and Ninja 1.13.2 wheel archives were downloaded
+and their portable executables extracted under `/tmp/guitar-rack-tools`; no
+package was installed. The exact JUCE 8.0.15 commit
+`91ad83ae34a81e0833b1a2b0866f54846370ae53` was checked out under ignored
+`build/manual-juce`. The core uses the repository CMake configuration. A separate
+path-specific [headless verification harness](evidence/song-templates/headless-verification.cmake)
+links the actual state sources to JUCE Core, with browser/curl disabled. This
+harness does not compile the native GUI, device adapter or JUCE backend patch.
+
+### Checks and results
+
+- Core Release (`build/core-debug` preset directory, explicitly overridden to
+  `CMAKE_BUILD_TYPE=Release`): **9/9 CTest PASS, 20.91 s**. Monitoring/routing,
+  rack lifecycle, original effects, distortion, reverb, cabinet, experimental
+  library, tone networks and creative processors are covered.
+- JUCE-Core/state harness Release: **5/5 CTest PASS, 88.55 s**. Presets/state,
+  assets/bundles, pedal persistence, legacy identity/bytes/control mappings and
+  the complete frozen legacy numerical audio matrix pass. Legacy audio alone
+  completed in 88.13 s. The compatibility fixtures were not regenerated.
+- New Echo tests measure wet high-pass rejection and passband at 44.1/48/96 kHz,
+  exact zero-mix dry audio, stereo movement from duplicated mono, adjustable
+  rate, disabled-filter residual silence, bounded high-feedback/live changes,
+  neutral v1/v2 compatibility within 1e-6 and zero callback heap operations.
+  Existing BPM/ping-pong/timing, reverb, pitch and blend checks still pass.
+- All **69 earlier sounds and 146 earlier voicings** are exact JSON-record
+  matches to HEAD, beyond the frozen legacy subset. All 81 portable factory
+  fixtures and 174 expanded voicings validate against the strict JSON schemas.
+  State tests confirm every embedded factory matches its tracked fixture;
+  pedal tests round-trip all voices. The approved legacy Subterranean remains
+  the only catalog entry marked owner approved.
+- Selected optimized ASan/UBSan (`-O1 -g`, leaks disabled) pass **2/2**:
+  `experimental_signals` and `creative_signals`, 28.87 s. These exercise the
+  new Echo and full factory library with callback allocation audits. No
+  address/undefined diagnostic was reported. Leak detection and TSan for this
+  branch are unverified; sanitizer timings are not audio performance evidence.
+- After final new-preset output calibration, affected experimental library and
+  all four state/asset/pedal/identity checks pass again. The affected sanitizer
+  library suite is also rebuilt/rechecked. Earlier unaffected DSP/legacy audio
+  results remain applicable; no broad re-run is claimed.
+- Additive seeding plus source/catalog/schema/control/preset regeneration
+  preserve **89 artifacts byte-for-byte**. Unknown audit tags fail with an
+  actionable error. `git diff --check` passes.
+
+Commands actually used (the temporary executable paths are environment-specific):
+
+```bash
+/tmp/guitar-rack-tools/cmake/data/bin/cmake --preset core-debug \
+  -DCMAKE_MAKE_PROGRAM=/tmp/guitar-rack-tools/ninja-1.13.2.data/scripts/ninja \
+  -DCMAKE_BUILD_TYPE=Release
+/tmp/guitar-rack-tools/cmake/data/bin/cmake --build --preset core-debug -j 2
+/tmp/guitar-rack-tools/cmake/data/bin/ctest --preset core-debug --output-on-failure -j 2
+# The recorded headless harness is copied to an ignored CMakeLists.txt.
+/tmp/guitar-rack-tools/cmake/data/bin/cmake -S build/song-tones/headless-source \
+  -B build/song-tones/headless -G Ninja -DCMAKE_BUILD_TYPE=Release \
+  -DCMAKE_MAKE_PROGRAM=/tmp/guitar-rack-tools/ninja-1.13.2.data/scripts/ninja
+/tmp/guitar-rack-tools/cmake/data/bin/cmake --build build/song-tones/headless -j 2
+/tmp/guitar-rack-tools/cmake/data/bin/ctest --test-dir build/song-tones/headless --output-on-failure -j 2
+/tmp/guitar-rack-tools/cmake/data/bin/cmake --preset core-sanitize \
+  -DCMAKE_MAKE_PROGRAM=/tmp/guitar-rack-tools/ninja-1.13.2.data/scripts/ninja \
+  '-DCMAKE_CXX_FLAGS_DEBUG=-O1 -g'
+/tmp/guitar-rack-tools/cmake/data/bin/cmake --build --preset core-sanitize \
+  --target guitarrack_creative_tests guitarrack_experimental_tests -j 2
+ASAN_OPTIONS=detect_leaks=0 /tmp/guitar-rack-tools/cmake/data/bin/ctest \
+  --preset core-sanitize -R 'creative_signals|experimental_signals' --output-on-failure -j 2
+build/song-tones/headless/render_sounds --catalog-audit build/song-tones/headroom-final.csv "Song templates"
+```
+
+### New-template levels and headroom
+
+The [36-row final audit](evidence/song-templates/headroom.csv) renders an original
+8-second mathematical pluck/chord/bend phrase plus an 8-second tail at 48 kHz,
+with input strengths 0.3/1/3. It uses actual prepared racks and synthetic cabinet
+assets, no audio device or MonitorEngine clamp, and verifies finite output and
+callback heap behavior. All 12 use Legacy 128. The initial audit exposed quieter
+clean chains; only new rack Output values were calibrated in 0.5-dB steps toward
+nominal phrase RMS 0.010. Final nominal RMS ranges **0.009734–0.010271** and
+maximum unclamped peak across all strengths is **0.120795**. This establishes
+headroom on this signal, not pickup calibration, perceived loudness or an album
+match. Output settings differ because the actual amp/cab/ambience chains differ.
+
+| Sound | Rack output dB | Nominal phrase RMS | Peak at 3x input |
+|---|---|---|---|
+| Radiohead / Let Down - Clean Arpeggio | 1.5 | 0.010017 | 0.094782 |
+| Radiohead / Let Down - Space Layer | 4.5 | 0.009734 | 0.111553 |
+| Radiohead / No Surprises - Bell Clean | 1 | 0.010249 | 0.113236 |
+| Radiohead / Subterranean Homesick Alien - Clean Foundation | -2.5 | 0.010080 | 0.120795 |
+| Radiohead / Subterranean Homesick Alien - Floating Lead | 1 | 0.009772 | 0.110758 |
+| Radiohead / Weird Fishes - Interlocking Clean | 2.5 | 0.009787 | 0.100253 |
+| Muse / Plug In Baby - Singing Fuzz | -11 | 0.010148 | 0.044438 |
+| Muse / Stockholm Syndrome - Tight Rhythm | -13 | 0.009826 | 0.034617 |
+| Muse / Starlight - Chiming Guitar | -1.5 | 0.010086 | 0.088246 |
+| Muse / Knights of Cydonia - Western Guitar | -8 | 0.010229 | 0.054359 |
+| Muse / Space Lead - Sustained Echo | -8 | 0.010271 | 0.038610 |
+| Muse / Time Is Running Out - Guitar Fuzz | -14.5 | 0.009887 | 0.040173 |
+
+
+Remaining acceptance: a full native Fedora build and device-adapter suite for
+this branch, actual desktop/HiDPI/keyboard use, recorded/live guitar comparison
+against the supplied reference, pickup/interface level adjustment, physical
+routing/round trip/soak, mono fold-down listening and device-period benchmarks.
+Synthetic tests do not complete these checks. Use [song templates](song-templates.md)
+and the [listening worksheet](listening.md) for the owner session.
+
 ## Tone upgrade current verification 2026-10-01
 
 This is fresh local Linux verification of the additive A–D implementation on
@@ -988,3 +1385,50 @@ acceptance, actual adapter checks for this branch, guitar listening/voicing
 tuning, real-time deadline measurements, hardware stability and round trip
 remain pending. Existing Fedora dependency commands are in dependencies.md.
 No new live listening, device, plugin-host, Windows or performance result is claimed.
+
+# 2026-10-02 — Preset browser and PipeWire JACK period follow-up
+
+Owner reported absent modern rock artists in the new browser, pauses/cuts during
+guitar play, some Muse sounds failing, confusing latency settings and a possible
+JUCE/font defect. The browser had a fixed artist list; the 168 factory sounds
+were compiled, but Foo Fighters, Shinedown and Alter Bridge were missing filter
+choices. Artist choices now include catalog names. The previous Release binary
+predated the latest UI source; rebuilding refreshes that local executable.
+
+Pinned JUCE 8.0.15 JACK reports only the current buffer and ignores the block
+argument to `open()`. On stopped Start, the standalone now recreates its JACK
+client with a per-process `PIPEWIRE_LATENCY=frames/rate` request and rejects an
+actual rate or period larger than requested. This does not change system-wide
+PipeWire settings. The Audio Setup buffer picker includes 128/256/512/1024 for
+JACK, defaults to 256, and still shows requested versus actual values and a
+collapsed-view xrun count. ALSA
+keeps its supported-device choices. The Legacy/Creative DSP budgets are
+unchanged. The documented Creative pitch sound still needs 4096 samples and is
+not a low-latency live option; other added Muse song templates fit Legacy 128.
+
+Fedora 44, GCC 16.2.1, CMake 4.3.0, Ninja 1.13.2, JUCE pin
+`91ad83ae34a81e0833b1a2b0866f54846370ae53`. Release `GuitarRack` links.
+`ctest --test-dir build/linux-release --output-on-failure -j4` passed 15/15
+(58.61 s). Physical audio and native
+visual/font checks remain pending: `/dev/snd` is absent and `xdpyinfo -display :0`
+cannot open the display. The Release GUI smoke launch exited 139; Debug printed
+JUCE XWindowSystem assertions before the same exit. These are display-session
+failures, not evidence of a font defect. The previous 60-row synthetic
+benchmark already records 5.658 ms mean for a dense rack and 5.736 ms maximum
+for a Dual model/graph fade at 48 kHz/256 frames (5.333 ms period). This is a
+credible dropout risk, not an explanation proven for the owner's exact rack.
+Record the failing sound IDs, actual period, backend xrun count and whether
+interruptions occur with an empty rack in the owner's physical follow-up.
+
+Owner follow-up: the Audio Setup button displays missing arrow glyphs. Its
+Unicode arrow characters and the remaining UI-only Unicode ornaments were
+changed to ASCII. The owner reports silence after loading Citizen Erased while
+the output meter moves, possibly both Dense Distortion and Clean Ending. The
+current Release `guitarrack_render` was rebuilt and both exact factory UUIDs
+rendered from the same 48-kHz synthetic DI at Legacy 128: Dense peak 0.0310956,
+phrase RMS 0.0099944; Clean Ending peak 0.0455299, RMS 0.0102352. These are
+nonzero stereo files and match the previously recorded headroom evidence. The
+standalone meter measures samples before JACK's external port connections, so
+meter motion cannot establish headphone/speaker playback. A comparison with a
+known audible preset on the same live stream, actual xrun count and device
+routing are still needed to distinguish low sound level from downstream silence.

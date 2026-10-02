@@ -1,0 +1,112 @@
+{
+  "schema_version": 2,
+  "preset_id": "5fbb860c-41cf-50cf-80e0-a63c0c4f35d4",
+  "name": "Shinedown / Cut the Cord - Filtered Hook Accent",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": 6.0,
+    "rack_bypass": false
+  },
+  "order": [
+    "4de81974-2016-5624-8620-d06df42d647b",
+    "e4eb0b0c-21f1-5d2d-8ba2-b338bdc90e6a",
+    "6ff6d862-ee41-5b6a-888a-394d536fba98",
+    "88ba390b-065d-5cf0-8cbb-8cca4a62a113",
+    "19d86bf7-f4ea-500c-afe1-4b0b164c1f26"
+  ],
+  "instances": [
+    {
+      "instance_id": "4de81974-2016-5624-8620-d06df42d647b",
+      "slot_id": 0,
+      "effect_type": "wah",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "position_percent": 48.0,
+        "heel_hz": 350.0,
+        "toe_hz": 1900.0,
+        "q": 1.200000047683716,
+        "output_db": -1.0,
+        "mix_percent": 58.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "e4eb0b0c-21f1-5d2d-8ba2-b338bdc90e6a",
+      "slot_id": 1,
+      "effect_type": "amp_us_combo",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 5.0,
+        "bass_db": -2.0,
+        "mid_db": 2.0,
+        "treble_db": -1.0,
+        "master_percent": 28.0,
+        "presence_percent": 24.0,
+        "output_db": -8.0,
+        "sag_percent": 25.0,
+        "bright_percent": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "6ff6d862-ee41-5b6a-888a-394d536fba98",
+      "slot_id": 2,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d"
+    },
+    {
+      "instance_id": "88ba390b-065d-5cf0-8cbb-8cca4a62a113",
+      "slot_id": 3,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 240.0,
+        "band1_db": -1.5,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 1500.0,
+        "band2_db": 2.0,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 3900.0,
+        "band3_db": -1.5,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 95.0,
+        "low_pass_hz": 6500.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "19d86bf7-f4ea-500c-afe1-4b0b164c1f26",
+      "slot_id": 4,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.550000011920929,
+        "pre_delay_ms": 12.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 5.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "sha256": "43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d",
+      "relative_path": "ir/43274927cae42dd5bd1665c1724fb47ba220a4f48bf3615676a951abe9a3933d.wav",
+      "format": "wav"
+    }
+  ]
+}

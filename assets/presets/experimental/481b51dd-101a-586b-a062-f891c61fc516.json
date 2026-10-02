@@ -1,0 +1,112 @@
+{
+  "schema_version": 2,
+  "preset_id": "481b51dd-101a-586b-a062-f891c61fc516",
+  "name": "Foo Fighters / The Pretender - Staccato Rhythm",
+  "globals": {
+    "input_db": 0.0,
+    "output_db": -10.5,
+    "rack_bypass": false
+  },
+  "order": [
+    "c5a0699a-c671-5199-a336-c9a0c4b66db2",
+    "dcda4bac-5d61-5dd3-b236-3db1b74d6924",
+    "f7a7ce16-19b6-54a4-a3e7-e9cf1403ed80",
+    "b47b31e6-e292-5df1-a0a9-0c61a140ff93",
+    "1349c43f-a0f5-5082-bef3-e4c7712bf2dc"
+  ],
+  "instances": [
+    {
+      "instance_id": "c5a0699a-c671-5199-a336-c9a0c4b66db2",
+      "slot_id": 0,
+      "effect_type": "amp_brit_hotrod",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "gain_db": 18.0,
+        "bass_db": -2.0,
+        "mid_db": 2.0,
+        "treble_db": 1.0,
+        "master_percent": 32.0,
+        "presence_percent": 36.0,
+        "output_db": -9.0,
+        "sag_percent": 15.000000953674316,
+        "low_cut_hz": 85.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "dcda4bac-5d61-5dd3-b236-3db1b74d6924",
+      "slot_id": 1,
+      "effect_type": "cabinet",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "level_db": 0.0
+      },
+      "ir_asset": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac"
+    },
+    {
+      "instance_id": "f7a7ce16-19b6-54a4-a3e7-e9cf1403ed80",
+      "slot_id": 2,
+      "effect_type": "parametric_eq",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "band1_hz": 180.0,
+        "band1_db": -2.0,
+        "band1_q": 0.800000011920929,
+        "band2_hz": 1700.0,
+        "band2_db": 1.5,
+        "band2_q": 0.800000011920929,
+        "band3_hz": 4100.0,
+        "band3_db": -1.5,
+        "band3_q": 0.899999976158142,
+        "high_pass_hz": 90.0,
+        "low_pass_hz": 6500.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "b47b31e6-e292-5df1-a0a9-0c61a140ff93",
+      "slot_id": 3,
+      "effect_type": "compressor",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "threshold_db": -19.0,
+        "ratio": 1.600000023841858,
+        "attack_ms": 28.0,
+        "release_ms": 125.0,
+        "makeup_db": 0.0,
+        "mix_percent": 40.0
+      },
+      "ir_asset": ""
+    },
+    {
+      "instance_id": "1349c43f-a0f5-5082-bef3-e4c7712bf2dc",
+      "slot_id": 4,
+      "effect_type": "space_reverb",
+      "effect_version": 1,
+      "bypassed": false,
+      "parameters": {
+        "mode": 0.0,
+        "decay_seconds": 0.550000011920929,
+        "pre_delay_ms": 12.0,
+        "damping_hz": 4800.0,
+        "tone_hz": 6500.0,
+        "mix_percent": 5.0,
+        "output_db": 0.0
+      },
+      "ir_asset": ""
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "sha256": "e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac",
+      "relative_path": "ir/e26d30f72d0a358145a09368e73530bcdf24613808fb429ea4f6aca3e7bd73ac.wav",
+      "format": "wav"
+    }
+  ]
+}
